@@ -1,4 +1,4 @@
-# planetx
+# healing_rays
 
 A new Flutter project.
 
