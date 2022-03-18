@@ -48,7 +48,7 @@ class _CustomButtonState extends State<CustomButton> {
             padding: MaterialStateProperty.all(EdgeInsets.all(6)),
             backgroundColor: MaterialStateProperty.all<Color>(
                 //widget.color ?? Color(0xffF2902F)
-                widget.isActive ? activeGreen : inActiveGrey)),
+                widget.isActive ? primaryColor : inActiveGrey)),
         // child: Text(
         //   widget.title,
         //   style: TextStyle(

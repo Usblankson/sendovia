@@ -7,7 +7,7 @@ class TextFormFieldWithIcon extends StatefulWidget {
   final Widget prefixIcon;
   final Widget suffixIcon;
 
-  TextFormFieldWithIcon({@required this.prefixIcon, @required this.suffixIcon});
+  TextFormFieldWithIcon({this.prefixIcon, this.suffixIcon});
 
   @override
   _TextFormFieldWithIconState createState() => _TextFormFieldWithIconState();
@@ -26,13 +26,13 @@ class _TextFormFieldWithIconState extends State<TextFormFieldWithIcon> {
             style: BorderStyle.none,
           ),
         ),
-        fillColor: Colors.white,
+        fillColor: Color(0xffF3F3F3),
         filled: true,
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.suffixIcon,
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.sp)),
-            borderSide: BorderSide(color: activeGreen)),
+            borderSide: BorderSide(color: primaryColor)),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.sp)),
             borderSide: BorderSide(color: Colors.red)),
