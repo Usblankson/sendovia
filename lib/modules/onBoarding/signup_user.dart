@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -119,8 +121,11 @@ class SignUpUser extends StatelessWidget {
                                 title: "Sign up",
                                 isActive: true,
                                 onPress: () {
-                                  context.loaderOverlay.show();
                                   print("sign up");
+                                  context.loaderOverlay.show();
+                                  Timer( Duration(seconds: 8),
+                                          () => context.loaderOverlay.hide()
+                                  );
                                 }),
                           ),
                         ]),
