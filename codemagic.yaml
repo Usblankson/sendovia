@@ -5,18 +5,6 @@ workflows:
     max_build_duration: 60
     environment:
     scripts:
-      - name: Set up debug keystore
-        script: |
-     #     rm -f ~/.android/debug.keystore
-      #    keytool -genkeypair \
-           # -alias upload \
-           # -keypass azurerays \
-           # -keystore ~/upload-keystore.jks \
-          #  -storepass azurerays \
-         #   -dname 'CN=Android Debug,O=Android,C=US' \
-        #    -keyalg 'RSA' \
-       #     -keysize 2048 \
-       #     -validity 10000
       - name: Set up local properties
         script: echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - name: Get Flutter packages
