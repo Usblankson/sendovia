@@ -4,9 +4,9 @@ workflows:
     instance_type: mac_mini
     max_build_duration: 60
     environment:
-  #  scripts:
-   #   - name: Set up debug keystore
-    #    script: |
+    scripts:
+      - name: Set up debug keystore
+        script: |
      #     rm -f ~/.android/debug.keystore
       #    keytool -genkeypair \
            # -alias upload \
@@ -33,9 +33,10 @@ workflows:
         recipients:
           - tadeboye@sbsc.com
           - adegborioyedavid@gmail.com
-          - Ogunleyeolaide@gmail.com
+          - ogunleyeolaide@gmail.com
+          - simipamdachomo@gmail.com
           - temidjoy@hotmail.com
-          - fortunekbz2009@gmail.Com
+          - fortunekbz2009@gmail.com
 
     environment:
       flutter: stable
