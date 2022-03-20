@@ -32,6 +32,11 @@ workflows:
       email:
         recipients:
           - tadeboye@sbsc.com
+          - adegborioyedavid@gmail.com
+          - Ogunleyeolaide@gmail.com
+          - temidjoy@hotmail.com
+          - fortunekbz2009@gmail.Com
+
     environment:
       flutter: stable
       xcode: latest
