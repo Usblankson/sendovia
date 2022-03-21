@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:planetx/shared/models/themes.dart';
 
 class Button extends StatelessWidget {
@@ -36,7 +36,7 @@ class Button extends StatelessWidget {
       onTap: this.enable == true ? this.onPressed : null,
       child: Container(
         height: this.height,
-        width: this.width ?? Get.width,
+        width: this.width, // ?? Get.width,
         decoration: BoxDecoration(
             border: Border.all(
                 color: this.enable ? this.borderColor : Colors.transparent),
