@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const Color primaryColor = Color(0xff7B61FF);
+const Color loaderBlue = Color(0xff0C80E4);
 const Color activeGreen = Color(0xff27A770);
 const Color herbGreen = Color(0xff106066);
 const Color flutterwaveGreen = Color(0xffF2F8F1);

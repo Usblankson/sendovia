@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:planetx/shared/models/themes.dart';
 
 
 
 appbar(Color color, Color backIconColor, String text, Color textColor,
     List<Widget> actions, PreferredSizeWidget widget,
-    {bool centerTitle = true, hasBackIcon = true}) {
+    {bool centerTitle = true, hasBackIcon = true, BuildContext context}) {
   return AppBar(
     bottom: widget ?? null,
     elevation: 0,
@@ -14,7 +14,7 @@ appbar(Color color, Color backIconColor, String text, Color textColor,
     backgroundColor: color ?? primaryColor,
     leading: hasBackIcon
         ? InkWell(
-            onTap: () => Get.back(),
+            onTap: () => Navigator.pop(context),
             child: Icon(Icons.arrow_back,
                 color: backIconColor ?? secondaryBlue, size: 30))
         : Container(),
