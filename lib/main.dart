@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:planetx/router/app_router.dart';
 import 'package:planetx/router/main_router.dart';
-import 'package:planetx/shared/utils/dims.dart';
 import 'package:planetx/shared/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:route_observer_mixin/route_observer_mixin.dart';
 
 import 'core/locator/locator.dart';
 import 'core/service_injector/service_injector.dart';
-import 'modules/auth/login_first_user.dart';
 import 'modules/splash.dart';
 
 void main() {
