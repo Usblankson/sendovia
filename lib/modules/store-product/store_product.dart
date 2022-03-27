@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:planetx/shared/models/data.dart';
-import 'package:planetx/shared/models/themes.dart';
+
+import '../../shared/utils/color.dart';
 
 class StoreProductScreen extends StatelessWidget {
   const StoreProductScreen({Key key}) : super(key: key);

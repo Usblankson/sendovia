@@ -4,6 +4,8 @@ import 'package:planetx/modules/onBoarding/signup_user.dart';
 import 'package:planetx/modules/splash.dart';
 import 'package:planetx/router/route_paths.dart';
 
+import '../modules/home/home.dart';
+
 class MainRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -13,8 +15,11 @@ class MainRouter {
       case RoutePaths.signUp:
         return MaterialPageRoute(builder: (_) => SignUpUser());
         break;
-    case RoutePaths.login:
+      case RoutePaths.login:
         return MaterialPageRoute(builder: (_) => LoginFirstUser());
+        break;
+      case RoutePaths.home:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
         break;
       default:
         return MaterialPageRoute(

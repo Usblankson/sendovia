@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/shared/models/data.dart';
-import 'package:planetx/shared/models/themes.dart';
 import 'package:planetx/shared/widgets/floating_button.dart';
+import 'package:planetx/shared/widgets/space.dart';
+
+import '../../shared/utils/color.dart';
+import '../../shared/utils/styles.dart';
 
 class HomeScreen extends StatelessWidget {
   // final List<PopularImages>? popularImages;
@@ -15,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FAB(),
       backgroundColor: Color(0xffE5E5E5),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 50.h),
         child: SingleChildScrollView(
           child: Container(
             child: Column(
@@ -28,43 +32,40 @@ class HomeScreen extends StatelessWidget {
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         CircleAvatar(),
-                        SizedBox(width: 14),
-                        Text("Hi Joe",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: "PT Sans",
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400)),
-                        SizedBox(width: 10),
+                        SizedBox(width: 14.w),
+                        Styles.regular(
+                          "Hi Joe",
+                          fontSize: 17.sp,
+                          color: black,
+                        ),
+                        SizedBox(width: 10.w),
                         Container(
                           child: Center(
-                            child: Text("\$12.50",
-                                style: TextStyle(
-                                    color: Color(0xffF304BE),
-                                    fontFamily: "Epilogue",
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500)),
+                            child: Styles.semiBold(
+                              r"$12.50",
+                              fontSize: 14.sp,
+                              color: kRed,
+                            ),
                           ),
-                          height: 30,
-                          width: 65,
+                          height: 30.h,
+                          width: 65.w,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Color(0xff0B72D2), width: 0.5)),
+                              borderRadius: BorderRadius.circular(20.r),
+                              border: Border.all(color: blue, width: 0.5)),
                         )
                       ],
                     ),
                     Image.asset(
                       "assets/images/sendovia_logo.png",
-                      height: 40,
-                      width: 90,
+                      height: 40.h,
+                      width: 90.w,
                     )
                   ],
                 ),
-                SizedBox(height: 26),
+                SizedBox(height: 26.h),
                 Container(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
@@ -73,12 +74,12 @@ class HomeScreen extends StatelessWidget {
                           Icons.search,
                           color: Color(0xffC2B5B5),
                         ),
-                        SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Text("Search items or services",
                             style: TextStyle(
                                 color: Color(0xff9D9D9D),
                                 fontFamily: "Epilogue",
-                                fontSize: 12,
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w300)),
                       ],
                     ),
@@ -87,19 +88,19 @@ class HomeScreen extends StatelessWidget {
                   height: 45,
                   width: double.infinity,
                 ),
-                SizedBox(height: 24),
+                SizedBox(height: 24.h),
                 headingRow(title: "Popular", subTitle: "see all"),
-                SizedBox(height: 14),
+                VSpace(14.h),
                 Popular(),
-                SizedBox(height: 26),
+                VSpace(26.h),
                 headingRow(title: "Categories", subTitle: "see all"),
-                SizedBox(height: 14),
+                VSpace(14.h),
                 Categories(),
-                SizedBox(height: 40),
+                VSpace(40.h),
                 Container(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 30),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
@@ -109,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "PT Sans",
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w400)),
                       ],
                     ),
@@ -122,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                         fit: BoxFit.cover),
                   ),
                   //  color: Colors.red,
-                  height: 250,
+                  height: 250.h,
                   width: double.infinity,
                 ),
               ],
@@ -142,7 +143,7 @@ class Popular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110,
+      height: 110.h,
       child: GridView.count(
         // shrinkWrap: ,
         scrollDirection: Axis.horizontal,
@@ -154,15 +155,15 @@ class Popular extends StatelessWidget {
           (index) {
             return Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                   border: Border.all(color: Colors.grey, width: 0.5)),
               child: Column(
                 children: [
                   Container(
-                    height: 75,
+                    height: 75.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(2.r),
                       //   color: Color(0xffEEEEEE),
                     ),
                     child:
@@ -181,7 +182,7 @@ class Popular extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: "PT sans",
-                          fontSize: 12,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w400)),
                 ],
               ),
@@ -213,15 +214,15 @@ class Categories extends StatelessWidget {
           (index) {
             return Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                   border: Border.all(color: Colors.grey, width: 0.5)),
               child: Column(
                 children: [
                   Container(
-                    height: 75,
+                    height: 75.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(2.r),
                       color: Color(0xffEEEEEE),
                     ),
                     child:
@@ -235,12 +236,12 @@ class Categories extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 12),
+                  VSpace(12.h),
                   Text(popularCategories[index].title,
                       style: TextStyle(
                           color: black,
                           fontFamily: "PT sans",
-                          fontSize: 12,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.w400)),
                 ],
               ),
@@ -264,7 +265,7 @@ Row headingRow({
       Text(
         title,
         style: TextStyle(
-            fontSize: 14,
+            fontSize: 14.sp,
             color: black,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w400,
@@ -275,7 +276,7 @@ Row headingRow({
         child: Text(
           subTitle,
           style: TextStyle(
-              fontSize: 14,
+              fontSize: 14.sp,
               color: secondaryBlue,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w400,

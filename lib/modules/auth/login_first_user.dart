@@ -30,24 +30,31 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
       body: Container(
           width: deviceWidth(context),
           height: deviceHeight(context),
-
           child: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
                 child: Container(
                   decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage("assets/images/login-bg.png",),fit: BoxFit.contain)
-                  ),
+                      image: DecorationImage(
+                          image: AssetImage(
+                            "assets/images/login-bg.png",
+                          ),
+                          fit: BoxFit.contain)),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Styles.bold("Sign in", fontSize: 24.sp, color: bunkerDark),
-                            Image.asset("assets/images/Logo.png", height: 18.h, width: 78.w,)
-
+                            Styles.bold("Sign in",
+                                fontSize: 24.sp, color: bunkerDark),
+                            Image.asset(
+                              "assets/images/Logo.png",
+                              height: 18.h,
+                              width: 78.w,
+                            )
                           ],
                         ),
                         VSpace(200.h),
@@ -76,16 +83,19 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Styles.regular("Don't have an account?", color: black),
+                              Styles.regular("Don't have an account?",
+                                  color: black),
                               HSpace(3.w),
                               GestureDetector(
                                   onTap: () => Navigator.push(
-                                    context,
-                                    MainRouter.generateRoute(
-                                      RouteSettings(name: RoutePaths.signUp),
-                                    ),
-                                  ),
-                                  child: Styles.semiBold("Sign up", color: primaryColor))
+                                        context,
+                                        MainRouter.generateRoute(
+                                          RouteSettings(
+                                              name: RoutePaths.signUp),
+                                        ),
+                                      ),
+                                  child: Styles.semiBold("Sign up",
+                                      color: primaryColor))
                             ],
                           ),
                         ),
@@ -97,6 +107,12 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                               isActive: true,
                               onPress: () {
                                 print("Login In");
+                                Navigator.push(
+                                  context,
+                                  MainRouter.generateRoute(
+                                    RouteSettings(name: RoutePaths.home),
+                                  ),
+                                );
                               }),
                         ),
                       ]),
