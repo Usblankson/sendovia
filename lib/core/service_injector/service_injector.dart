@@ -3,6 +3,7 @@ import 'package:planetx/core/services/auth_service.dart';
 import 'package:planetx/core/services/color_service.dart';
 import 'package:planetx/core/services/layout_service.dart';
 import 'package:planetx/core/services/router_service.dart';
+import 'package:planetx/core/services/sendgift_service.dart';
 import 'package:planetx/core/services/storage_service.dart';
 import 'package:planetx/core/services/store_service.dart';
 import 'package:planetx/core/services/user_service.dart';
@@ -12,6 +13,7 @@ class Injector {
   StorageService storageService = StorageService();
   LayoutService layoutService = LayoutService();
   RouterService routerService = RouterService();
+  SendGiftService sendGiftService = SendGiftService();
   ApiService apiService;
   AuthService authService;
   ColorService colorService;
@@ -30,6 +32,10 @@ class Injector {
     userService = UserService(
       storageService: storageService,
       apiService: apiService,
+    );
+    sendGiftService = SendGiftService(
+      storageService: storageService,
+      storeService: storeService,
     );
 
     return true;

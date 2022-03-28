@@ -5,6 +5,7 @@ import 'package:planetx/modules/splash.dart';
 import 'package:planetx/router/route_paths.dart';
 
 import '../modules/home/home.dart';
+import '../modules/send_gift/summary_screen.dart';
 
 class MainRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -20,6 +21,9 @@ class MainRouter {
         break;
       case RoutePaths.home:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+        break;
+      case RoutePaths.summaryScreen:
+        return MaterialPageRoute(builder: (_) => SummaryScreen());
         break;
       default:
         return MaterialPageRoute(

@@ -37,7 +37,9 @@ class _BottomNav extends State<BottomNav> {
               type: BottomNavigationBarType.fixed,
               elevation: 10,
               selectedLabelStyle: TextStyle(
-                  color: cornBlue, fontSize: 10.sp, fontWeight: FontWeight.w600),
+                  color: primaryColor,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w600),
               unselectedLabelStyle: TextStyle(
                   color: grey, fontSize: 10.sp, fontWeight: FontWeight.w600),
               backgroundColor: white,
