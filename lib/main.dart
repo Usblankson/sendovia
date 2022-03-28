@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/modules/send_gift/add_message_screen.dart';
 import 'package:planetx/router/app_router.dart';
 import 'package:planetx/router/main_router.dart';
 import 'package:planetx/shared/utils/color.dart';
@@ -91,7 +92,7 @@ class _MyAppState extends State<MyApp> {
                   button: TextStyle(fontSize: 45.sp)),
             ),
             onGenerateRoute: MainRouter.generateRoute,
-            home: Splash()),
+            home: AddMessageScreen()),
       ),
     );
   }
