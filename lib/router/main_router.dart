@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:planetx/modules/auth/login_first_user.dart';
+import 'package:planetx/modules/check-product/check_product.dart';
 import 'package:planetx/modules/onBoarding/signup_user.dart';
 import 'package:planetx/modules/splash.dart';
+import 'package:planetx/modules/store-lists/store_list.dart';
+import 'package:planetx/modules/store-product/store_product.dart';
 import 'package:planetx/router/route_paths.dart';
 
 import '../modules/home/home.dart';
@@ -24,6 +27,15 @@ class MainRouter {
         break;
       case RoutePaths.summaryScreen:
         return MaterialPageRoute(builder: (_) => SummaryScreen());
+        break;
+      case RoutePaths.checkProduct:
+        return MaterialPageRoute(builder: (_) => CheckProductScreen());
+        break;
+      case RoutePaths.storesList:
+        return MaterialPageRoute(builder: (_) => StoresLists());
+        break;
+      case RoutePaths.storeProduct:
+        return MaterialPageRoute(builder: (_) => StoreProductScreen());
         break;
       default:
         return MaterialPageRoute(

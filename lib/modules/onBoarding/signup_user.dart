@@ -106,7 +106,8 @@ class SignUpUser extends StatelessWidget {
                                     onTap: () => Navigator.push(
                                           context,
                                           MainRouter.generateRoute(
-                                            RouteSettings(name: RoutePaths.login),
+                                            RouteSettings(
+                                                name: RoutePaths.login),
                                           ),
                                         ),
                                     child: Styles.semiBold("Sign in",
@@ -123,9 +124,8 @@ class SignUpUser extends StatelessWidget {
                                 onPress: () {
                                   print("sign up");
                                   context.loaderOverlay.show();
-                                  Timer( Duration(seconds: 8),
-                                          () => context.loaderOverlay.hide()
-                                  );
+                                  Timer(Duration(seconds: 3),
+                                      () => context.loaderOverlay.hide());
                                 }),
                           ),
                         ]),
