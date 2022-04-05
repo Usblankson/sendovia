@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.healing_rays_consultant_mobile">
+    package="com.planetx.sendovia">
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
    <application
-        android:label="healing_rays_consultant_mobile"
+        android:label="Sendovia"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

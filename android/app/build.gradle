@@ -34,9 +34,9 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.healing_rays_consultant_mobile"
-        minSdkVersion 16
-        targetSdkVersion 30
+        applicationId "com.planetx.sendovia"
+        minSdkVersion 19
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
