@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/router/main_router.dart';
+import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/models/data.dart';
+import 'package:planetx/shared/utils/styles.dart';
 
 import '../../shared/utils/color.dart';
 
@@ -28,12 +32,13 @@ class StoresLists extends StatelessWidget {
       'Tech',
       'Flowers',
     ];
+    var dropdownValue;
     return Scaffold(
       //   backgroundColor: Color(0xffE5E5E5),
       body: Container(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
+            padding: EdgeInsets.symmetric(vertical: 50.h),
             child: Column(
               children: [
                 Row(
@@ -42,16 +47,19 @@ class StoresLists extends StatelessWidget {
                     Row(
                       children: [
                         IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
+                            onPressed: () => Navigator.push(
+                                  context,
+                                  MainRouter.generateRoute(
+                                    RouteSettings(
+                                        name: RoutePaths.storeProduct),
+                                  ),
+                                ),
                             icon: Icon(Icons.arrow_back)),
-                        Text("Send a gift",
-                            style: TextStyle(
-                                color: black,
-                                fontFamily: "PT Sans",
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400)),
+                        Styles.regular(
+                          "Send a gift",
+                          fontSize: 16.sp,
+                          color: black,
+                        ),
                       ],
                     ),
                     Row(children: [
@@ -59,105 +67,75 @@ class StoresLists extends StatelessWidget {
                       IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.grid_view_outlined)),
-                      SizedBox(height: 30),
+                      SizedBox(height: 30.h),
                     ])
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: EdgeInsets.symmetric(horizontal: 25.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: 170,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            border: Border.all(
-                                color: primaryGrey.withOpacity(0.5),
-                                width: 0.5)),
-                        child: DropdownButton(
-                          borderRadius: BorderRadius.circular(10),
-                          hint: Text("data"),
-                          isExpanded: true, dropdownColor: white,
-                          // underline: Divider(
-                          //   color: black,
-                          //   height: 0.001,
-                          // ),
-                          // Initial Value
-                          value: dropdownvalue,
-
-                          // Down Arrow Icon
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: primaryGrey,
+                        width: 180.w,
+                        child: InputDecorator(
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder()),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: 'Budget',
+                              isDense: true,
+                              isExpanded: true,
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  dropdownValue = newValue;
+                                });
+                              },
+                              items: <String>[
+                                'Budget',
+                                'Two',
+                                'Free',
+                                'Four'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
                           ),
-
-                          // Array list of items
-                          items: items.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(items,
-                                  style: TextStyle(
-                                      color: black,
-                                      fontFamily: "PT Sans",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400)),
-                            );
-                          }).toList(),
-                          // After selecting the desired option,it will
-                          // change button value to selected value
-                          onChanged: (String newValue) {
-                            setState(() {
-                              dropdownvalue = newValue;
-                            });
-                          },
                         ),
                       ),
                       Container(
-                        width: 170,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            border: Border.all(
-                                color: primaryGrey.withOpacity(0.5),
-                                width: 0.5)),
-                        child: DropdownButton(
-                          borderRadius: BorderRadius.circular(10),
-                          hint: Text("data"),
-                          isExpanded: true, dropdownColor: white,
-                          // underline: Divider(
-                          //   color: black,
-                          //   height: 0.001,
-                          // ),
-                          // Initial Value
-                          value: dropdownvalue,
-
-                          // Down Arrow Icon
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: primaryGrey,
+                        width: 180.w,
+                        child: InputDecorator(
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder()),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: 'Category',
+                              isDense: true,
+                              isExpanded: true,
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  dropdownValue = newValue;
+                                });
+                              },
+                              items: <String>[
+                                'Category',
+                                'Two',
+                                'Free',
+                                'Four'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
                           ),
-
-                          // Array list of items
-                          items: items.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(items,
-                                  style: TextStyle(
-                                      color: black,
-                                      fontFamily: "PT Sans",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400)),
-                            );
-                          }).toList(),
-                          // After selecting the desired option,it will
-                          // change button value to selected value
-                          onChanged: (String newValue) {
-                            setState(() {
-                              dropdownvalue = newValue;
-                            });
-                          },
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -166,9 +144,12 @@ class StoresLists extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, "store_product_screen");
-                      },
+                      onTap: () => Navigator.push(
+                        context,
+                        MainRouter.generateRoute(
+                          RouteSettings(name: RoutePaths.storeProduct),
+                        ),
+                      ),
                       child: Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -179,8 +160,8 @@ class StoresLists extends StatelessWidget {
                                 //         image: AssetImage(
                                 //             storesLists[index].image),
                                 //         fit: BoxFit.contain)),
-                                height: 150,
-                                width: 170,
+                                height: 150.h,
+                                width: 170.w,
                                 child: Image.asset(
                                   storesLists[index].image,
                                   fit: BoxFit.cover,
@@ -196,38 +177,35 @@ class StoresLists extends StatelessWidget {
                                           Icons.star,
                                           color: Color(0xffEAE419),
                                         ),
-                                        Text(storesLists[index].rating,
-                                            style: TextStyle(
-                                                color: Color(0xffEAE419),
-                                                fontFamily: "PT Sans",
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w400)),
+                                        Styles.regular(
+                                          storesLists[index].rating,
+                                          fontSize: 16.sp,
+                                          color: Color(0xffEAE419),
+                                        ),
                                       ],
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 10),
-                                Text(storesLists[index].storeName,
-                                    style: TextStyle(
-                                        color: black,
-                                        fontFamily: "PT Sans",
-                                        fontSize: 14,
-                                        height: 2,
-                                        fontWeight: FontWeight.w500)),
-                                Text(storesLists[index].description,
-                                    style: TextStyle(
-                                        color: black,
-                                        fontFamily: "PT Sans",
-                                        fontSize: 10,
-                                        height: 2,
-                                        fontWeight: FontWeight.w400)),
-                                SizedBox(height: 20),
-                                Text(storesLists[index].price,
-                                    style: TextStyle(
-                                        color: black,
-                                        fontFamily: "PT Sans",
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600)),
+                                SizedBox(height: 5.h),
+                                Styles.semiBold(
+                                  storesLists[index].storeName,
+                                  fontSize: 15.sp,
+                                  color: black,
+                                  height: 2,
+                                ),
+                                Styles.regular(
+                                  storesLists[index].description,
+                                  fontSize: 10.5.sp,
+                                  color: black,
+                                  height: 2,
+                                ),
+                                SizedBox(height: 20.h),
+                                Styles.semiBold(
+                                  storesLists[index].price,
+                                  fontSize: 14.sp,
+                                  color: black,
+                                  // height: 2,
+                                ),
                               ],
                             )
                           ],
