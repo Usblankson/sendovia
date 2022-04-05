@@ -14,157 +14,188 @@ class CheckProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0.5.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 290,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      //borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/store-product.png",
-                          ),
-                          fit: BoxFit.cover)),
-                ),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Styles.semiBold(
-                            "Airpods",
-                            fontSize: 16.sp,
-                            height: 3,
-                            color: black,
-                          ),
-                          Text("Airpods",
-                              style: TextStyle(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0.5.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 290.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    //borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                        image: AssetImage(
+                          "assets/images/store-product.png",
+                        ),
+                        fit: BoxFit.cover)),
+              ),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Styles.semiBold(
+                          "Airpods",
+                          fontSize: 16.sp,
+                          height: 3,
+                          color: black,
+                        ),
+                        SizedBox(height: 9),
+                        Styles.bold(
+                          "Airpods Pro Max",
+                          fontSize: 17.sp,
+                          height: 2.h,
+                          color: Color(0xff4F4F4F),
+                        ),
+                        SizedBox(height: 9.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Styles.regular(
+                              "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
+                              fontSize: 13.sp,
+                              color: black,
+                            ),
+                            Styles.regular(
+                              "\$3,0000",
+                              fontSize: 20.sp,
+                              color: Color(0xff4F4F4F),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Styles.bold(
+                                  "Colors",
+                                  fontSize: 16.sp,
                                   color: Color(0xff4F4F4F),
-                                  fontFamily: "PT Sans",
-                                  fontSize: 16,
-                                  height: 3,
-                                  fontWeight: FontWeight.w500)),
-                          SizedBox(height: 9),
-                          Text("Airpods Pro Max",
-                              style: TextStyle(
-                                  color: Color(0xff4F4F4F),
-                                  fontFamily: "PT Sans",
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold)),
-                          SizedBox(height: 9),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                  "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "PT Sans",
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400)),
-                              Text("\$3,0000",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "PT Sans",
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w400)),
-                            ],
-                          ),
-                          SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("Colors",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: "PT Sans",
-                                          fontSize: 16,
-                                          //   height: 3,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  //   SizedBox(width: 40),
-                                  Container(
-                                    child: Center(
-                                      child: Row(
-                                        children: [
-                                          Image.asset("assets/images/white.png",
-                                              height: 35),
-                                          Text("White",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: "PT Sans",
-                                                  fontSize: 14,
-                                                  //        height: 3,
-                                                  fontWeight: FontWeight.w400)),
-                                        ],
-                                      ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                //   SizedBox(width: 40),
+                                Container(
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        Image.asset("assets/images/white.png",
+                                            height: 35),
+                                        Styles.regular(
+                                          "White",
+                                          fontSize: 14.sp,
+                                          color: Color(0xff4F4F4F),
+                                        ),
+                                      ],
                                     ),
-                                    height: 40,
-                                    width: 125,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        border: Border.all(
-                                            color: Color(0xff0B72D2),
-                                            width: 0.5)),
                                   ),
-                                  SizedBox(width: 30),
-                                  Image.asset("assets/images/black.png",
-                                      height: 35),
-                                  Text("Black",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: "PT Sans",
-                                          fontSize: 14,
-                                          //        height: 3,
-                                          fontWeight: FontWeight.w400)),
-                                ],
+                                  height: 40.h,
+                                  width: 125.w,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      border: Border.all(
+                                          color: Color(0xff0B72D2),
+                                          width: 0.5)),
+                                ),
+                                SizedBox(width: 30),
+                                Image.asset("assets/images/black.png",
+                                    height: 35),
+                                Styles.regular(
+                                  "Black",
+                                  fontSize: 14.sp,
+                                  color: Color(0xff4F4F4F),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 30.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Styles.semiBold(
+                              "Quantity",
+                              fontSize: 16.sp,
+                              color: black,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                  height: 40.h,
+                                  width: 40.w,
+                                  decoration: BoxDecoration(
+                                      color: grey.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Icon(Icons.add),
+                                ),
+                                SizedBox(width: 20.w),
+                                Styles.semiBold(
+                                  "1",
+                                  fontSize: 25.sp,
+                                  color: black,
+                                ),
+                                SizedBox(width: 20.w),
+                                Container(
+                                  height: 40.h,
+                                  width: 40.w,
+                                  decoration: BoxDecoration(
+                                      color: grey.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Icon(Icons.remove),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 220),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                child: Center(
+                                  child: Styles.bold(
+                                    "Add to Cart",
+                                    fontSize: 18.sp,
+                                    color: Color(0xff7B61FF),
+                                  ),
+                                ),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: grey, width: 1)),
+                                height: 60.h,
+                                width: 180.w,
+                              ),
+                              Container(
+                                height: 60.h,
+                                width: 180.w,
+                                child: Center(
+                                  child: Styles.bold(
+                                    "Send gift",
+                                    fontSize: 18.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xff7B61FF),
+                                ),
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 280),
-                            child: Button(
-                              widget: null,
-                              text: 'Select gift',
-                              width: double.infinity,
-                              height: 58,
-                              color: purpleGrey,
-                              onPressed: () {},
-                            ),
-                          ),
-                          Center(
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text("Discard",
-                                  style: TextStyle(
-                                      color: purpleGrey,
-                                      fontFamily: "PT Sans",
-                                      fontSize: 16,
-                                      height: 3,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
