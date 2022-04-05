@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:get/get.dart';
 import 'package:planetx/shared/models/themes.dart';
+import 'package:planetx/shared/utils/color.dart';
+import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/widgets/button.dart';
 
 class CheckProductScreen extends StatelessWidget {
@@ -13,7 +16,7 @@ class CheckProductScreen extends StatelessWidget {
       body: Container(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0.5),
+            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0.5.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -35,6 +38,12 @@ class CheckProductScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Styles.semiBold(
+                            "Airpods",
+                            fontSize: 16.sp,
+                            height: 3,
+                            color: black,
+                          ),
                           Text("Airpods",
                               style: TextStyle(
                                   color: Color(0xff4F4F4F),
@@ -131,7 +140,7 @@ class CheckProductScreen extends StatelessWidget {
                               text: 'Select gift',
                               width: double.infinity,
                               height: 58,
-                              color: primaryColor,
+                              color: purpleGrey,
                               onPressed: () {},
                             ),
                           ),
@@ -142,7 +151,7 @@ class CheckProductScreen extends StatelessWidget {
                               },
                               child: Text("Discard",
                                   style: TextStyle(
-                                      color: primaryColor,
+                                      color: purpleGrey,
                                       fontFamily: "PT Sans",
                                       fontSize: 16,
                                       height: 3,

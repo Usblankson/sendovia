@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:planetx/router/main_router.dart';
+import 'package:planetx/router/route_paths.dart';
 
 class FAB extends StatelessWidget {
   const FAB({
@@ -49,9 +51,12 @@ class FAB extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, "stores_lists");
-                            },
+                            onTap: () => Navigator.push(
+                              context,
+                              MainRouter.generateRoute(
+                                RouteSettings(name: RoutePaths.storesList),
+                              ),
+                            ),
                             child: Container(
                               child: Padding(
                                 padding:

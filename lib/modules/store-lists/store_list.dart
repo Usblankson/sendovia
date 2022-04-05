@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:planetx/router/main_router.dart';
+import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/models/data.dart';
 
 import '../../shared/utils/color.dart';
@@ -42,9 +44,13 @@ class StoresLists extends StatelessWidget {
                     Row(
                       children: [
                         IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
+                            onPressed: () => Navigator.push(
+                                  context,
+                                  MainRouter.generateRoute(
+                                    RouteSettings(
+                                        name: RoutePaths.storeProduct),
+                                  ),
+                                ),
                             icon: Icon(Icons.arrow_back)),
                         Text("Send a gift",
                             style: TextStyle(
