@@ -155,40 +155,38 @@ class CheckProductScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 220),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                child: Center(
-                                  child: Styles.bold(
-                                    "Add to Cart",
-                                    fontSize: 18.sp,
-                                    color: Color(0xff7B61FF),
-                                  ),
-                                ),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: grey, width: 1)),
-                                height: 60.h,
-                                width: 180.w,
-                              ),
-                              Container(
-                                height: 60.h,
-                                width: 180.w,
-                                child: Center(
-                                  child: Styles.bold(
-                                    "Send gift",
-                                    fontSize: 18.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                decoration: BoxDecoration(
+                        SizedBox(height: 250.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: Center(
+                                child: Styles.bold(
+                                  "Add to Cart",
+                                  fontSize: 18.sp,
                                   color: Color(0xff7B61FF),
                                 ),
                               ),
-                            ],
-                          ),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: grey, width: 1)),
+                              height: 55.h,
+                              width: 180.w,
+                            ),
+                            Container(
+                              height: 55.h,
+                              width: 180.w,
+                              child: Center(
+                                child: Styles.bold(
+                                  "Send gift",
+                                  fontSize: 18.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xff7B61FF),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
