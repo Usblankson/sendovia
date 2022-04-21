@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +8,7 @@ import 'package:planetx/shared/models/themes.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/widgets/button.dart';
+import 'package:planetx/shared/widgets/custom_button.dart';
 
 class CheckProductScreen extends StatelessWidget {
   const CheckProductScreen({Key key}) : super(key: key);
@@ -160,18 +163,111 @@ class CheckProductScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                child: Center(
-                                  child: Styles.bold(
-                                    "Add to Cart",
-                                    fontSize: 18.sp,
-                                    color: Color(0xff7B61FF),
+                              InkWell(
+                                onTap: (() => showModalBottomSheet(
+                                      constraints:
+                                          BoxConstraints.expand(height: 200.h),
+                                      isDismissible: true,
+                                      enableDrag: true,
+                                      isScrollControlled: true,
+                                      elevation: 5,
+                                      barrierColor:
+                                          Colors.grey.withOpacity(0.5),
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return SingleChildScrollView(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10.w,
+                                                vertical: 30.w),
+                                            child: Container(
+                                              child: Center(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Styles.bold(
+                                                      "Item Saved to cart Successfully",
+                                                      fontSize: 17.sp,
+                                                      color: black,
+                                                    ),
+                                                    SizedBox(height: 50.h),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () {},
+                                                          child: Container(
+                                                            child: Center(
+                                                              child:
+                                                                  Styles.bold(
+                                                                "View Cart",
+                                                                fontSize: 18.sp,
+                                                                color: Color(
+                                                                    0xff7B61FF),
+                                                              ),
+                                                            ),
+                                                            decoration: BoxDecoration(
+                                                                border:
+                                                                    Border.all(
+                                                                        color:
+                                                                            grey,
+                                                                        width:
+                                                                            1)),
+                                                            height: 50.h,
+                                                            width: 180.w,
+                                                          ),
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: Container(
+                                                            height: 50.h,
+                                                            width: 180.w,
+                                                            child: Center(
+                                                              child:
+                                                                  Styles.bold(
+                                                                "Continue",
+                                                                fontSize: 18.sp,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: Color(
+                                                                  0xff7B61FF),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    )),
+                                child: Container(
+                                  child: Center(
+                                    child: Styles.bold(
+                                      "Add to Cart",
+                                      fontSize: 18.sp,
+                                      color: Color(0xff7B61FF),
+                                    ),
                                   ),
+                                  decoration: BoxDecoration(
+                                      border:
+                                          Border.all(color: grey, width: 1)),
+                                  height: 60.h,
+                                  width: 180.w,
                                 ),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: grey, width: 1)),
-                                height: 60.h,
-                                width: 180.w,
                               ),
                               Container(
                                 height: 60.h,

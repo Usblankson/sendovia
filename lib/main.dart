@@ -1,6 +1,10 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/modules/cart/view-cart.dart';
+import 'package:planetx/modules/notification/notification.dart';
 import 'package:planetx/modules/send_gift/add_message_screen.dart';
 import 'package:planetx/router/app_router.dart';
 import 'package:planetx/router/main_router.dart';
@@ -9,7 +13,6 @@ import 'package:planetx/shared/utils/dims.dart';
 import 'package:planetx/shared/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:route_observer_mixin/route_observer_mixin.dart';
-
 import 'core/locator/locator.dart';
 import 'core/service_injector/service_injector.dart';
 import 'modules/auth/login_first_user.dart';
@@ -93,7 +96,8 @@ class _MyAppState extends State<MyApp> {
               ),
               onGenerateRoute: MainRouter.generateRoute,
               //  home: AddMessageScreen()),
-              home: Splash())),
+
+              home: CartScreen())),
     );
   }
 

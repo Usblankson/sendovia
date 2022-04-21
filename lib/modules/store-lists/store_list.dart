@@ -55,7 +55,7 @@ class StoresLists extends StatelessWidget {
                                   ),
                                 ),
                             icon: Icon(Icons.arrow_back)),
-                        Styles.regular(
+                        Styles.bold(
                           "Send a gift",
                           fontSize: 16.sp,
                           color: black,

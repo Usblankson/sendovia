@@ -1,6 +1,10 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/shared/models/data.dart';
+import 'package:planetx/shared/widgets/bottom_navbar.dart';
+
 import 'package:planetx/shared/widgets/floating_button.dart';
 import 'package:planetx/shared/widgets/space.dart';
 
@@ -17,6 +21,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FAB(),
+      //    bottomNavigationBar: CustomBottomNaviBar(),
       backgroundColor: Color(0xffE5E5E5),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 50.h),
