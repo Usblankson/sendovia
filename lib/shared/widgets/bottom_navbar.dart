@@ -1,4 +1,4 @@
-// ignore_for_file: override_on_non_overriding_member
+// ignore_for_file: override_on_non_overriding_member, unused_import
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
