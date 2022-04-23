@@ -97,7 +97,7 @@ class _MyAppState extends State<MyApp> {
               onGenerateRoute: MainRouter.generateRoute,
               //  home: AddMessageScreen()),
 
-              home: CartScreen())),
+              home: Splash())),
     );
   }
 
