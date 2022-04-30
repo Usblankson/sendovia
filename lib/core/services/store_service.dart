@@ -1,3 +1,5 @@
+// ignore_for_file: unused_catch_clause
+
 import 'dart:convert';
 import 'package:planetx/core/store/app_store.dart';
 import 'package:planetx/shared/utils/config.dart';

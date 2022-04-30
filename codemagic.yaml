@@ -25,7 +25,6 @@ workflows:
           - simipamdachomo@gmail.com
           - temidjoy@hotmail.com
           - fortunekbz2009@gmail.com
-
     environment:
       flutter: stable
       xcode: latest

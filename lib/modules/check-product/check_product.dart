@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unnecessary_import
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +8,7 @@ import 'package:planetx/shared/models/themes.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/widgets/button.dart';
+import 'package:planetx/shared/widgets/custom_button.dart';
 
 class CheckProductScreen extends StatelessWidget {
   const CheckProductScreen({Key key}) : super(key: key);

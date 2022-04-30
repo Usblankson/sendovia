@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:shared_preferences/shared_preferences.dart';

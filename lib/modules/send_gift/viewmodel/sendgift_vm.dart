@@ -18,6 +18,7 @@ class SendGiftViewModel extends BaseViewModel {
 
   @override
   FutureOr<void> init() async {
+    // ignore: todo
     // TODO: implement init
   }
 
