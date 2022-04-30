@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import '../../modules/home/home.dart';
+
 class BottomNavModel extends ChangeNotifier {
   ///current index of the bottom nav-bar
   int _currentIndex = 0;
@@ -9,11 +11,10 @@ class BottomNavModel extends ChangeNotifier {
 
   ///children of the bottom Nav
   List<Widget> _children = [
-    // HomePage(),
-    // MyTimeSheet(),
+    HomeScreen(),
+
     // HistoryPage(),
     // Profile(),
-
   ];
 
   List<Widget> get children => _children;
