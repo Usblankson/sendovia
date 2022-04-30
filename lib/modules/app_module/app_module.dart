@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:planetx/modules/my_account/my_account.module.dart';
 import 'package:planetx/router/route_composer.dart';

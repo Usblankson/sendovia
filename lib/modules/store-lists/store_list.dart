@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import, unused_local_variable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +57,7 @@ class StoresLists extends StatelessWidget {
                                   ),
                                 ),
                             icon: Icon(Icons.arrow_back)),
-                        Styles.regular(
+                        Styles.bold(
                           "Send a gift",
                           fontSize: 16.sp,
                           color: black,

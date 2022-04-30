@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +32,7 @@ class StoreProductScreen extends StatelessWidget {
                               Navigator.pop(context);
                             },
                             icon: Icon(Icons.arrow_back)),
-                        Styles.regular(
+                        Styles.bold(
                           "Send a gift",
                           fontSize: 16.sp,
                           color: black,
