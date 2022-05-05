@@ -5,7 +5,7 @@ import 'package:planetx/shared/models/themes.dart';
 import 'package:planetx/shared/widgets/button.dart';
 
 class CheckProductScreen extends StatelessWidget {
-  const CheckProductScreen({Key key}) : super(key: key);
+  const CheckProductScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CheckProductScreen extends StatelessWidget {
                 Container(
                   height: 290,
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       //borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                           image: AssetImage(

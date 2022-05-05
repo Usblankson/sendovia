@@ -6,7 +6,7 @@ import 'package:planetx/shared/widgets/floating_button.dart';
 class HomeScreen extends StatelessWidget {
   // final List<PopularImages>? popularImages;
   const HomeScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -27,15 +27,15 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        CircleAvatar(),
-                        SizedBox(width: 14),
-                        Text("Hi Joe",
+                        const CircleAvatar(),
+                        const SizedBox(width: 14),
+                        const Text("Hi Joe",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: "PT Sans",
                                 fontSize: 17,
                                 fontWeight: FontWeight.w400)),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Container(
                           child: Center(
                             child: Text("\$12.50",
@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        Text(
+                        const Text(
                             "Explore your gift horizon. begin to send \n\ngifts easily without hassle.",
                             style: TextStyle(
                                 color: Colors.white,
@@ -114,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
                           'assets/images/explore-gift.png',
@@ -136,7 +136,7 @@ class HomeScreen extends StatelessWidget {
 
 class Popular extends StatelessWidget {
   const Popular({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -170,15 +170,15 @@ class Popular extends StatelessWidget {
 
                         Center(
                       child: Image.asset(
-                        popularImages[index].image,
+                        popularImages[index].image!,
                         fit: BoxFit.contain,
                         // fit: BoxFit.contain,
                       ),
                     ),
                   ),
                   SizedBox(height: 12),
-                  Text(popularImages[index].title,
-                      style: TextStyle(
+                  Text(popularImages[index].title!,
+                      style: const TextStyle(
                           color: Colors.black,
                           fontFamily: "PT sans",
                           fontSize: 12,
@@ -195,7 +195,7 @@ class Popular extends StatelessWidget {
 
 class Categories extends StatelessWidget {
   const Categories({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -229,14 +229,14 @@ class Categories extends StatelessWidget {
 
                         Center(
                       child: Image.asset(
-                        popularCategories[index].image,
+                        popularCategories[index].image!,
                         fit: BoxFit.contain,
                         // fit: BoxFit.contain,
                       ),
                     ),
                   ),
                   SizedBox(height: 12),
-                  Text(popularCategories[index].title,
+                  Text(popularCategories[index].title!,
                       style: TextStyle(
                           color: black,
                           fontFamily: "PT sans",
@@ -253,8 +253,8 @@ class Categories extends StatelessWidget {
 }
 
 Row headingRow({
-  String title,
-  String subTitle,
+  String? title,
+  String? subTitle,
 
   //  required VoidCallback onTapped
 }) {
@@ -262,8 +262,8 @@ Row headingRow({
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Text(
-        title,
-        style: TextStyle(
+        title!,
+        style: const TextStyle(
             fontSize: 14,
             color: black,
             fontStyle: FontStyle.normal,
@@ -273,8 +273,8 @@ Row headingRow({
       InkWell(
         onTap: () {},
         child: Text(
-          subTitle,
-          style: TextStyle(
+          subTitle!,
+          style: const TextStyle(
               fontSize: 14,
               color: secondaryBlue,
               fontStyle: FontStyle.normal,

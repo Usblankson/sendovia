@@ -1,4 +1,4 @@
-package com.example.healing_rays_consultant_mobile
+package com.sendovia
 
 import io.flutter.embedding.android.FlutterActivity
 

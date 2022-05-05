@@ -11,7 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'widgets/textform_field_with_icon.dart';
 
 class LoginFirstUser extends StatefulWidget {
-  const LoginFirstUser({Key key}) : super(key: key);
+  const LoginFirstUser({Key? key}) : super(key: key);
 
   @override
   _LoginFirstUserState createState() => _LoginFirstUserState();
@@ -36,7 +36,7 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(image: AssetImage("assets/images/login-bg.png",),fit: BoxFit.contain)
                   ),
                   child: Column(
@@ -45,7 +45,7 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Styles.bold("Sign in", fontSize: 24.sp, color: bunkerDark),
+                            Styles.bold("Login in", fontSize: 24.sp, color: bunkerDark),
                             Image.asset("assets/images/Logo.png", height: 18.h, width: 78.w,)
 
                           ],
@@ -58,7 +58,7 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                           suffixIcon: Icon(Icons.person),
                         ),
                         VSpace(24.h),
-                        Styles.regular("Password", color: black),
+                        Styles.regular("Token", color: black),
                         VSpace(12.h),
                         TextFormFieldWithIcon(
                           // prefixIcon: Icon(Icons.lock),
@@ -71,24 +71,24 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                         //       color: activeGreen, fontSize: 14.sp),
                         // ),
                         VSpace(24.h),
-                        Container(
-                          width: deviceWidth(context),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Styles.regular("Don't have an account?", color: black),
-                              HSpace(3.w),
-                              GestureDetector(
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MainRouter.generateRoute(
-                                      RouteSettings(name: RoutePaths.signUp),
-                                    ),
-                                  ),
-                                  child: Styles.semiBold("Sign up", color: primaryColor))
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   width: deviceWidth(context),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Styles.regular("Don't have an account?", color: black),
+                        //       HSpace(3.w),
+                        //       GestureDetector(
+                        //           onTap: () => Navigator.push(
+                        //             context,
+                        //             MainRouter.generateRoute(
+                        //               RouteSettings(name: RoutePaths.signUp),
+                        //             ),
+                        //           ),
+                        //           child: Styles.semiBold("Sign up", color: primaryColor))
+                        //     ],
+                        //   ),
+                        // ),
                         VSpace(180.h),
                         Align(
                           alignment: Alignment.center,
@@ -97,6 +97,12 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                               isActive: true,
                               onPress: () {
                                 print("Login In");
+                                Navigator.push(
+                                                context,
+                                                MainRouter.generateRoute(
+                                                  const RouteSettings(name: RoutePaths.bottomNav),
+                                                ),
+                                              );
                               }),
                         ),
                       ]),

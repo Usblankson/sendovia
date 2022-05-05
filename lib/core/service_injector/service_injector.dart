@@ -12,10 +12,10 @@ class Injector {
   StorageService storageService = StorageService();
   LayoutService layoutService = LayoutService();
   RouterService routerService = RouterService();
-  ApiService apiService;
-  AuthService authService;
-  ColorService colorService;
-  UserService userService;
+  ApiService? apiService;
+  AuthService? authService;
+  ColorService? colorService;
+  UserService? userService;
   Future<bool> init() async {
     // init storage service
     await storageService.initStorage();

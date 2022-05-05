@@ -5,9 +5,9 @@ export 'styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-String capitalizeText(String text, {bool eachWord}) {
+String capitalizeText(String text, {required bool eachWord}) {
   if (text == null) {
-    return null;
+    return null!;
   } else if (text.length <= 1) {
     return text.toUpperCase();
   } else {
@@ -46,14 +46,14 @@ String formatDateApi(DateTime dateTime) {
 
 ///design height(responsiveness)
 double logicalHeight() {
-  return WidgetsBinding.instance.window.physicalSize.height /
-      WidgetsBinding.instance.window.devicePixelRatio;
+  return WidgetsBinding.instance!.window.physicalSize.height /
+      WidgetsBinding.instance!.window.devicePixelRatio;
 }
 
 ///design width(responsiveness)
 double logicalWidth() {
-  return WidgetsBinding.instance.window.physicalSize.width /
-      WidgetsBinding.instance.window.devicePixelRatio;
+  return WidgetsBinding.instance!.window.physicalSize.width /
+      WidgetsBinding.instance!.window.devicePixelRatio;
 }
 
 double deviceHeight(BuildContext context) {

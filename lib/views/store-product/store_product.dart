@@ -4,7 +4,7 @@ import 'package:planetx/shared/models/data.dart';
 import 'package:planetx/shared/models/themes.dart';
 
 class StoreProductScreen extends StatelessWidget {
-  const StoreProductScreen({Key key}) : super(key: key);
+  const StoreProductScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,14 +121,14 @@ class StoreProductScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: 10),
-                                Text(storesProductLists[index].storeName,
+                                Text(storesProductLists[index].storeName!,
                                     style: TextStyle(
                                         color: black,
                                         fontFamily: "PT Sans",
                                         fontSize: 14,
                                         height: 2,
                                         fontWeight: FontWeight.w500)),
-                                Text(storesProductLists[index].description,
+                                Text(storesProductLists[index].description!,
                                     style: TextStyle(
                                         color: black,
                                         fontFamily: "PT Sans",
@@ -139,7 +139,7 @@ class StoreProductScreen extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              storesProductLists[index].price,
+                              storesProductLists[index].price!,
                               style: TextStyle(
                                   color: black,
                                   fontFamily: "PT Sans",

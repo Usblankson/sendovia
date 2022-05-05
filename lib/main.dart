@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:planetx/router/app_router.dart';
 import 'package:planetx/router/main_router.dart';
-import 'package:planetx/shared/utils/color.dart';
-import 'package:planetx/shared/utils/dims.dart';
 import 'package:planetx/shared/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:route_observer_mixin/route_observer_mixin.dart';
 
 import 'core/locator/locator.dart';
 import 'core/service_injector/service_injector.dart';
-import 'modules/auth/login_first_user.dart';
-import 'modules/auth/login_returning_user.dart';
 import 'modules/splash.dart';
 
 void main() {
@@ -26,7 +21,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({this.appKey}) : super(key: appKey);
-  final ValueKey<String> appKey;
+  final ValueKey<String>? appKey;
 
   @override
   _MyAppState createState() {
@@ -37,6 +32,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool _initialized = false;
   // bool _splashDone = false;
+
   @override
   void initState() {
     _init();
@@ -52,7 +48,6 @@ class _MyAppState extends State<MyApp> {
     SystemChrome.setPreferredOrientations(<DeviceOrientation>[
       DeviceOrientation.portraitUp,
     ]).then((_) {});
-
     super.initState();
   }
 
@@ -74,7 +69,8 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              primarySwatch: MaterialColor(0xff7B61FF, <int, Color>{
+              primarySwatch: const MaterialColor(
+                0xff7B61FF, <int, Color>{
                 50: Color(0xFFF3E5F5),
                 100: Color(0xFFE1BEE7),
                 200: Color(0xFF7E93D8),
@@ -91,7 +87,7 @@ class _MyAppState extends State<MyApp> {
                   button: TextStyle(fontSize: 45.sp)),
             ),
             onGenerateRoute: MainRouter.generateRoute,
-            home: Splash()),
+            home: const Splash()),
       ),
     );
   }

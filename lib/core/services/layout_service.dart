@@ -14,8 +14,8 @@ class LayoutService {
   PublishSubject<ProfileLayoutConfig> profileMenu$ =
       PublishSubject<ProfileLayoutConfig>();
 
-  void updateMenu(ProfileLayoutConfig cfg) {
-    profileMenu$.add(cfg);
+  void updateMenu(ProfileLayoutConfig? cfg) {
+    profileMenu$.add(cfg!);
   }
 
   void updateLayout(LayoutConfig cfg) {
@@ -25,11 +25,11 @@ class LayoutService {
   // used to add overlay content to list of already existing ones on the screen
   void addOverlay(DashboardOverlayConfig item) {
     final List<DashboardOverlayConfig> list =
-        _activeOverlay ?? <DashboardOverlayConfig>[];
+        _activeOverlay; // ?? <DashboardOverlayConfig>[];
 
     final DashboardOverlayConfig already = list.firstWhere(
       (DashboardOverlayConfig element) => element.id == item.id,
-      orElse: () => null,
+      orElse: () => null!,
     );
 
     if (already == null) {
@@ -45,7 +45,7 @@ class LayoutService {
   // removes overlay items from list entirely to free up memory and reduce list size
   void removeOverlay(String id) {
     final List<DashboardOverlayConfig> list =
-        _activeOverlay ?? <DashboardOverlayConfig>[];
+        _activeOverlay; // ?? <DashboardOverlayConfig>[];
 
     list.removeWhere((DashboardOverlayConfig element) => element.id == id);
 
