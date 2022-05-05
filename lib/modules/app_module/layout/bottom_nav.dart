@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:planetx/core/view_model/bottom_nav_model.dart';
@@ -37,7 +39,9 @@ class _BottomNav extends State<BottomNav> {
               type: BottomNavigationBarType.fixed,
               elevation: 10,
               selectedLabelStyle: TextStyle(
-                  color: cornBlue, fontSize: 10.sp, fontWeight: FontWeight.w600),
+                  color: primaryColor,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w600),
               unselectedLabelStyle: TextStyle(
                   color: grey, fontSize: 10.sp, fontWeight: FontWeight.w600),
               backgroundColor: white,

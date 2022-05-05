@@ -45,7 +45,7 @@ class Styles {
             : strike
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-        fontFamily: 'Inter',
+        fontFamily: 'PT Sans',
       ),
     );
   }
@@ -139,7 +139,7 @@ class Styles {
             : strike
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-        fontFamily: 'Inter',
+        fontFamily: 'Epilogue',
       ),
     );
   }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "316534712711",
+    "project_id": "sendovia-65c95",
+    "storage_bucket": "sendovia-65c95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316534712711:android:daebdf71f24c2b02d98b22",
+        "android_client_info": {
+          "package_name": "com.planetx.sendovia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316534712711-jqhp6o3q4jpkbcnoeh8le6jfpmf15g02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC8zRG3qZEqMSA-ht3-tUYOG9yuLfUMhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316534712711-jqhp6o3q4jpkbcnoeh8le6jfpmf15g02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
