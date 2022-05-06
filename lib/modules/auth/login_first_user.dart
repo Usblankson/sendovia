@@ -1,5 +1,3 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/router/main_router.dart';
@@ -13,7 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'widgets/textform_field_with_icon.dart';
 
 class LoginFirstUser extends StatefulWidget {
-  const LoginFirstUser({Key key}) : super(key: key);
+  const LoginFirstUser({Key? key}) : super(key: key);
 
   @override
   _LoginFirstUserState createState() => _LoginFirstUserState();
@@ -32,31 +30,24 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
       body: Container(
           width: deviceWidth(context),
           height: deviceHeight(context),
+
           child: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
+                padding: EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
                 child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/login-bg.png",
-                          ),
-                          fit: BoxFit.contain)),
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(image: AssetImage("assets/images/login-bg.png",),fit: BoxFit.contain)
+                  ),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Styles.bold("Sign in",
-                                fontSize: 24.sp, color: bunkerDark),
-                            Image.asset(
-                              "assets/images/Logo.png",
-                              height: 18.h,
-                              width: 78.w,
-                            )
+                            Styles.bold("Login in", fontSize: 24.sp, color: bunkerDark),
+                            Image.asset("assets/images/Logo.png", height: 18.h, width: 78.w,)
+
                           ],
                         ),
                         VSpace(200.h),
@@ -67,7 +58,7 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                           suffixIcon: Icon(Icons.person),
                         ),
                         VSpace(24.h),
-                        Styles.regular("Password", color: black),
+                        Styles.regular("Token", color: black),
                         VSpace(12.h),
                         TextFormFieldWithIcon(
                           // prefixIcon: Icon(Icons.lock),
@@ -80,27 +71,24 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                         //       color: activeGreen, fontSize: 14.sp),
                         // ),
                         VSpace(24.h),
-                        Container(
-                          width: deviceWidth(context),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Styles.regular("Don't have an account?",
-                                  color: black),
-                              HSpace(3.w),
-                              GestureDetector(
-                                  onTap: () => Navigator.push(
-                                        context,
-                                        MainRouter.generateRoute(
-                                          RouteSettings(
-                                              name: RoutePaths.signUp),
-                                        ),
-                                      ),
-                                  child: Styles.semiBold("Sign up",
-                                      color: primaryColor))
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   width: deviceWidth(context),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Styles.regular("Don't have an account?", color: black),
+                        //       HSpace(3.w),
+                        //       GestureDetector(
+                        //           onTap: () => Navigator.push(
+                        //             context,
+                        //             MainRouter.generateRoute(
+                        //               RouteSettings(name: RoutePaths.signUp),
+                        //             ),
+                        //           ),
+                        //           child: Styles.semiBold("Sign up", color: primaryColor))
+                        //     ],
+                        //   ),
+                        // ),
                         VSpace(180.h),
                         Align(
                           alignment: Alignment.center,
@@ -110,11 +98,11 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                               onPress: () {
                                 print("Login In");
                                 Navigator.push(
-                                  context,
-                                  MainRouter.generateRoute(
-                                    RouteSettings(name: RoutePaths.home),
-                                  ),
-                                );
+                                                context,
+                                                MainRouter.generateRoute(
+                                                  const RouteSettings(name: RoutePaths.bottomNav),
+                                                ),
+                                              );
                               }),
                         ),
                       ]),

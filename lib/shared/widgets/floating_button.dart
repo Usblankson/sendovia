@@ -9,7 +9,7 @@ import 'package:planetx/shared/widgets/custom_button.dart';
 
 class FAB extends StatelessWidget {
   const FAB({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

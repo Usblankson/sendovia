@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 
 class RouterService {
   PublishSubject<String> route$ = PublishSubject<String>();
-  String _currentRoute = '';
+  String? _currentRoute = '';
 
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
@@ -16,10 +16,10 @@ class RouterService {
   static final RouteObserver<ModalRoute<dynamic>> routeObserver =
       RouteObserver<ModalRoute<dynamic>>();
 
-  void _onRouteChange([String path]) {
+  void _onRouteChange([String? path]) {
     _currentRoute = path;
 
-    route$.add(path);
+    route$.add(path!);
   }
 
   void pushNamed(String path) {
@@ -42,7 +42,7 @@ class RouterService {
     }
   }
 
-  void clearAndPush(String path, [bool Function(Route<dynamic> r) handler]) {
+  void clearAndPush(String path, [bool Function(Route<dynamic> r)? handler]) {
     handler ??= (Route<dynamic> route) {
       return route.settings.name == AppGuard.route;
     };

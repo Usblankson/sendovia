@@ -5,29 +5,29 @@ import 'package:planetx/shared/utils/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatefulWidget {
-  final Widget icon;
+  final Widget? icon;
   final String title;
-  final Function onPress;
-  final Color color;
-  final Color txtColor;
-  final double width;
-  final double height;
+  final onPress;
+  final Color? color;
+  final Color? txtColor;
+  final double? width;
+  final double? height;
   final bool hasElevation;
-  final double txtSize;
+  final double? txtSize;
   final bool isActive;
 
   const CustomButton(
-      {Key key,
+      {Key? key,
       this.icon,
-      @required this.title,
-      @required this.onPress,
+      required this.title,
+      required this.onPress,
       this.color,
       this.txtColor,
       this.txtSize,
       this.width,
       this.height,
       this.isActive = false,
-      this.hasElevation})
+      this.hasElevation = false})
       : super(key: key);
   @override
   _CustomButtonState createState() => _CustomButtonState();

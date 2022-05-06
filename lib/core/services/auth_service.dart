@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/core/services/storage_service.dart';
 import 'package:planetx/core/services/store_service.dart';
 import 'package:planetx/shared/models/api_model.dart';
 import 'package:planetx/shared/models/auth_model.dart';
 import 'package:planetx/shared/models/layout_model.dart';
+import 'package:planetx/shared/models/register_payload.dart';
 import 'package:planetx/shared/utils/config.dart';
 
 class AuthService {
@@ -16,19 +18,19 @@ class AuthService {
     this.storeService,
   });
 
-  StorageService storageService;
-  StoreService storeService;
+  StorageService? storageService;
+  StoreService? storeService;
 
   bool _refreshing = false;
 
   Future<bool> isLoggedIn() async {
     final AuthPayload auth = await getAuthData();
-    return auth != null && auth.token != null && auth.token.isNotEmpty;
+    return auth != null && auth.token != null && auth.token!.isNotEmpty;
   }
 
-  bool _isExpired(Duration lifespan, int time) {
+  bool _isExpired(Duration lifespan, int? time) {
     final DateTime ago = DateTime.now().subtract(lifespan);
-    final DateTime lastUpdated = DateTime.fromMillisecondsSinceEpoch(time);
+    final DateTime lastUpdated = DateTime.fromMillisecondsSinceEpoch(time!);
 
     return lastUpdated.isBefore(ago);
   }
@@ -36,7 +38,7 @@ class AuthService {
   Future<AuthPayload> getAuthData() async {
     final Completer<AuthPayload> completer = Completer<AuthPayload>();
 
-    final String data = storageService.getItemSync('auth_data');
+    final String data = storageService!.getItemSync('auth_data');
     if (data == null || data.isEmpty) {
       completer.complete(null);
     } else {
@@ -77,7 +79,7 @@ class AuthService {
     return completer.future;
   }
 
-  Future<AuthPayload> _renewAuthToken(AuthPayload auth) async {
+  Future<AuthPayload?> _renewAuthToken(AuthPayload auth) async {
     if (_refreshing) {
       while (true) {
         await Future<int>.delayed(const Duration(milliseconds: 500));
@@ -97,7 +99,7 @@ class AuthService {
       };
 
       final ApiResponse<AuthPayload> newAuth =
-          await si.apiService.postApi<AuthPayload>(
+          await si.apiService!.postApi<AuthPayload>(
         'users/refresh-token',
         <dynamic, dynamic>{},
         customHeaders: headers,
@@ -106,12 +108,12 @@ class AuthService {
         },
       );
 
-      if (newAuth.error) {
+      if (newAuth.success) {
         await signOut();
         await si.storageService.removeItem('auth_data');
       } else {
         await si.storageService
-            .setItem('auth_data', json.encode(newAuth.data.toJson()));
+            .setItem('auth_data', json.encode(newAuth.data!.toJson()));
       }
 
       _refreshing = false;
@@ -123,28 +125,52 @@ class AuthService {
   Future<void> signOut() async {
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
 
-    si.apiService.postApi<dynamic>(
+    si.apiService!.postApi<dynamic>(
       'users/logout',
       <String, dynamic>{},
     );
 
     await Future<void>.delayed(const Duration(milliseconds: 500));
-    await storageService.removeItem('auth_data');
-    storeService.reset();
+    await storageService!.removeItem('auth_data');
+    storeService!.reset();
   }
 
-  Future<ApiResponse<AuthPayload>> login(String username, String password) {
-    final Map<String, String> body = <String, String>{
+  Future<ApiResponse<AuthPayload>> login(String? username, String? password) {
+    final Map<String?, String?> body = <String?, String?>{
       'username': username,
       'password': password,
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
-    return si.apiService.postApi<AuthPayload>(
+    return si.apiService!.postApi<AuthPayload>(
       'users/login',
       body,
       transform: (dynamic res) {
         return AuthPayload.fromJson(res);
+      },
+    );
+  }
+
+  Future<ApiResponse<RegisterPayload>> signUp({
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? password,
+  }) {
+    final Map<String?, String?> body = <String?, String?>{
+        "firstName" : firstName,
+        "lastName" : lastName,
+        "email" : email,
+        "password" : password
+    };
+
+    AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
+    return si.apiService!.postApiNoHeader<RegisterPayload>(
+      'auth/register',
+      body,
+      transform: (dynamic res) {
+        debugPrint("auth ress $res");
+        return RegisterPayload.fromJson(res);
       },
     );
   }
