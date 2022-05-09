@@ -13,7 +13,7 @@ class ModalShield extends StatefulWidget {
 
 class _ModalShieldState extends State<ModalShield> {
   int _modalCount = 0;
-  StreamSubscription<int> _modal$;
+  late StreamSubscription<int> _modal$;
 
   @override
   void initState() {
@@ -35,8 +35,8 @@ class _ModalShieldState extends State<ModalShield> {
       duration: const Duration(
         milliseconds: 100,
       ),
-      color: pmTheme.black.withOpacity(0.5),
-      width: Dims.deviceSize.width,
+      color: pmTheme.black!.withOpacity(0.5),
+      width: Dims.deviceSize!.width,
       height: _modalCount > 0 ? Dims.dx(16) : 0,
     );
   }

@@ -1,30 +1,22 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/shared/models/data.dart';
-import 'package:planetx/shared/widgets/bottom_navbar.dart';
-
 import 'package:planetx/shared/widgets/floating_button.dart';
-import 'package:planetx/shared/widgets/space.dart';
 
 import '../../shared/utils/color.dart';
-import '../../shared/utils/styles.dart';
 
 class HomeScreen extends StatelessWidget {
   // final List<PopularImages>? popularImages;
   const HomeScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FAB(),
-      //    bottomNavigationBar: CustomBottomNaviBar(),
       backgroundColor: Color(0xffE5E5E5),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 50.h),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
         child: SingleChildScrollView(
           child: Container(
             child: Column(
@@ -36,41 +28,44 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        CircleAvatar(),
-                        SizedBox(width: 14.w),
-                        Styles.regular(
-                          "Hi Joe",
-                          fontSize: 17.sp,
-                          color: black,
-                        ),
-                        SizedBox(width: 10.w),
+                        const CircleAvatar(),
+                        const SizedBox(width: 14),
+                        const Text("Hi Joe",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "PT Sans",
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400)),
+                        const SizedBox(width: 10),
                         Container(
                           child: Center(
-                            child: Styles.semiBold(
-                              r"$12.50",
-                              fontSize: 14.sp,
-                              color: kRed,
-                            ),
+                            child: Text("\$12.50",
+                                style: TextStyle(
+                                    color: Color(0xffF304BE),
+                                    fontFamily: "Epilogue",
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500)),
                           ),
-                          height: 30.h,
-                          width: 65.w,
+                          height: 30,
+                          width: 65,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.r),
-                              border: Border.all(color: blue, width: 0.5)),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: Color(0xff0B72D2), width: 0.5)),
                         )
                       ],
                     ),
                     Image.asset(
                       "assets/images/sendovia_logo.png",
-                      height: 40.h,
-                      width: 90.w,
+                      height: 40,
+                      width: 90,
                     )
                   ],
                 ),
-                SizedBox(height: 26.h),
+                SizedBox(height: 26),
                 Container(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
@@ -79,12 +74,12 @@ class HomeScreen extends StatelessWidget {
                           Icons.search,
                           color: Color(0xffC2B5B5),
                         ),
-                        SizedBox(width: 16.w),
+                        SizedBox(width: 16),
                         Text("Search items or services",
                             style: TextStyle(
                                 color: Color(0xff9D9D9D),
                                 fontFamily: "Epilogue",
-                                fontSize: 12.sp,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w300)),
                       ],
                     ),
@@ -93,34 +88,34 @@ class HomeScreen extends StatelessWidget {
                   height: 45,
                   width: double.infinity,
                 ),
-                SizedBox(height: 24.h),
+                SizedBox(height: 24),
                 headingRow(title: "Popular", subTitle: "see all"),
-                VSpace(14.h),
+                SizedBox(height: 14),
                 Popular(),
-                VSpace(26.h),
+                SizedBox(height: 26),
                 headingRow(title: "Categories", subTitle: "see all"),
-                VSpace(14.h),
+                SizedBox(height: 14),
                 Categories(),
-                VSpace(40.h),
+                SizedBox(height: 40),
                 Container(
                   child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 30),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        Text(
+                        const Text(
                             "Explore your gift horizon. begin to send \n\ngifts easily without hassle.",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "PT Sans",
-                                fontSize: 14.sp,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w400)),
                       ],
                     ),
                   ),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
                           'assets/images/explore-gift.png',
@@ -128,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                         fit: BoxFit.cover),
                   ),
                   //  color: Colors.red,
-                  height: 250.h,
+                  height: 250,
                   width: double.infinity,
                 ),
               ],
@@ -142,13 +137,13 @@ class HomeScreen extends StatelessWidget {
 
 class Popular extends StatelessWidget {
   const Popular({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110.h,
+      height: 110,
       child: GridView.count(
         // shrinkWrap: ,
         scrollDirection: Axis.horizontal,
@@ -160,15 +155,15 @@ class Popular extends StatelessWidget {
           (index) {
             return Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.r),
+                  borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey, width: 0.5)),
               child: Column(
                 children: [
                   Container(
-                    height: 75.h,
+                    height: 75,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2.r),
+                      borderRadius: BorderRadius.circular(2),
                       //   color: Color(0xffEEEEEE),
                     ),
                     child:
@@ -176,18 +171,18 @@ class Popular extends StatelessWidget {
 
                         Center(
                       child: Image.asset(
-                        popularImages[index].image,
+                        popularImages[index].image!,
                         fit: BoxFit.contain,
                         // fit: BoxFit.contain,
                       ),
                     ),
                   ),
                   SizedBox(height: 12),
-                  Text(popularImages[index].title,
-                      style: TextStyle(
+                  Text(popularImages[index].title!,
+                      style: const TextStyle(
                           color: Colors.black,
                           fontFamily: "PT sans",
-                          fontSize: 12.sp,
+                          fontSize: 12,
                           fontWeight: FontWeight.w400)),
                 ],
               ),
@@ -201,7 +196,7 @@ class Popular extends StatelessWidget {
 
 class Categories extends StatelessWidget {
   const Categories({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -219,15 +214,15 @@ class Categories extends StatelessWidget {
           (index) {
             return Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.r),
+                  borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey, width: 0.5)),
               child: Column(
                 children: [
                   Container(
-                    height: 75.h,
+                    height: 75,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2.r),
+                      borderRadius: BorderRadius.circular(2),
                       color: Color(0xffEEEEEE),
                     ),
                     child:
@@ -235,18 +230,18 @@ class Categories extends StatelessWidget {
 
                         Center(
                       child: Image.asset(
-                        popularCategories[index].image,
+                        popularCategories[index].image!,
                         fit: BoxFit.contain,
                         // fit: BoxFit.contain,
                       ),
                     ),
                   ),
-                  VSpace(12.h),
-                  Text(popularCategories[index].title,
+                  SizedBox(height: 12),
+                  Text(popularCategories[index].title!,
                       style: TextStyle(
                           color: black,
                           fontFamily: "PT sans",
-                          fontSize: 12.sp,
+                          fontSize: 12,
                           fontWeight: FontWeight.w400)),
                 ],
               ),
@@ -259,8 +254,8 @@ class Categories extends StatelessWidget {
 }
 
 Row headingRow({
-  String title,
-  String subTitle,
+  String? title,
+  String? subTitle,
 
   //  required VoidCallback onTapped
 }) {
@@ -268,9 +263,9 @@ Row headingRow({
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Text(
-        title,
-        style: TextStyle(
-            fontSize: 14.sp,
+        title!,
+        style: const TextStyle(
+            fontSize: 14,
             color: black,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w400,
@@ -279,9 +274,9 @@ Row headingRow({
       InkWell(
         onTap: () {},
         child: Text(
-          subTitle,
-          style: TextStyle(
-              fontSize: 14.sp,
+          subTitle!,
+          style: const TextStyle(
+              fontSize: 14,
               color: secondaryBlue,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w400,

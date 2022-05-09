@@ -9,7 +9,7 @@ import 'package:planetx/shared/widgets/custom_button.dart';
 
 class FAB extends StatelessWidget {
   const FAB({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -59,7 +59,7 @@ class FAB extends StatelessWidget {
                             onTap: () => Navigator.push(
                               context,
                               MainRouter.generateRoute(
-                                RouteSettings(name: RoutePaths.storesList),
+                                RouteSettings(name: RoutePaths.storesLists),
                               ),
                             ),
                             child: Container(

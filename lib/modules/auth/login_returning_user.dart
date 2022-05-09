@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'widgets/textform_field_with_icon.dart';
 
 class LoginReturningUser extends StatefulWidget {
-  const LoginReturningUser({Key key}) : super(key: key);
+  const LoginReturningUser({Key? key}) : super(key: key);
 
   @override
   _LoginReturningUserState createState() => _LoginReturningUserState();

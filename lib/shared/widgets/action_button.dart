@@ -25,39 +25,39 @@ class ActionButton extends StatelessWidget {
     this.fontWeight,
   });
 
-  final void Function() clicked;
-  final Widget suffix;
-  final Widget prefix;
-  final String text;
+  final void Function()? clicked;
+  final Widget? suffix;
+  final Widget? prefix;
+  final String? text;
   final bool loading;
   final bool disabled;
-  final Color color;
-  final double height;
-  final double padding;
-  final double width;
-  final BorderRadiusGeometry radius;
-  final double fontSize;
-  final Color textColor;
-  final String loadingText;
-  final Color borderColor;
-  final Widget customTextWidget;
-  final FontWeight fontWeight;
+  final Color? color;
+  final double? height;
+  final double? padding;
+  final double? width;
+  final BorderRadiusGeometry? radius;
+  final double? fontSize;
+  final Color? textColor;
+  final String? loadingText;
+  final Color? borderColor;
+  final Widget? customTextWidget;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
-    final Color bgColor = color ?? pmTheme.black;
-    final Color derivedTextColor = textColor ?? pmTheme.white;
-    final double pd = padding ?? 15;
+    final Color? bgColor = color ?? pmTheme.black;
+    final Color? derivedTextColor = textColor ?? pmTheme.white;
+    final double? pd = padding ?? 15;
 
     return Container(
       height: height,
       width: width ?? double.infinity,
       child: ButtonTheme(
-        splashColor: bgColor.withOpacity(0.5),
+        splashColor: bgColor!.withOpacity(0.5),
         child: TextButton(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(
-              derivedTextColor.withOpacity(loading || disabled ? 0.5 : 1),
+              derivedTextColor!.withOpacity(loading || disabled ? 0.5 : 1),
             ),
             overlayColor: MaterialStateColor.resolveWith(
               (Set<MaterialState> states) => bgColor.withOpacity(0.5),
@@ -65,7 +65,7 @@ class ActionButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all(
               bgColor.withOpacity(loading || disabled ? 0.4 : 1),
             ),
-            padding: MaterialStateProperty.all(EdgeInsets.all(pd)),
+            padding: MaterialStateProperty.all(EdgeInsets.all(pd!)),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: radius ?? BorderRadius.circular(Dims.dx(5)),
@@ -83,16 +83,16 @@ class ActionButton extends StatelessWidget {
                   UtilitiesService.removeFocus(context);
 
                   if (clicked != null) {
-                    clicked();
+                    clicked!();
                   }
                 },
-          child: loading && loadingText.isEmpty
+          child: loading && loadingText!.isEmpty
               ? UtilitiesService.progress(size: Dims.dx(20))
               : Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    if (prefix != null) prefix,
+                    if (prefix != null) prefix!,
                     if (prefix != null) HSpace(Dims.dx(10)),
                     customTextWidget ??
                         Styles.medium(
@@ -101,7 +101,7 @@ class ActionButton extends StatelessWidget {
                           color: derivedTextColor,
                         ),
                     if (suffix != null) HSpace(Dims.dx(10)),
-                    if (suffix != null) suffix,
+                    if (suffix != null) suffix!,
                   ],
                 ),
         ),

@@ -16,7 +16,7 @@ import '../../shared/widgets/custom_button.dart';
 
 class AddMessageScreen extends StatelessWidget {
   AddMessageScreen({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -32,12 +32,15 @@ class AddMessageScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,
-        appBar: CustomAppBar(
-          backgroundColor: white,
-          txtColor: black,
-          title: "Select gift",
-          height: 64.0.h,
-          backBtn: true,
+        appBar: PreferredSize(
+          preferredSize: Size(deviceWidth(context), 64.0.h),
+          child: CustomAppBar(
+            backgroundColor: white,
+            txtColor: black,
+            title: "Select gift",
+            height: 64.0.h,
+            backBtn: true,
+          ),
         ),
         body: SingleChildScrollView(
           child: Container(

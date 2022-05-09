@@ -8,17 +8,16 @@ import 'package:planetx/shared/widgets/space.dart';
 
 import '../utils/color.dart';
 import '../utils/styles.dart';
-
-class CustomAppBar extends PreferredSize {
+class CustomAppBar extends StatelessWidget {
   final String title;
-  final String subTitle;
+  final String? subTitle;
   final Color backgroundColor;
   final Color txtColor;
   final double height;
   final double elevation;
   final bool backBtn;
 
-  const CustomAppBar({
+  CustomAppBar({
     this.txtColor = white,
     this.backgroundColor = blue,
     this.title = 'title',
@@ -27,8 +26,10 @@ class CustomAppBar extends PreferredSize {
     this.elevation = 1,
     this.height = kToolbarHeight,
   });
-  @override
-  Size get preferredSize => Size.fromHeight(height);
+
+  // Size get preferredSize => Size.fromHeight(height);
+
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -82,7 +83,7 @@ class CustomAppBar extends PreferredSize {
                   subTitle == null ? SizedBox() : VSpace(5.h),
                   subTitle == null
                       ? SizedBox()
-                      : Styles.semiBold(subTitle,
+                      : Styles.semiBold(subTitle!,
                           fontSize: 12.sp, color: orange)
                 ],
               ),

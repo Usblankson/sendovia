@@ -1,4 +1,4 @@
-package com.planetx.sendovia
+package com.sendovia
 
 import io.flutter.embedding.android.FlutterActivity
 

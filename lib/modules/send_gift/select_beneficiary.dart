@@ -52,23 +52,23 @@ class _FlutterContactsExampleState extends State<FlutterContactsExample> {
         Container(
           child: Expanded(
             child: ListView.builder(
-                itemCount: viewModel.contacts.length,
+                itemCount: viewModel.contacts!.length,
                 itemBuilder: (context, i) {
-                  Uint8List image = viewModel.contacts[i].photo;
-                  String num = (viewModel.contacts[i].phones.isNotEmpty)
-                      ? (viewModel.contacts[i].phones.first.number)
+                  Uint8List image = viewModel.contacts![i].photo!;
+                  String num = (viewModel.contacts![i].phones.isNotEmpty)
+                      ? (viewModel.contacts![i].phones.first.number)
                       : "--";
                   return ListTile(
-                      leading: (viewModel.contacts[i].photo == null)
+                      leading: (viewModel.contacts![i].photo == null)
                           ? const CircleAvatar(child: Icon(Icons.person))
                           : CircleAvatar(backgroundImage: MemoryImage(image)),
-                      title: Text(viewModel.contacts[i].displayName),
+                      title: Text(viewModel.contacts![i].displayName),
                       subtitle: Text(num),
                       onTap: () async {
                         final fullContact = await FlutterContacts.getContact(
-                            viewModel.contacts[i].id);
+                            viewModel.contacts![i].id);
                         await Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => ContactPage(fullContact)));
+                            builder: (_) => ContactPage(fullContact!)));
                       });
                 }),
           ),

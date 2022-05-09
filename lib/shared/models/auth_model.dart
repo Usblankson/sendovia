@@ -8,9 +8,9 @@ class AuthPayload {
   });
 
   factory AuthPayload.fromJson(dynamic json,
-      [DateTime updated, DateTime refreshed]) {
+      [DateTime? updated, DateTime? refreshed]) {
     if (json == null) {
-      return null;
+      return null!;
     }
 
     int updateTime = DateTime.now().millisecondsSinceEpoch;
@@ -36,11 +36,11 @@ class AuthPayload {
     );
   }
 
-  String id;
-  String token;
-  String refreshToken;
-  int updatedAt; // milliseconds since epoch
-  int refreshedAt;
+  String? id;
+  String? token;
+  String? refreshToken;
+  int? updatedAt; // milliseconds since epoch
+  int? refreshedAt;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
