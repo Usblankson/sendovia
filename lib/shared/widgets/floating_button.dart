@@ -59,7 +59,7 @@ class FAB extends StatelessWidget {
                             onTap: () => Navigator.push(
                               context,
                               MainRouter.generateRoute(
-                                RouteSettings(name: RoutePaths.storesList),
+                                RouteSettings(name: RoutePaths.storesLists),
                               ),
                             ),
                             child: Container(

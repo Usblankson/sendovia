@@ -5,8 +5,8 @@ import '../../../core/services/sendgift_service.dart';
 import '../../../core/view_model/base_vm.dart';
 
 class SendGiftViewModel extends BaseViewModel {
-  final SendGiftService sendGiftService;
-  final BuildContext context;
+  final SendGiftService? sendGiftService;
+  final BuildContext? context;
   final dynamic notifs;
   SendGiftViewModel({this.sendGiftService, this.context, this.notifs});
 

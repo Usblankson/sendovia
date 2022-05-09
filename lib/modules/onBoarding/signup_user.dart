@@ -57,11 +57,11 @@ class SignUpUser extends StatelessWidget with InputValidationMixin {
       overlayOpacity: 0.8,
       child: Scaffold(
         backgroundColor: backGroundGrey,
-        body: Container(
+        body: SafeArea(
+          child: Container(
             width: deviceWidth(context),
             height: deviceHeight(context),
-            child: SafeArea(
-              child: SingleChildScrollView(
+            child: SingleChildScrollView(
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
@@ -122,20 +122,26 @@ class SignUpUser extends StatelessWidget with InputValidationMixin {
                             TextFormFieldWithIcon(
                               controller: _passwordControl,
                               validator: validatePassword,
-                              obscureText: true,
+                              obscureText: viewModel.isVisiblePassword,
                               // prefixIcon: Icon(Icons.lock),
-                              suffixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.visibility)),
+                              suffixIcon: InkWell(
+                                      onTap: ()=> viewModel.visiblePassword(),
+                                      child: Icon(!viewModel.isVisiblePassword
+                                          ? Icons.visibility
+                                          : Icons.visibility_off)),
                             ),
                             VSpace(24.h),
                             Styles.regular("Confirm Password", color: black),
                             VSpace(12.h),
                             TextFormFieldWithIcon(
                               controller: _confirmPasswordControl,
-                              obscureText: true,
+                              obscureText: viewModel.isVisibleConfirmPassword,
                               validator: confirmPassword,
-                              suffixIcon: Icon(Icons.visibility),
+                              suffixIcon: InkWell(
+                                  onTap: ()=> viewModel.visibleConfirmPassword(),
+                                  child: Icon(!viewModel.isVisibleConfirmPassword
+                                      ? Icons.visibility
+                                      : Icons.visibility_off)),
                             ),
                             VSpace(24.h),
                             Container(
@@ -193,7 +199,8 @@ class SignUpUser extends StatelessWidget with InputValidationMixin {
                   ),
                 ),
               ),
-            )),
+          ),
+        ),
       ),
     );
   }

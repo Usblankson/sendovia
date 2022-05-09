@@ -8,7 +8,7 @@ import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({Key key}) : super(key: key);
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -37,7 +37,7 @@ class _CartScreenState extends State<CartScreen> {
                                   context,
                                   MainRouter.generateRoute(
                                     RouteSettings(
-                                        name: RoutePaths.storeProduct),
+                                        name: RoutePaths.storeProductScreen),
                                   ),
                                 ),
                             icon: Icon(Icons.arrow_back)),
@@ -231,7 +231,7 @@ class _CartScreenState extends State<CartScreen> {
                       onTap: () => Navigator.push(
                         context,
                         MainRouter.generateRoute(
-                          RouteSettings(name: RoutePaths.checkoutscreen),
+                          RouteSettings(name: RoutePaths.checkoutScreen),
                         ),
                       ),
                       splashColor: white,

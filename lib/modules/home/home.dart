@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:planetx/shared/models/data.dart';
-import 'package:planetx/shared/models/themes.dart';
 import 'package:planetx/shared/widgets/floating_button.dart';
+
+import '../../shared/utils/color.dart';
 
 class HomeScreen extends StatelessWidget {
   // final List<PopularImages>? popularImages;

@@ -7,6 +7,8 @@ import 'package:planetx/core/services/storage_service.dart';
 import 'package:planetx/core/services/store_service.dart';
 import 'package:planetx/core/services/user_service.dart';
 
+import '../services/sendgift_service.dart';
+
 class Injector {
   StoreService storeService = StoreService();
   StorageService storageService = StorageService();
@@ -16,6 +18,7 @@ class Injector {
   AuthService? authService;
   ColorService? colorService;
   UserService? userService;
+  SendGiftService? sendGiftService;
   Future<bool> init() async {
     // init storage service
     await storageService.initStorage();
@@ -30,6 +33,10 @@ class Injector {
     userService = UserService(
       storageService: storageService,
       apiService: apiService,
+    );
+    sendGiftService = SendGiftService(
+      storageService: storageService,
+      storeService: storeService,
     );
 
     return true;

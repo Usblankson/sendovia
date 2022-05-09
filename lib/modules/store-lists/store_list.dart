@@ -11,7 +11,7 @@ import 'package:planetx/shared/utils/styles.dart';
 import '../../shared/utils/color.dart';
 
 class StoresLists extends StatelessWidget {
-  const StoresLists({Key key}) : super(key: key);
+  const StoresLists({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class StoresLists extends StatelessWidget {
                                   context,
                                   MainRouter.generateRoute(
                                     RouteSettings(
-                                        name: RoutePaths.storeProduct),
+                                        name: RoutePaths.storeProductScreen),
                                   ),
                                 ),
                             icon: Icon(Icons.arrow_back)),
@@ -88,7 +88,7 @@ class StoresLists extends StatelessWidget {
                               value: 'Budget',
                               isDense: true,
                               isExpanded: true,
-                              onChanged: (String newValue) {
+                              onChanged: (String? newValue) {
                                 setState(() {
                                   dropdownValue = newValue;
                                 });
@@ -118,7 +118,7 @@ class StoresLists extends StatelessWidget {
                               value: 'Category',
                               isDense: true,
                               isExpanded: true,
-                              onChanged: (String newValue) {
+                              onChanged: (String? newValue) {
                                 setState(() {
                                   dropdownValue = newValue;
                                 });
@@ -149,7 +149,7 @@ class StoresLists extends StatelessWidget {
                       onTap: () => Navigator.push(
                         context,
                         MainRouter.generateRoute(
-                          RouteSettings(name: RoutePaths.storeProduct),
+                          RouteSettings(name: RoutePaths.storeProductScreen),
                         ),
                       ),
                       child: Container(
@@ -165,7 +165,7 @@ class StoresLists extends StatelessWidget {
                                 height: 150.h,
                                 width: 170.w,
                                 child: Image.asset(
-                                  storesLists[index].image,
+                                  storesLists[index].image!,
                                   fit: BoxFit.cover,
                                 )),
                             Column(
@@ -180,7 +180,7 @@ class StoresLists extends StatelessWidget {
                                           color: Color(0xffEAE419),
                                         ),
                                         Styles.regular(
-                                          storesLists[index].rating,
+                                          storesLists[index].rating!,
                                           fontSize: 16.sp,
                                           color: Color(0xffEAE419),
                                         ),
@@ -190,20 +190,20 @@ class StoresLists extends StatelessWidget {
                                 ),
                                 SizedBox(height: 5.h),
                                 Styles.semiBold(
-                                  storesLists[index].storeName,
+                                  storesLists[index].storeName!,
                                   fontSize: 15.sp,
                                   color: black,
                                   height: 2,
                                 ),
                                 Styles.regular(
-                                  storesLists[index].description,
+                                  storesLists[index].description!,
                                   fontSize: 10.5.sp,
                                   color: black,
                                   height: 2,
                                 ),
                                 SizedBox(height: 20.h),
                                 Styles.semiBold(
-                                  storesLists[index].price,
+                                  storesLists[index].price!,
                                   fontSize: 14.sp,
                                   color: black,
                                   // height: 2,

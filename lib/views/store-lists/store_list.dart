@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:planetx/shared/models/data.dart';
-import 'package:planetx/shared/models/themes.dart';
+
+import '../../shared/utils/color.dart';
 
 class StoresLists extends StatelessWidget {
   const StoresLists({Key? key}) : super(key: key);

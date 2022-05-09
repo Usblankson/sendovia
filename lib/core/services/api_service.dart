@@ -275,7 +275,7 @@ class ApiService {
         headers: headers,
         body: httpBody(body),
       )
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: 20));
       print('URL___ $uri');
       print('body___ ${httpBody(body)}');
 

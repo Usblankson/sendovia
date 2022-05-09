@@ -6,7 +6,7 @@ import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
 class CheckOutScreen extends StatefulWidget {
-  const CheckOutScreen({Key key}) : super(key: key);
+  const CheckOutScreen({Key? key}) : super(key: key);
 
   @override
   State<CheckOutScreen> createState() => _CheckOutScreenState();
@@ -216,7 +216,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   onTap: () => Navigator.push(
                     context,
                     MainRouter.generateRoute(
-                      RouteSettings(name: RoutePaths.checkoutpaymentscreen),
+                      RouteSettings(name: RoutePaths.checkoutPaymentScreen),
                     ),
                   ),
                   child: Container(

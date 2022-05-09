@@ -18,8 +18,8 @@ class RegisterViewModel extends BaseViewModel {
   String? message;
   bool error = false;
   bool isValidEmail = false;
-  bool isVisiblePassword = false;
-  bool isVisibleConfirmPassword = false;
+  bool isVisiblePassword = true;
+  bool isVisibleConfirmPassword = true;
 
   @override
   FutureOr<void> init() {
@@ -48,14 +48,14 @@ class RegisterViewModel extends BaseViewModel {
         String? email,
         String? password,
         }) async {
-    changeStatus();
+    // changeStatus();
     final ApiResponse<RegisterPayload> res = await si.authService!
         .signUp(firstName: firstName, lastName: lastName, email: email, password: password);
     debugPrint("res ${res.message}");
 
-    print("yess----: " + res.data.toString());
-    print("yess----1: " + res.message.toString());
-    print("yess----2: " + res.success.toString());
+    // print("yess----: " + res.data.toString());
+    // print("yess----1: " + res.message.toString());
+    // print("yess----2: " + res.success.toString());
 
     if (res.success == false) {
       isLoading = res.success;
