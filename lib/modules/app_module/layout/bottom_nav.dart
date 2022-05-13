@@ -69,7 +69,7 @@ class _BottomNav extends State<BottomNav> {
           height: 18.h,
           width: 18.w,
         ),
-        label: "Home",
+        label: "",
       ),
       new BottomNavigationBarItem(
         activeIcon: Image.asset(
@@ -82,7 +82,7 @@ class _BottomNav extends State<BottomNav> {
           height: 18.h,
           width: 18.w,
         ),
-        label: "Timesheet",
+        label: "",
       ),
       new BottomNavigationBarItem(
         activeIcon: Image.asset(

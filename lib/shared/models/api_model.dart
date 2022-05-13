@@ -1,11 +1,11 @@
 class ApiResponse<T> {
   ApiResponse({
-    this.error = false,
+    this.success = false,
     this.message,
     this.data,
   });
 
-  bool error;
+  bool success;
   String message;
   T data;
 }

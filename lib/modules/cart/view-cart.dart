@@ -2,21 +2,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/modules/cart/viewmodel/cart_vm.dart';
 import 'package:planetx/router/main_router.dart';
 import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
-class CartScreen extends StatefulWidget {
+import '../../core/service_injector/service_injector.dart';
+import '../../shared/widgets/base_view.dart';
+
+class CartScreen extends StatelessWidget {
   const CartScreen({Key key}) : super(key: key);
 
   @override
-  State<CartScreen> createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
-  @override
   Widget build(BuildContext context) {
+    return BaseView<CartViewModel>(
+      vmBuilder: (context) =>
+          CartViewModel(context: context, cartService: si.cartService),
+      builder: _buildScreen,
+    );
+  }
+
+  Widget _buildScreen(BuildContext context, CartViewModel viewModel) {
     dynamic selected = true;
     dynamic unselected = false;
     return Scaffold(
@@ -88,11 +95,9 @@ class _CartScreenState extends State<CartScreen> {
                               shape: CircleBorder(),
                               activeColor: secondaryBlue,
                               onChanged: (value) {
-                                setState(() {
-                                  selected = value;
-                                });
+                                viewModel.checkCart(value);
                               },
-                              value: selected,
+                              value: viewModel.cartSelected,
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 10.h),
