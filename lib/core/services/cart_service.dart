@@ -8,16 +8,16 @@ import '../service_injector/service_injector.dart';
 class CartService {
   CartService({this.storageService, this.storeService});
 
-  StorageService storageService;
+  StorageService? storageService;
 
-  StoreService storeService;
+  StoreService? storeService;
 
   Future<ApiResponse<CartPayload>> getCart() async {
     // print("tttttt");
     return si.apiService.getApi<CartPayload>(
       'Cart',
       transform: (dynamic res) {
-        return res != null ? CartPayload.fromJson(res) : null;
+        return CartPayload.fromJson(res);
       },
     );
   }

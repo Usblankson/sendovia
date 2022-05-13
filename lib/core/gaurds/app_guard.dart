@@ -89,7 +89,7 @@ class _AppGuardState extends State<AppGuard> {
     _authCheck = false;
     _checkStockedStatus();
 
-    final bool isLoggedIn = await si.authService!.isLoggedIn();
+    // final bool isLoggedIn = await si.authService!.isLoggedIn();
     _authCheck = true;
     return '/home/';
     // if (isLoggedIn) {

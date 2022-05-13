@@ -5,8 +5,8 @@ import 'package:planetx/shared/models/user_model.dart';
 
 class UserService {
   UserService({
-    this.storageService,
-    this.apiService,
+    required this.storageService,
+    required this.apiService,
   });
 
   StorageService storageService;

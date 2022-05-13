@@ -16,10 +16,10 @@ class Injector {
   RouterService routerService = RouterService();
   SendGiftService sendGiftService = SendGiftService();
   CartService cartService = CartService();
-  ApiService apiService;
-  AuthService authService;
-  ColorService colorService;
-  UserService userService;
+  late ApiService apiService;
+  late AuthService authService;
+  late ColorService colorService;
+  late UserService userService;
   Future<bool> init() async {
     // init storage service
     await storageService.initStorage();

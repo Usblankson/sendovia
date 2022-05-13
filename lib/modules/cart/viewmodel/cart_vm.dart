@@ -10,8 +10,8 @@ import '../../../core/view_model/base_vm.dart';
 import '../../../shared/models/api_model.dart';
 
 class CartViewModel extends BaseViewModel {
-  final CartService cartService;
-  final BuildContext context;
+  final CartService? cartService;
+  final BuildContext? context;
   CartViewModel({this.cartService, this.context});
 
   notify() {
@@ -20,14 +20,14 @@ class CartViewModel extends BaseViewModel {
 
   String message = "";
   bool cartSelected = false;
-  List<PayloadFromCart> userCartInfo;
+  List<PayloadFromCart>? userCartInfo;
 
   @override
   FutureOr<void> init() async {
     // ignore: todo
     // TODO: implement init
     getCart(
-      context: context,
+      context: context!,
     );
   }
 
@@ -36,31 +36,31 @@ class CartViewModel extends BaseViewModel {
     notify();
   }
 
-  Future<void> getCart({BuildContext context}) async {
+  Future<void> getCart({BuildContext? context}) async {
     changeStatus();
 
     final ApiResponse<CartPayload> res = await si.cartService.getCart();
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message;
+      message = res.message!;
 
       showTopSnackBar(
-        context,
+        context!,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message;
+      message = res.message!;
       // print("job range success" + jobRange);
       // print("payload content" + res.payload.payload.toString());
 
-      userCartInfo = res.data.data;
+      userCartInfo = res.data!.data;
 
       showTopSnackBar(
-        context,
+        context!,
         CustomSnackBar.success(
           message: message,
         ),

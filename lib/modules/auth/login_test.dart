@@ -23,8 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dims.deviceSize.width,
-      height: Dims.deviceSize.height,
+      width: Dims.deviceSize!.width,
+      height: Dims.deviceSize!.height,
       color: pmTheme.page,
       alignment: Alignment.center,
       child: SingleChildScrollView(
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isValid() {
 //return true;
-    return _inputs.username.isNotEmpty && _inputs.pin.isNotEmpty;
+    return _inputs.username!.isNotEmpty && _inputs.pin!.isNotEmpty;
   }
 
   Future<void> _doLogin() async {
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 // login here
     final ApiResponse<AuthPayload> res =
-        await si.authService.login(_inputs.username, _inputs.pin);
+        await si.authService.login(_inputs.username!, _inputs.pin!);
 
     if (!res.success) {
       // si.dialogService.toast(
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _loading = false;
       });
     } else {
-      si.storageService.setItem('auth_data', json.encode(res.data.toJson()));
+      si.storageService.setItem('auth_data', json.encode(res.data?.toJson()));
       si.routerService.pushReplacementNamed(AppGuard.route);
     }
   }
@@ -160,6 +160,6 @@ class _Inputs {
     pin = '';
   }
 
-  String username;
-  String pin;
+  String? username;
+  String? pin;
 }

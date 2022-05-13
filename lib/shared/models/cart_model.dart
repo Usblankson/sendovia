@@ -16,9 +16,9 @@ class CartPayload {
     this.data,
   });
 
-  bool success;
+  bool? success;
   dynamic message;
-  List<PayloadFromCart> data;
+  List<PayloadFromCart>? data;
 
   factory CartPayload.fromJson(Map<String, dynamic> json) => CartPayload(
         success: json["success"] == null ? null : json["success"],
@@ -34,7 +34,7 @@ class CartPayload {
         "message": message,
         "data": data == null
             ? null
-            : List<dynamic>.from(data.map((x) => x.toJson())),
+            : List<dynamic>.from(data!.map((x) => x.toJson())),
       };
 }
 
@@ -50,14 +50,14 @@ class PayloadFromCart {
     this.v,
   });
 
-  String id;
-  Product product;
-  String user;
-  int quantity;
-  int price;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int v;
+  String? id;
+  Product? product;
+  String? user;
+  int? quantity;
+  int? price;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
 
   factory PayloadFromCart.fromJson(Map<String, dynamic> json) =>
       PayloadFromCart(
@@ -78,12 +78,12 @@ class PayloadFromCart {
 
   Map<String, dynamic> toJson() => {
         "_id": id == null ? null : id,
-        "product": product == null ? null : product.toJson(),
+        "product": product == null ? null : product!.toJson(),
         "user": user == null ? null : user,
         "quantity": quantity == null ? null : quantity,
         "price": price == null ? null : price,
-        "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
+        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
         "__v": v == null ? null : v,
       };
 }
@@ -104,18 +104,18 @@ class Product {
     this.spec,
   });
 
-  String id;
-  String category;
-  String vendor;
-  String name;
-  int price;
-  String description;
-  String image;
-  int stock;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int v;
-  List<dynamic> spec;
+  String? id;
+  String? category;
+  String? vendor;
+  String? name;
+  int? price;
+  String? description;
+  String? image;
+  int? stock;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
+  List<dynamic>? spec;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["_id"] == null ? null : json["_id"],
@@ -147,9 +147,9 @@ class Product {
         "description": description == null ? null : description,
         "image": image == null ? null : image,
         "stock": stock == null ? null : stock,
-        "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
+        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
         "__v": v == null ? null : v,
-        "spec": spec == null ? null : List<dynamic>.from(spec.map((x) => x)),
+        "spec": spec == null ? null : List<dynamic>.from(spec!.map((x) => x)),
       };
 }
