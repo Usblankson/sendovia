@@ -55,7 +55,7 @@ class ValidateAuthViewModel extends BaseViewModel {
       message = res.message!;
       /// if needed cache user data locally here
       // si.storageService.setItem('register_data', json.encode(res.data));
-      // debugPrint("res mess ${res.message}");
+      debugPrint("res mess ${res.message}");
       showTopSnackBar(
           context,
           CustomSnackBar.success(

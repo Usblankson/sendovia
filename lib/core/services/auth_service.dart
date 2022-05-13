@@ -128,7 +128,7 @@ class AuthService {
   Future<void> signOut() async {
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
 
-    si.apiService.postApi<dynamic>(
+    si.apiService!.postApi<dynamic>(
       'users/logout',
       <String, dynamic>{},
     );
@@ -145,7 +145,7 @@ class AuthService {
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
-    return si.apiService.postApi<AuthPayload>(
+    return si.apiService!.postApi<AuthPayload>(
       'users/login',
       body,
       transform: (dynamic res) {

@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 // login here
     final ApiResponse<AuthPayload> res =
-        await si.authService.login(_inputs.username!, _inputs.pin!);
+        await si.authService!.login(_inputs.username!, _inputs.pin!);
 
     if (!res.success) {
       // si.dialogService.toast(

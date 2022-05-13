@@ -23,9 +23,9 @@ class ApiService {
       h[HttpHeaders.contentTypeHeader] = 'application/json; charset=UTF-8';
     }
 
-    final AuthPayload auth = await si.authService.getAuthData();
+    final AuthPayload auth = await si.authService!.getAuthData();
 
-    if (auth != null && auth.token!.isNotEmpty) {
+    if (auth.token!.isNotEmpty) {
       // print(auth.token);
 
       h[HttpHeaders.authorizationHeader] = 'Bearer ${auth.token}';
