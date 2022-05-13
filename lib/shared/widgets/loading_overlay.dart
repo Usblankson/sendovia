@@ -6,9 +6,9 @@ import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/utils/utils.dart';
 
 class LoadingOverlay extends StatelessWidget {
-  const LoadingOverlay({Key key, this.text, this.image}) : super(key: key);
-  final String text;
-  final String image;
+  const LoadingOverlay({Key? key, this.text, this.image}) : super(key: key);
+  final String? text;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class LoadingOverlay extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset("assets/images/$image.png", height: 85.h, width: 85.w,),
-            Styles.bold(text, color: loaderBlue, fontSize: 24, align: TextAlign.center),
+            Styles.bold(text!, color: loaderBlue, fontSize: 24, align: TextAlign.center),
           ],
         ),
       ),

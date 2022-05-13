@@ -6,7 +6,7 @@ import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
 class NotificationScreen extends StatefulWidget {
-  NotificationScreen({Key key}) : super(key: key);
+  NotificationScreen({Key? key}) : super(key: key);
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
@@ -32,7 +32,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   context,
                                   MainRouter.generateRoute(
                                     RouteSettings(
-                                        name: RoutePaths.storeProduct),
+                                        name: RoutePaths.storeProductScreen),
                                   ),
                                 ),
                             icon: Icon(Icons.arrow_back)),

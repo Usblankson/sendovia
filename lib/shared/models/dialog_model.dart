@@ -8,10 +8,10 @@ class AlertData {
     this.btnColor,
   });
 
-  String message;
-  String actionText;
-  String title;
-  Color btnColor;
+  String? message;
+  String? actionText;
+  String? title;
+  Color? btnColor;
 }
 
 class BottomSheetItem {
@@ -21,9 +21,9 @@ class BottomSheetItem {
     this.id,
   });
 
-  String id;
-  String name;
-  IconData icon;
+  String? id;
+  String? name;
+  IconData? icon;
 }
 
 class ToastData {
@@ -33,9 +33,9 @@ class ToastData {
     this.actionText,
   });
 
-  String msg;
-  String actionText;
-  BuildContext context;
+  String? msg;
+  String? actionText;
+  BuildContext? context;
 }
 
 class ConfirmDialogData {
@@ -46,10 +46,10 @@ class ConfirmDialogData {
     this.title,
   });
 
-  String message;
-  String yesText;
-  String noText;
-  String title;
+  String? message;
+  String? yesText;
+  String? noText;
+  String? title;
 }
 
 class PromptDialogData {
@@ -61,11 +61,11 @@ class PromptDialogData {
     this.initialValue,
   });
 
-  String message;
-  String actionBtn;
-  String title;
-  String initialValue;
-  String placeholder;
+  String? message;
+  String? actionBtn;
+  String? title;
+  String? initialValue;
+  String? placeholder;
 }
 
 class ModalConfig {
@@ -76,8 +76,8 @@ class ModalConfig {
     this.dismissible = true,
   });
 
-  Widget content;
-  Function(dynamic res) resolver;
+  Widget? content;
+  Function(dynamic res)? resolver;
   bool dismissible;
-  BuildContext context;
+  BuildContext? context;
 }

@@ -1,8 +1,8 @@
 // here we have the settings for prod
-const String _prodUrl = 'healingrays.com';
+const String _prodUrl = 'sendovia-user.herokuapp.com';
 
 // here we have the settings for dev
-const String _devUrl = 'healingrays.com';
+const String _devUrl = 'sendovia-user.herokuapp.com';
 
 class AppConfig {
   AppConfig();

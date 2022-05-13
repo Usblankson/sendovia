@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "316534712711",
-    "project_id": "sendovia-65c95",
-    "storage_bucket": "sendovia-65c95.appspot.com"
+    "project_number": "201873073526",
+    "project_id": "sendovia-22b01",
+    "storage_bucket": "sendovia-22b01.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:316534712711:android:daebdf71f24c2b02d98b22",
+        "mobilesdk_app_id": "1:201873073526:android:f21e3d334aec2bd2f2c657",
         "android_client_info": {
-          "package_name": "com.planetx.sendovia"
+          "package_name": "com.sendovia"
         }
       },
       "oauth_client": [
         {
-          "client_id": "316534712711-jqhp6o3q4jpkbcnoeh8le6jfpmf15g02.apps.googleusercontent.com",
+          "client_id": "201873073526-lhhj558o78t99al0nraqtge6q79kuv6f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAC8zRG3qZEqMSA-ht3-tUYOG9yuLfUMhM"
+          "current_key": "AIzaSyCEbsSAD5kLnQVmhF34sufB86KQrDQKgPE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "316534712711-jqhp6o3q4jpkbcnoeh8le6jfpmf15g02.apps.googleusercontent.com",
+              "client_id": "201873073526-lhhj558o78t99al0nraqtge6q79kuv6f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

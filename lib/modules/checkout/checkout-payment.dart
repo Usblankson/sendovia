@@ -6,7 +6,7 @@ import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
 class CheckOutPaymentScreen extends StatefulWidget {
-  const CheckOutPaymentScreen({Key key}) : super(key: key);
+  const CheckOutPaymentScreen({Key? key}) : super(key: key);
 
   @override
   State<CheckOutPaymentScreen> createState() => _CheckOutPaymentScreenState();

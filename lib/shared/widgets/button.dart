@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:planetx/shared/models/themes.dart';
 
 class Button extends StatelessWidget {
-  final Widget widget;
-  final VoidCallback onPressed;
-  final double width;
-  final double height;
-  final Color color;
-  final double radius;
+  final Widget? widget;
+  final VoidCallback? onPressed;
+  final double? width;
+  final double? height;
+  final Color? color;
+  final double? radius;
   final bool enable;
-  final Color textColor;
-  final Icon icon;
-  final String text;
+  final Color? textColor;
+  final Icon? icon;
+  final String? text;
   final Color borderColor;
 
   const Button(
@@ -27,7 +27,7 @@ class Button extends StatelessWidget {
       this.icon,
       this.text,
       this.borderColor = primaryColor,
-      Key key})
+      Key? key})
       : super(key: key);
 
   @override

@@ -1,9 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.planetx.sendovia">
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    package="com.sendovia">
    <application
-        android:label="Sendovia"
+        android:label="sendovia"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
