@@ -29,7 +29,7 @@ class UserService {
       transform: (dynamic res) => res,
     );
 
-    if (!res.error) {
+    if (res.success) {
       // update store
       getCurrentUser();
     }

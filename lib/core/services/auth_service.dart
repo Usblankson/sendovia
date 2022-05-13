@@ -106,7 +106,7 @@ class AuthService {
         },
       );
 
-      if (newAuth.error) {
+      if (!newAuth.success) {
         await signOut();
         await si.storageService.removeItem('auth_data');
       } else {

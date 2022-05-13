@@ -20,11 +20,15 @@ class CartViewModel extends BaseViewModel {
 
   String message = "";
   bool cartSelected = false;
+  List<PayloadFromCart> userCartInfo;
 
   @override
   FutureOr<void> init() async {
     // ignore: todo
     // TODO: implement init
+    getCart(
+      context: context,
+    );
   }
 
   checkCart(bool value) {
@@ -32,12 +36,10 @@ class CartViewModel extends BaseViewModel {
     notify();
   }
 
-  Future<void> getContent(
-      {BuildContext context, String pageIndex, String jobRange}) async {
+  Future<void> getCart({BuildContext context}) async {
     changeStatus();
 
-    final ApiResponse<CartPayload> res = await si.cartService
-        .getHistory(pageIndex: pageIndex, jobRange: jobRange);
+    final ApiResponse<CartPayload> res = await si.cartService.getCart();
 
     if (!res.success) {
       isLoading = !res.success;
@@ -55,17 +57,14 @@ class CartViewModel extends BaseViewModel {
       // print("job range success" + jobRange);
       // print("payload content" + res.payload.payload.toString());
 
-      if (jobRange == "3") {
-        historyContent = res.payload.payload;
-      }
-      if (jobRange == "2") todaysTaskContent = res.payload.payload;
+      userCartInfo = res.data.data;
 
-      // showTopSnackBar(
-      //   context,
-      //   CustomSnackBar.success(
-      //     message: message,
-      //   ),
-      // );
+      showTopSnackBar(
+        context,
+        CustomSnackBar.success(
+          message: message,
+        ),
+      );
       changeStatus();
     }
   }

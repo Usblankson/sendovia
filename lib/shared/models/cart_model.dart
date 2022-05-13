@@ -18,14 +18,15 @@ class CartPayload {
 
   bool success;
   dynamic message;
-  List<Datum> data;
+  List<PayloadFromCart> data;
 
   factory CartPayload.fromJson(Map<String, dynamic> json) => CartPayload(
         success: json["success"] == null ? null : json["success"],
         message: json["message"],
         data: json["data"] == null
             ? null
-            : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+            : List<PayloadFromCart>.from(
+                json["data"].map((x) => PayloadFromCart.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -37,8 +38,8 @@ class CartPayload {
       };
 }
 
-class Datum {
-  Datum({
+class PayloadFromCart {
+  PayloadFromCart({
     this.id,
     this.product,
     this.user,
@@ -58,7 +59,8 @@ class Datum {
   DateTime updatedAt;
   int v;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PayloadFromCart.fromJson(Map<String, dynamic> json) =>
+      PayloadFromCart(
         id: json["_id"] == null ? null : json["_id"],
         product:
             json["product"] == null ? null : Product.fromJson(json["product"]),

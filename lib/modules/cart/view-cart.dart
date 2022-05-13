@@ -214,11 +214,9 @@ class CartScreen extends StatelessWidget {
                             shape: CircleBorder(),
                             activeColor: primaryColor,
                             onChanged: (value) {
-                              setState(() {
-                                selected = value;
-                              });
+                              viewModel.checkCart(value);
                             },
-                            value: selected,
+                            value: viewModel.cartSelected,
                           ),
                           Styles.bold(
                             "All",

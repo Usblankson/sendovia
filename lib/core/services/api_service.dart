@@ -73,7 +73,7 @@ class ApiService {
             // print('URL___$uri');
             // print('res---$res');
             if (errMsg != null) {
-              res.error = true;
+              res.success = false;
               res.message = errMsg;
             } else {
               res.data = transform(data);
@@ -102,28 +102,56 @@ class ApiService {
           ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
           : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
 
-      final http.Response res = await http.get(
-        uri,
-        headers: headers,
-      );
-      // print('URL____$uri');
-      // print('Token____${headers.values}');
-      final dynamic data = json.decode(res.body ?? '');
+      // print("URI__ $uri");
+      // print("Header for Get__ $headers");
 
-      if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
+      final http.Response res = await http
+          .get(
+            uri,
+            headers: headers,
+          )
+          .timeout(const Duration(seconds: 30));
+
+      print("RES ${res.statusCode}");
+      print('get body' + res.body);
+      final dynamic data = json.decode(res.body ?? '');
+      print("data $data");
+
+      /// This is applicable when server sends unique error codes.
+      // if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
+      //   apiResponse.data = transform(data);
+      // } else {
+      //   // print('Api error at $uri and $data');
+      //
+      //   apiResponse.error = true;
+      //   apiResponse.message =
+      //       (data['message'] ?? 'Error encountered').toString();
+      // }
+
+      if ((data != null && data['success'] == false)) {
+        apiResponse.success = true;
+        apiResponse.message =
+            (data['message'] ?? 'Error encountered').toString();
         apiResponse.data = transform(data);
       } else {
-        // print('Api error at $uri and $data');
-
-        apiResponse.error = true;
+        apiResponse.success = false;
+        apiResponse.data = transform(data);
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
-    } catch (e) {
+    } on TimeoutException catch (e) {
+      apiResponse.success = false;
       debugPrint(e.toString());
-
-      apiResponse.error = true;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message =
+          ('Network Error. The operation couldnt be completed. Check your internet settings')
+              .toString();
+    } catch (e) {
+      apiResponse.success = false;
+      apiResponse.message =
+          ('Network Error. The operation couldnt be completed.' ??
+                  'Error encountered')
+              .toString();
+      debugPrint(e.toString());
     }
 
     return apiResponse;
@@ -167,7 +195,7 @@ class ApiService {
       }
     } catch (e) {
       debugPrint(e.toString());
-      apiResponse.error = true;
+      apiResponse.success = false;
       apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
@@ -205,14 +233,14 @@ class ApiService {
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
       } else {
-        apiResponse.error = true;
+        apiResponse.success = false;
         // apiResponse.data = transform(data);
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
-      apiResponse.error = true;
+      apiResponse.success = false;
       apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
@@ -251,14 +279,14 @@ class ApiService {
         apiResponse.data = transform(data);
       } else {
         // print('data--$data');
-        apiResponse.error = true;
+        apiResponse.success = false;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
 
-      apiResponse.error = true;
+      apiResponse.success = false;
       apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
@@ -297,14 +325,14 @@ class ApiService {
         apiResponse.data = transform(data);
       } else {
         // print('data--$data');
-        apiResponse.error = true;
+        apiResponse.success = false;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
 
-      apiResponse.error = true;
+      apiResponse.success = false;
       apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
@@ -344,7 +372,7 @@ class ApiService {
     } catch (e) {
       debugPrint(e.toString());
       // print('expction -- ${e.toString()}');
-      apiResponse.error = true;
+      apiResponse.success = false;
       apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
@@ -380,14 +408,14 @@ class ApiService {
       } else {
         // print('Api error at $uri and $data');
 
-        apiResponse.error = true;
+        apiResponse.success = false;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
 
-      apiResponse.error = true;
+      apiResponse.success = false;
       apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
@@ -424,14 +452,14 @@ class ApiService {
       } else {
         // print('Api error at $uri and $data');
 
-        apiResponse.error = true;
+        apiResponse.success = false;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
 
-      apiResponse.error = true;
+      apiResponse.success = false;
       apiResponse.message = (e ?? 'Error encountered').toString();
     }
 

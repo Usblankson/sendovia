@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final ApiResponse<AuthPayload> res =
         await si.authService.login(_inputs.username, _inputs.pin);
 
-    if (res.error) {
+    if (!res.success) {
       // si.dialogService.toast(
       //   ToastData(
       //     context: context,

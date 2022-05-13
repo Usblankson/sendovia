@@ -12,18 +12,10 @@ class CartService {
 
   StoreService storeService;
 
-  Future<ApiResponse<CartPayload>> getHistory(
-      {String pageIndex, String jobRange}) async {
-    Map<String, String> params = {
-      "PageIndex": pageIndex,
-      "PageSize": "10",
-      "jobRange": jobRange,
-    };
-
+  Future<ApiResponse<CartPayload>> getCart() async {
     // print("tttttt");
     return si.apiService.getApi<CartPayload>(
       'Cart',
-      params: params,
       transform: (dynamic res) {
         return res != null ? CartPayload.fromJson(res) : null;
       },
