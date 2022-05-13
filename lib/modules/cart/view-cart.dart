@@ -40,12 +40,12 @@ class CartScreen extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () => Navigator.push(
-                              context,
-                              MainRouter.generateRoute(
-                                RouteSettings(
-                                    name: RoutePaths.storeProductScreen),
-                              ),
-                            ),
+                                  context,
+                                  MainRouter.generateRoute(
+                                    RouteSettings(
+                                        name: RoutePaths.storeProductScreen),
+                                  ),
+                                ),
                             icon: Icon(Icons.arrow_back)),
                         Styles.bold(
                           "Cart (2)",
@@ -86,7 +86,7 @@ class CartScreen extends StatelessWidget {
                         return Container(
                           decoration: BoxDecoration(
                               border:
-                              Border.all(color: primaryColor, width: 1.1),
+                                  Border.all(color: primaryColor, width: 1.1),
                               borderRadius: BorderRadius.circular(10),
                               color: white),
                           height: 220.h,
@@ -98,7 +98,7 @@ class CartScreen extends StatelessWidget {
                                 shape: CircleBorder(),
                                 activeColor: secondaryBlue,
                                 onChanged: (value) {
-                                 viewModel.checkCart(value!);
+                                  viewModel.checkCart(value!);
                                 },
                                 value: viewModel.cartSelected,
                               ),
@@ -157,17 +157,17 @@ class CartScreen extends StatelessWidget {
                                             padding: EdgeInsets.only(left: 150),
                                             child: Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.end,
+                                                  MainAxisAlignment.end,
                                               children: [
                                                 Container(
                                                   height: 30.h,
                                                   width: 30.w,
                                                   decoration: BoxDecoration(
                                                       color:
-                                                      grey.withOpacity(0.2),
+                                                          grey.withOpacity(0.2),
                                                       borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
+                                                          BorderRadius.circular(
+                                                              10)),
                                                   child: Icon(Icons.add),
                                                 ),
                                                 SizedBox(width: 20.w),
@@ -182,10 +182,10 @@ class CartScreen extends StatelessWidget {
                                                   width: 30.w,
                                                   decoration: BoxDecoration(
                                                       color:
-                                                      grey.withOpacity(0.2),
+                                                          grey.withOpacity(0.2),
                                                       borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.r)),
+                                                          BorderRadius.circular(
+                                                              10.r)),
                                                   child: Icon(Icons.remove),
                                                 ),
                                               ],
