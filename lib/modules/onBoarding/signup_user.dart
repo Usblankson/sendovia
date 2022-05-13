@@ -62,143 +62,139 @@ class SignUpUser extends StatelessWidget with InputValidationMixin {
             width: deviceWidth(context),
             height: deviceHeight(context),
             child: SingleChildScrollView(
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                              "assets/images/signup-bg.png",
-                            ),
-                            fit: BoxFit.contain)),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
+                child: Container(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                            "assets/images/signup-bg.png",
+                          ),
+                          fit: BoxFit.contain)),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Styles.bold("Sign up",
+                                  fontSize: 24.sp, color: bunkerDark),
+                              Image.asset(
+                                "assets/images/Logo.png",
+                                height: 18.h,
+                                width: 78.w,
+                              )
+                            ],
+                          ),
+                          VSpace(50.h),
+                          Styles.regular("First Name", color: black),
+                          VSpace(12.h),
+                          TextFormFieldWithIcon(
+                            controller: _firstNameControl,
+                            validator: fieldValidate,
+                            // prefixIcon: Icon(Icons.person),
+                            // suffixIcon: Icon(Icons.person),
+                          ),
+                          VSpace(24.h),
+                          Styles.regular("Last Name", color: black),
+                          VSpace(12.h),
+                          TextFormFieldWithIcon(
+                            controller: _lastControl,
+                            validator: fieldValidate,
+                            // prefixIcon: Icon(Icons.person),
+                            // suffixIcon: Icon(Icons.person),
+                          ),
+                          VSpace(24.h),
+                          Styles.regular("Email", color: black),
+                          VSpace(12.h),
+                          TextFormFieldWithIcon(
+                            controller: _emailControl,
+                            validator: validateEmail,
+                            // prefixIcon: Icon(Icons.person),
+                            // suffixIcon: Icon(Icons.person),
+                          ),
+                          VSpace(24.h),
+                          Styles.regular("Password", color: black),
+                          VSpace(12.h),
+                          TextFormFieldWithIcon(
+                            controller: _passwordControl,
+                            validator: validatePassword,
+                            obscureText: viewModel.isVisiblePassword,
+                            // prefixIcon: Icon(Icons.lock),
+                            suffixIcon: InkWell(
+                                onTap: () => viewModel.visiblePassword(),
+                                child: Icon(!viewModel.isVisiblePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off)),
+                          ),
+                          VSpace(24.h),
+                          Styles.regular("Confirm Password", color: black),
+                          VSpace(12.h),
+                          TextFormFieldWithIcon(
+                            controller: _confirmPasswordControl,
+                            obscureText: viewModel.isVisibleConfirmPassword,
+                            validator: confirmPassword,
+                            suffixIcon: InkWell(
+                                onTap: () => viewModel.visibleConfirmPassword(),
+                                child: Icon(!viewModel.isVisibleConfirmPassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off)),
+                          ),
+                          VSpace(24.h),
+                          Container(
+                            width: deviceWidth(context),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Styles.bold("Sign up",
-                                    fontSize: 24.sp, color: bunkerDark),
-                                Image.asset(
-                                  "assets/images/Logo.png",
-                                  height: 18.h,
-                                  width: 78.w,
-                                )
+                                Styles.regular("Already have an account?",
+                                    color: black),
+                                HSpace(3.w),
+                                GestureDetector(
+                                    onTap: () => Navigator.push(
+                                          context,
+                                          MainRouter.generateRoute(
+                                            const RouteSettings(
+                                                name: RoutePaths.login),
+                                          ),
+                                        ),
+                                    child: Styles.semiBold("Sign in",
+                                        color: primaryColor))
                               ],
                             ),
-                            VSpace(50.h),
-                            Styles.regular("First Name", color: black),
-                            VSpace(12.h),
-                            TextFormFieldWithIcon(
-                              controller: _firstNameControl,
-                              validator: fieldValidate,
-                              // prefixIcon: Icon(Icons.person),
-                              // suffixIcon: Icon(Icons.person),
-                            ),
-                            VSpace(24.h),
-                            Styles.regular("Last Name", color: black),
-                            VSpace(12.h),
-                            TextFormFieldWithIcon(
-                              controller: _lastControl,
-                              validator: fieldValidate,
-                              // prefixIcon: Icon(Icons.person),
-                              // suffixIcon: Icon(Icons.person),
-                            ),
-                            VSpace(24.h),
-                            Styles.regular("Email", color: black),
-                            VSpace(12.h),
-                            TextFormFieldWithIcon(
-                              controller: _emailControl,
-                              validator: validateEmail,
-                              // prefixIcon: Icon(Icons.person),
-                              // suffixIcon: Icon(Icons.person),
-                            ),
-                            VSpace(24.h),
-                            Styles.regular("Password", color: black),
-                            VSpace(12.h),
-                            TextFormFieldWithIcon(
-                              controller: _passwordControl,
-                              validator: validatePassword,
-                              obscureText: viewModel.isVisiblePassword,
-                              // prefixIcon: Icon(Icons.lock),
-                              suffixIcon: InkWell(
-                                      onTap: ()=> viewModel.visiblePassword(),
-                                      child: Icon(!viewModel.isVisiblePassword
-                                          ? Icons.visibility
-                                          : Icons.visibility_off)),
-                            ),
-                            VSpace(24.h),
-                            Styles.regular("Confirm Password", color: black),
-                            VSpace(12.h),
-                            TextFormFieldWithIcon(
-                              controller: _confirmPasswordControl,
-                              obscureText: viewModel.isVisibleConfirmPassword,
-                              validator: confirmPassword,
-                              suffixIcon: InkWell(
-                                  onTap: ()=> viewModel.visibleConfirmPassword(),
-                                  child: Icon(!viewModel.isVisibleConfirmPassword
-                                      ? Icons.visibility
-                                      : Icons.visibility_off)),
-                            ),
-                            VSpace(24.h),
-                            Container(
-                              width: deviceWidth(context),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Styles.regular("Already have an account?",
-                                      color: black),
-                                  HSpace(3.w),
-                                  GestureDetector(
-                                      onTap: () => Navigator.push(
-                                            context,
-                                            MainRouter.generateRoute(
-                                              const RouteSettings(
-                                                  name: RoutePaths.login),
-                                            ),
-                                          ),
-                                      child: Styles.semiBold("Sign in",
-                                          color: primaryColor))
-                                ],
-                              ),
-                            ),
-                            VSpace(50.h),
-                            Align(
-                              alignment: Alignment.center,
-                              child: CustomButton(
-                                  title: "Sign up",
-                                  isActive: true,
-                                  onPress: () async {
-                                    print("sign up");
-                                    bool isValid =
-                                        _formKey.currentState!.validate();
-                                    if (isValid) {
-                                      context.loaderOverlay.show();
+                          ),
+                          VSpace(50.h),
+                          CustomButton(
+                              title: "Sign up",
+                              isActive: true,
+                              onPress: () async {
+                                print("sign up");
+                                bool isValid =
+                                    _formKey.currentState!.validate();
+                                if (isValid) {
+                                  context.loaderOverlay.show();
 
-                                      bool registerSuccess =
-                                          await viewModel.register(context,
-                                              firstName: _firstNameControl.text,
-                                              lastName: _lastControl.text,
-                                              email: _emailControl.text,
-                                              password: _passwordControl.text);
-                                      print(
-                                          "Is register success $registerSuccess");
-                                      if (registerSuccess) {
-                                        context.loaderOverlay.hide();
-                                      } else {
-                                        context.loaderOverlay.hide();
-                                      }
-                                    }
-                                  }),
-                            ),
-                          ]),
-                    ),
+                                  bool registerSuccess =
+                                      await viewModel.register(context,
+                                          firstName: _firstNameControl.text,
+                                          lastName: _lastControl.text,
+                                          email: _emailControl.text,
+                                          password: _passwordControl.text);
+                                  print("Is register success $registerSuccess");
+                                  if (registerSuccess) {
+                                    context.loaderOverlay.hide();
+                                  } else {
+                                    context.loaderOverlay.hide();
+                                  }
+                                }
+                              }),
+                        ]),
                   ),
                 ),
               ),
+            ),
           ),
         ),
       ),
