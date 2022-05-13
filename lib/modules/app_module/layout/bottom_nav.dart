@@ -60,55 +60,59 @@ class _BottomNav extends State<BottomNav> {
     return [
       new BottomNavigationBarItem(
         activeIcon: Image.asset(
-          'assets/images/bottom_nav_icons/Homex.png',
-          height: 18.h,
-          width: 18.w,
+          'assets/images/fi_home.png',
+          height: 22.h,
+          width: 22.w,
+          color: kRed,
         ),
         icon: Image.asset(
-          'assets/images/bottom_nav_icons/Home.png',
+          'assets/images/fi_home.png',
           height: 18.h,
           width: 18.w,
         ),
-        label: "Home",
+        label: "",
       ),
       new BottomNavigationBarItem(
         activeIcon: Image.asset(
-          'assets/images/bottom_nav_icons/Document.png',
-          height: 18.h,
-          width: 18.w,
+          'assets/images/fi_clock.png',
+          height: 22.h,
+          width: 22.w,
+          color: kRed,
         ),
         icon: Image.asset(
-          'assets/images/bottom_nav_icons/Documentx.png',
+          'assets/images/fi_clock.png',
           height: 18.h,
           width: 18.w,
         ),
-        label: "Timesheet",
+        label: "",
       ),
       new BottomNavigationBarItem(
         activeIcon: Image.asset(
-          'assets/images/bottom_nav_icons/Building.png',
-          height: 18.h,
-          width: 18.w,
+          'assets/images/bell.png',
+          height: 22.h,
+          width: 22.w,
+          color: kRed,
         ),
         icon: Image.asset(
-          'assets/images/bottom_nav_icons/Buildingx.png',
+          'assets/images/bell.png',
           height: 18.h,
           width: 18.w,
         ),
-        label: "History",
+        label: "",
       ),
       new BottomNavigationBarItem(
         activeIcon: Image.asset(
-          'assets/images/bottom_nav_icons/Profile.png',
-          height: 18.h,
-          width: 18.w,
+          'assets/images/bot_cart.png',
+          height: 22.h,
+          width: 22.w,
+          color: kRed,
         ),
         icon: Image.asset(
-          'assets/images/bottom_nav_icons/Profilex.png',
+          'assets/images/bot_cart.png',
           height: 18.h,
           width: 18.w,
         ),
-        label: "Profile",
+        label: "",
       ),
     ];
   }
