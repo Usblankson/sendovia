@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:planetx/core/service_injector/service_injector.dart';
+import 'package:planetx/modules/home/viewmodel/product_vm.dart';
 import 'package:planetx/shared/models/data.dart';
 import 'package:planetx/shared/widgets/floating_button.dart';
 
 import '../../shared/utils/color.dart';
+import '../../shared/widgets/base_view.dart';
 
 class HomeScreen extends StatelessWidget {
   // final List<PopularImages>? popularImages;
@@ -12,6 +15,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BaseView<ProductViewModel>(
+      vmBuilder: (context) =>
+          ProductViewModel(context: context, productService: si.productService),
+      builder: _buildScreen,
+    );
+  }
+
+  Widget _buildScreen(BuildContext context, ProductViewModel viewModel) {
     return Scaffold(
       floatingActionButton: FAB(),
       //  backgroundColor: Color(0xffE5E5E5),
@@ -88,7 +99,9 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 24),
                 headingRow(title: "Popular", subTitle: "see all"),
                 SizedBox(height: 14),
-                Popular(),
+                Popular(
+                  viewModel: viewModel,
+                ),
                 SizedBox(height: 26),
                 headingRow(title: "Categories", subTitle: "see all"),
                 SizedBox(height: 14),
@@ -133,8 +146,10 @@ class HomeScreen extends StatelessWidget {
 }
 
 class Popular extends StatelessWidget {
-  const Popular({
+  ProductViewModel viewModel;
+  Popular({
     Key? key,
+    required this.viewModel,
   }) : super(key: key);
 
   @override
@@ -148,7 +163,7 @@ class Popular extends StatelessWidget {
         crossAxisSpacing: 9.0,
         mainAxisSpacing: 9.0,
         children: List.generate(
-          popularImages.length,
+          viewModel.allProducts!.length,
           (index) {
             return Container(
               decoration: BoxDecoration(
@@ -175,7 +190,7 @@ class Popular extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 12),
-                  Text(popularImages[index].title!,
+                  Text(viewModel.allProducts![index].name!,
                       style: const TextStyle(
                           color: Colors.black,
                           fontFamily: "PT sans",
