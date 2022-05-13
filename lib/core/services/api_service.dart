@@ -23,7 +23,7 @@ class ApiService {
       h[HttpHeaders.contentTypeHeader] = 'application/json; charset=UTF-8';
     }
 
-    final AuthPayload auth = await si.authService!.getAuthData();
+    final AuthPayload auth = await si.authService.getAuthData();
 
     if (auth != null && auth.token!.isNotEmpty) {
       // print(auth.token);
@@ -50,209 +50,14 @@ class ApiService {
     return text;
   }
 
-  Stream<ApiResponse<T>> getApiStoreData<T>(
-    String url, {
+  Future<ApiResponse<T>> postApiNoHeader<T>(
+    String url,
+    dynamic body, {
     T Function(dynamic)? transform,
     bool skipStatusCheck = false,
+    Map<String, String>? customHeaders,
     Map<String, String>? params,
-  }) {
-    transform ??= (dynamic r) => r.body as T;
-    params ??= <String, String>{};
-
-    final Uri uri = AppConfig.apiProtocol.startsWith('https')
-        ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
-        : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
-
-    return storeService
-        .getApiData(
-          id: _toId(uri.toString()),
-          uri: uri,
-          headers: httpHeaders(),
-          transform: (dynamic data, [String? errMsg]) {
-            final ApiResponse<T> res = ApiResponse<T>();
-            // print('URL___$uri');
-            // print('res---$res');
-            if (errMsg != null) {
-              res.success = true;
-              res.message = errMsg;
-            } else {
-              res.data = transform!(data);
-            }
-
-            return res;
-          },
-        )
-        .map((ApiResponse<T> event) => event);
-  }
-
-  // Future<ApiResponse<T>> getApi<T>(
-  //   String url, {
-  //   T Function(dynamic)? transform,
-  //   bool skipStatusCheck = false,
-  //   Map<String, String>? params,
-  // }) async {
-  //   transform ??= (dynamic r) => r.body as T;
-  //   params ??= <String, String>{};
-  //
-  //   final ApiResponse<T> apiResponse = ApiResponse<T>();
-  //
-  //   try {
-  //     final Map<String, String> headers = await httpHeaders();
-  //     final Uri uri = AppConfig.apiProtocol.startsWith('https')
-  //         ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
-  //         : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
-  //
-  //     final http.Response res = await http.get(
-  //       uri,
-  //       headers: headers,
-  //     );
-  //     // print('URL____$uri');
-  //     // print('Token____${headers.values}');
-  //     final dynamic data = json.decode(res.body);
-  //
-  //     if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
-  //       apiResponse.data = transform(data);
-  //     } else {
-  //       // print('Api error at $uri and $data');
-  //
-  //       apiResponse.success = true;
-  //       apiResponse.message =
-  //           (data['message'] ?? 'Error encountered').toString();
-  //     }
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //
-  //     apiResponse.success = true;
-  //     apiResponse.message = (e).toString();
-  //   }
-  //
-  //   return apiResponse;
-  // }
-
-  // Future<ApiResponse<T>> getApi<T>(
-  //     String url, {
-  //       T Function(dynamic)? transform,
-  //       bool skipStatusCheck = false,
-  //       Map<String, String>? params,
-  //     }) async {
-  //   transform ??= (dynamic r) => r.body as T;
-  //   params ??= <String, String>{};
-  //
-  //   final ApiResponse<T> apiResponse = ApiResponse<T>();
-  //
-  //   final Map<String, String> headers = await httpHeaders();
-  //   try {
-  //     // final Map<String, String> headers = await httpHeaders();
-  //
-  //     final Uri uri = AppConfig.apiProtocol.startsWith('https')
-  //         ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
-  //         : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
-  //
-  //     final http.Response res = await http
-  //         .get(
-  //       uri,
-  //       headers: headers,
-  //     )
-  //         .timeout(const Duration(seconds: 60));
-  //
-  //     final dynamic data = json.decode(res.body ?? '');
-  //     // print('body ==' + res.body);
-  //
-  //     /// This is applicable when server sends unique error codes.
-  //     // if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
-  //     //   apiResponse.data = transform(data);
-  //     // } else {
-  //     //   // print('Api error at $uri and $data');
-  //     //
-  //     //   apiResponse.error = true;
-  //     //   apiResponse.message =
-  //     //       (data['message'] ?? 'Error encountered').toString();
-  //     // }
-  //
-  //     if (data != null && data['success'] == true) {
-  //       apiResponse.success = true;
-  //       apiResponse.message =
-  //           (data['message'] ?? 'Error encountered').toString();
-  //       apiResponse.data = transform(data);
-  //     } else {
-  //       apiResponse.success = false;
-  //       apiResponse.data = transform(data);
-  //       apiResponse.message =
-  //           (data['message'] ?? 'Error encountered').toString();
-  //     }
-  //   } on TimeoutException catch (e) {
-  //     apiResponse.success = false;
-  //     // debugPrint(e.toString());
-  //     apiResponse.message =
-  //         ('Network Error. The operation couldnt be completed. Check your internet settings')
-  //             .toString();
-  //   } catch (e) {
-  //     // debugPrint("see other catch $e ");
-  //     apiResponse.success = false;
-  //     apiResponse.message =
-  //         ('Network Error. The operation couldnt be completed.' ??
-  //             'Error encountered')
-  //             .toString();
-  //   }
-  //
-  //   return apiResponse;
-  // }
-
-
-  // Future<ApiResponse<T>> postApiAdd<T>(
-  //   String url,
-  //   dynamic body, {
-  //   T Function(dynamic)? transform,
-  //   bool skipStatusCheck = false,
-  //   Map<String, String>? customHeaders,
-  //   Map<String, String>? params,
-  // }) async {
-  //   transform ??= (dynamic r) => r.body as T;
-  //
-  //   final ApiResponse<T> apiResponse = ApiResponse<T>();
-  //
-  //   try {
-  //     final Map<String, String> headers = await httpHeaders(customHeaders);
-  //     final Uri uri = AppConfig.apiProtocol.startsWith('https')
-  //         ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
-  //         : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
-  //
-  //     final http.Response res = await http.post(
-  //       uri,
-  //       headers: headers,
-  //       body: httpBody(body),
-  //     );
-  //     // print('URL___ $uri');
-  //     // print('body___ ${httpBody(body)}');
-  //
-  //     final dynamic data = json.decode(res.body);
-  //     // print('ResponesData---- $data');
-  //     if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
-  //       apiResponse.data = transform(data);
-  //     } else {
-  //       //apiResponse.success = true;
-  //       apiResponse.data = transform(data);
-  //       apiResponse.message =
-  //           (data['message'] ?? 'Error encountered').toString();
-  //     }
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //     apiResponse.success = true;
-  //     apiResponse.message = (e).toString();
-  //   }
-  //
-  //   return apiResponse;
-  // }
-
-
-  Future<ApiResponse<T>> postApiNoHeader<T>(
-      String url,
-      dynamic body, {
-        T Function(dynamic)? transform,
-        bool skipStatusCheck = false,
-        Map<String, String>? customHeaders,
-        Map<String, String>? params,
-      }) async {
+  }) async {
     transform ??= (dynamic r) => r.body as T;
 
     final ApiResponse<T> apiResponse = ApiResponse<T>();
@@ -271,10 +76,10 @@ class ApiService {
 
       final http.Response res = await http
           .post(
-        uri,
-        headers: headers,
-        body: httpBody(body),
-      )
+            uri,
+            headers: headers,
+            body: httpBody(body),
+          )
           .timeout(const Duration(seconds: 20));
       print('URL___ $uri');
       print('body___ ${httpBody(body)}');
@@ -303,7 +108,7 @@ class ApiService {
           // print('LOGIN CHECK 0');
 
           String msg = "";
-          if(data["message"] is List) {
+          if (data["message"] is List) {
             for (int i = 0; i < data["message"].length; i++) {
               msg += data["message"][i].toString() + "\n";
             }
@@ -320,46 +125,45 @@ class ApiService {
         // print('LOGIN CHECK 1');
 
         // if (data['status'] != null && data['status'] == "unverified") {
-          // print('LOGIN CHECK 2');
+        // print('LOGIN CHECK 2');
 
-          // apiResponse.patient = transform(data['patient']);
-          // print('LOGIN CHECK 2 aaa ${data['patient']}');
-          // debugPrint('LOGIN CHECK 2 aaa ${json.encode(data['patient']['patient_medical_history'])}');
+        // apiResponse.patient = transform(data['patient']);
+        // print('LOGIN CHECK 2 aaa ${data['patient']}');
+        // debugPrint('LOGIN CHECK 2 aaa ${json.encode(data['patient']['patient_medical_history'])}');
 
+        // debugPrint('LOGIN CHECK 200 ${transform(data)}');
+        // apiResponse.token = transform(data);
+        // print('LOGIN CHECK 2 bbb');
 
-          // debugPrint('LOGIN CHECK 200 ${transform(data)}');
-          // apiResponse.token = transform(data);
-          // print('LOGIN CHECK 2 bbb');
+        // apiResponse.status =
+        //     (data['status'] ?? 'Error encountered').toString();
+        // print('LOGIN CHECK 2 ccc');
 
-          // apiResponse.status =
-          //     (data['status'] ?? 'Error encountered').toString();
-          // print('LOGIN CHECK 2 ccc');
-
-          // apiResponse.userRole =
-          //     (data['userRole'] ?? 'Error encountered').toString();
-          // print('LOGIN CHECK 2 ddd');
+        // apiResponse.userRole =
+        //     (data['userRole'] ?? 'Error encountered').toString();
+        // print('LOGIN CHECK 2 ddd');
 
         // } else {
-          // print('LOGIN CHECK 3');
+        // print('LOGIN CHECK 3');
 
-          // apiResponse.data = transform(data);
-          // apiResponse.status =
-          //     (data['status'] ?? 'Error encountered').toString();
-          // apiResponse.userRole =
-          //     (data['userRole'] ?? 'Error encountered').toString();
+        // apiResponse.data = transform(data);
+        // apiResponse.status =
+        //     (data['status'] ?? 'Error encountered').toString();
+        // apiResponse.userRole =
+        //     (data['userRole'] ?? 'Error encountered').toString();
         // }
       } else {
         // print('LOGIN CHECK 4');
 
         apiResponse.success = false;
-        if(data['data'] != null) {
-        apiResponse.data = transform(data);
+        if (data['data'] != null) {
+          apiResponse.data = transform(data);
           apiResponse.message =
-            (data['message'] ?? 'Error encountered').toString();
+              (data['message'] ?? 'Error encountered').toString();
         }
-    if(data['message'] != null) {
+        if (data['message'] != null) {
           apiResponse.message =
-            (data['message'] ?? 'Error encountered').toString();
+              (data['message'] ?? 'Error encountered').toString();
         }
       }
     } on TimeoutException catch (e) {
@@ -373,22 +177,20 @@ class ApiService {
       apiResponse.success = false;
       print('fortune --' + e.toString());
       // debugPrint(e.toString());
-      apiResponse.message =
-          ('Error encountered')
-              .toString();
+      apiResponse.message = ('Error encountered').toString();
     }
 
     return apiResponse;
   }
 
   Future<ApiResponse<T>> postApiAdd<T>(
-      String url,
-      dynamic body, {
-        T Function(dynamic)? transform,
-        bool skipStatusCheck = false,
-        Map<String, String>? customHeaders,
-        Map<String, String>? params,
-      }) async {
+    String url,
+    dynamic body, {
+    T Function(dynamic)? transform,
+    bool skipStatusCheck = false,
+    Map<String, String>? customHeaders,
+    Map<String, String>? params,
+  }) async {
     transform ??= (dynamic r) => r.body["data"] as T;
 
     final ApiResponse<T> apiResponse = ApiResponse<T>();
@@ -412,10 +214,10 @@ class ApiService {
 
       final http.Response res = await http
           .post(
-        uri,
-        headers: headers,
-        body: httpBody(body),
-      )
+            uri,
+            headers: headers,
+            body: httpBody(body),
+          )
           .timeout(const Duration(seconds: 60));
       print('URL___ $uri');
       debugPrint('body___ ${httpBody(body)}');
@@ -465,68 +267,20 @@ class ApiService {
       apiResponse.success = false;
       print('gggg' + e.toString());
       // debugPrint(e.toString());
-      apiResponse.message =
-          ('Error encountered')
-              .toString();
+      apiResponse.message = ('Error encountered').toString();
     }
 
     return apiResponse;
   }
 
-  // Future<ApiResponse<T>> postApi<T>(
-  //   String url,
-  //   dynamic body, {
-  //   T Function(dynamic)? transform,
-  //   bool skipStatusCheck = false,
-  //   Map<String, String>? customHeaders,
-  //   Map<String, String>? params,
-  // }) async {
-  //   transform ??= (dynamic r) => r.body as T;
-  //
-  //   final ApiResponse<T> apiResponse = ApiResponse<T>();
-  //
-  //   try {
-  //     final Map<String, String> headers = await httpHeaders(customHeaders);
-  //     final Uri uri = AppConfig.apiProtocol.startsWith('https')
-  //         ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
-  //         : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
-  //
-  //     print('first ResponesData----data');
-  //     final http.Response res = await http.post(
-  //       uri,
-  //       headers: headers,
-  //       body: httpBody(body),
-  //     );
-  //     print('URL___ $uri');
-  //     print('body___ ${httpBody(body)}');
-  //
-  //     final dynamic data = json.decode(res.body);
-  //     print('ResponesData----data');
-  //     if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
-  //       apiResponse.data = transform(data);
-  //     } else {
-  //       apiResponse.success = false;
-  //       // apiResponse.data = transform(data);
-  //       apiResponse.message =
-  //           (data['message'] ?? 'success encountered').toString();
-  //     }
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //     apiResponse.success = false;
-  //     apiResponse.message = (e).toString();
-  //   }
-  //
-  //   return apiResponse;
-  // }
-
   Future<ApiResponse<T>> postApi<T>(
-      String url,
-      dynamic body, {
-        T Function(dynamic)? transform,
-        bool skipStatusCheck = false,
-        Map<String, String>? customHeaders,
-        Map<String, String>? params,
-      }) async {
+    String url,
+    dynamic body, {
+    T Function(dynamic)? transform,
+    bool skipStatusCheck = false,
+    Map<String, String>? customHeaders,
+    Map<String, String>? params,
+  }) async {
     transform ??= (dynamic r) => r.body as T;
 
     final ApiResponse<T> apiResponse = ApiResponse<T>();
@@ -553,7 +307,7 @@ class ApiService {
       final dynamic data = json.decode(res.body);
       // print('ResponesData---- $data');
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
-        apiResponse.success = false;
+        apiResponse.success = true;
         apiResponse.data = transform(data);
       } else {
         apiResponse.success = false;
@@ -570,34 +324,72 @@ class ApiService {
     return apiResponse;
   }
 
+  Stream<ApiResponse<T>> getApiStoreData<T>(
+    String url, {
+    T Function(dynamic)? transform,
+    bool skipStatusCheck = false,
+    Map<String, String>? params,
+  }) {
+    transform ??= (dynamic r) => r.body as T;
+    params ??= <String, String>{};
+
+    final Uri uri = AppConfig.apiProtocol.startsWith('https')
+        ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
+        : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
+
+    return storeService
+        .getApiData(
+          id: _toId(uri.toString()),
+          uri: uri,
+          headers: httpHeaders(),
+          transform: (dynamic data, [String? errMsg]) {
+            final ApiResponse<T> res = ApiResponse<T>();
+            // print('URL___$uri');
+            // print('res---$res');
+            if (errMsg != null) {
+              res.success = false;
+              res.message = errMsg;
+            } else {
+              res.data = transform!(data);
+            }
+
+            return res;
+          },
+        )
+        .map((ApiResponse<T> event) => event);
+  }
+
   Future<ApiResponse<T>> getApi<T>(
-      String url, {
-        T Function(dynamic)? transform,
-        bool skipStatusCheck = false,
-        Map<String, String>? params,
-      }) async {
+    String url, {
+    T Function(dynamic)? transform,
+    bool skipStatusCheck = false,
+    Map<String, String>? params,
+  }) async {
     transform ??= (dynamic r) => r.body as T;
     params ??= <String, String>{};
 
     final ApiResponse<T> apiResponse = ApiResponse<T>();
 
-    final Map<String, String> headers = await httpHeaders();
     try {
-      // final Map<String, String> headers = await httpHeaders();
-
+      final Map<String, String> headers = await httpHeaders();
       final Uri uri = AppConfig.apiProtocol.startsWith('https')
           ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
           : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
 
+      // print("URI__ $uri");
+      // print("Header for Get__ $headers");
+
       final http.Response res = await http
           .get(
-        uri,
-        headers: headers,
-      )
-          .timeout(const Duration(seconds: 60));
+            uri,
+            headers: headers,
+          )
+          .timeout(const Duration(seconds: 30));
 
-      final dynamic data = json.decode(res.body);
-      // print('body ==' + res.body);
+      print("RES ${res.statusCode}");
+      print('get body' + res.body);
+      final dynamic data = json.decode(res.body ?? '');
+      print("data $data");
 
       /// This is applicable when server sends unique error codes.
       // if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
@@ -610,7 +402,7 @@ class ApiService {
       //       (data['message'] ?? 'Error encountered').toString();
       // }
 
-      if (data != null && data['success'] == true) {
+      if ((data != null && data['success'] == false)) {
         apiResponse.success = true;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
@@ -623,16 +415,17 @@ class ApiService {
       }
     } on TimeoutException catch (e) {
       apiResponse.success = false;
-      // debugPrint(e.toString());
+      debugPrint(e.toString());
       apiResponse.message =
-          ("Network Error. The operation couldnt be completed. Check your internet settings")
+          ('Network Error. The operation couldnt be completed. Check your internet settings')
               .toString();
     } catch (e) {
-      // debugPrint("see other catch $e ");
       apiResponse.success = false;
       apiResponse.message =
-          ('Error encountered')
+          ('Network Error. The operation couldnt be completed.' ??
+                  'Error encountered')
               .toString();
+      debugPrint(e.toString());
     }
 
     return apiResponse;
@@ -678,7 +471,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e).toString();
+      apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
     return apiResponse;
@@ -716,15 +509,15 @@ class ApiService {
         apiResponse.data = transform(data);
       } else {
         // print('data--$data');
-        apiResponse.success = true;
+        apiResponse.success = false;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
 
-      apiResponse.success = true;
-      apiResponse.message = (e).toString();
+      apiResponse.success = false;
+      apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
     return apiResponse;
@@ -763,8 +556,8 @@ class ApiService {
     } catch (e) {
       debugPrint(e.toString());
       // print('expction -- ${e.toString()}');
-      apiResponse.success = true;
-      apiResponse.message = (e).toString();
+      apiResponse.success = false;
+      apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
     return apiResponse;
@@ -792,22 +585,22 @@ class ApiService {
         headers: headers,
       );
 
-      final dynamic data = json.decode(res.body);
+      final dynamic data = json.decode(res.body ?? '');
 
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
       } else {
         // print('Api error at $uri and $data');
 
-        apiResponse.success = true;
+        apiResponse.success = false;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
 
-      apiResponse.success = true;
-      apiResponse.message = (e).toString();
+      apiResponse.success = false;
+      apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
     return apiResponse;
@@ -836,24 +629,114 @@ class ApiService {
       );
       // print('URLsss____$uri');
       // print('Token____${headers.values}');
-      final dynamic data = json.decode(res.body);
+      final dynamic data = json.decode(res.body ?? '');
 
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
       } else {
         // print('Api error at $uri and $data');
 
-        apiResponse.success = true;
+        apiResponse.success = false;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
     } catch (e) {
       debugPrint(e.toString());
 
-      apiResponse.success = true;
-      apiResponse.message = (e).toString();
+      apiResponse.success = false;
+      apiResponse.message = (e ?? 'Error encountered').toString();
     }
 
     return apiResponse;
   }
+
+  // Future<ApiResponse<T>> postApiAdd<T>(
+  //     String url,
+  //     dynamic body, {
+  //       T Function(dynamic)? transform,
+  //       bool skipStatusCheck = false,
+  //       Map<String, String>? customHeaders,
+  //       Map<String, String>? params,
+  //     }) async {
+  //   transform ??= (dynamic r) => r.body as T;
+  //
+  //   final ApiResponse<T> apiResponse = ApiResponse<T>();
+  //
+  //   try {
+  //     final Map<String, String> headers = await httpHeaders(customHeaders);
+  //     final Uri uri = AppConfig.apiProtocol.startsWith('https')
+  //         ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
+  //         : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
+  //
+  //     final http.Response res = await http.post(
+  //       uri,
+  //       headers: headers,
+  //       body: httpBody(body),
+  //     );
+  //     // print('URL___ $uri');
+  //     // print('body___ ${httpBody(body)}');
+  //
+  //     final dynamic data = json.decode(res.body);
+  //     // print('ResponesData---- $data');
+  //     if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
+  //       apiResponse.data = transform(data);
+  //     } else {
+  //       //apiResponse.error = true;
+  //       apiResponse.data = transform(data);
+  //       apiResponse.message =
+  //           (data['message'] ?? 'Error encountered').toString();
+  //     }
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //     apiResponse.success = false;
+  //     apiResponse.message = (e ?? 'Error encountered').toString();
+  //   }
+  //
+  //   return apiResponse;
+  // }
+  //
+  // Future<ApiResponse<T>> postApi<T>(
+  //     String url,
+  //     dynamic body, {
+  //       T Function(dynamic) transform,
+  //       bool skipStatusCheck = false,
+  //       Map<String, String> customHeaders,
+  //       Map<String, String> params,
+  //     }) async {
+  //   transform ??= (dynamic r) => r.body as T;
+  //
+  //   final ApiResponse<T> apiResponse = ApiResponse<T>();
+  //
+  //   try {
+  //     final Map<String, String> headers = await httpHeaders(customHeaders);
+  //     final Uri uri = AppConfig.apiProtocol.startsWith('https')
+  //         ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
+  //         : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
+  //
+  //     final http.Response res = await http.post(
+  //       uri,
+  //       headers: headers,
+  //       body: httpBody(body),
+  //     );
+  //     // print('URL___ $uri');
+  //     // print('body___ ${httpBody(body)}');
+  //
+  //     final dynamic data = json.decode(res.body);
+  //     // print('ResponesData----data');
+  //     if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
+  //       apiResponse.data = transform(data);
+  //     } else {
+  //       apiResponse.success = false;
+  //       // apiResponse.data = transform(data);
+  //       apiResponse.message =
+  //           (data['message'] ?? 'Error encountered').toString();
+  //     }
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //     apiResponse.success = false;
+  //     apiResponse.message = (e ?? 'Error encountered').toString();
+  //   }
+  //
+  //   return apiResponse;
+  // }
 }

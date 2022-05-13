@@ -18,7 +18,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _Inputs? _inputs = _Inputs();
+  final _Inputs _inputs = _Inputs();
   bool _loading = false;
   @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isValid() {
 //return true;
-    return _inputs!.username!.isNotEmpty && _inputs!.pin!.isNotEmpty;
+    return _inputs.username!.isNotEmpty && _inputs.pin!.isNotEmpty;
   }
 
   Future<void> _doLogin() async {
@@ -134,9 +134,9 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 // login here
     final ApiResponse<AuthPayload> res =
-        await si.authService!.login(_inputs!.username, _inputs!.pin);
+        await si.authService.login(_inputs.username!, _inputs.pin!);
 
-    if (res.success) {
+    if (!res.success) {
       // si.dialogService.toast(
       //   ToastData(
       //     context: context,
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _loading = false;
       });
     } else {
-      si.storageService.setItem('auth_data', json.encode(res.data!.toJson()));
+      si.storageService.setItem('auth_data', json.encode(res.data?.toJson()));
       si.routerService.pushReplacementNamed(AppGuard.route);
     }
   }
