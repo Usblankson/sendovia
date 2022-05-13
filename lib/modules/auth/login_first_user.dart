@@ -30,24 +30,31 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
       body: Container(
           width: deviceWidth(context),
           height: deviceHeight(context),
-
           child: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 24.h),
                 child: Container(
                   decoration: const BoxDecoration(
-                      image: DecorationImage(image: AssetImage("assets/images/login-bg.png",),fit: BoxFit.contain)
-                  ),
+                      image: DecorationImage(
+                          image: AssetImage(
+                            "assets/images/login-bg.png",
+                          ),
+                          fit: BoxFit.contain)),
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Styles.bold("Login in", fontSize: 24.sp, color: bunkerDark),
-                            Image.asset("assets/images/Logo.png", height: 18.h, width: 78.w,)
-
+                            Styles.bold("Login",
+                                fontSize: 24.sp, color: bunkerDark),
+                            Image.asset(
+                              "assets/images/Logo.png",
+                              height: 18.h,
+                              width: 78.w,
+                            )
                           ],
                         ),
                         VSpace(200.h),
@@ -90,21 +97,19 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                         //   ),
                         // ),
                         VSpace(180.h),
-                        Align(
-                          alignment: Alignment.center,
-                          child: CustomButton(
-                              title: "Log in",
-                              isActive: true,
-                              onPress: () {
-                                print("Login In");
-                                Navigator.push(
-                                                context,
-                                                MainRouter.generateRoute(
-                                                  const RouteSettings(name: RoutePaths.bottomNav),
-                                                ),
-                                              );
-                              }),
-                        ),
+                        CustomButton(
+                            title: "Log in",
+                            isActive: true,
+                            onPress: () {
+                              print("Login In");
+                              Navigator.push(
+                                context,
+                                MainRouter.generateRoute(
+                                  const RouteSettings(
+                                      name: RoutePaths.bottomNav),
+                                ),
+                              );
+                            }),
                       ]),
                 ),
               ),

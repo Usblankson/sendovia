@@ -1,23 +1,24 @@
 import 'package:planetx/core/services/storage_service.dart';
 import 'package:planetx/core/services/store_service.dart';
+import 'package:planetx/shared/models/allProducts_payload.dart';
 import 'package:planetx/shared/models/cart_model.dart';
 
 import '../../shared/models/api_model.dart';
 import '../service_injector/service_injector.dart';
 
-class CartService {
-  CartService({this.storageService, this.storeService});
+class ProductService {
+  ProductService({this.storageService, this.storeService});
 
   StorageService? storageService;
 
   StoreService? storeService;
 
-  Future<ApiResponse<CartPayload>> getCart() async {
+  Future<ApiResponse<AllProductsPayload>> getAllProducts() async {
     // print("tttttt");
-    return si.apiService.getApi<CartPayload>(
-      'cart',
+    return si.apiService.getApi<AllProductsPayload>(
+      'products',
       transform: (dynamic res) {
-        return CartPayload.fromJson(res);
+        return AllProductsPayload.fromJson(res);
       },
     );
   }
