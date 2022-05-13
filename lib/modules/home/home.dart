@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FAB(),
-      backgroundColor: Color(0xffE5E5E5),
+      //  backgroundColor: Color(0xffE5E5E5),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
         child: SingleChildScrollView(
@@ -70,10 +70,7 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        Icon(
-                          Icons.search,
-                          color: Color(0xffC2B5B5),
-                        ),
+                        Icon(Icons.search, color: grey),
                         SizedBox(width: 16),
                         Text("Search items or services",
                             style: TextStyle(
