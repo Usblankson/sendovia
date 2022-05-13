@@ -2,6 +2,8 @@
 //
 //     final allProductsPayload = allProductsPayloadFromJson(jsonString);
 
+// ignore_for_file: unnecessary_question_mark
+
 import 'dart:convert';
 
 AllProductsPayload allProductsPayloadFromJson(String str) =>
@@ -17,8 +19,8 @@ class AllProductsPayload {
     required this.data,
   });
 
-  bool success;
-  dynamic message;
+  bool? success;
+  dynamic? message;
   List<PayloadFromProducts>? data;
 
   factory AllProductsPayload.fromJson(Map<String, dynamic> json) =>

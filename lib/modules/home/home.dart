@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/modules/home/viewmodel/product_vm.dart';

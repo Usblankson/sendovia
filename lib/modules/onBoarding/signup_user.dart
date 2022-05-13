@@ -157,7 +157,7 @@ class SignUpUser extends StatelessWidget with InputValidationMixin {
                                           context,
                                           MainRouter.generateRoute(
                                             const RouteSettings(
-                                                name: RoutePaths.login),
+                                                name: RoutePaths.validateAuth),
                                           ),
                                         ),
                                     child: Styles.semiBold("Sign in",

@@ -177,4 +177,22 @@ class AuthService {
       },
     );
   }
+
+  Future<ApiResponse<RegisterPayload>> getToken({
+    String? email,
+  }) {
+    final Map<String?, String?> body = <String?, String?>{
+      "email": email,
+    };
+
+    AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
+    return si.apiService!.postApiNoHeader<RegisterPayload>(
+      '/auth/login-token',
+      body,
+      transform: (dynamic res) {
+        debugPrint("auth ress $res");
+        return RegisterPayload.fromJson(res);
+      },
+    );
+  }
 }
