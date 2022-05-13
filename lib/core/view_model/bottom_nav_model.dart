@@ -3,8 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:planetx/modules/cart/view-cart.dart';
 
 import '../../modules/home/home.dart';
+import '../../modules/notification/notification.dart';
 
 class BottomNavModel extends ChangeNotifier {
   ///current index of the bottom nav-bar
@@ -14,6 +16,9 @@ class BottomNavModel extends ChangeNotifier {
   ///children of the bottom Nav
   List<Widget> _children = [
     HomeScreen(),
+    Container(),
+    NotificationScreen(),
+    CartScreen(),
 
     // HistoryPage(),
     // Profile(),
