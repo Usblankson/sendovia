@@ -134,12 +134,6 @@ class _ValidateAuthState extends State<ValidateAuth> with InputValidationMixin {
 
                                     if(isValid) {
                                       context.loaderOverlay.show();
-                                      // Navigator.push(
-                                      //   context,
-                                      //   MainRouter.generateRoute(
-                                      //     const RouteSettings(name: RoutePaths.login),
-                                      //   ),
-                                      // );
                                       bool tokenGotten = await model.getToken(
                                           context,
                                           email: _emailControl.text);
