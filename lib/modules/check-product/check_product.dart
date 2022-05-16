@@ -10,11 +10,23 @@ import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/widgets/button.dart';
 import 'package:planetx/shared/widgets/custom_button.dart';
 
+import '../../core/service_injector/service_injector.dart';
+import '../../shared/widgets/base_view.dart';
+import '../cart/viewmodel/cart_vm.dart';
+
 class CheckProductScreen extends StatelessWidget {
   const CheckProductScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return BaseView<CartViewModel>(
+      vmBuilder: (context) =>
+          CartViewModel(context: context, cartService: si.cartService),
+      builder: _buildScreen,
+    );
+  }
+
+  Widget _buildScreen(BuildContext context, CartViewModel viewModel) {
     return Scaffold(
       body: Container(
         child: Padding(
@@ -162,18 +174,23 @@ class CheckProductScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: Center(
-                                child: Styles.bold(
-                                  "Add to Cart",
-                                  fontSize: 18.sp,
-                                  color: Color(0xff7B61FF),
+                            GestureDetector(
+                              onTap: () {
+                                viewModel.addToCart(cartId: "cart id");
+                              },
+                              child: Container(
+                                child: Center(
+                                  child: Styles.bold(
+                                    "Add to Cart",
+                                    fontSize: 18.sp,
+                                    color: Color(0xff7B61FF),
+                                  ),
                                 ),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: grey, width: 1)),
+                                height: 55.h,
+                                width: 180.w,
                               ),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: grey, width: 1)),
-                              height: 55.h,
-                              width: 180.w,
                             ),
                             Container(
                               height: 55.h,

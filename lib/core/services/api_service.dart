@@ -502,14 +502,16 @@ class ApiService {
 
       final dynamic data = json.decode(res.body);
 
-      // print(uri);
-      // print(headers);
-
+      print('ResponesData123---- $data');
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
+        apiResponse.success = true;
+        // apiResponse.hasErrors = false;
+        apiResponse.message = (data['message'] ?? ' Successful!').toString();
       } else {
-        // print('data--$data');
+        print("error=============" + data["errors"][r"$.timeSheetId"][0]);
         apiResponse.success = false;
+        apiResponse.data = transform(data);
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
       }
@@ -522,6 +524,52 @@ class ApiService {
 
     return apiResponse;
   }
+
+  // Future<ApiResponse<T>> putApi<T>(
+  //   String url,
+  //   dynamic body, {
+  //   T Function(dynamic)? transform,
+  //   bool skipStatusCheck = false,
+  //   Map<String, String>? params,
+  // }) async {
+  //   transform ??= (dynamic r) => r.body as T;
+  //
+  //   final ApiResponse<T> apiResponse = ApiResponse<T>();
+  //
+  //   try {
+  //     final Map<String, String> headers = await httpHeaders();
+  //     final Uri uri = AppConfig.apiProtocol.startsWith('https')
+  //         ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
+  //         : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
+  //
+  //     final http.Response res = await http.put(
+  //       uri,
+  //       headers: headers,
+  //       body: httpBody(body),
+  //     );
+  //
+  //     final dynamic data = json.decode(res.body);
+  //
+  //     // print(uri);
+  //     // print(headers);
+  //
+  //     if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
+  //       apiResponse.data = transform(data);
+  //     } else {
+  //       // print('data--$data');
+  //       apiResponse.success = false;
+  //       apiResponse.message =
+  //           (data['message'] ?? 'Error encountered').toString();
+  //     }
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //
+  //     apiResponse.success = false;
+  //     apiResponse.message = (e ?? 'Error encountered').toString();
+  //   }
+  //
+  //   return apiResponse;
+  // }
 
   Future<ApiResponse<T>> putApiError<T>(
     String url,
@@ -589,6 +637,10 @@ class ApiService {
 
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
+        apiResponse.success = true;
+        apiResponse.message =
+            (data['message'] ?? 'Product remove from cart successfully')
+                .toString();
       } else {
         // print('Api error at $uri and $data');
 
