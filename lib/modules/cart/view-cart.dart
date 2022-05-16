@@ -7,6 +7,7 @@ import 'package:planetx/router/main_router.dart';
 import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
+import 'package:planetx/shared/widgets/space.dart';
 
 import '../../core/service_injector/service_injector.dart';
 import '../../shared/widgets/base_view.dart';
@@ -64,7 +65,9 @@ class CartScreen extends StatelessWidget {
                               size: 30,
                             )),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              viewModel.removeFromCartID();
+                            },
                             icon: Icon(
                               Icons.delete,
                               color: black,
@@ -81,7 +84,8 @@ class CartScreen extends StatelessWidget {
                   Container(
                     height: 591.h,
                     child: ListView.separated(
-                      itemCount: 2,
+                      shrinkWrap: true,
+                      itemCount: viewModel.userCartInfo!.length,
                       itemBuilder: (context, index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -98,9 +102,11 @@ class CartScreen extends StatelessWidget {
                                 shape: CircleBorder(),
                                 activeColor: secondaryBlue,
                                 onChanged: (value) {
-                                  viewModel.checkCart(value!);
+                                  viewModel.checkCart(value!,
+                                      viewModel.userCartInfo[index].id!);
                                 },
-                                value: viewModel.cartSelected,
+                                value: viewModel.selectedCartId
+                                    .contains(viewModel.userCartInfo[index].id),
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -111,12 +117,21 @@ class CartScreen extends StatelessWidget {
                                       children: [
                                         SizedBox(
                                           height: 20.h,
-                                          child: Image.asset(
-                                              "assets/images/cart-texticon.png"),
+                                          child: viewModel.userCartInfo[index]
+                                                      .product!.image !=
+                                                  null
+                                              ? Image.network(viewModel
+                                                  .userCartInfo[index]
+                                                  .product!
+                                                  .image!)
+                                              : Image.asset(
+                                                  "assets/images/cart-texticon.png"),
                                         ),
                                         SizedBox(width: 10.w),
                                         Styles.regular(
-                                          "Toptek Stores",
+                                          viewModel.userCartInfo[index].product!
+                                                  .name ??
+                                              "Toptek Stores",
                                           fontSize: 16.sp,
                                           color: black,
                                         ),
@@ -131,12 +146,27 @@ class CartScreen extends StatelessWidget {
                                           height: 122,
                                           width: 140,
                                         ),
-                                        SizedBox(width: 15.w),
-                                        Styles.regular(
-                                          "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
-                                          fontSize: 10.5.sp,
-                                          height: 2,
-                                          color: black,
+                                        HSpace(15.w),
+                                        Column(
+                                          children: [
+                                            Styles.regular(
+                                              viewModel.userCartInfo[index]
+                                                      .product!.description ??
+                                                  "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
+                                              fontSize: 10.5.sp,
+                                              height: 2,
+                                              color: black,
+                                            ),
+                                            VSpace(4.h),
+                                            Styles.regular(
+                                              viewModel.userCartInfo[index]
+                                                      .product!.name ??
+                                                  "Toptek Stores",
+                                              fontSize: 8.sp,
+                                              height: 2,
+                                              color: greyworm,
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
@@ -147,7 +177,9 @@ class CartScreen extends StatelessWidget {
                                           SizedBox(
                                             height: 20.h,
                                             child: Styles.regular(
-                                              "",
+                                              viewModel.userCartInfo.isNotEmpty
+                                                  ? "${viewModel.userCartInfo[index].price}"
+                                                  : "0",
                                               fontSize: 17.sp,
                                               color: black,
                                             ),
@@ -168,11 +200,40 @@ class CartScreen extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10)),
-                                                  child: Icon(Icons.add),
+                                                  child: IconButton(
+                                                      icon: Icon(Icons.add),
+                                                      onPressed: () {
+                                                        if (viewModel
+                                                                .userCartInfo[
+                                                                    index]
+                                                                .quantity! <
+                                                            viewModel
+                                                                .userCartInfo[
+                                                                    index]
+                                                                .product!
+                                                                .stock!) {
+                                                          viewModel.updateCart(
+                                                              context: context,
+                                                              productId: viewModel
+                                                                  .userCartInfo[
+                                                                      index]
+                                                                  .id!,
+                                                              quantity: {
+                                                                viewModel
+                                                                        .userCartInfo[
+                                                                            index]
+                                                                        .quantity! +
+                                                                    1
+                                                              }.toString());
+                                                        }
+                                                      }),
                                                 ),
                                                 SizedBox(width: 20.w),
                                                 Styles.regular(
-                                                  "1",
+                                                  viewModel.userCartInfo
+                                                          .isNotEmpty
+                                                      ? "${viewModel.userCartInfo[index].quantity}"
+                                                      : "0",
                                                   fontSize: 25.sp,
                                                   color: black,
                                                 ),
@@ -186,7 +247,29 @@ class CartScreen extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10.r)),
-                                                  child: Icon(Icons.remove),
+                                                  child: IconButton(
+                                                      icon: Icon(Icons.remove),
+                                                      onPressed: () {
+                                                        if (viewModel
+                                                                .userCartInfo[
+                                                                    index]
+                                                                .quantity! >
+                                                            1) {
+                                                          viewModel.updateCart(
+                                                              context: context,
+                                                              productId: viewModel
+                                                                  .userCartInfo[
+                                                                      index]
+                                                                  .id!,
+                                                              quantity: {
+                                                                viewModel
+                                                                        .userCartInfo[
+                                                                            index]
+                                                                        .quantity! -
+                                                                    1
+                                                              }.toString());
+                                                        }
+                                                      }),
                                                 ),
                                               ],
                                             ),
@@ -219,7 +302,12 @@ class CartScreen extends StatelessWidget {
                           shape: CircleBorder(),
                           activeColor: primaryColor,
                           onChanged: (value) {
-                            viewModel.checkCart(value!);
+                            // viewModel.checkCart(value!);
+                            if (value != null) {
+                              if (value) {
+                                viewModel.switchCart();
+                              }
+                            }
                           },
                           value: viewModel.cartSelected,
                         ),
