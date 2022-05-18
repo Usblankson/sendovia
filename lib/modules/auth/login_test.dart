@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:planetx/core/gaurds/app_guard.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/shared/models/api_model.dart';
-import 'package:planetx/shared/models/auth_model.dart';
+import 'package:planetx/shared/models/auth_payload.dart';
 import 'package:planetx/shared/utils/dims.dart';
 import 'package:planetx/shared/utils/themes/theme.dart';
 import 'package:planetx/shared/widgets/action_button.dart';
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isValid() {
 //return true;
-    return _inputs.username!.isNotEmpty && _inputs.pin!.isNotEmpty;
+    return _inputs.email!.isNotEmpty && _inputs.token!.isNotEmpty;
   }
 
   Future<void> _doLogin() async {
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 // login here
     final ApiResponse<AuthPayload> res =
-        await si.authService.login(_inputs.username!, _inputs.pin!);
+        await si.authService!.login(_inputs.email!, _inputs.token!);
 
     if (!res.success) {
       // si.dialogService.toast(
@@ -156,10 +156,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
 class _Inputs {
   _Inputs() {
-    username = '';
-    pin = '';
+    email = '';
+    token = '';
   }
 
-  String? username;
-  String? pin;
+  String? email;
+  String? token;
 }

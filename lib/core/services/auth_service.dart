@@ -7,7 +7,7 @@ import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/core/services/storage_service.dart';
 import 'package:planetx/core/services/store_service.dart';
 import 'package:planetx/shared/models/api_model.dart';
-import 'package:planetx/shared/models/auth_model.dart';
+import 'package:planetx/shared/models/auth_payload.dart';
 import 'package:planetx/shared/models/layout_model.dart';
 import 'package:planetx/shared/utils/config.dart';
 
@@ -39,7 +39,7 @@ class AuthService {
   Future<AuthPayload> getAuthData() async {
     final Completer<AuthPayload> completer = Completer<AuthPayload>();
 
-    final String data = storageService.getItemSync('auth_data');
+    final String data = si.storageService.getItemSync('auth_data');
     if (data == null || data.isEmpty) {
       completer.complete(null);
     } else {
@@ -128,25 +128,25 @@ class AuthService {
   Future<void> signOut() async {
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
 
-    si.apiService.postApi<dynamic>(
+    si.apiService!.postApi<dynamic>(
       'users/logout',
       <String, dynamic>{},
     );
 
     await Future<void>.delayed(const Duration(milliseconds: 500));
-    await storageService.removeItem('auth_data');
+    await si.storageService.removeItem('auth_data');
     storeService.reset();
   }
 
-  Future<ApiResponse<AuthPayload>> login(String username, String password) {
-    final Map<String, String> body = <String, String>{
-      'username': username,
-      'password': password,
+  Future<ApiResponse<AuthPayload>> login(String? email, String? token) {
+    final Map<String, String?> body = <String, String?>{
+      'email': email,
+      'token': token,
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
-    return si.apiService.postApi<AuthPayload>(
-      'users/login',
+    return si.apiService!.postApiNoHeader<AuthPayload>(
+      'auth/login',
       body,
       transform: (dynamic res) {
         return AuthPayload.fromJson(res);
@@ -187,7 +187,7 @@ class AuthService {
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
     return si.apiService!.postApiNoHeader<RegisterPayload>(
-      '/auth/login-token',
+      'auth/login-token',
       body,
       transform: (dynamic res) {
         debugPrint("auth ress $res");

@@ -15,7 +15,7 @@ class CartService {
 
   Future<ApiResponse<CartPayload>> getCart() async {
     // print("tttttt");
-    return si.apiService.getApi<CartPayload>(
+    return si.apiService!.getApi<CartPayload>(
       'cart',
       transform: (dynamic res) {
         return CartPayload.fromJson(res);

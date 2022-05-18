@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:planetx/shared/models/auth_payload.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -12,10 +14,10 @@ import '../../../router/route_paths.dart';
 import '../../../shared/models/api_model.dart';
 import '../../../shared/models/register_payload.dart';
 
-class ValidateAuthViewModel extends BaseViewModel {
+class AuthViewModel extends BaseViewModel {
   final AuthService? authService;
 
-  ValidateAuthViewModel({this.authService});
+  AuthViewModel({this.authService});
   bool isValidEmail = false;
   String? message;
 
@@ -29,17 +31,17 @@ class ValidateAuthViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future<bool> getToken(
+  Future<bool> login(
       BuildContext context,
-      {String? email }) async {
+      {String? email, String? token}) async {
     // changeStatus();
-    final ApiResponse<RegisterPayload> res = await si.authService!
-        .getToken(email: email);
+    final ApiResponse<AuthPayload> res = await si.authService!
+        .login(email, token);
     debugPrint("res first ${res.message}");
 
-    // print("yess----: " + res.data.toString());
-    // print("yess----1: " + res.message.toString());
-    // print("yess----2: " + res.success.toString());
+    print("yess----: " + res.data.toString());
+    print("yess----1: " + res.message.toString());
+    print("yess----2: " + res.success.toString());
 
     if (res.success == false) {
       isLoading = res.success;
@@ -53,6 +55,8 @@ class ValidateAuthViewModel extends BaseViewModel {
       return res.success;
     } else {
       message = res.message!;
+      /// if needed cache user data locally here
+      si.storageService.setItem('auth_data', json.encode(res.data));
       debugPrint("res mess ${res.message}");
       showTopSnackBar(
           context,
@@ -63,7 +67,7 @@ class ValidateAuthViewModel extends BaseViewModel {
       Navigator.push(
         context,
         MainRouter.generateRoute(
-          const RouteSettings(name: RoutePaths.login),
+          const RouteSettings(name: RoutePaths.bottomNav),
         ),
       );
       return res.success;

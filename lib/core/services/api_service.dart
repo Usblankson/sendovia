@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/core/services/store_service.dart';
 import 'package:planetx/shared/models/api_model.dart';
-import 'package:planetx/shared/models/auth_model.dart';
+import 'package:planetx/shared/models/auth_payload.dart';
 import 'package:planetx/shared/utils/config.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,12 +23,12 @@ class ApiService {
       h[HttpHeaders.contentTypeHeader] = 'application/json; charset=UTF-8';
     }
 
-    final AuthPayload auth = await si.authService.getAuthData();
+    final AuthPayload auth = await si.authService!.getAuthData();
 
-    if (auth != null && auth.token!.isNotEmpty) {
+    if (auth.data.isNotEmpty) {
       // print(auth.token);
 
-      h[HttpHeaders.authorizationHeader] = 'Bearer ${auth.token}';
+      h[HttpHeaders.authorizationHeader] = 'Bearer ${auth.data}';
     }
 
     return h;
@@ -67,7 +67,7 @@ class ApiService {
           ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
           : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
 
-      print('URL___ $uri');
+      // print('URL___ $uri');
 
       Map<String, String> headers = {
         HttpHeaders.acceptHeader: 'application/json',
@@ -102,8 +102,7 @@ class ApiService {
         //hnadles already registered email
         if (data["success"] == true &&
             data["message"] != null &&
-            data["message"].length > 0 &&
-            data["data"] != null) {
+            data["message"].length > 0) {
           apiResponse.success = true;
           // print('LOGIN CHECK 0');
 
@@ -118,10 +117,23 @@ class ApiService {
           apiResponse.message = msg;
 
           return apiResponse;
+        }else if (data["success"] == true &&
+            data["message"] == null &&
+            data["data"] != null) {
+          apiResponse.success = true;
+          if( data["data"] is String) {
+            apiResponse.token = data["data"];
+          } else {
+            apiResponse.data = transform(data["data"]);
+          }
+          apiResponse.message = (data['message'] ?? '').toString();
+
+          return apiResponse;
+        }else {
+          apiResponse.success = false;
+          apiResponse.message =
+              (data['message'] ?? 'Error encountered').toString();
         }
-        apiResponse.success = false;
-        apiResponse.message =
-            (data['message'] ?? 'Error encountered').toString();
         // print('LOGIN CHECK 1');
 
         // if (data['status'] != null && data['status'] == "unverified") {
@@ -236,8 +248,7 @@ class ApiService {
       //   apiResponse.message =
       //       (data['message'] ?? 'Error encountered').toString();
       // }
-      if ((data["data"] != null && data['success'] == true) ||
-          (data["data"] != null && data["status"] == true)) {
+      if (data["data"] != null && data['success'] == true) {
         apiResponse.success = true;
         apiResponse.message =
             (data['message'] ?? 'Error encountered').toString();
