@@ -44,30 +44,31 @@ class _SplashState extends State<Splash> {
 
     Timer(
         Duration(seconds: 5),
-            () => Navigator.push(
-          context,
-          MainRouter.generateRoute(
-            RouteSettings(name: RoutePaths.signUp),
-          ),
-        ));
+        () => Navigator.push(
+              context,
+              MainRouter.generateRoute(
+                RouteSettings(name: RoutePaths.signUp),
+              ),
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the 360*690(dp)
     ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: deviceWidth(context), maxHeight: deviceHeight(context)),
-        designSize: Size(deviceWidth(context), deviceHeight(context)),
-        orientation: Orientation.portrait);
+      context,
+      // BoxConstraints(maxWidth: deviceWidth(context), maxHeight: deviceHeight(context)),
+      designSize: Size(deviceWidth(context), deviceHeight(context)),
+    );
+    // orientation: Orientation.portrait);
     return Scaffold(
       body: Container(
         width: deviceWidth(context),
         height: deviceHeight(context),
         decoration: BoxDecoration(
-          color: pmTheme.white,
-          image: DecorationImage(image: AssetImage("assets/images/splash.png"))
-        ),
+            color: pmTheme.white,
+            image:
+                DecorationImage(image: AssetImage("assets/images/splash.png"))),
         // child: Center(child: Image(image: ,)),
       ),
     );

@@ -8,9 +8,11 @@ import 'dart:convert';
 part 'register_payload.freezed.dart';
 part 'register_payload.g.dart';
 
-RegisterPayload registerPayloadFromJson(String str) => RegisterPayload.fromJson(json.decode(str));
+RegisterPayload registerPayloadFromJson(String str) =>
+    RegisterPayload.fromJson(json.decode(str));
 
-String registerPayloadToJson(RegisterPayload data) => json.encode(data.toJson());
+String registerPayloadToJson(RegisterPayload data) =>
+    json.encode(data.toJson());
 
 @freezed
 class RegisterPayload with _$RegisterPayload {
@@ -20,7 +22,8 @@ class RegisterPayload with _$RegisterPayload {
     required Data data,
   }) = _RegisterPayload;
 
-  factory RegisterPayload.fromJson(Map<String, dynamic> json) => _$RegisterPayloadFromJson(json);
+  factory RegisterPayload.fromJson(Map<String, dynamic> json) =>
+      _$RegisterPayloadFromJson(json);
 }
 
 @freezed

@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 class UtilitiesService {
   bool isValidEmail(String email) {
-    if (email == null || email.isEmpty) {
+    if (email.isEmpty) {
       return false;
     }
 

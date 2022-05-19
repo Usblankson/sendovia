@@ -16,7 +16,7 @@ class ProductService {
   StoreService? storeService;
 
   Future<ApiResponse<AllProductsPayload>> getAllProducts() async {
-    // print("tttttt");
+    print("tttttt products");
     return si.apiService!.getApi<AllProductsPayload>(
       'products',
       transform: (dynamic res) {

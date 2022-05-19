@@ -20,9 +20,10 @@ class CartViewModel extends BaseViewModel {
   }
 
   String message = "";
+  double total = 0;
   bool cartSelected = false;
-  late List<String> selectedCartId;
-  late List<PayloadFromCart> userCartInfo;
+  List<String> selectedCartId = [];
+  List<PayloadFromCart> userCartInfo = [];
 
   @override
   FutureOr<void> init() async {
@@ -33,12 +34,20 @@ class CartViewModel extends BaseViewModel {
     );
   }
 
-  checkCart(bool value, id) {
-    cartSelected = value;
+  Future<void> refreshContent() async {
+    getCart(
+      context: context!,
+    );
+  }
+
+  checkCart(id, price) {
+    // cartSelected = value;
     if (!selectedCartId.contains(id)) {
       selectedCartId.add(id);
+      total += price!;
     } else {
       selectedCartId.remove(id);
+      total -= price!;
     }
     notify();
   }
@@ -66,21 +75,35 @@ class CartViewModel extends BaseViewModel {
   bool switchAll = false;
   switchCart() {
     switchAll = !switchAll;
-    notify();
+
     selectedAll;
+
+
+    notify();
   }
 
   removeFromCartID() {
     selectedCartId.forEach((element) {
       removeFromCart(context: context, cartId: element);
+      total = 0.0;
     });
+    notify();
   }
 
   selectedAll() {
     userCartInfo.forEach((element) {
       selectCart(element.id);
+      total += element.price!;
     });
+
+    notify();
   }
+
+  // getTotal() {
+  //   userCartInfo.forEach((element) {
+  //     total += element.price!;
+  //   });
+  // }
 
   Future<void> getCart({BuildContext? context}) async {
     changeStatus();
@@ -104,7 +127,7 @@ class CartViewModel extends BaseViewModel {
       // print("payload content" + res.payload.payload.toString());
 
       userCartInfo = res.data!.data!;
-
+      // getTotal();
       showTopSnackBar(
         context!,
         CustomSnackBar.success(
@@ -112,12 +135,13 @@ class CartViewModel extends BaseViewModel {
         ),
       );
       changeStatus();
+      changeStatus();
     }
   }
 
   Future<void> updateCart(
       {BuildContext? context,
-      required String quantity,
+      required int quantity,
       required String productId}) async {
     changeStatus();
 
@@ -144,6 +168,7 @@ class CartViewModel extends BaseViewModel {
           message: message,
         ),
       );
+      refreshContent();
       changeStatus();
     }
   }
@@ -179,34 +204,34 @@ class CartViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> addToCart(
-      {BuildContext? context, required String cartId}) async {
-    changeStatus();
-
-    final ApiResponse<UpdateCartPayload> res =
-        await si.cartService.removeFromCart(cartId);
-
-    if (!res.success) {
-      isLoading = !res.success;
-      message = res.message!;
-
-      showTopSnackBar(
-        context!,
-        CustomSnackBar.error(
-          message: message,
-        ),
-      );
-      changeStatus();
-    } else {
-      message = res.message!;
-
-      showTopSnackBar(
-        context!,
-        CustomSnackBar.success(
-          message: message,
-        ),
-      );
-      changeStatus();
-    }
-  }
+  // Future<void> addToCart(
+  //     {BuildContext? context, required String cartId}) async {
+  //   changeStatus();
+  //
+  //   final ApiResponse<UpdateCartPayload> res =
+  //       await si.cartService.removeFromCart(cartId);
+  //
+  //   if (!res.success) {
+  //     isLoading = !res.success;
+  //     message = res.message!;
+  //
+  //     showTopSnackBar(
+  //       context!,
+  //       CustomSnackBar.error(
+  //         message: message,
+  //       ),
+  //     );
+  //     changeStatus();
+  //   } else {
+  //     message = res.message!;
+  //
+  //     showTopSnackBar(
+  //       context!,
+  //       CustomSnackBar.success(
+  //         message: message,
+  //       ),
+  //     );
+  //     changeStatus();
+  //   }
+  // }
 }

@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:planetx/modules/auth/view_model/auth_vm.dart';
-import 'package:planetx/router/main_router.dart';
-import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/utils.dart';
 import 'package:planetx/shared/widgets/custom_button.dart';
 import 'package:planetx/shared/widgets/space.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/service_injector/service_injector.dart';
 import '../../shared/widgets/base_view.dart';

@@ -26,7 +26,7 @@ class ApiService {
     final AuthPayload auth = await si.authService!.getAuthData();
 
     if (auth.data.isNotEmpty) {
-      // print(auth.token);
+      print("xxxx" + auth.data);
 
       h[HttpHeaders.authorizationHeader] = 'Bearer ${auth.data}';
     }
@@ -117,19 +117,21 @@ class ApiService {
           apiResponse.message = msg;
 
           return apiResponse;
-        }else if (data["success"] == true &&
+        } else if (data["success"] == true &&
             data["message"] == null &&
             data["data"] != null) {
+          print('data2___ $data');
           apiResponse.success = true;
-          if( data["data"] is String) {
+          if (data["data"] is String) {
             apiResponse.token = data["data"];
+            apiResponse.data = transform(data);
           } else {
             apiResponse.data = transform(data["data"]);
           }
           apiResponse.message = (data['message'] ?? '').toString();
 
           return apiResponse;
-        }else {
+        } else {
           apiResponse.success = false;
           apiResponse.message =
               (data['message'] ?? 'Error encountered').toString();
@@ -178,7 +180,7 @@ class ApiService {
               (data['message'] ?? 'Error encountered').toString();
         }
       }
-    } on TimeoutException catch (e) {
+    } on TimeoutException {
       apiResponse.success = false;
 
       // debugPrint(e.toString());
@@ -268,7 +270,7 @@ class ApiService {
               (data['message'] ?? 'Error encountered').toString();
         }
       }
-    } on TimeoutException catch (e) {
+    } on TimeoutException {
       apiResponse.success = false;
       // debugPrint(e.toString());
       apiResponse.message =
@@ -313,7 +315,7 @@ class ApiService {
       // print(uri);
       // print(headers);
       // print(body);
-      // print("res body : ${res.body}");
+      // print("res body : ${res.toString()}");
 
       final dynamic data = json.decode(res.body);
       // print('ResponesData---- $data');
@@ -387,8 +389,8 @@ class ApiService {
           ? Uri.https(AppConfig.apiDomain, AppConfig.apiPath(url), params)
           : Uri.http(AppConfig.apiDomain, AppConfig.apiPath(url), params);
 
-      // print("URI__ $uri");
-      // print("Header for Get__ $headers");
+      print("URI__ $uri");
+      print("Header for Get__ $headers");
 
       final http.Response res = await http
           .get(
@@ -413,10 +415,9 @@ class ApiService {
       //       (data['message'] ?? 'Error encountered').toString();
       // }
 
-      if ((data != null && data['success'] == false)) {
+      if ((data != null && data['success'] == true)) {
         apiResponse.success = true;
-        apiResponse.message =
-            (data['message'] ?? 'Error encountered').toString();
+        apiResponse.message = (data['message'] ?? 'Succesful').toString();
         apiResponse.data = transform(data);
       } else {
         apiResponse.success = false;

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
@@ -8,7 +7,6 @@ import 'package:planetx/core/services/storage_service.dart';
 import 'package:planetx/core/services/store_service.dart';
 import 'package:planetx/shared/models/api_model.dart';
 import 'package:planetx/shared/models/auth_payload.dart';
-import 'package:planetx/shared/models/layout_model.dart';
 import 'package:planetx/shared/utils/config.dart';
 
 import '../../shared/models/register_payload.dart';
@@ -40,7 +38,7 @@ class AuthService {
     final Completer<AuthPayload> completer = Completer<AuthPayload>();
 
     final String data = si.storageService.getItemSync('auth_data');
-    if (data == null || data.isEmpty) {
+    if (data.isEmpty) {
       completer.complete(null);
     } else {
       final AuthPayload auth = AuthPayload.fromJson(json.decode(data));
@@ -182,7 +180,7 @@ class AuthService {
     String? email,
   }) {
     final Map<String?, String?> body = <String?, String?>{
-      "email": email,
+      "email": email!.trim(),
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;

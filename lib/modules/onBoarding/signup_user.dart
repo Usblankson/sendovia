@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +14,6 @@ import 'package:planetx/shared/widgets/base_view.dart';
 import 'package:planetx/shared/widgets/custom_button.dart';
 import 'package:planetx/shared/widgets/loading_overlay.dart';
 import 'package:planetx/shared/widgets/space.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpUser extends StatelessWidget with InputValidationMixin {
   SignUpUser({Key? key}) : super(key: key);

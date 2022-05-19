@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:loader_overlay/src/overlay_controller_widget_extension.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/core/services/auth_service.dart';
 import 'package:planetx/core/view_model/base_vm.dart';

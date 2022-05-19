@@ -53,19 +53,18 @@
 //   }
 // }
 
-
 // To parse this JSON data, do
 //
 //     final authPayload = authPayloadFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
 part 'auth_payload.freezed.dart';
 part 'auth_payload.g.dart';
 
-AuthPayload authPayloadFromJson(String str) => AuthPayload.fromJson(json.decode(str));
+AuthPayload authPayloadFromJson(String str) =>
+    AuthPayload.fromJson(json.decode(str));
 
 String authPayloadToJson(AuthPayload data) => json.encode(data.toJson());
 
@@ -77,6 +76,6 @@ class AuthPayload with _$AuthPayload {
     required String data,
   }) = _AuthPayload;
 
-  factory AuthPayload.fromJson(Map<String, dynamic> json) => _$AuthPayloadFromJson(json);
+  factory AuthPayload.fromJson(Map<String, dynamic> json) =>
+      _$AuthPayloadFromJson(json);
 }
-

@@ -64,30 +64,18 @@ class _MyAppState extends State<MyApp> {
     //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return ScreenUtilInit(
       designSize: Size(logicalWidth(), logicalHeight()),
-      builder: () => MultiProvider(
+      builder: (context, child) => MultiProvider(
         providers: allProviders,
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              primarySwatch: const MaterialColor(
-                0xff7B61FF, <int, Color>{
-                50: Color(0xFFF3E5F5),
-                100: Color(0xFFE1BEE7),
-                200: Color(0xFF7E93D8),
-                300: Color(0xFF7A68C8),
-                400: Color(0xFF7B47BC),
-                500: Color(0xff7B61FF),
-                600: Color(0xFF8E24AA),
-                700: Color(0xFF7B1FA2),
-                800: Color(0xFF6A1B9A),
-                900: Color(0xFF4A148C),
-              }),
+              primarySwatch: Colors.green,
               textTheme: TextTheme(
                   //To support the following, you need to use the first initialization method
                   button: TextStyle(fontSize: 45.sp)),
             ),
             onGenerateRoute: MainRouter.generateRoute,
-            home: const Splash()),
+            home: Splash()),
       ),
     );
   }

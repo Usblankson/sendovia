@@ -9,7 +9,6 @@ import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/utils.dart';
 import 'package:planetx/shared/widgets/custom_button.dart';
 import 'package:planetx/shared/widgets/space.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/service_injector/service_injector.dart';
 import '../../shared/utils/validator.dart';
@@ -65,7 +64,7 @@ class _ValidateAuthState extends State<ValidateAuth> with InputValidationMixin {
                     child: Form(
                       key: _formKey,
                       child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +82,7 @@ class _ValidateAuthState extends State<ValidateAuth> with InputValidationMixin {
                             Styles.regular("Email", color: black),
                             VSpace(12.h),
                             TextFormFieldWithIcon(
-                              labelText: "Email",
+                              // labelText: "Email",
                               controller: _emailControl,
                               validator: validateEmail,
                               // prefixIcon: Icon(Icons.person),
@@ -121,31 +120,27 @@ class _ValidateAuthState extends State<ValidateAuth> with InputValidationMixin {
                               ),
                             ),
                             VSpace(30.h),
-                            Align(
-                              alignment: Alignment.center,
-                              child: CustomButton(
-                                  title: "Send token",
-                                  isActive: true,
-                                  onPress: () async {
-                                   
-                                    bool isValid =
-                                        _formKey.currentState!.validate();
-                                         print("get token valid $isValid");
+                            CustomButton(
+                                title: "Send token",
+                                isActive: true,
+                                onPress: () async {
+                                  bool isValid =
+                                      _formKey.currentState!.validate();
+                                  print("get token valid $isValid");
 
-                                    if(isValid) {
-                                      context.loaderOverlay.show();
-                                      bool tokenGotten = await model.getToken(
-                                          context,
-                                          email: _emailControl.text);
+                                  if (isValid) {
+                                    context.loaderOverlay.show();
+                                    bool tokenGotten = await model.getToken(
+                                        context,
+                                        email: _emailControl.text);
 
-                                      if (tokenGotten) {
-                                        context.loaderOverlay.hide();
-                                      } else {
-                                        context.loaderOverlay.hide();
-                                      }
+                                    if (tokenGotten) {
+                                      context.loaderOverlay.hide();
+                                    } else {
+                                      context.loaderOverlay.hide();
                                     }
-                                  }),
-                            ),
+                                  }
+                                }),
                           ]),
                     ),
                   ),

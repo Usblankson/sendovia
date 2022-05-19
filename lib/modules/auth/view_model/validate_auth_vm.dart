@@ -29,12 +29,10 @@ class ValidateAuthViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future<bool> getToken(
-      BuildContext context,
-      {String? email }) async {
+  Future<bool> getToken(BuildContext context, {String? email}) async {
     // changeStatus();
-    final ApiResponse<RegisterPayload> res = await si.authService!
-        .getToken(email: email);
+    final ApiResponse<RegisterPayload> res =
+        await si.authService!.getToken(email: email);
     debugPrint("res first ${res.message}");
 
     // print("yess----: " + res.data.toString());
@@ -52,12 +50,13 @@ class ValidateAuthViewModel extends BaseViewModel {
           ));
       return res.success;
     } else {
-      message = res.message!;
-      debugPrint("res mess ${res.message}");
+      message = res.message ?? "Success!";
+      debugPrint("res mess ${message}");
+
       showTopSnackBar(
           context,
           CustomSnackBar.success(
-            message: res.message!,
+            message: message!,
           ));
       isLoading = false;
       Navigator.push(

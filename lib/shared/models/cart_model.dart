@@ -52,7 +52,7 @@ class PayloadFromCart {
 
   String? id;
   Product? product;
-  String? user;
+  User? user;
   int? quantity;
   int? price;
   DateTime? createdAt;
@@ -64,7 +64,7 @@ class PayloadFromCart {
         id: json["_id"] == null ? null : json["_id"],
         product:
             json["product"] == null ? null : Product.fromJson(json["product"]),
-        user: json["user"] == null ? null : json["user"],
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
         quantity: json["quantity"] == null ? null : json["quantity"],
         price: json["price"] == null ? null : json["price"],
         createdAt: json["createdAt"] == null
@@ -79,7 +79,7 @@ class PayloadFromCart {
   Map<String, dynamic> toJson() => {
         "_id": id == null ? null : id,
         "product": product == null ? null : product!.toJson(),
-        "user": user == null ? null : user,
+        "user": user == null ? null : user!.toJson(),
         "quantity": quantity == null ? null : quantity,
         "price": price == null ? null : price,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
@@ -98,10 +98,10 @@ class Product {
     this.description,
     this.image,
     this.stock,
+    this.spec,
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.spec,
   });
 
   String? id;
@@ -112,10 +112,10 @@ class Product {
   String? description;
   String? image;
   int? stock;
+  List<dynamic>? spec;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
-  List<dynamic>? spec;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["_id"] == null ? null : json["_id"],
@@ -126,6 +126,9 @@ class Product {
         description: json["description"] == null ? null : json["description"],
         image: json["image"] == null ? null : json["image"],
         stock: json["stock"] == null ? null : json["stock"],
+        spec: json["spec"] == null
+            ? null
+            : List<dynamic>.from(json["spec"].map((x) => x)),
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -133,9 +136,6 @@ class Product {
             ? null
             : DateTime.parse(json["updatedAt"]),
         v: json["__v"] == null ? null : json["__v"],
-        spec: json["spec"] == null
-            ? null
-            : List<dynamic>.from(json["spec"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -147,9 +147,65 @@ class Product {
         "description": description == null ? null : description,
         "image": image == null ? null : image,
         "stock": stock == null ? null : stock,
+        "spec": spec == null ? null : List<dynamic>.from(spec!.map((x) => x)),
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
         "__v": v == null ? null : v,
-        "spec": spec == null ? null : List<dynamic>.from(spec!.map((x) => x)),
+      };
+}
+
+class User {
+  User({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.profilePhoto,
+    this.email,
+    this.isActive,
+    this.isVerified,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
+
+  String? id;
+  String? firstName;
+  String? lastName;
+  dynamic? profilePhoto;
+  String? email;
+  bool? isActive;
+  bool? isVerified;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? v;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["_id"] == null ? null : json["_id"],
+        firstName: json["firstName"] == null ? null : json["firstName"],
+        lastName: json["lastName"] == null ? null : json["lastName"],
+        profilePhoto: json["profilePhoto"],
+        email: json["email"] == null ? null : json["email"],
+        isActive: json["isActive"] == null ? null : json["isActive"],
+        isVerified: json["isVerified"] == null ? null : json["isVerified"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        v: json["__v"] == null ? null : json["__v"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "_id": id == null ? null : id,
+        "firstName": firstName == null ? null : firstName,
+        "lastName": lastName == null ? null : lastName,
+        "profilePhoto": profilePhoto,
+        "email": email == null ? null : email,
+        "isActive": isActive == null ? null : isActive,
+        "isVerified": isVerified == null ? null : isVerified,
+        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+        "__v": v == null ? null : v,
       };
 }

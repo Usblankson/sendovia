@@ -45,6 +45,10 @@ class Injector {
       storageService: storageService,
       storeService: storeService,
     );
+    productService = ProductService(
+      storageService: storageService,
+      storeService: storeService,
+    );
 
     return true;
   }

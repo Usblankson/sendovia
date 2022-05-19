@@ -24,7 +24,7 @@ class ProductViewModel extends BaseViewModel {
 
   String message = "";
   bool cartSelected = false;
-  List<PayloadFromProducts>? allProducts;
+  List<PayloadFromProducts>? allProducts = [];
 
   @override
   FutureOr<void> init() async {
@@ -71,5 +71,6 @@ class ProductViewModel extends BaseViewModel {
       );
       changeStatus();
     }
+    changeStatus();
   }
 }
