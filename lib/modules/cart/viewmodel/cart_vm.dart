@@ -78,7 +78,6 @@ class CartViewModel extends BaseViewModel {
 
     selectedAll;
 
-
     notify();
   }
 
