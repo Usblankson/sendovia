@@ -15,6 +15,7 @@ import 'package:planetx/shared/widgets/space.dart';
 import '../../core/service_injector/service_injector.dart';
 import '../../shared/widgets/base_view.dart';
 import '../send_gift/add_message_screen.dart';
+import '../send_gift/select_gift.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -108,11 +109,11 @@ class CartScreen extends StatelessWidget {
                               activeColor: secondaryBlue,
                               onChanged: (value) {
                                 viewModel.checkCart(
-                                    viewModel.userCartInfo[index].id!,
+                                    viewModel.userCartInfo[index]!,
                                     viewModel.userCartInfo[index].price);
                               },
-                              value: viewModel.selectedCartId.contains(
-                                      viewModel.userCartInfo[index].id)
+                              value: viewModel.selectedCartInfo
+                                      .contains(viewModel.userCartInfo[index])
                                   ? true
                                   : false,
                             ),
@@ -457,7 +458,9 @@ class CartScreen extends StatelessWidget {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddMessageScreen()),
+                            builder: (context) => SelectGift(
+                                  cartPayload: viewModel.selectedCartInfo,
+                                )),
                       ),
                       splashColor: white,
                       child: Container(

@@ -24,6 +24,7 @@ class CartViewModel extends BaseViewModel {
   bool cartSelected = false;
   List<String> selectedCartId = [];
   List<PayloadFromCart> userCartInfo = [];
+  List<PayloadFromCart> selectedCartInfo = [];
 
   @override
   FutureOr<void> init() async {
@@ -38,28 +39,31 @@ class CartViewModel extends BaseViewModel {
     getCart(
       context: context!,
     );
+    changeStatus();
   }
 
-  checkCart(id, price) {
+  checkCart(PayloadFromCart id, price) {
     // cartSelected = value;
-    if (!selectedCartId.contains(id)) {
-      selectedCartId.add(id);
+    if (!selectedCartInfo.contains(id)) {
+      selectedCartInfo.add(id);
       total += price!;
     } else {
-      selectedCartId.remove(id);
+      selectedCartInfo.remove(id);
       total -= price!;
     }
     notify();
   }
 
-  selectCart(id) {
+  selectCart(id, price) {
     if (switchAll == true) {
-      if (!selectedCartId.contains(id)) {
-        selectedCartId.add(id);
+      if (!selectedCartInfo.contains(id)) {
+        selectedCartInfo.add(id);
+        total += price!;
       }
     } else {
-      if (selectedCartId.contains(id)) {
-        selectedCartId.remove(id);
+      if (selectedCartInfo.contains(id)) {
+        selectedCartInfo.remove(id);
+        total -= price!;
       }
     }
     notify();
@@ -76,23 +80,22 @@ class CartViewModel extends BaseViewModel {
   switchCart() {
     switchAll = !switchAll;
 
-    selectedAll;
+    selectedAll();
 
     notify();
   }
 
   removeFromCartID() {
-    selectedCartId.forEach((element) {
-      removeFromCart(context: context, cartId: element);
-      total = 0.0;
+    selectedCartInfo.forEach((element) {
+      removeFromCart(context: context, cartId: element.product!.id!);
+      // total = 0.0;
     });
     notify();
   }
 
   selectedAll() {
     userCartInfo.forEach((element) {
-      selectCart(element.id);
-      total += element.price!;
+      selectCart(element, element.price);
     });
 
     notify();
@@ -168,6 +171,7 @@ class CartViewModel extends BaseViewModel {
         ),
       );
       refreshContent();
+      // changeStatus();
       changeStatus();
     }
   }
@@ -199,6 +203,7 @@ class CartViewModel extends BaseViewModel {
           message: message,
         ),
       );
+      refreshContent();
       changeStatus();
     }
   }
