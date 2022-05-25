@@ -22,6 +22,8 @@ class SendGiftViewModel extends BaseViewModel {
     // TODO: implement init
   }
 
+  TextEditingController msgController = TextEditingController();
+
   // Future<void> getNotifs({BuildContext context, String userId}) async {
   //   changeStatus();
   //

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/modules/send_gift/summary_screen.dart';
 import 'package:planetx/modules/send_gift/viewmodel/sendgift_vm.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/widgets/space.dart';
@@ -269,7 +270,7 @@ class AddMessageScreen extends StatelessWidget {
                             ),
                           ),
                           child: TextField(
-                              // controller: ,
+                              controller: viewModel.msgController,
                               keyboardType: TextInputType.multiline,
                               maxLength: null,
                               maxLines: null,
@@ -317,10 +318,21 @@ class AddMessageScreen extends StatelessWidget {
                     color: blue,
                     title: "Confirm",
                     onPress: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MainRouter.generateRoute(
+                      //     RouteSettings(name: RoutePaths.summaryScreen),
+                      //   ),
+                      // );
+
                       Navigator.push(
                         context,
-                        MainRouter.generateRoute(
-                          RouteSettings(name: RoutePaths.summaryScreen),
+                        MaterialPageRoute(
+                          builder: (context) => SummaryScreen(
+                            cartPayload: cartPayload,
+                            contact: contact,
+                            message: viewModel.msgController.text,
+                          ),
                         ),
                       );
                     })

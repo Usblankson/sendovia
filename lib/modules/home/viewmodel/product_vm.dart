@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:planetx/core/services/product_service.dart';
 import 'package:planetx/shared/models/allProducts_payload.dart';
 import 'package:planetx/shared/models/cart_model.dart';
+import 'package:planetx/shared/models/categories_model.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../../core/service_injector/service_injector.dart';
@@ -25,6 +26,9 @@ class ProductViewModel extends BaseViewModel {
   String message = "";
   bool cartSelected = false;
   List<PayloadFromProducts>? allProducts = [];
+  List<PayloadFromCategories>? allCategories = [];
+  String dropdownValue = 'Budget';
+  String categories = 'Category';
 
   @override
   FutureOr<void> init() async {
@@ -73,4 +77,73 @@ class ProductViewModel extends BaseViewModel {
     }
     changeStatus();
   }
+
+  Future<void> getCategories({BuildContext? context}) async {
+    changeStatus();
+
+    final ApiResponse<CategoriesPayload> res =
+        await si.productService.getAllCategories();
+
+    if (!res.success) {
+      isLoading = !res.success;
+      message = res.message!;
+
+      showTopSnackBar(
+        context!,
+        CustomSnackBar.error(
+          message: message,
+        ),
+      );
+      changeStatus();
+    } else {
+      message = res.message!;
+      // print("job range success" + jobRange);
+
+      allCategories = res.data!.data;
+      print("payload from categories" + allProducts.toString());
+      showTopSnackBar(
+        context!,
+        CustomSnackBar.success(
+          message: message,
+        ),
+      );
+      changeStatus();
+    }
+    changeStatus();
+  }
+
+  // Future<void> getProductItem({BuildContext? context, productID}) async {
+  //   changeStatus();
+  //
+  //   final ApiResponse<ProductItemPayload> res =
+  //       await si.cartService.getProductItem(productID);
+  //
+  //   if (!res.success) {
+  //     isLoading = !res.success;
+  //     message = res.message!;
+  //
+  //     showTopSnackBar(
+  //       context!,
+  //       CustomSnackBar.error(
+  //         message: message,
+  //       ),
+  //     );
+  //     changeStatus();
+  //   } else {
+  //     message = res.message!;
+  //     // print("job range success" + jobRange);
+  //     // print("payload content" + res.payload.payload.toString());
+  //
+  //     productInfo = res.data!.data!;
+  //
+  //     showTopSnackBar(
+  //       context!,
+  //       CustomSnackBar.success(
+  //         message: message,
+  //       ),
+  //     );
+  //     changeStatus();
+  //     changeStatus();
+  //   }
+  // }
 }

@@ -61,7 +61,7 @@ class PayloadFromProducts {
   Vendor? vendor;
   String? name;
   int? price;
-  Description? description;
+  String? description;
   String? image;
   int? stock;
   List<dynamic>? spec;
@@ -78,9 +78,7 @@ class PayloadFromProducts {
         vendor: json["vendor"] == null ? null : Vendor.fromJson(json["vendor"]),
         name: json["name"] == null ? null : json["name"],
         price: json["price"] == null ? null : json["price"],
-        description: json["description"] == null
-            ? null
-            : descriptionValues.map[json["description"]],
+        description: json["description"] == null ? null : json["description"],
         image: json["image"] == null ? null : json["image"],
         stock: json["stock"] == null ? null : json["stock"],
         spec: json["spec"] == null
@@ -101,8 +99,7 @@ class PayloadFromProducts {
         "vendor": vendor == null ? null : vendor!.toJson(),
         "name": name == null ? null : name,
         "price": price == null ? null : price,
-        "description":
-            description == null ? null : descriptionValues.reverse[description],
+        "description": description == null ? null : description,
         "image": image == null ? null : image,
         "stock": stock == null ? null : stock,
         "spec": spec == null ? null : List<dynamic>.from(spec!.map((x) => x)),
@@ -122,16 +119,16 @@ class Category {
     this.v,
   });
 
-  CategoryId? id;
-  Name? name;
+  String? id;
+  String? name;
   String? image;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? v;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-        id: json["_id"] == null ? null : categoryIdValues.map[json["_id"]],
-        name: json["name"] == null ? null : nameValues.map[json["name"]],
+        id: json["_id"] == null ? null : json["_id"],
+        name: json["name"] == null ? null : json["name"],
         image: json["image"] == null ? null : json["image"],
         createdAt: json["createdAt"] == null
             ? null
@@ -143,44 +140,14 @@ class Category {
       );
 
   Map<String, dynamic> toJson() => {
-        "_id": id == null ? null : categoryIdValues.reverse[id],
-        "name": name == null ? null : nameValues.reverse[name],
+        "_id": id == null ? null : id,
+        "name": name == null ? null : name,
         "image": image == null ? null : image,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
         "__v": v == null ? null : v,
       };
 }
-
-enum CategoryId {
-  THE_6283_C5_FF8_CFA7_FBF148_C275_D,
-  THE_6283_C6438_CFA7_FBF148_C275_F,
-  THE_6283_C86495_E4849_DC72_FC81_D,
-  THE_6283_C99_E95_E4849_DC72_FC831
-}
-
-final categoryIdValues = EnumValues({
-  "6283c5ff8cfa7fbf148c275d": CategoryId.THE_6283_C5_FF8_CFA7_FBF148_C275_D,
-  "6283c6438cfa7fbf148c275f": CategoryId.THE_6283_C6438_CFA7_FBF148_C275_F,
-  "6283c86495e4849dc72fc81d": CategoryId.THE_6283_C86495_E4849_DC72_FC81_D,
-  "6283c99e95e4849dc72fc831": CategoryId.THE_6283_C99_E95_E4849_DC72_FC831
-});
-
-enum Name { ELECTRONICS, DRINKS, WATCHES, GROCERIES }
-
-final nameValues = EnumValues({
-  "Drinks": Name.DRINKS,
-  "Electronics": Name.ELECTRONICS,
-  "Groceries": Name.GROCERIES,
-  "Watches": Name.WATCHES
-});
-
-enum Description { LOREM_IPSUM_GRACIAS_DOMINO_CHRISTO }
-
-final descriptionValues = EnumValues({
-  "Lorem ipsum gracias domino christo":
-      Description.LOREM_IPSUM_GRACIAS_DOMINO_CHRISTO
-});
 
 class Vendor {
   Vendor({
@@ -199,14 +166,14 @@ class Vendor {
     this.v,
   });
 
-  VendorId? id;
-  FirstName? firstName;
-  LastName? lastName;
+  String? id;
+  String? firstName;
+  String? lastName;
   dynamic profilePhoto;
   dynamic address;
   dynamic city;
   dynamic state;
-  Email? email;
+  String? email;
   bool? isActive;
   bool? isVerified;
   DateTime? createdAt;
@@ -214,18 +181,14 @@ class Vendor {
   int? v;
 
   factory Vendor.fromJson(Map<String, dynamic> json) => Vendor(
-        id: json["_id"] == null ? null : vendorIdValues.map[json["_id"]],
-        firstName: json["firstName"] == null
-            ? null
-            : firstNameValues.map[json["firstName"]],
-        lastName: json["lastName"] == null
-            ? null
-            : lastNameValues.map[json["lastName"]],
+        id: json["_id"] == null ? null : json["_id"],
+        firstName: json["firstName"] == null ? null : json["firstName"],
+        lastName: json["lastName"] == null ? null : json["lastName"],
         profilePhoto: json["profilePhoto"],
         address: json["address"],
         city: json["city"],
         state: json["state"],
-        email: json["email"] == null ? null : emailValues.map[json["email"]],
+        email: json["email"] == null ? null : json["email"],
         isActive: json["isActive"] == null ? null : json["isActive"],
         isVerified: json["isVerified"] == null ? null : json["isVerified"],
         createdAt: json["createdAt"] == null
@@ -238,60 +201,18 @@ class Vendor {
       );
 
   Map<String, dynamic> toJson() => {
-        "_id": id == null ? null : vendorIdValues.reverse[id],
-        "firstName":
-            firstName == null ? null : firstNameValues.reverse[firstName],
-        "lastName": lastName == null ? null : lastNameValues.reverse[lastName],
+        "_id": id == null ? null : id,
+        "firstName": firstName == null ? null : firstName,
+        "lastName": lastName == null ? null : lastName,
         "profilePhoto": profilePhoto,
         "address": address,
         "city": city,
         "state": state,
-        "email": email == null ? null : emailValues.reverse[email],
+        "email": email == null ? null : email,
         "isActive": isActive == null ? null : isActive,
         "isVerified": isVerified == null ? null : isVerified,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
         "__v": v == null ? null : v,
       };
-}
-
-enum Email { VENDORTWO_YOPMAIL_COM, VENDORONE_YOPMAIL_COM }
-
-final emailValues = EnumValues({
-  "vendorone@yopmail.com": Email.VENDORONE_YOPMAIL_COM,
-  "vendortwo@yopmail.com": Email.VENDORTWO_YOPMAIL_COM
-});
-
-enum FirstName { KENDRICK, PAPA }
-
-final firstNameValues =
-    EnumValues({"kendrick": FirstName.KENDRICK, "Papa": FirstName.PAPA});
-
-enum VendorId {
-  THE_6283_C2228_CFA7_FBF148_C2745,
-  THE_6283_CB6_C95_E4849_DC72_FC842
-}
-
-final vendorIdValues = EnumValues({
-  "6283c2228cfa7fbf148c2745": VendorId.THE_6283_C2228_CFA7_FBF148_C2745,
-  "6283cb6c95e4849dc72fc842": VendorId.THE_6283_CB6_C95_E4849_DC72_FC842
-});
-
-enum LastName { OLAMIDE, BENJI }
-
-final lastNameValues =
-    EnumValues({"Benji": LastName.BENJI, "olamide": LastName.OLAMIDE});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String>? reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap!;
-  }
 }

@@ -160,7 +160,8 @@ class SelectGift extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => FlutterContactsExample()),
+                        builder: (context) =>
+                            FlutterContactsExample(cartPayload: cartPayload)),
                   );
                 },
                 child: Container(

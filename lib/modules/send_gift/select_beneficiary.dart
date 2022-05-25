@@ -142,13 +142,15 @@ class _FlutterContactsExampleState extends State<FlutterContactsExample> {
                                           isActive: true,
                                           onPress: () async {
                                             Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        AddMessageScreen(
-                                                          cartPayload: widget
-                                                              .cartPayload,
-                                                          contact: contact,
-                                                        )));
+                                              MaterialPageRoute(
+                                                builder: (_) =>
+                                                    AddMessageScreen(
+                                                  cartPayload:
+                                                      widget.cartPayload,
+                                                  contact: contact,
+                                                ),
+                                              ),
+                                            );
                                           }),
                                     ],
                                   ),

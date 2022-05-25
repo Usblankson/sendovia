@@ -4,6 +4,7 @@ import 'package:planetx/core/services/storage_service.dart';
 import 'package:planetx/core/services/store_service.dart';
 import 'package:planetx/shared/models/allProducts_payload.dart';
 import 'package:planetx/shared/models/cart_model.dart';
+import 'package:planetx/shared/models/categories_model.dart';
 
 import '../../shared/models/api_model.dart';
 import '../service_injector/service_injector.dart';
@@ -21,6 +22,16 @@ class ProductService {
       'products',
       transform: (dynamic res) {
         return AllProductsPayload.fromJson(res);
+      },
+    );
+  }
+
+  Future<ApiResponse<CategoriesPayload>> getAllCategories() async {
+    print("tttttt category");
+    return si.apiService!.getApi<CategoriesPayload>(
+      'categories',
+      transform: (dynamic res) {
+        return CategoriesPayload.fromJson(res);
       },
     );
   }
