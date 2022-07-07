@@ -58,7 +58,7 @@ class _EditProfileState extends State<EditProfile> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(14),
                       child: Image.asset(
-                        'assets/images/dp.png',
+                        dp,
                         fit: BoxFit.cover,
                         width: 108,
                         height: 108,
