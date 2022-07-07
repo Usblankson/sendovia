@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:sendovia/utils/app_text.dart';
 import 'package:sendovia/utils/colors.dart';
 import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/view/authentication/login.dart';
 import 'package:sendovia/widgets/custom_text_form_field.dart';
 import 'package:sendovia/widgets/gift_notifiication_card.dart';
+import 'package:sendovia/widgets/home_screen_top.dart';
 import 'package:sendovia/widgets/popular_item.dart';
+import 'package:sendovia/widgets/scroll_cta_tag_widget.dart';
 
 import '../../../utils/images.dart';
+import '../data/home_screen_lists.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,40 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List popularItems = [
-    {
-      'image': 'assets/images/samsung.png',
-      'name': 'Phones',
-    },
-    {
-      'image': 'assets/images/wrist-watch.png',
-      'name': 'Wrist Watches',
-    },
-    {
-      'image': 'assets/images/ear-bud.png',
-      'name': 'Earbuds',
-    },
-    {
-      'image': 'assets/images/smart-watch.png',
-      'name': 'Smart Watches',
-    }
-  ];
-
-  List categories = [
-    {'image': 'assets/images/smart-watch.png', 'name': 'Tech'},
-    {
-      'image': 'assets/images/flower.png',
-      'name': 'Flowers',
-    },
-    {
-      'image': 'assets/images/sneakers.png',
-      'name': 'Fashion',
-    },
-    {
-      'image': 'assets/images/ear-bud.png',
-      'name': 'Sound',
-    },
-  ];
+  HomeList data = HomeList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,42 +32,7 @@ class _HomeState extends State<Home> {
             child: Column(
               children: [
                 const YMargin(4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(14),
-                          child: Image.asset(
-                            dp1,
-                            fit: BoxFit.cover,
-                            width: 40,
-                            height: 40,
-                          ),
-                        ),
-                        const XMargin(12),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppText('Hello', 14, FontWeight.w300,
-                                supportTextColor, 0, 1.8, null),
-                            AppText('Kingsley, 👋🏼', 14, FontWeight.w400,
-                                textColor, 0, 1.8, null)
-                          ],
-                        )
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Image.asset(
-                        notification,
-                        width: 32,
-                        height: 32,
-                      ),
-                    )
-                  ],
-                ),
+                homeScreenHeader(context, 'Kingsley'),
                 const YMargin(24),
                 Stack(
                   clipBehavior: Clip.none,
@@ -125,7 +61,7 @@ class _HomeState extends State<Home> {
                               0,
                               2,
                               null),
-                          const YMargin(8 + 8),
+                          const YMargin(16),
                           Container(
                             width: 115,
                             height: 35,
@@ -135,7 +71,14 @@ class _HomeState extends State<Home> {
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: AppText('Send a gift', 14, FontWeight.w600,
-                                primaryColor, 0, 2.4, null),
+                                primaryColor, 0, 2.4, () {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                  backgroundColor: primaryColor, 
+                                content: const Text(
+                                    "Please add add the send gift route on line 79"),
+                              ));
+                            }),
                           )
                         ],
                       ),
@@ -168,45 +111,30 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const YMargin(24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    AppText('Popular Items', 14, FontWeight.w500, textColor, 0,
-                        2, null),
-                    AppText('See all', 12, FontWeight.w500, primaryColor, 0,
-                        1.6, () {}),
-                  ],
-                ),
+                scrollActionTag(
+                    context, 'Popular Items', 'See all', const LogIn()),
                 SizedBox(
                   height: 160,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: popularItems.length,
+                    itemCount: data.popularItems.length,
                     itemBuilder: (context, index) {
-                      return popularItem(popularItems[index]['image'],
-                          popularItems[index]['name']);
+                      return popularItem(data.popularItems[index]['image'],
+                          data.popularItems[index]['name']);
                     },
                   ),
                 ),
                 giftNotificationCard('Kingsley', 'Deji'),
-             
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    AppText('Categories', 14, FontWeight.w500, textColor, 0, 2,
-                        null),
-                    AppText('See all', 12, FontWeight.w500, primaryColor, 0,
-                        1.6, () {}),
-                  ],
-                ),
+                scrollActionTag(
+                    context, 'Categories', 'See all', const LogIn()),
                 SizedBox(
                   height: 160,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: categories.length,
+                    itemCount: data.categories.length,
                     itemBuilder: (context, index) {
-                      return popularItem(categories[index]['image'],
-                          categories[index]['name']);
+                      return popularItem(data.categories[index]['image'],
+                          data.categories[index]['name']);
                     },
                   ),
                 ),
