@@ -16,7 +16,9 @@ const logout = 'assets/images/logout-icon.png';
 const notification = 'assets/images/notification-icon.png';
 const profileSetting = 'assets/images/profile-settings.png';
 const password = 'assets/images/password-icon.png';
+const received = 'assets/images/received-icon.png';
+const sent = 'assets/images/sent-icon.png';
 
-// =====
+
 
 const samsungS2 = 'assets/images/samsung.png';

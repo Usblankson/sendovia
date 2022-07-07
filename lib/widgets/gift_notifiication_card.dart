@@ -35,11 +35,16 @@ Widget giftNotificationCard(
         Positioned(
           right: 0,
           bottom: 0,
-          child: Image.asset(
-            giftBox1,
-            fit: BoxFit.cover,
-            width: 121.12,
-            height: 90,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(8.0),
+            ),
+            child: Image.asset(
+              giftBox1,
+              fit: BoxFit.cover,
+              width: 121.12,
+              height: 90,
+            ),
           ),
         ),
       ],
