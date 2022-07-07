@@ -45,7 +45,7 @@ class Styles {
             : strike
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-        fontFamily: 'PT Sans',
+        fontFamily: 'Rubik',
       ),
     );
   }
@@ -76,7 +76,7 @@ class Styles {
             : strike
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-        fontFamily: 'Inter',
+        fontFamily: 'Rubik',
       ),
     );
   }
@@ -108,7 +108,7 @@ class Styles {
             : strike
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-        fontFamily: 'Inter',
+        fontFamily: 'Rubik',
       ),
     );
   }
@@ -139,7 +139,7 @@ class Styles {
             : strike
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-        fontFamily: 'Epilogue',
+        fontFamily: 'Rubik',
       ),
     );
   }
@@ -188,7 +188,7 @@ class Styles {
         color: color ?? pmTheme.lowerText,
         height: height,
         decoration: strike ? TextDecoration.lineThrough : TextDecoration.none,
-        fontFamily: 'Inter',
+        fontFamily: 'Rubik',
       ),
     );
   }
@@ -212,7 +212,7 @@ class Styles {
         fontWeight: FWt.extraBold,
         color: color ?? pmTheme.text,
         decoration: strike ? TextDecoration.lineThrough : TextDecoration.none,
-        fontFamily: 'Inter',
+        fontFamily: 'Rubik',
       ),
     );
   }

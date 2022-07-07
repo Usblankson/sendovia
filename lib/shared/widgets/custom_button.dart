@@ -11,6 +11,7 @@ class CustomButton extends StatefulWidget {
   final Color? color;
   final Color? txtColor;
   final double? width;
+  final double? radius;
   final double? height;
   final bool hasElevation;
   final double? txtSize;
@@ -26,6 +27,7 @@ class CustomButton extends StatefulWidget {
       this.txtSize,
       this.width,
       this.height,
+      this.radius,
       this.isActive = false,
       this.hasElevation = false})
       : super(key: key);
@@ -38,7 +40,7 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.sp),
+        borderRadius: BorderRadius.circular(widget.radius?.r ?? 6.r),
       ),
       width: widget.width ?? 321.w, //double.infinity,
       height: widget.height ?? 48.h,

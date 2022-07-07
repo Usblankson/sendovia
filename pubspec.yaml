@@ -93,13 +93,13 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Inter
+    - family: Rubik
       fonts:
-        - asset: assets/fonts/Inter-Black.ttf
-        - asset: assets/fonts/Inter-Bold.ttf
+        - asset: assets/fonts/Rubik-Black.ttf
+        - asset: assets/fonts/Rubik-Bold.ttf
         # - asset: assets/fonts/Inter-Heavy.ttf
-        - asset: assets/fonts/Inter-Medium.ttf
-        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Rubik-Medium.ttf
+        - asset: assets/fonts/Rubik-Regular.ttf
         #- asset: assets/fonts/Inter-SemiBold.ttf
 
     # - family: PmIcons

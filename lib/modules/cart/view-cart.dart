@@ -3,7 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:planetx/modules/cart/viewmodel/cart_vm.dart';
+import 'package:planetx/modules-new/cart/viewmodel/cart_vm.dart';
+// import 'package:planetx/modules/cart/viewmodel/cart_vm.dart';
 import 'package:planetx/modules/check-product/check_product.dart';
 import 'package:planetx/router/main_router.dart';
 import 'package:planetx/router/route_paths.dart';

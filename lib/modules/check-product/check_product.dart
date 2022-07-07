@@ -13,7 +13,7 @@ import 'package:planetx/shared/widgets/custom_button.dart';
 
 import '../../core/service_injector/service_injector.dart';
 import '../../shared/widgets/base_view.dart';
-import '../cart/viewmodel/cart_vm.dart';
+// import '../cart/viewmodel/cart_vm.dart';
 
 class CheckProductScreen extends StatelessWidget {
   String productID;
