@@ -17,6 +17,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/navigation.dart';
 import '../../../../widgets/gift_history_message_widget.dart';
 import '../../../../widgets/payment_details_widget.dart';
+import '../../../authentication/login.dart';
 
 class Sent extends StatefulWidget {
   const Sent({Key key}) : super(key: key);
@@ -31,6 +32,17 @@ class _SentState extends State<Sent> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
+      bottomNavigationBar:  Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: CustomButton(
+                        title: "Resend gift",
+                        onPress: () => Nav.forward(context, const LogIn()),
+                        isActive: true,
+                        hasElevation: false,
+                        txtColor: primaryColor,
+                        color: white,
+                        borderColor: primaryColor,),
+      ),
       appBar: AppBar(
         shadowColor: appbarShadowColor.withOpacity(0.1),
         toolbarHeight: Platform.isAndroid ? 70.h : 50.h,
