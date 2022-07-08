@@ -59,15 +59,7 @@ Widget notificationCard(
                     ],
                   ),
           ),
-          // title: AppText(
-          //   title!,
-          //   16,
-          //   FontWeight.w500,
-          //   textColor,
-          //   0,
-          //   1.6,
-          //   null,
-          // ),
+      
           trailing: Image.asset(forwardBtn, width: 24, height: 24),
         ),
       ),

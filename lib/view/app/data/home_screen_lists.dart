@@ -1,5 +1,6 @@
-class HomeList {
+import 'package:sendovia/utils/images.dart';
 
+class HomeList {
   List popularItems = [
     {
       'image': 'assets/images/samsung.png',
@@ -35,8 +36,7 @@ class HomeList {
     },
   ];
 
-   List notifications = [
-   
+  List notifications = [
     {
       'status': 'received',
       'name': 'Deji @user265',
@@ -51,5 +51,72 @@ class HomeList {
     },
   ];
 
+  List sentHistory = [
+    {
+      'from': 'sent',
+      'image': earbud,
+      'name': 'Airpods',
+      'date': 'Apr 21, 20213',
+      'recipient': 'Faith Smith',
+      'price': '99',
+      'status': 'Completed',
+    },
+    {
+      'from': 'sent',
+      'image': laptop,
+      'name': 'Macbook pro 2019',
+      'date': 'Apr 21, 20213',
+      'recipient': 'Faith Smith',
+      'price': '499',
+      'status': 'Completed'
+    },
+    {
+      'from': 'sent',
+      'image': smartWatch,
+      'name': 'Smart Watch',
+      'date': 'Apr 21, 20213',
+      'recipient': 'Faith Smith',
+      'price': '199',
+      'status': 'Completed'
+    },
+    {
+      'from': 'sent',
+      'image': earbud,
+      'name': 'Airpods',
+      'date': 'Apr 21, 20213',
+      'recipient': 'Faith Smith',
+      'price': '99',
+      'status': 'Completed'
+    },
+  ];
+
+  List receivedHistory = [
+    {
+      'from': 'received',
+      'image': earbud,
+      'name': 'Airpods',
+      'date': 'Apr 21, 20213',
+      'recipient': 'Faith Smith',
+      'price': '99',
+      'status': 'Received'
+    },
+    {
+      'from': 'received',
+      'image': laptop,
+      'name': 'Macbook pro 2019',
+      'date': 'Apr 21, 20213',
+      'recipient': 'Faith Smith',
+      'price': '499',
+      'status': 'Received'
+    },
+    {
+      'from': 'received',
+      'image': smartWatch,
+      'name': 'Smart Watch',
+      'date': 'Apr 21, 20213',
+      'recipient': 'Faith Smith',
+      'price': '199',
+      'status': 'Received'
+    },
+  ];
 }
- 

@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
                   height: 160.h,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: data.popularItems.length,
+                    itemCount: 4,
                     itemBuilder: (context, index) {
                       return popularItem(data.popularItems[index]['image'],
                           data.popularItems[index]['name']);

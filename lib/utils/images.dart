@@ -2,6 +2,7 @@ const splashBg1 = 'assets/images/splash-bg1.png';
 const splashBg2 = 'assets/images/splash-bg2.png';
 const dp = 'assets/images/dp.png';
 const dp1 = 'assets/images/dp1.png';
+const nullAvatar = 'assets/images/null-user-icon.png';
 const textLogo = 'assets/images/text-logo.png';
 const backBtn = 'assets/images/back-icon.png';
 const forwardBtn = 'assets/images/forward-icon.png';
@@ -18,7 +19,10 @@ const profileSetting = 'assets/images/profile-settings.png';
 const password = 'assets/images/password-icon.png';
 const received = 'assets/images/received-icon.png';
 const sent = 'assets/images/sent-icon.png';
-
+const filter = 'assets/images/filter-icon.png';
 
 
 const samsungS2 = 'assets/images/samsung.png';
+const earbud = 'assets/images/ear-bud.png';
+const laptop = 'assets/images/laptop.png';
+const smartWatch = 'assets/images/smart-watch.png';

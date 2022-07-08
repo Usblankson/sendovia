@@ -5,13 +5,12 @@ import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:sendovia/utils/app_text.dart';
 import 'package:sendovia/utils/images.dart';
 
-import 'package:sendovia/view/app/screens/account_screens/edit_profile.dart';
+
 import 'package:sendovia/widgets/notification_card_widget.dart';
 
 import '../../../../utils/colors.dart';
 import '../../../../utils/navigation.dart';
 import '../../../../utils/space.dart';
-import '../../../../widgets/Custom_list_tile.dart';
 import '../../data/home_screen_lists.dart';
 
 class Notifications extends StatefulWidget {

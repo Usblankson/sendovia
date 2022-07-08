@@ -39,13 +39,10 @@ class AppText extends StatelessWidget {
               onPressed: () {
                 onClick.call();
               },
-              style: TextButton.styleFrom(
-               
-                alignment: Alignment.bottomLeft,
-              ),
+              
               child: Text(
                 text,
-                textAlign: TextAlign.left,
+             
                 style: TextStyle(
                   fontSize: size,
                   fontWeight: fontWeight,
