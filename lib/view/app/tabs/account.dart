@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:sendovia/utils/app_text.dart';
 import 'package:sendovia/utils/images.dart';
 import 'package:sendovia/view/app/screens/account_screens/change_password.dart';
@@ -6,11 +9,11 @@ import 'package:sendovia/view/app/screens/account_screens/edit_profile.dart';
 import 'package:sendovia/view/authentication/login.dart';
 
 import '../../../utils/colors.dart';
-import '../../../utils/spacing.dart';
+import '../../../utils/space.dart';
 import '../../../widgets/custom_list_tile.dart';
 
 class Account extends StatefulWidget {
-  const Account({Key? key}) : super(key: key);
+  const Account({Key key}) : super(key: key);
 
   @override
   State<Account> createState() => _AccountState();
@@ -24,14 +27,14 @@ class _AccountState extends State<Account> {
       backgroundColor: white,
       appBar: AppBar(
         shadowColor: appbarShadowColor.withOpacity(0.1),
-        toolbarHeight: 70,
+        toolbarHeight: Platform.isAndroid ? 70.h : 50.h,
         toolbarOpacity: 0.5,
         backgroundColor: white,
-        elevation: 3,
+        elevation: 1,
         bottomOpacity: 0.1,
         title: AppText(
           'Account',
-          20,
+          20.sp,
           FontWeight.w500,
           textColor,
           0,
@@ -40,13 +43,13 @@ class _AccountState extends State<Account> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const YMargin(24),
+              VSpace(24.h),
               CustomListTile(
                 title: 'My Profile',
                 subtitle: 'View & update profile',
@@ -54,7 +57,7 @@ class _AccountState extends State<Account> {
                 trailing: forwardBtn,
                 page: const EditProfile(),
               ),
-              const YMargin(16),
+              VSpace(16.h),
               CustomListTile(
                 title: 'Password',
                 subtitle: 'Change your password',
@@ -62,7 +65,7 @@ class _AccountState extends State<Account> {
                 trailing: forwardBtn,
                 page: const ChangePassword(),
               ),
-              const YMargin(16),
+              VSpace(16.h),
               CustomListTile(
                 title: 'Logout',
                 subtitle: 'Logout of your account',

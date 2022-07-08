@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:sendovia/utils/app_text.dart';
 
 import 'package:sendovia/utils/images.dart';
-import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/utils/space.dart';
 import 'package:sendovia/widgets/custom_button.dart';
 import 'package:sendovia/widgets/custom_text_form_field.dart';
 
@@ -11,7 +14,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/navigation.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
+  const EditProfile({Key key}) : super(key: key);
 
   @override
   State<EditProfile> createState() => _EditProfileState();
@@ -25,61 +28,61 @@ class _EditProfileState extends State<EditProfile> {
       backgroundColor: white,
       appBar: AppBar(
         shadowColor: appbarShadowColor.withOpacity(0.1),
-        toolbarHeight: 70,
+        toolbarHeight: Platform.isAndroid ? 70.h : 50.h,
         toolbarOpacity: 0.5,
         backgroundColor: white,
-        elevation: 3,
+        elevation: 1,
         bottomOpacity: 0.1,
         leading: IconButton(
             icon: Image.asset(
               backBtn,
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
             ),
             onPressed: () {
               Nav.back(context);
             }),
         title: AppText(
-            "Edit Profile", 18, FontWeight.w500, textColor, 0, 3.2, null),
+            "Edit Profile", 18.sp, FontWeight.w600, textColor, 0, 0, null),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // YMargin(158),
-              const YMargin(24),
+              // VSpace(158),
+              VSpace(24.h),
               Align(
                 alignment: Alignment.center,
                 child: Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(14.r),
                       child: Image.asset(
                         dp,
                         fit: BoxFit.cover,
-                        width: 108,
-                        height: 108,
+                        width: 108.w,
+                        height: 108.h,
                       ),
                     ),
                     Positioned(
                       bottom: 0,
                       right: 0,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 5.0),
+                        padding: EdgeInsets.only(top: 5.0.h),
                         child: Image.asset(
                           "assets/images/camera-icon.png",
-                          width: 32,
-                          height: 32,
+                          width: 32.w,
+                          height: 32.h,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-               const YMargin(32),
+              VSpace(32.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -90,7 +93,7 @@ class _EditProfileState extends State<EditProfile> {
                       maxLines: 1,
                     ),
                   ),
-                  const XMargin(17),
+                  HSpace(17.h),
                   Expanded(
                     child: CustomTextFormField(
                       label: 'Last Name',
@@ -100,13 +103,13 @@ class _EditProfileState extends State<EditProfile> {
                   )
                 ],
               ),
-              const YMargin(24),
+              VSpace(24.h),
               CustomTextFormField(
                 label: 'Email Address',
                 keyboardType: TextInputType.emailAddress,
                 maxLines: 1,
               ),
-              const YMargin(24),
+               VSpace(24.h),
               CustomTextFormField(
                 label: 'Phone Number',
                 keyboardType: TextInputType.number,
@@ -116,7 +119,7 @@ class _EditProfileState extends State<EditProfile> {
                   LengthLimitingTextInputFormatter(11),
                 ],
               ),
-              const YMargin(24),
+              VSpace(24.h),
               CustomButton(
                 title: 'Save changes',
                 onPress: () {},

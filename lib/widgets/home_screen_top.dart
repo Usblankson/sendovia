@@ -8,7 +8,7 @@ import '../utils/app_text.dart';
 import '../utils/colors.dart';
 import '../utils/images.dart';
 import '../utils/navigation.dart';
-import '../utils/spacing.dart';
+import '../utils/space.dart';
 
 Widget homeScreenHeader(
   BuildContext context,
@@ -28,7 +28,7 @@ Widget homeScreenHeader(
               height: 40,
             ),
           ),
-          const XMargin(12),
+          const HSpace(12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

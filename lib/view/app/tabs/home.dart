@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 
 import 'package:sendovia/utils/app_text.dart';
 import 'package:sendovia/utils/colors.dart';
-import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/utils/space.dart';
+import 'package:sendovia/utils/utils.dart';
 import 'package:sendovia/view/authentication/login.dart';
 import 'package:sendovia/widgets/custom_text_form_field.dart';
 import 'package:sendovia/widgets/gift_notifiication_card.dart';
@@ -14,7 +16,7 @@ import '../../../utils/images.dart';
 import '../data/home_screen_lists.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -27,51 +29,53 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const YMargin(4),
+                VSpace(4.h),
                 homeScreenHeader(context, 'Kingsley'),
-                const YMargin(24),
+                VSpace(24.h),
                 Stack(
                   clipBehavior: Clip.none,
                   fit: StackFit.passthrough,
                   children: <Widget>[
                     Container(
-                      height: 160,
+                      height: 160.h,
                       width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20.w, vertical: 20.h),
                       decoration: BoxDecoration(
                         color: primaryColor,
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AppText('Send gift with ease', 18, FontWeight.w600,
-                              white, 0, 1.8, null),
-                          const YMargin(8),
+                          AppText('Send gift with ease', 18.sp, FontWeight.w600,
+                              white, 0.sp, 0.h, null),
+                          VSpace(8.h),
                           AppText(
                               'Explore your gift horizon. begin to \nsend gifts easily without hassle.',
-                              14,
+                              14.sp,
                               FontWeight.w400,
                               white,
-                              0,
-                              2,
+                              0.sp,
+                              0.h,
                               null),
-                          const YMargin(16),
+                          VSpace(16.h),
                           Container(
-                            width: 115,
-                            height: 35,
+                            width: 115.w,
+                            height: 35.h,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               color: white,
-                              borderRadius: BorderRadius.circular(4),
+                              borderRadius: BorderRadius.circular(4.r),
                             ),
-                            child: AppText('Send a gift', 14, FontWeight.w600,
-                                primaryColor, 0, 2.4, () {
+                            child: AppText('Send a gift', 14.sp, FontWeight.w600,
+                                primaryColor, 0, 0.h, () {
+
+
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                   backgroundColor: primaryColor, 
@@ -87,34 +91,34 @@ class _HomeState extends State<Home> {
                       right: 0,
                       bottom: 0,
                       child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          bottomRight: Radius.circular(8.0),
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(8.0.r),
                         ),
                         child: Image.asset(
                           giftBox,
                           fit: BoxFit.cover,
-                          width: 121.12,
-                          height: 90,
+                          width: 121.12.w,
+                          height: 90.h,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const YMargin(16),
+                VSpace(16.h),
                 CustomTextFormField(
                   keyboardType: TextInputType.text,
                   maxLines: 1,
                   hintText: 'Search items',
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: Image.asset(search, width: 16, height: 16),
+                    child: Image.asset(search, width: 16.w, height: 16.h),
                   ),
                 ),
-                const YMargin(24),
+                VSpace(24.h),
                 scrollActionTag(
                     context, 'Popular Items', 'See all', const LogIn()),
                 SizedBox(
-                  height: 160,
+                  height: 160.h,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: data.popularItems.length,
@@ -128,7 +132,7 @@ class _HomeState extends State<Home> {
                 scrollActionTag(
                     context, 'Categories', 'See all', const LogIn()),
                 SizedBox(
-                  height: 160,
+                  height: 160.h,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: data.categories.length,

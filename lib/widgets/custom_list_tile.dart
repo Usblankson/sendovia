@@ -6,14 +6,14 @@ import '../utils/navigation.dart';
 
 class CustomListTile extends StatelessWidget {
   CustomListTile(
-      {Key? key, this.leading, this.title, this.subtitle, this.trailing, this.page})
+      {Key key, this.leading, this.title, this.subtitle, this.trailing, this.page})
       : super(key: key);
-  String? title, subtitle, leading, trailing;
-  Widget? page;
+  String title, subtitle, leading, trailing;
+  Widget page;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Nav.forward(context, page!),
+      onTap: () => Nav.forward(context, page),
       child: Container(
         height: 80,
         decoration: BoxDecoration(
@@ -28,12 +28,12 @@ class CustomListTile extends StatelessWidget {
           color: inputFieldColor,
           child: ListTile(
             leading: Image.asset(
-              leading!,
+              leading,
               width: 32,
               height: 32,
             ),
             title: AppText(
-              title!,
+              title,
               16,
               FontWeight.w500,
               textColor,
@@ -42,7 +42,7 @@ class CustomListTile extends StatelessWidget {
               null,
             ),
             subtitle: AppText(
-              subtitle!,
+              subtitle,
               14,
               FontWeight.w400,
               textColor,
@@ -50,7 +50,7 @@ class CustomListTile extends StatelessWidget {
               1.6,
               null,
             ),
-            trailing: Image.asset(trailing!, width: 24, height: 24),
+            trailing: Image.asset(trailing, width: 24, height: 24),
           ),
         ),
       ),

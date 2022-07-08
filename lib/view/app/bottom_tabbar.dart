@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:sendovia/utils/colors.dart';
 import 'package:sendovia/view/app/tabs/home.dart';
 
@@ -13,7 +14,7 @@ class TabLayout extends StatefulWidget {
 }
 
 class _TabLayoutState extends State<TabLayout> with TickerProviderStateMixin {
-  late TabController _tabController;
+  TabController _tabController;
   int currentIndex = 0;
   @override
   void initState() {
@@ -28,39 +29,39 @@ class _TabLayoutState extends State<TabLayout> with TickerProviderStateMixin {
           icon: Image.asset(
             home,
             color: currentIndex == 0 ? primaryColor : supportTextColor,
-            width: 24,
-            height: 24,
+            width: 24.w,
+            height: 24.h,
           ),
-          child: AppText('Home', 14, FontWeight.w400,
+          child: AppText('Home', 14.sp, FontWeight.w400,
               currentIndex == 0 ? primaryColor : supportTextColor, 0, 0, null)),
       Tab(
           icon: Image.asset(
             history,
             color: currentIndex == 1 ? primaryColor : supportTextColor,
-            width: 24,
-            height: 24,
+            width: 24.w,
+            height: 24.h,
           ),
-          child: AppText('History', 14, FontWeight.w400,
+          child: AppText('History', 14.sp, FontWeight.w400,
               currentIndex == 1 ? primaryColor : supportTextColor, 0, 0, null)),
       Tab(
           icon: Image.asset(
             cart,
             color: currentIndex == 2 ? primaryColor : supportTextColor,
-            width: 24,
-            height: 24,
+            width: 24.w,
+            height: 24.h,
           ),
-          child: AppText('Cart', 14, FontWeight.w400,
+          child: AppText('Cart', 14.h, FontWeight.w400,
               currentIndex == 2 ? primaryColor : supportTextColor, 0, 0, null)),
       Tab(
           icon: Image.asset(
             user,
             color: currentIndex == 3 ? primaryColor : supportTextColor,
-            width: 24,
-            height: 24,
+            width: 24.w,
+            height: 24.h,
           ),
           child: AppText(
               'Account',
-              13,
+              13.sp,
               FontWeight.w500,
               currentIndex == 3 ? primaryColor : supportTextColor,
               0,
@@ -79,22 +80,23 @@ class _TabLayoutState extends State<TabLayout> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 4,
         child: Scaffold(
           bottomNavigationBar: TabBar(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             indicator: UnderlineTabIndicator(
               borderSide: BorderSide(
                 color: primaryColor,
-                width: 2,
+                width: 2.w,
               ),
-              insets: const EdgeInsets.symmetric(horizontal: 16),
+              insets: EdgeInsets.symmetric(horizontal: 16.w),
             ),
             indicatorWeight: 1,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorPadding:
-                const EdgeInsets.symmetric(horizontal: 38, vertical: 6),
+            EdgeInsets.symmetric(horizontal: 38.w, vertical: 6.h),
             tabs: tab(),
             labelColor: primaryColor,
             unselectedLabelColor: supportTextColor,

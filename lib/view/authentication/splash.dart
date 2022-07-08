@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:sendovia/utils/images.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sendovia/utils/utils.dart';
+
 
 import '../../utils/colors.dart';
 import 'splash_two.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({Key key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -36,40 +39,46 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        clipBehavior: Clip.none,
-        fit: StackFit.expand,
-        children: <Widget>[
-          Container(
-            decoration:  BoxDecoration(color: primaryColor),
-            margin: const EdgeInsets.all(0),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-             
-              Expanded(
-                flex: 4,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:  <Widget>[
-                    Center(
-                      child:  Image.asset(textLogo, width: 173, height: 42,),
-                    ),
-                  ],
+      body: SizedBox(
+        width: deviceWidth(context),
+        height: deviceHeight(context),
+        child: Stack(
+          // clipBehavior: Clip.none,
+          fit: StackFit.expand,
+          children: <Widget>[
+            Container(
+              decoration:  BoxDecoration(color: primaryColor),
+              margin:  EdgeInsets.all(0.sp),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:  <Widget>[
+                      Center(
+                        child:  Image.asset(textLogo, width: 173.w, height: 42.h,),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-             
-            ],
-          ),
-          Positioned(
-             top: 280,
-            child: Image.asset(splashBg1, width: MediaQuery.of(context).size.width, height: 550,),),
+
+              ],
+            ),
             Positioned(
-             top:532,
-             child: Image.asset(splashBg2, width: MediaQuery.of(context).size.width, height: 280,),),
-        ],
+               top: 280.h,
+              left: 0.w,
+              right: 0.w,
+              child: Image.asset(splashBg1, width: MediaQuery.of(context).size.width.w, height: 550.h,),),
+              Positioned(
+               top:532.h,
+               child: Image.asset(splashBg2, width: MediaQuery.of(context).size.width.w, height: 280.h,),),
+          ],
+        ),
       ),
     );
   }

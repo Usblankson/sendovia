@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:sendovia/utils/app_text.dart';
-import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/utils/space.dart';
 import 'package:sendovia/view/authentication/sign_up.dart';
 import 'package:sendovia/widgets/custom_button.dart';
 
@@ -9,7 +10,7 @@ import '../../utils/navigation.dart';
 import 'login.dart';
 
 class SplashScreenTwo extends StatefulWidget {
-  const SplashScreenTwo({Key? key}) : super(key: key);
+  const SplashScreenTwo({Key key}) : super(key: key);
 
   @override
   _SplashScreenTwoState createState() => _SplashScreenTwoState();
@@ -29,20 +30,21 @@ class _SplashScreenTwoState extends State<SplashScreenTwo> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  AppText("Send Gift Anonymously ", 32, FontWeight.w600, white,
-                      10, 0, null),
-                  const YMargin(16),
+                  AppText("Send Gift Anonymously ", 32.sp, FontWeight.w500,
+                      white, 0.sp, 0.h, null),
+                  VSpace(16.h),
                   AppText(
                       "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint consequat duis enim velit consequat amet dolor. ",
-                      16,
+                      16.sp,
                       FontWeight.w400,
                       white,
-                      0,
-                      2.4, null),
-                  const YMargin(64),
+                      0.sp,
+                      0.h,
+                      null),
+                  VSpace(64.h),
                   CustomButton(
                     title: "Sign Up",
                     onPress: () => Nav.forward(context, const SignUp()),
@@ -51,15 +53,15 @@ class _SplashScreenTwoState extends State<SplashScreenTwo> {
                     txtColor: primaryColor,
                     color: white,
                   ),
-                  const YMargin(16),
+                  VSpace(16.h),
                   CustomButton(
                       title: "Log in",
-                      onPress: () =>  Nav.forward(context,  const LogIn()),
+                      onPress: () => Nav.forward(context, const LogIn()),
                       isActive: true,
                       hasElevation: false,
                       txtColor: white,
                       color: primaryColor),
-                  const YMargin(100),
+                  VSpace(100.h),
                 ],
               ),
             )

@@ -10,7 +10,7 @@ class AppText extends StatelessWidget {
     this.height,
     this.onClick,
    {
-    Key? key,
+    Key key,
   }) : super(key: key);
   String text;
   double size;
@@ -18,7 +18,7 @@ class AppText extends StatelessWidget {
   Color color;
   double wordSpacing;
   double height;
-  VoidCallback? onClick;
+  VoidCallback onClick;
  
 
   @override
@@ -37,7 +37,7 @@ class AppText extends StatelessWidget {
       :
       TextButton(
               onPressed: () {
-                onClick!.call();
+                onClick.call();
               },
               style: TextButton.styleFrom(
                

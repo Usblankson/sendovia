@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/app_text.dart';
 import '../utils/colors.dart';
-import '../utils/spacing.dart';
+import '../utils/space.dart';
 
 
 
@@ -25,7 +25,7 @@ Widget popularItem(
                       height: 100,
                     ),
                   ),
-                  const YMargin(8),
+                  const VSpace(8),
           AppText(name, 12, FontWeight.w400, textColor, 0, 1.6, null),
         ],
       ),

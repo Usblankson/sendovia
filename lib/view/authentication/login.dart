@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 
 import 'package:sendovia/utils/images.dart';
-import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/utils/space.dart';
 import 'package:sendovia/view/authentication/forgot_password.dart';
 import 'package:sendovia/widgets/custom_button.dart';
 import 'package:sendovia/widgets/custom_text_form_field.dart';
@@ -13,54 +17,54 @@ import '../app/bottom_tabbar.dart';
 import 'sign_up.dart';
 
 class LogIn extends StatefulWidget {
-  const LogIn({Key? key}) : super(key: key);
+  const LogIn({Key key}) : super(key: key);
 
   @override
   State<LogIn> createState() => _LogInState();
 }
 
 class _LogInState extends State<LogIn> {
-  bool isVisible = false;
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
       appBar: AppBar(
         shadowColor: appbarShadowColor.withOpacity(0.1),
-        toolbarHeight: 70,
+        toolbarHeight: Platform.isAndroid ? 70.h : 50.h,
         toolbarOpacity: 0.5,
         backgroundColor: white,
-        elevation: 3,
+        elevation: 1,
         bottomOpacity: 0.1,
         leading: IconButton(
             icon: Image.asset(
               backBtn,
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
             ),
             onPressed: () {
               Nav.back(context);
             }),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const YMargin(24),
-              AppText('Log In', 22, FontWeight.w500, black, 0, 3.2, null),
-              const YMargin(12),
-              AppText('Enter your details to log in', 16, FontWeight.w400,
-                  supportTextColor, 0, 2.4, null),
-              const YMargin(32),
+              VSpace(24.h),
+              AppText('Log In', 18.sp, FontWeight.w600, black, 0, 0, null),
+              VSpace(12.h),
+              AppText('Enter your details to log in', 16.sp, FontWeight.w400,
+                  supportTextColor, 0, 0, null),
+              VSpace(32.h),
               CustomTextFormField(
                 label: 'Email Address',
                 keyboardType: TextInputType.emailAddress,
                 maxLines: 1,
               ),
-              const YMargin(24),
+              VSpace(24.h),
               CustomTextFormField(
                 label: 'Password',
                 keyboardType: TextInputType.emailAddress,
@@ -77,20 +81,20 @@ class _LogInState extends State<LogIn> {
                         ? Icons.visibility_off_outlined
                         : Icons.visibility_outlined,
                     color: supportTextColor,
-                    size: 22,
+                    size: 22.sp,
                   ),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  AppText('Forgot Password?', 14, FontWeight.w400, primaryColor,
-                      0, 1, () {
+                  AppText('Forgot Password?', 14.sp, FontWeight.w400,
+                      primaryColor, 0, 0, () {
                     Nav.forward(context, const ForgotPassword());
                   })
                 ],
               ),
-              const YMargin(20),
+              VSpace(20.h),
               CustomButton(
                 title: 'Log in',
                 onPress: () => Nav.forward(context, TabLayout()),
@@ -99,27 +103,27 @@ class _LogInState extends State<LogIn> {
                 txtColor: white,
                 borderColor: primaryColor,
               ),
-              const YMargin(24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppText('Don’t have an account?', 14, FontWeight.w400,
-                      supportTextColor, 0, 2.4, null),
-                  const XMargin(1),
-                  InkWell(
-                    onTap: () {
-                      // Nav.forward(context, const TermsAndConditions());
-                    },
-                    child: AppText(
-                        ' Sign up',
-                        16,
-                        FontWeight.w600,
-                        primaryColor,
-                        0,
-                        2.4,
-                        () => Nav.forward(context, const SignUp())),
-                  ),
-                ],
+              VSpace(24.h),
+              Center(
+                child: RichText(
+                    text: TextSpan(
+                        text: 'Don’t have an account? ',
+                        style: TextStyle(
+                            color: supportTextColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.sp),
+                        children: [
+                      TextSpan(
+                          text: 'Sign up',
+                          style: TextStyle(
+                              color: primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.sp),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Nav.forward(context, const SignUp());
+                            })
+                    ])),
               ),
             ],
           ),

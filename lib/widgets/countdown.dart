@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sendovia/utils/colors.dart';
 
 class Countdown extends AnimatedWidget {
-  Countdown({Key? key, required this.animation}) : super(key: key, listenable: animation);
+  Countdown({Key key, this.animation}) : super(key: key, listenable: animation);
   Animation<int> animation;
 
   @override

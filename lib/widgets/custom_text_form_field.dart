@@ -2,32 +2,33 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 
-import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/utils/space.dart';
 
 import '../utils/colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
+  final Widget prefixIcon;
+  final Widget suffixIcon;
   final bool obscureText;
   String hintText;
   String label;
-  Color? labelColor;
-  FormFieldValidator? validator;
-  Function(String)? onSaved;
-  Color? fillingColor;
+  Color labelColor;
+  FormFieldValidator validator;
+  Function(String) onSaved;
+  Color fillingColor;
   bool autofocus;
   bool isEnabled;
-  TextInputType? keyboardType;
+  TextInputType keyboardType;
 
-  int? maxLines;
-  TextInputType? textInputType;
-  TextEditingController? controller;
-  List<TextInputFormatter> ? inputFormatters;
+  int maxLines;
+  TextInputType textInputType;
+  TextEditingController controller;
+  List<TextInputFormatter>  inputFormatters;
 
   CustomTextFormField({
-    Key? key,
+    Key key,
     this.textInputType,
     this.prefixIcon,
     this.suffixIcon,
@@ -60,13 +61,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         Text(
           widget.label,
           style: TextStyle(
-              fontSize: 12,
+              fontSize: 12.sp,
               color: widget.labelColor ?? supportTextColor,
               fontWeight: FontWeight.w400),
         ),
-        const YMargin(8),
+         VSpace(8.h),
         TextFormField(
-          style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w400),
+          style: TextStyle(color: textColor, fontSize: 14.sp, fontWeight: FontWeight.w400),
           enabled: widget.isEnabled, 
           inputFormatters: widget.inputFormatters,
                 controller: widget.controller,
@@ -76,14 +77,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           keyboardType: widget.textInputType,
           validator: widget.validator,
           decoration: InputDecoration(
-            
-            errorStyle: const TextStyle(height: 0, color: Colors.red),
-            contentPadding: const EdgeInsets.only(top: 20, bottom: 20, left: 20),
+            errorStyle: TextStyle(height: 0.h, color: Colors.red),
+            contentPadding: EdgeInsets.only(top: 20.h, bottom: 20.h, left: 20.w),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               borderSide: BorderSide(
                 color: primaryColor,
-                width: 1.5,
+                width: 1.5.w,
                 style: BorderStyle.solid,
               ),
             ),
@@ -93,21 +93,21 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             suffixIcon: widget.suffixIcon,
             hintText: widget.hintText,
             hintStyle:  TextStyle(
-                color: supportTextColor, fontSize: 14, fontWeight: FontWeight.w400),
+                color: supportTextColor, fontSize: 14.sp, fontWeight: FontWeight.w400),
             focusedBorder:  OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                borderRadius: BorderRadius.all(Radius.circular(8.r)),
                 borderSide: BorderSide(
                     color: primaryColor,
-                    width: 1.5,
+                    width: 1.5.w,
                     style: BorderStyle.solid)),
             enabledBorder:  OutlineInputBorder(
-                borderRadius: const BorderRadius.all( Radius.circular(8)),
+                borderRadius: BorderRadius.all( Radius.circular(8.r)),
                 borderSide: BorderSide(
-                    color: inputFieldColor, width: 1.5, style: BorderStyle.solid)),
-            errorBorder: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                    color: inputFieldColor, width: 1.5.w, style: BorderStyle.solid)),
+            errorBorder:  OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8.r)),
                 borderSide: BorderSide(
-                    color: Colors.red, width: 1.5, style: BorderStyle.solid)),
+                    color: Colors.red, width: 1.5.w, style: BorderStyle.solid)),
           ),
         ),
       ],

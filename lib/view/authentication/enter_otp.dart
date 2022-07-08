@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 
 import 'package:sendovia/utils/images.dart';
-import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/utils/space.dart';
 import 'package:sendovia/view/authentication/reset_password.dart';
 import 'package:sendovia/widgets/custom_button.dart';
 import 'package:sendovia/widgets/custom_text_form_field.dart';
@@ -13,7 +17,7 @@ import '../../utils/navigation.dart';
 import '../../widgets/countdown.dart';
 
 class EnterCode extends StatefulWidget {
-  const EnterCode({Key? key}) : super(key: key);
+  const EnterCode({Key key}) : super(key: key);
 
   @override
   State<EnterCode> createState() => _EnterCodeState();
@@ -21,7 +25,7 @@ class EnterCode extends StatefulWidget {
 
 class _EnterCodeState extends State<EnterCode> with TickerProviderStateMixin {
   int _counter = 0;
-  AnimationController? _controller;
+  AnimationController _controller;
   int levelClock = 300;
 
   void _incrementCounter() {
@@ -32,7 +36,7 @@ class _EnterCodeState extends State<EnterCode> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _controller!.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -47,7 +51,7 @@ class _EnterCodeState extends State<EnterCode> with TickerProviderStateMixin {
                 levelClock) // gameData.levelClock is a user entered number elsewhere in the applciation
         );
 
-    _controller!.forward();
+    _controller.forward();
   }
 
   @override
@@ -56,10 +60,10 @@ class _EnterCodeState extends State<EnterCode> with TickerProviderStateMixin {
       backgroundColor: white,
       appBar: AppBar(
         shadowColor: appbarShadowColor.withOpacity(0.1),
-        toolbarHeight: 70,
+        toolbarHeight: Platform.isAndroid ? 70.h : 50.h,
         toolbarOpacity: 0.5,
         backgroundColor: white,
-        elevation: 3,
+        elevation: 1,
         bottomOpacity: 0.1,
         leading: IconButton(
             icon: Image.asset(
@@ -79,9 +83,10 @@ class _EnterCodeState extends State<EnterCode> with TickerProviderStateMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const YMargin(24),
-              AppText('Enter Code', 22, FontWeight.w500, black, 0, 3.2, null),
-              const YMargin(12),
+              VSpace(24.h),
+              AppText(
+                  'Enter Code', 18.sp, FontWeight.w600, black, 0, 3.2, null),
+              VSpace(12.h),
               AppText(
                   'Please enter the 6 digit OTP code sent to kingsleyomin@gmail.com ',
                   16,
@@ -90,7 +95,7 @@ class _EnterCodeState extends State<EnterCode> with TickerProviderStateMixin {
                   0,
                   2.4,
                   null),
-              const YMargin(32),
+              VSpace(32.h),
               CustomTextFormField(
                 label: 'OTP',
                 keyboardType: TextInputType.number,
@@ -100,34 +105,43 @@ class _EnterCodeState extends State<EnterCode> with TickerProviderStateMixin {
                   LengthLimitingTextInputFormatter(6),
                 ],
               ),
-              const YMargin(24),
+              VSpace(24.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppText('Code will expire in ', 14, FontWeight.w400,
+                  AppText('Code will expire in ', 14.sp, FontWeight.w400,
                       supportTextColor, 0, 0, null),
                   Countdown(
                     animation: StepTween(
                       begin: levelClock, // THIS IS A USER ENTERED NUMBER
                       end: 0,
-                    ).animate(_controller!),
+                    ).animate(_controller),
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppText('Didn’t get the code?', 14, FontWeight.w400,
-                      supportTextColor, 0, 0, null),
-                  const XMargin(1),
-                  InkWell(
-                    onTap: () {},
-                    child: AppText('Resend Code', 14, FontWeight.w600,
-                        primaryColor, 0, 0, () {}),
-                  ),
-                ],
+              VSpace(24.h),
+              Center(
+                child: RichText(
+                    text: TextSpan(
+                        text: 'Didn’t get the code? ',
+                        style: TextStyle(
+                            color: supportTextColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.sp),
+                        children: [
+                      TextSpan(
+                          text: 'Resend Code',
+                          style: TextStyle(
+                              color: primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.sp),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Nav.forward(context, const ResetPassword());
+                            })
+                    ])),
               ),
-              const YMargin(24),
+              VSpace(24.h),
               CustomButton(
                 title: 'Continue',
                 onPress: () => Nav.forward(context, const ResetPassword()),

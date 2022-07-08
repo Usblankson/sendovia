@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/src/size_extension.dart';
 
 import 'package:sendovia/utils/images.dart';
-import 'package:sendovia/utils/spacing.dart';
+import 'package:sendovia/utils/space.dart';
 import 'package:sendovia/view/authentication/login.dart';
 import 'package:sendovia/widgets/custom_button.dart';
 import 'package:sendovia/widgets/custom_text_form_field.dart';
@@ -11,7 +15,7 @@ import '../../utils/colors.dart';
 import '../../utils/navigation.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+  const SignUp({Key key}) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -25,34 +29,35 @@ class _SignUpState extends State<SignUp> {
       backgroundColor: white,
       appBar: AppBar(
         shadowColor: appbarShadowColor.withOpacity(0.1),
-        toolbarHeight: 70,
+        toolbarHeight: Platform.isAndroid ? 70.h : 50.h,
         toolbarOpacity: 0.5,
         backgroundColor: white,
-        elevation: 3,
+        elevation: 1,
         bottomOpacity: 0.1,
         leading: IconButton(
             icon: Image.asset(
               backBtn,
-              width: 24,
-              height: 24,
+              width: 24.w,
+              height: 24.h,
             ),
             onPressed: () {
               Nav.back(context);
             }),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const YMargin(24),
-              AppText('Sign up', 22, FontWeight.w500, black, 0, 3.2, null),
-              const YMargin(12),
-              AppText('Enter your details to create an account', 16,
-                  FontWeight.w400, supportTextColor, 0, 2.4, null),
-              const YMargin(32),
+              VSpace(24.h),
+              AppText(
+                  'Sign up', 18.sp, FontWeight.w600, black, 0.sp, 0.h, null),
+              VSpace(12.h),
+              AppText('Enter your details to create an account', 12.sp,
+                  FontWeight.w400, supportTextColor, 0, 0.h, null),
+              VSpace(32.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -63,7 +68,7 @@ class _SignUpState extends State<SignUp> {
                       maxLines: 1,
                     ),
                   ),
-                  const XMargin(17),
+                  HSpace(17.w),
                   Expanded(
                     child: CustomTextFormField(
                       label: 'Last Name',
@@ -73,13 +78,13 @@ class _SignUpState extends State<SignUp> {
                   )
                 ],
               ),
-              const YMargin(24),
+              VSpace(24.h),
               CustomTextFormField(
                 label: 'Email Address',
                 keyboardType: TextInputType.emailAddress,
                 maxLines: 1,
               ),
-              const YMargin(24),
+              VSpace(24.h),
               CustomTextFormField(
                 label: 'Password',
                 keyboardType: TextInputType.emailAddress,
@@ -96,11 +101,11 @@ class _SignUpState extends State<SignUp> {
                         ? Icons.visibility_off_outlined
                         : Icons.visibility_outlined,
                     color: supportTextColor,
-                    size: 22,
+                    size: 22.sp,
                   ),
                 ),
               ),
-              const YMargin(24),
+              VSpace(24.h),
               CustomButton(
                 title: 'Create account',
                 onPress: () {},
@@ -109,43 +114,51 @@ class _SignUpState extends State<SignUp> {
                 txtColor: white,
                 borderColor: primaryColor,
               ),
-              const YMargin(24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppText('Already have an account?', 14, FontWeight.w400,
-                      supportTextColor, 0, 2.4, null),
-                  const XMargin(1),
-                  InkWell(
-                       onTap: (){
-                        Nav.forward(context, const LogIn());
-                       } ,
-                    child: AppText('Login', 16, FontWeight.w600, primaryColor,
-                        0, 2.4, () {}),
-                  ),
-                ],
+              VSpace(24.h),
+              Center(
+                child: RichText(
+                    text: TextSpan(
+                        text: 'Already have an account? ',
+                        style: TextStyle(
+                          color: supportTextColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.sp
+                        ),
+                        children: [TextSpan(text: 'Login',
+                          style: TextStyle(
+                              color: primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.sp
+                          ), recognizer: TapGestureRecognizer()..onTap = (){
+                              Nav.forward(context, const LogIn());
+
+                            })])),
               ),
-              const YMargin(20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AppText('By creating an account, you accept our', 14,
-                      FontWeight.w400, supportTextColor, 0, 2, null),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+               VSpace(32.h),
+              Center(
+                child: AppText('By creating an account, you accept our', 14.sp,
+                    FontWeight.w400, supportTextColor, 0, 2, null),
+              ),
+              VSpace(10.h),
+              Center(
+                child: RichText(
+                    text: TextSpan(
+                        text: 'Terms of Use ',
+                        style: TextStyle(
+                            color: primaryColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.sp
+                        ),
                         children: [
-                           AppText('Terms of Use ', 14, FontWeight.w600, primaryColor,
-                        0, 2.4, () {}),
-                        const XMargin(1),
-                        AppText('and', 14, FontWeight.w400,
-                            supportTextColor, 0, 2, null),
-                        const XMargin(1),
-                            AppText(' Privacy Policy ', 14, FontWeight.w600, primaryColor,
-                        0, 2.4, () {}),
-                        ],
-                      )
-                ],
-              )
+                          TextSpan(text: 'and ',
+                            style: TextStyle(
+                                color: supportTextColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14.sp
+                            )),
+                        const TextSpan(text: 'Privacy Policy'),
+                        ])),
+              ),
             ],
           ),
         ),
