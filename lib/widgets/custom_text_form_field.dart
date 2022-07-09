@@ -78,7 +78,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           validator: widget.validator,
           decoration: InputDecoration(
             errorStyle: TextStyle(height: 0.h, color: Colors.red),
-            contentPadding: EdgeInsets.only(top: 20.h, bottom: 20.h, left: 20.w),
+            contentPadding: EdgeInsets.only(top: 16.h, bottom: 16.h, left: 20.w),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
               borderSide: BorderSide(

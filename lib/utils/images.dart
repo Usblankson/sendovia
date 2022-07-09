@@ -21,8 +21,14 @@ const received = 'assets/images/received-icon.png';
 const sent = 'assets/images/sent-icon.png';
 const filter = 'assets/images/filter-icon.png';
 
-
 const samsungS2 = 'assets/images/samsung.png';
 const earbud = 'assets/images/ear-bud.png';
 const laptop = 'assets/images/laptop.png';
 const smartWatch = 'assets/images/smart-watch.png';
+
+const bonton = 'assets/images/bonton.png';
+const chanel = 'assets/images/chanel.png';
+const fendi = 'assets/images/fendi.png';
+const atcost = 'assets/images/atcost.png';
+const slack = 'assets/images/slack.png';
+const surfCoffee = 'assets/images/surf-coffee.png';

@@ -119,4 +119,56 @@ class HomeList {
       'status': 'Received'
     },
   ];
+
+  List allGifts = [
+    {
+      'image': bonton,
+      'name': 'The Gift Shop',
+      'desc': 'Specialize on different kinds of gifts.',
+      'rating': 4,
+      'reviews': '(123)',
+      'price': '99',
+    },
+    {
+      'image': chanel,
+      'name': 'The Gift Shop',
+      'desc': 'Specialize on different kinds of gifts.',
+      'rating': 4,
+      'reviews': '(123)',
+      'price': '99',
+    },
+    {
+      'image': surfCoffee,
+      'name': 'The Gift Shop',
+      'desc': 'Specialize on different kinds of gifts.',
+      'rating': 4,
+      'reviews': '(123)',
+      'price': '99',
+    },
+    {
+      'image': fendi,
+      'name': 'The Gift Shop',
+      'desc': 'Specialize on different kinds of gifts.',
+      'rating': 4,
+      'reviews': '(123)',
+      'price': '99',
+    },
+    {
+      'image': atcost,
+      'name': 'The Gift Shop',
+      'desc': 'Specialize on different kinds of gifts.',
+      'rating': 4,
+      'reviews': '(123)',
+      'price': '99',
+    },
+    {
+      'image': slack,
+      'name': 'The Gift Shop',
+      'desc': 'Specialize on different kinds of gifts.',
+      'rating': 4,
+      'reviews': '(123)',
+      'price': '99',
+    },
+    
+  ];
 }

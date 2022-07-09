@@ -13,7 +13,9 @@ import 'package:sendovia/widgets/popular_item.dart';
 import 'package:sendovia/widgets/scroll_cta_tag_widget.dart';
 
 import '../../../utils/images.dart';
+import '../../../utils/navigation.dart';
 import '../data/home_screen_lists.dart';
+import '../screens/home_screens/send_gift.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -73,16 +75,7 @@ class _HomeState extends State<Home> {
                               borderRadius: BorderRadius.circular(4.r),
                             ),
                             child: AppText('Send a gift', 14.sp, FontWeight.w600,
-                                primaryColor, 0, 0.h, () {
-
-
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                  backgroundColor: primaryColor, 
-                                content: const Text(
-                                    "Please add add the send gift route on line 79"),
-                              ));
-                            }),
+                                primaryColor, 0, 0.h, () => Nav.forward(context, const SendGift())),
                           )
                         ],
                       ),
