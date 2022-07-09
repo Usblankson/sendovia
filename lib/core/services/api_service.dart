@@ -401,7 +401,7 @@ class ApiService {
 
       print("RES ${res.statusCode}");
       print('get body' + res.body);
-      final dynamic data = json.decode(res.body ?? '');
+      final dynamic data = json.decode(res.body);
       print("data $data");
 
       /// This is applicable when server sends unique error codes.
@@ -434,9 +434,7 @@ class ApiService {
     } catch (e) {
       apiResponse.success = false;
       apiResponse.message =
-          ('Network Error. The operation couldnt be completed.' ??
-                  'Error encountered')
-              .toString();
+          ('Network Error. The operation couldnt be completed.').toString();
       debugPrint(e.toString());
     }
 
@@ -483,7 +481,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -531,7 +529,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -617,7 +615,7 @@ class ApiService {
       debugPrint(e.toString());
       // print('expction -- ${e.toString()}');
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -645,7 +643,7 @@ class ApiService {
         headers: headers,
       );
 
-      final dynamic data = json.decode(res.body ?? '');
+      final dynamic data = json.decode(res.body);
 
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
@@ -664,7 +662,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -693,7 +691,7 @@ class ApiService {
       );
       // print('URLsss____$uri');
       // print('Token____${headers.values}');
-      final dynamic data = json.decode(res.body ?? '');
+      final dynamic data = json.decode(res.body);
 
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
@@ -708,7 +706,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;

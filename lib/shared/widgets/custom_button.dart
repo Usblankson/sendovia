@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
@@ -39,18 +40,23 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.radius?.r ?? 6.r),
-      ),
+      // decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(widget.radius ?? 6.r),
+      // ),
       width: widget.width ?? 321.w, //double.infinity,
       height: widget.height ?? 48.h,
       child: ElevatedButton(
         onPressed: widget.onPress,
         style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(widget.radius ?? 6.r),
+              // side: BorderSide(color: Colors.red)
+            )),
             padding: MaterialStateProperty.all(EdgeInsets.all(6)),
             backgroundColor: MaterialStateProperty.all<Color>(
                 //widget.color ?? Color(0xffF2902F)
-                widget.isActive ? primaryColor : inActiveGrey)),
+                widget.isActive ? widget.color ?? primaryColor : inActiveGrey)),
         // child: Text(
         //   widget.title,
         //   style: TextStyle(
@@ -61,7 +67,8 @@ class _CustomButtonState extends State<CustomButton> {
         // ),
 
         child: Styles.regular(widget.title,
-            color: widget.isActive ? white : Color(0xff8692A6),
+            color:
+                widget.isActive ? widget.txtColor ?? white : Color(0xff8692A6),
             fontSize: 14.sp),
       ),
     );

@@ -127,7 +127,7 @@ class _FlutterContactsExampleState extends State<FlutterContactsExample> {
                                       VSpace(16.h),
                                       Column(children: [
                                         Styles.regular(
-                                            "${contact!.name.first} ${contact!.name.last}",
+                                            "${contact?.name.first} ${contact?.name.last}",
                                             fontSize: 10.sp),
                                         Styles.regular(
                                             "${contact!.phones.isNotEmpty ? contact.phones.first.number : '(none)'}",
@@ -138,7 +138,7 @@ class _FlutterContactsExampleState extends State<FlutterContactsExample> {
                                       ]),
                                       CustomButton(
                                           title:
-                                              "Send gift to ${contact!.name.first}",
+                                              "Send gift to ${contact.name.first}",
                                           isActive: true,
                                           onPress: () async {
                                             Navigator.of(context).push(

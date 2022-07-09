@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/modules-new/cart/cart_screen.dart';
 import 'package:planetx/router/main_router.dart';
 import 'package:planetx/shared/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import 'package:route_observer_mixin/route_observer_mixin.dart';
 
 import 'core/locator/locator.dart';
 import 'core/service_injector/service_injector.dart';
+import 'modules-new/cart/gift_details_screen.dart';
 import 'modules/splash.dart';
 
 void main() {
@@ -75,7 +77,7 @@ class _MyAppState extends State<MyApp> {
                   button: TextStyle(fontSize: 45.sp)),
             ),
             onGenerateRoute: MainRouter.generateRoute,
-            home: Splash()),
+            home: GiftDetailScreen()),
       ),
     );
   }
