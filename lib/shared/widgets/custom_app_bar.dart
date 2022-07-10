@@ -10,7 +10,7 @@ import '../utils/color.dart';
 import '../utils/styles.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
-  final String? subTitle;
+  final String subTitle;
   final Color backgroundColor;
   final Color txtColor;
   final double height;
@@ -83,7 +83,7 @@ class CustomAppBar extends StatelessWidget {
                   subTitle == null ? SizedBox() : VSpace(5.h),
                   subTitle == null
                       ? SizedBox()
-                      : Styles.semiBold(subTitle!,
+                      : Styles.semiBold(subTitle,
                           fontSize: 12.sp, color: orange)
                 ],
               ),

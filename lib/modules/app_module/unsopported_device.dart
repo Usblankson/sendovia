@@ -12,9 +12,9 @@ class UnsupportedDeviceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dims.deviceSize!.width + (media.padding.left + media.padding.right),
+      width: Dims.deviceSize.width + (media.padding.left + media.padding.right),
       height:
-          Dims.deviceSize!.height + (media.padding.top + media.padding.bottom),
+          Dims.deviceSize.height + (media.padding.top + media.padding.bottom),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,7 +27,7 @@ class UnsupportedDeviceScreen extends StatelessWidget {
           ),
           VSpace(Dims.dx(20)),
           Container(
-            width: Dims.percentWidth(Dims.deviceSize!.width > 500 ? 50 : 80),
+            width: Dims.percentWidth(Dims.deviceSize.width > 500 ? 50 : 80),
             child: Styles.semiBold(
               'Oops!! We\'re unable to render this application on your device due to screen size and/or device capacity limitations.',
               color: Colors.black,

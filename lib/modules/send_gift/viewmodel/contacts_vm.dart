@@ -6,8 +6,8 @@ import '../../../core/services/sendgift_service.dart';
 import '../../../core/view_model/base_vm.dart';
 
 class ContactViewModel extends BaseViewModel {
-  final SendGiftService? sendGiftService;
-  final BuildContext? context;
+  final SendGiftService sendGiftService;
+  final BuildContext context;
   final dynamic notifs;
   ContactViewModel({this.sendGiftService, this.context, this.notifs});
 
@@ -16,10 +16,10 @@ class ContactViewModel extends BaseViewModel {
   }
 
   String message = "";
-  List<Contact>? _contacts;
-  List<Contact>? _contactsFiltered = [];
-  List<Contact>? get contacts => _contacts;
-  List<Contact>? get contactsFiltered => _contactsFiltered;
+  List<Contact> _contacts;
+  List<Contact> _contactsFiltered = [];
+  List<Contact> get contacts => _contacts;
+  List<Contact> get contactsFiltered => _contactsFiltered;
   TextEditingController searchController = new TextEditingController();
   bool isSearching = false;
   bool _permissionDenied = false;
@@ -60,7 +60,7 @@ class ContactViewModel extends BaseViewModel {
 
   filterContacts() {
     List<Contact> _searchcontacts = [];
-    _searchcontacts.addAll(contacts!);
+    _searchcontacts.addAll(contacts);
     if (searchController.text.isNotEmpty) {
       _searchcontacts.retainWhere((contact) {
         String searchTerm = searchController.text.toLowerCase();
@@ -78,7 +78,7 @@ class ContactViewModel extends BaseViewModel {
         var phone = contact.phones.firstWhere((phn) {
           String phnFlattened = flattenPhoneNumber(phn.number);
           return phnFlattened.contains(searchTermFlatten);
-        }, orElse: () => null!);
+        }, orElse: () => null);
 
         return phone != null;
       });

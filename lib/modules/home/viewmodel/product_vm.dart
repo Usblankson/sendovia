@@ -15,8 +15,8 @@ import '../../../core/view_model/base_vm.dart';
 import '../../../shared/models/api_model.dart';
 
 class ProductViewModel extends BaseViewModel {
-  final ProductService? productService;
-  final BuildContext? context;
+  final ProductService productService;
+  final BuildContext context;
   ProductViewModel({this.productService, this.context});
 
   notify() {
@@ -25,8 +25,8 @@ class ProductViewModel extends BaseViewModel {
 
   String message = "";
   bool cartSelected = false;
-  List<PayloadFromProducts>? allProducts = [];
-  List<PayloadFromCategories>? allCategories = [];
+  List<PayloadFromProducts> allProducts = [];
+  List<PayloadFromCategories> allCategories = [];
   String dropdownValue = 'Budget';
   String categories = 'Category';
 
@@ -35,7 +35,7 @@ class ProductViewModel extends BaseViewModel {
     // ignore: todo
     // TODO: implement init
     getProducts(
-      context: context!,
+      context: context,
     );
   }
 
@@ -44,7 +44,7 @@ class ProductViewModel extends BaseViewModel {
     notify();
   }
 
-  Future<void> getProducts({BuildContext? context}) async {
+  Future<void> getProducts({BuildContext context}) async {
     changeStatus();
 
     final ApiResponse<AllProductsPayload> res =
@@ -52,23 +52,23 @@ class ProductViewModel extends BaseViewModel {
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message!;
+      message = res.message;
       // print("job range success" + jobRange);
 
-      allProducts = res.data!.data;
+      allProducts = res.data.data;
       print("payload from products" + allProducts.toString());
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.success(
           message: message,
         ),
@@ -78,7 +78,7 @@ class ProductViewModel extends BaseViewModel {
     changeStatus();
   }
 
-  Future<void> getCategories({BuildContext? context}) async {
+  Future<void> getCategories({BuildContext context}) async {
     changeStatus();
 
     final ApiResponse<CategoriesPayload> res =
@@ -86,23 +86,23 @@ class ProductViewModel extends BaseViewModel {
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message!;
+      message = res.message;
       // print("job range success" + jobRange);
 
-      allCategories = res.data!.data;
+      allCategories = res.data.data;
       print("payload from categories" + allProducts.toString());
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.success(
           message: message,
         ),

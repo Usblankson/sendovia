@@ -7,7 +7,7 @@ class ApiResponse<T> {
   });
 
   bool success;
-  String? message;
-  T? data;
-  String? token;
+  String message;
+  T data;
+  String token;
 }

@@ -5,23 +5,23 @@ import 'package:planetx/shared/utils/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatefulWidget {
-  final Widget? icon;
+  final Widget icon;
   final String title;
   final onPress;
-  final Color? color;
-  final Color? txtColor;
-  final double? width;
-  final double? radius;
-  final double? height;
+  final Color color;
+  final Color txtColor;
+  final double width;
+  final double radius;
+  final double height;
   final bool hasElevation;
-  final double? txtSize;
+  final double txtSize;
   final bool isActive;
 
   const CustomButton(
-      {Key? key,
+      {Key key,
       this.icon,
-      required this.title,
-      required this.onPress,
+      @required this.title,
+      @required this.onPress,
       this.color,
       this.txtColor,
       this.txtSize,
@@ -40,7 +40,7 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.radius?.r ?? 6.r),
+        borderRadius: BorderRadius.circular(widget.radius.r ?? 6.r),
       ),
       width: widget.width ?? 321.w, //double.infinity,
       height: widget.height ?? 48.h,

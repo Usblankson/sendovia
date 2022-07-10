@@ -4,7 +4,7 @@ import 'package:planetx/shared/models/themes.dart';
 import 'package:planetx/shared/widgets/button.dart';
 
 class CheckProductScreen extends StatelessWidget {
-  const CheckProductScreen({Key? key, productID}) : super(key: key);
+  const CheckProductScreen({Key key, productID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

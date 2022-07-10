@@ -13,7 +13,7 @@ import '../../shared/widgets/loading_overlay.dart';
 import 'widgets/textform_field_with_icon.dart';
 
 class LoginFirstUser extends StatefulWidget {
-  const LoginFirstUser({Key? key}) : super(key: key);
+  const LoginFirstUser({Key key}) : super(key: key);
 
   @override
   _LoginFirstUserState createState() => _LoginFirstUserState();
@@ -101,7 +101,7 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
                                 isActive: true,
                                 onPress: () async {
                                   print("Login In");
-                                  bool isValid = _form.currentState!.validate();
+                                  bool isValid = _form.currentState.validate();
                                   if(isValid) {
                                     context.loaderOverlay.show();
                                     bool logged = await model.login(context, email: _email.text, token: _token.text);

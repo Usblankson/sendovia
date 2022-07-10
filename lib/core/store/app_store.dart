@@ -10,7 +10,7 @@ class AppStore {
       _store[key] = StoreDataFormat<T>(DateTime(0), BehaviorSubject<T>());
     }
 
-    _store[key]!.data!.add(value);
+    _store[key].data.add(value);
   }
 
   BehaviorSubject<T> getData<T>(String key) {
@@ -18,7 +18,7 @@ class AppStore {
       _store[key] = StoreDataFormat<T>(DateTime(0), BehaviorSubject<T>());
     }
 
-    return _store[key]!.data as BehaviorSubject<T>;
+    return _store[key].data as BehaviorSubject<T>;
   }
 
   void resetStore() {
@@ -31,14 +31,14 @@ class AppStore {
           StoreDataFormat<dynamic>(DateTime(0), BehaviorSubject<dynamic>());
     }
 
-    return _store[key]!.date;
+    return _store[key].date;
   }
 
-  void setDate(String id, [DateTime? date]) {
-    _store[id]!.date = date ?? DateTime.now();
+  void setDate(String id, [DateTime date]) {
+    _store[id].date = date ?? DateTime.now();
   }
 
-  void prefetch<T>(String key, Stream<T> stream, [T? defaultValue]) {
+  void prefetch<T>(String key, Stream<T> stream, [T defaultValue]) {
     setData(key, defaultValue);
 
     stream
@@ -65,5 +65,5 @@ class StoreDataFormat<T> {
   ]);
 
   DateTime date;
-  BehaviorSubject<T>? data;
+  BehaviorSubject<T> data;
 }

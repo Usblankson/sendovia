@@ -12,9 +12,9 @@ import '../../../shared/models/api_model.dart';
 import '../../../shared/models/update_cart_payload.dart';
 
 class DisplayProducViewModel extends BaseViewModel {
-  final CartService? cartService;
-  final BuildContext? context;
-  final String? productId;
+  final CartService cartService;
+  final BuildContext context;
+  final String productId;
   DisplayProducViewModel({this.cartService, this.context, this.productId});
 
   notify() {
@@ -24,7 +24,7 @@ class DisplayProducViewModel extends BaseViewModel {
   String message = "";
   bool cartSelected = false;
   int quantityToPurchase = 1;
-  PayloadFromPI? productInfo;
+  PayloadFromPI productInfo;
   List<PayloadFromCart> userCartInfo = [];
 
   @override
@@ -32,10 +32,10 @@ class DisplayProducViewModel extends BaseViewModel {
     // ignore: todo
     // TODO: implement init
 
-    getProductItem(context: context!, productID: productId);
+    getProductItem(context: context, productID: productId);
   }
 
-  Future<void> getProductItem({BuildContext? context, productID}) async {
+  Future<void> getProductItem({BuildContext context, productID}) async {
     changeStatus();
 
     final ApiResponse<ProductItemPayload> res =
@@ -43,24 +43,24 @@ class DisplayProducViewModel extends BaseViewModel {
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message!;
+      message = res.message;
       // print("job range success" + jobRange);
       // print("payload content" + res.payload.payload.toString());
 
-      productInfo = res.data!.data!;
+      productInfo = res.data.data;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.success(
           message: message,
         ),
@@ -71,9 +71,9 @@ class DisplayProducViewModel extends BaseViewModel {
   }
 
   Future<void> addToCart(
-      {BuildContext? context,
-      required String cartId,
-      int? quantity = 1}) async {
+      {BuildContext context,
+        String cartId,
+      int quantity = 1}) async {
     changeStatus();
 
     final ApiResponse<UpdateCartPayload> res =
@@ -81,20 +81,20 @@ class DisplayProducViewModel extends BaseViewModel {
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.success(
           message: message,
         ),

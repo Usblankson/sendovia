@@ -13,8 +13,8 @@ import '../../shared/models/register_payload.dart';
 
 class AuthService {
   AuthService({
-    required this.storageService,
-    required this.storeService,
+    this.storageService,
+    this.storeService,
   });
 
   StorageService storageService;
@@ -126,7 +126,7 @@ class AuthService {
   Future<void> signOut() async {
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
 
-    si.apiService!.postApi<dynamic>(
+    si.apiService.postApi<dynamic>(
       'users/logout',
       <String, dynamic>{},
     );
@@ -136,14 +136,14 @@ class AuthService {
     storeService.reset();
   }
 
-  Future<ApiResponse<AuthPayload>> login(String? email, String? token) {
-    final Map<String, String?> body = <String, String?>{
+  Future<ApiResponse<AuthPayload>> login(String email, String token) {
+    final Map<String, String> body = <String, String>{
       'email': email,
       'token': token,
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
-    return si.apiService!.postApiNoHeader<AuthPayload>(
+    return si.apiService.postApiNoHeader<AuthPayload>(
       'auth/login',
       body,
       transform: (dynamic res) {
@@ -153,12 +153,12 @@ class AuthService {
   }
 
   Future<ApiResponse<RegisterPayload>> signUp({
-    String? firstName,
-    String? lastName,
-    String? email,
-    String? password,
+    String firstName,
+    String lastName,
+    String email,
+    String password,
   }) {
-    final Map<String?, String?> body = <String?, String?>{
+    final Map<String, String> body = <String, String>{
       "firstName": firstName,
       "lastName": lastName,
       "email": email,
@@ -166,7 +166,7 @@ class AuthService {
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
-    return si.apiService!.postApiNoHeader<RegisterPayload>(
+    return si.apiService.postApiNoHeader<RegisterPayload>(
       'auth/register',
       body,
       transform: (dynamic res) {
@@ -177,14 +177,14 @@ class AuthService {
   }
 
   Future<ApiResponse<RegisterPayload>> getToken({
-    String? email,
+    String email,
   }) {
-    final Map<String?, String?> body = <String?, String?>{
-      "email": email!.trim(),
+    final Map<String, String> body = <String, String>{
+      "email": email.trim(),
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
-    return si.apiService!.postApiNoHeader<RegisterPayload>(
+    return si.apiService.postApiNoHeader<RegisterPayload>(
       'auth/login-token',
       body,
       transform: (dynamic res) {

@@ -17,9 +17,9 @@ import '../../shared/widgets/custom_app_bar.dart';
 import '../../shared/widgets/custom_button.dart';
 
 class SelectGift extends StatelessWidget {
-  List<PayloadFromCart>? cartPayload;
+  List<PayloadFromCart> cartPayload;
   SelectGift({
-    Key? key,
+    Key key,
     this.cartPayload,
   }) : super(key: key);
 
@@ -55,7 +55,7 @@ class SelectGift extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.separated(
-                  itemCount: cartPayload!.length,
+                  itemCount: cartPayload.length,
                   itemBuilder: (context, index) {
                     return Container(
                       width: deviceWidth(context),
@@ -94,10 +94,10 @@ class SelectGift extends StatelessWidget {
                                       color: grey.withOpacity(0.2),
                                       borderRadius: BorderRadius.circular(8.r),
                                     ),
-                                    child: cartPayload![index].product!.image !=
+                                    child: cartPayload[index].product.image !=
                                             null
                                         ? Image.network(
-                                            cartPayload![index].product!.image!,
+                                            cartPayload[index].product.image,
                                             fit: BoxFit.fill,
                                           )
                                         : Image.asset(
@@ -119,8 +119,8 @@ class SelectGift extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Styles.bold(
-                                              cartPayload![index]
-                                                      .product!
+                                              cartPayload[index]
+                                                      .product
                                                       .name ??
                                                   "Airpods Pro",
                                               color: black,
@@ -128,13 +128,13 @@ class SelectGift extends StatelessWidget {
                                             ),
                                             VSpace(7.h),
                                             Styles.regular(
-                                              "Quantity: ${cartPayload![index].quantity}",
+                                              "Quantity: ${cartPayload[index].quantity}",
                                               fontSize: 14.sp,
                                             ),
                                           ],
                                         ),
                                         Styles.regular(
-                                            "\$${cartPayload![index].price}",
+                                            "\$${cartPayload[index].price}",
                                             fontSize: 20.sp,
                                             color: black),
                                       ],

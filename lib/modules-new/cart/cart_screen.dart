@@ -9,7 +9,7 @@ import '../../shared/widgets/base_view.dart';
 import '../../shared/widgets/custom_button.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  const CartScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

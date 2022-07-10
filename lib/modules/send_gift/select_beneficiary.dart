@@ -15,9 +15,9 @@ import '../../shared/widgets/base_view.dart';
 import '../../shared/widgets/custom_button.dart';
 
 class FlutterContactsExample extends StatefulWidget {
-  List<PayloadFromCart>? cartPayload;
+  List<PayloadFromCart> cartPayload;
 
-  FlutterContactsExample({Key? key, this.cartPayload}) : super(key: key);
+  FlutterContactsExample({Key key, this.cartPayload}) : super(key: key);
 
   @override
   _FlutterContactsExampleState createState() => _FlutterContactsExampleState();
@@ -74,16 +74,16 @@ class _FlutterContactsExampleState extends State<FlutterContactsExample> {
         Container(
           child: Expanded(
             child: ListView.builder(
-                itemCount: viewModel.contacts!.length,
+                itemCount: viewModel.contacts.length,
                 itemBuilder: (context, i) {
-                  Uint8List? image = (viewModel.contacts![i].photo == null)
+                  Uint8List image = (viewModel.contacts[i].photo == null)
                       ? null
-                      : viewModel.contacts![i].photo!;
-                  String num = (viewModel.contacts![i].phones.isNotEmpty)
-                      ? (viewModel.contacts![i].phones.first.number)
+                      : viewModel.contacts[i].photo;
+                  String num = (viewModel.contacts[i].phones.isNotEmpty)
+                      ? (viewModel.contacts[i].phones.first.number)
                       : "--";
                   return ListTile(
-                      leading: (viewModel.contacts![i].photo == null)
+                      leading: (viewModel.contacts[i].photo == null)
                           ? const CircleAvatar(
                               child: Icon(
                                 Icons.person,
@@ -91,12 +91,12 @@ class _FlutterContactsExampleState extends State<FlutterContactsExample> {
                               ),
                               backgroundColor: purpleGrey,
                             )
-                          : CircleAvatar(backgroundImage: MemoryImage(image!)),
-                      title: Text(viewModel.contacts![i].displayName),
+                          : CircleAvatar(backgroundImage: MemoryImage(image)),
+                      title: Text(viewModel.contacts[i].displayName),
                       subtitle: Text(num),
                       onTap: () async {
                         final contact = await FlutterContacts.getContact(
-                            viewModel.contacts![i].id);
+                            viewModel.contacts[i].id);
 
                         showModalBottomSheet(
                           constraints: BoxConstraints.expand(height: 390),
@@ -127,18 +127,18 @@ class _FlutterContactsExampleState extends State<FlutterContactsExample> {
                                       VSpace(16.h),
                                       Column(children: [
                                         Styles.regular(
-                                            "${contact!.name.first} ${contact!.name.last}",
+                                            "${contact.name.first} ${contact.name.last}",
                                             fontSize: 10.sp),
                                         Styles.regular(
-                                            "${contact!.phones.isNotEmpty ? contact.phones.first.number : '(none)'}",
+                                            "${contact.phones.isNotEmpty ? contact.phones.first.number : '(none)'}",
                                             fontSize: 14.sp),
                                         Styles.regular(
-                                            "${contact!.emails.isNotEmpty ? contact.emails.first.address : '(none)'}",
+                                            "${contact.emails.isNotEmpty ? contact.emails.first.address : '(none)'}",
                                             fontSize: 14.sp),
                                       ]),
                                       CustomButton(
                                           title:
-                                              "Send gift to ${contact!.name.first}",
+                                              "Send gift to ${contact.name.first}",
                                           isActive: true,
                                           onPress: () async {
                                             Navigator.of(context).push(

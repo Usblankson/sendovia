@@ -6,7 +6,7 @@ class Dims {
   // App was developed on an a Tab Emulator with dimension (w:h) of 1280:828
   // ? this should be replaced with the design dim.
   static Size designSize = const Size(1194.0, 834.0);
-  static Size? deviceSize;
+  static Size deviceSize;
 
   // minimum screen size expectations
   static double minWidth = 767;
@@ -25,11 +25,11 @@ class Dims {
   }
 
   static double percentWidth(double p) {
-    return deviceSize!.width * p / 100;
+    return deviceSize.width * p / 100;
   }
 
   static bool isSupported() {
-    return deviceSize!.width >= minWidth && deviceSize!.height >= minHeight;
+    return deviceSize.width >= minWidth && deviceSize.height >= minHeight;
   }
 
   static ContextDimensions Function(BuildContext) of = (BuildContext ctx) {
@@ -38,7 +38,7 @@ class Dims {
 
   static double dx(double x) {
     // dQuotient / designQuotient
-    final double deviceRatio = quotient(deviceSize!.height, deviceSize!.width);
+    final double deviceRatio = quotient(deviceSize.height, deviceSize.width);
     final double designRatio = quotient(designSize.height, designSize.width);
     final double ratio = deviceRatio / designRatio;
 
@@ -53,11 +53,11 @@ class ContextDimensions {
   final BuildContext _context;
 
   double get width {
-    return _context.size!.width;
+    return _context.size.width;
   }
 
   double get height {
-    return _context.size!.height;
+    return _context.size.height;
   }
 
   double percentW(double p) {

@@ -15,7 +15,7 @@ import '../../modules/check-product/check_product.dart';
 class HomeScreen extends StatelessWidget {
   // final List<PopularImages>? popularImages;
   const HomeScreen({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -152,10 +152,10 @@ class HomeScreen extends StatelessWidget {
 
 class Popular extends StatelessWidget {
   ProductViewModel viewModel;
-  VoidCallback? onTap;
+  VoidCallback onTap;
   Popular({
-    Key? key,
-    required this.viewModel,
+    Key key,
+    this.viewModel,
     this.onTap,
   }) : super(key: key);
 
@@ -170,7 +170,7 @@ class Popular extends StatelessWidget {
         crossAxisSpacing: 9.0,
         mainAxisSpacing: 9.0,
         children: List.generate(
-          viewModel.allProducts!.length,
+          viewModel.allProducts.length,
           (index) {
             return GestureDetector(
               onTap: () {
@@ -178,7 +178,7 @@ class Popular extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => CheckProductScreen(
-                          productID: viewModel.allProducts![index].id!)),
+                          productID: viewModel.allProducts[index].id)),
                 );
               },
               child: Container(
@@ -188,13 +188,13 @@ class Popular extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.network(
-                      viewModel.allProducts![index].image!,
+                      viewModel.allProducts[index].image,
                       fit: BoxFit.cover,
                       // fit: BoxFit.contain,
                     ),
                     SizedBox(height: 12.h),
                     Container(
-                      child: Text(viewModel.allProducts![index].name!,
+                      child: Text(viewModel.allProducts[index].name,
                           style: const TextStyle(
                               color: Colors.black,
                               fontFamily: "PT sans",
@@ -215,8 +215,8 @@ class Popular extends StatelessWidget {
 }
 
 Row headingRow({
-  String? title,
-  String? subTitle,
+  String title,
+  String subTitle,
 
   //  required VoidCallback onTapped
 }) {
@@ -224,7 +224,7 @@ Row headingRow({
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Text(
-        title!,
+        title,
         style: const TextStyle(
             fontSize: 14,
             color: black,
@@ -235,7 +235,7 @@ Row headingRow({
       InkWell(
         onTap: () {},
         child: Text(
-          subTitle!,
+          subTitle,
           style: const TextStyle(
               fontSize: 14,
               color: secondaryBlue,

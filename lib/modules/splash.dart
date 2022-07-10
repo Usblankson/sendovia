@@ -8,7 +8,7 @@ import 'package:planetx/shared/utils/themes/theme.dart';
 import 'package:planetx/shared/utils/utils.dart';
 
 class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+  const Splash({Key key}) : super(key: key);
 
   @override
   _SplashState createState() => _SplashState();

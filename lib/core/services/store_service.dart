@@ -23,15 +23,15 @@ class StoreService {
 
   // a generic handler to map api calls easy handling and partial persistence by store
   BehaviorSubject<T> getApiData<T>({
-    String? id,
-    Uri? uri,
-    Future<Map<String, String>>? headers,
-    T Function(dynamic, [String])? transform,
+    String id,
+    Uri uri,
+    Future<Map<String, String>> headers,
+    T Function(dynamic, [String]) transform,
     bool skipCache = false,
     bool skipStatusCheck = false,
   }) {
     // get prev observable copy or creates a new one
-    final BehaviorSubject<T> prev = _store.getData(id!);
+    final BehaviorSubject<T> prev = _store.getData(id);
 
     headers ??= Future<Map<String, String>>.value(<String, String>{});
 
@@ -47,14 +47,14 @@ class StoreService {
       _store.setDate(id);
 
       headers.then((Map<String, String> hds) {
-        http.get(uri!, headers: hds).then((http.Response res) {
+        http.get(uri, headers: hds).then((http.Response res) {
           try {
             final dynamic data = json.decode(res.body);
 
             if (skipStatusCheck ||
                 res.statusCode == 200 ||
                 res.statusCode == 201) {
-              final T newValue = transform!(data);
+              final T newValue = transform(data);
               _store.setData(id, newValue);
 
               // update the stream
@@ -64,7 +64,7 @@ class StoreService {
 
               // handle error here
               final T newValue =
-                  transform!(null, data['message'] ?? '');
+                  transform(null, data['message'] ?? '');
               _store.setData(id, newValue);
 
               // update the stream
@@ -74,7 +74,7 @@ class StoreService {
             // print('$id and ${e.toString()}');
 
             // handle error here
-            final T newValue = transform!(
+            final T newValue = transform(
                 null, 'An unhandled error was encountered. Contact support!');
             _store.setData(id, newValue);
 

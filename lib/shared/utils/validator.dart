@@ -2,9 +2,9 @@ import 'constants.dart';
 
 
 mixin InputValidationMixin {
-  String? _value;
+  String _value;
 
-  String? validateEmail(String? value) {
+  String validateEmail(String value) {
     if (value != null) {
       if (value.isEmpty) {
         return emptyEmailField;
@@ -20,7 +20,7 @@ mixin InputValidationMixin {
     }
   }
 
-  String? validatePassword(String? value) {
+  String validatePassword(String value) {
     if (value != null) {
       _value = value;
       if (value.isEmpty) {
@@ -41,7 +41,7 @@ mixin InputValidationMixin {
     }
   }
 
-  String? confirmPassword(String? value) {
+  String confirmPassword(String value) {
     if (value != null) {
       if (value.isEmpty) {
         return emptyPasswordField;
@@ -56,7 +56,7 @@ mixin InputValidationMixin {
     return null;
   }
 
-  String? commonPassword(String? value) {
+  String commonPassword(String value) {
     if (value != null) {
       _value = value;
       if (value.isEmpty) {
@@ -72,7 +72,7 @@ mixin InputValidationMixin {
     return null;
   }
 
-  String? resetPin(String? value) {
+  String resetPin(String value) {
     if (value != null) {
       _value = value;
       if (value.isEmpty) {
@@ -88,7 +88,7 @@ mixin InputValidationMixin {
     return null;
   }
 
-  String? validateUsername(String? value) {
+  String validateUsername(String value) {
     if (value != null) {
       if (value.isEmpty) {
         return emptyUsernameField;
@@ -104,7 +104,7 @@ mixin InputValidationMixin {
     return null;
   }
 
-  String? fieldValidate(String? value) {
+  String fieldValidate(String value) {
     if (value != null) {
       if (value.isEmpty) {
         return emptyTextField;

@@ -63,7 +63,7 @@ class UtilitiesService {
     }
   }
 
-  String formatDate(DateTime date, [String? fmt, bool custom = false]) {
+  String formatDate(DateTime date, [String fmt, bool custom = false]) {
     if (custom) {
       final DateTime today = DateTime.now();
       final DateTime yesterday =
@@ -101,7 +101,7 @@ class UtilitiesService {
   }
 
   static Widget progress(
-      {String? text, Color? color, double? size, double? parentHeight}) {
+      {String text, Color color, double size, double parentHeight}) {
     return Container(
       height: parentHeight,
       child: Center(
@@ -111,12 +111,12 @@ class UtilitiesService {
                 height: Dims.dx(size ?? 100),
                 child: const CircularProgressIndicator(),
               )
-            : Styles.bold(text, color: color!),
+            : Styles.bold(text, color: color),
       ),
     );
   }
 
-  static Widget progressImg({double? s}) {
+  static Widget progressImg({double s}) {
     return Center(
       child: Image.asset(
         'assets/images/progress.gif',
@@ -132,7 +132,7 @@ class UtilitiesService {
   static DateTime toDateTime(dynamic data) {
     try {
       if (data == null) {
-        return null!;
+        return null;
       } else if (data is String) {
         return DateTime.parse(data);
       } else if (data is DateTime) {
@@ -141,12 +141,12 @@ class UtilitiesService {
         return DateTime.fromMillisecondsSinceEpoch(data);
       } else {
         // print(data);
-        return null!;
+        return null;
       }
     } catch (e) {
       // print(e);
 
-      return null!;
+      return null;
     }
   }
 
@@ -159,7 +159,7 @@ class UtilitiesService {
   }
 
   ///formats large figures(eg 5000 -> 5k
-  static String formatFigure({double? largeFigure}) {
+  static String formatFigure({double largeFigure}) {
     String _formattedNumber = NumberFormat.compact().format(largeFigure);
     return _formattedNumber;
   }

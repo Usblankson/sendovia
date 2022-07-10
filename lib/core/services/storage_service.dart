@@ -5,7 +5,7 @@ import 'package:rxdart/subjects.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService {
-  SharedPreferences? _storage;
+  SharedPreferences _storage;
   final Map<String, BehaviorSubject<String>> _store =
       <String, BehaviorSubject<String>>{};
 
@@ -19,21 +19,21 @@ class StorageService {
       _store[key] = BehaviorSubject<String>();
     }
 
-    final String? val = getItemSync(key);
+    final String val = getItemSync(key);
     if (val != null) {
-      _store[key]!.add(val);
+      _store[key].add(val);
     }
   }
 
   String getItemSync(String key) {
-    final String val = (_storage!.get(key) ?? '').toString();
+    final String val = (_storage.get(key) ?? '').toString();
 
     return val;
   }
 
   Stream<String> getItem(String key) {
     _initItem(key);
-    return _store[key]!;
+    return _store[key];
   }
 
   Stream<List<String>> getItems(List<String> keys) {
@@ -45,9 +45,9 @@ class StorageService {
 
   Future<bool> setItem(String key, String value) {
     _initItem(key);
-    _store[key]!.add(value);
+    _store[key].add(value);
 
-    return _storage!.setString(key, value);
+    return _storage.setString(key, value);
   }
 
   Future<bool> setItems(Map<String, String> data) async {
@@ -63,9 +63,9 @@ class StorageService {
 
   Future<bool> removeItem(String key) {
     _initItem(key);
-    _store[key]!.add(null!);
+    _store[key].add(null);
 
-    return _storage!.remove(key);
+    return _storage.remove(key);
   }
 
   Future<bool> removeItems(List<String> keys) async {

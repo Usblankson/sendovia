@@ -8,7 +8,7 @@
 //   });
 //
 //   factory AuthPayload.fromJson(dynamic json,
-//       [DateTime? updated, DateTime? refreshed]) {
+//       [DateTime updated, DateTime? refreshed]) {
 //     if (json == null) {
 //       return null!;
 //     }
@@ -71,9 +71,9 @@ String authPayloadToJson(AuthPayload data) => json.encode(data.toJson());
 @freezed
 class AuthPayload with _$AuthPayload {
   const factory AuthPayload({
-    required bool success,
-    required dynamic message,
-    required String data,
+    @required bool success,
+    @required dynamic message,
+    @required String data,
   }) = _AuthPayload;
 
   factory AuthPayload.fromJson(Map<String, dynamic> json) =>

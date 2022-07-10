@@ -6,7 +6,7 @@ import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
 class EmptyCartScreen extends StatelessWidget {
-  const EmptyCartScreen({Key? key}) : super(key: key);
+  const EmptyCartScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -15,11 +15,11 @@ import '../../../router/route_paths.dart';
 import '../../../shared/models/api_model.dart';
 
 class AuthViewModel extends BaseViewModel {
-  final AuthService? authService;
+  final AuthService authService;
 
   AuthViewModel({this.authService});
   bool isValidEmail = false;
-  String? message;
+  String message;
 
   @override
   FutureOr<void> init() {
@@ -32,10 +32,10 @@ class AuthViewModel extends BaseViewModel {
   }
 
   Future<bool> login(BuildContext context,
-      {String? email, String? token}) async {
+      {String email, String token}) async {
     // changeStatus();
     final ApiResponse<AuthPayload> res =
-        await si.authService!.login(email!.trim(), token);
+        await si.authService.login(email.trim(), token);
     // debugPrint("res first ${res.message}");
 
     print("yess----: " + res.data.toString());
@@ -49,7 +49,7 @@ class AuthViewModel extends BaseViewModel {
       showTopSnackBar(
           context,
           CustomSnackBar.error(
-            message: message!,
+            message: message,
           ));
       return res.success;
     } else {
@@ -57,7 +57,7 @@ class AuthViewModel extends BaseViewModel {
       debugPrint("res mess1 ${res.token.toString()}");
       debugPrint("res mess11 ${res.data.toString()}");
 
-      si.storageService.setItem('auth_data', json.encode(res.data?.toJson()));
+      si.storageService.setItem('auth_data', json.encode(res.data.toJson()));
       si.storageService.setItem('token', json.encode(res.token));
       DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
       si.storageService.setItem('loginTime', dateFormat.format(DateTime.now()));
@@ -72,7 +72,7 @@ class AuthViewModel extends BaseViewModel {
       showTopSnackBar(
           context,
           CustomSnackBar.success(
-            message: message!,
+            message: message,
           ));
       isLoading = false;
       Navigator.push(

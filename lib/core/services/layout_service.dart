@@ -14,8 +14,8 @@ class LayoutService {
   PublishSubject<ProfileLayoutConfig> profileMenu$ =
       PublishSubject<ProfileLayoutConfig>();
 
-  void updateMenu(ProfileLayoutConfig? cfg) {
-    profileMenu$.add(cfg!);
+  void updateMenu(ProfileLayoutConfig cfg) {
+    profileMenu$.add(cfg);
   }
 
   void updateLayout(LayoutConfig cfg) {
@@ -29,7 +29,7 @@ class LayoutService {
 
     final DashboardOverlayConfig already = list.firstWhere(
       (DashboardOverlayConfig element) => element.id == item.id,
-      orElse: () => null!,
+      orElse: () => null,
     );
 
     if (already == null) {

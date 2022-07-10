@@ -18,10 +18,10 @@ import '../../shared/widgets/custom_app_bar.dart';
 import '../../shared/widgets/custom_button.dart';
 
 class AddMessageScreen extends StatelessWidget {
-  Contact? contact;
-  List<PayloadFromCart>? cartPayload;
+  Contact contact;
+  List<PayloadFromCart> cartPayload;
   AddMessageScreen({
-    Key? key,
+    Key key,
     this.contact,
     this.cartPayload,
   }) : super(key: key);
@@ -59,7 +59,7 @@ class AddMessageScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.separated(
-                    itemCount: cartPayload!.length,
+                    itemCount: cartPayload.length,
                     itemBuilder: (context, index) {
                       return Container(
                         width: deviceWidth(context),
@@ -100,12 +100,12 @@ class AddMessageScreen extends StatelessWidget {
                                             BorderRadius.circular(8.r),
                                       ),
                                       child:
-                                          cartPayload![index].product!.image !=
+                                          cartPayload[index].product.image !=
                                                   null
                                               ? Image.network(
-                                                  cartPayload![index]
-                                                      .product!
-                                                      .image!,
+                                                  cartPayload[index]
+                                                      .product
+                                                      .image,
                                                   fit: BoxFit.fill,
                                                 )
                                               : Image.asset(
@@ -127,8 +127,8 @@ class AddMessageScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Styles.bold(
-                                                cartPayload![index]
-                                                        .product!
+                                                cartPayload[index]
+                                                        .product
                                                         .name ??
                                                     "Airpods Pro",
                                                 color: black,
@@ -136,13 +136,13 @@ class AddMessageScreen extends StatelessWidget {
                                               ),
                                               VSpace(7.h),
                                               Styles.regular(
-                                                "Quantity: ${cartPayload![index].quantity}",
+                                                "Quantity: ${cartPayload[index].quantity}",
                                                 fontSize: 14.sp,
                                               ),
                                             ],
                                           ),
                                           Styles.regular(
-                                              "\$${cartPayload![index].price}",
+                                              "\$${cartPayload[index].price}",
                                               fontSize: 20.sp,
                                               color: black),
                                         ],
@@ -223,11 +223,11 @@ class AddMessageScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Styles.regular(
-                                        "${contact!.name.first} ${contact!.name.last}",
+                                        "${contact.name.first} ${contact.name.last}",
                                         fontSize: 14.sp),
                                     VSpace(8.h),
                                     Styles.regular(
-                                        "${contact!.phones.isNotEmpty ? contact!.phones.first.number : '(none)'}",
+                                        "${contact.phones.isNotEmpty ? contact.phones.first.number : '(none)'}",
                                         fontSize: 14.sp),
                                   ],
                                 ),

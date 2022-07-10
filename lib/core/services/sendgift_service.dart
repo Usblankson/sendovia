@@ -4,9 +4,9 @@ import 'package:planetx/core/services/store_service.dart';
 class SendGiftService {
   SendGiftService({this.storageService, this.storeService});
 
-  StorageService? storageService;
+  StorageService storageService;
 
-  StoreService? storeService;
+  StoreService storeService;
 
   // Future<ApiResponse<NotificationPayload>> getNotification({
   //   String userId,

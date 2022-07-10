@@ -17,7 +17,7 @@ import '../../modules/check-product/check_product.dart';
 import '../home/viewmodel/product_vm.dart';
 
 class ProductList extends StatelessWidget {
-  const ProductList({Key? key}) : super(key: key);
+  const ProductList({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class ProductList extends StatelessWidget {
                         value: 'Budget',
                         isDense: true,
                         isExpanded: true,
-                        onChanged: (String? newValue) {
+                        onChanged: (String newValue) {
                           // setState(() {
                           //   dropdownValue = newValue;
                           // });
@@ -105,17 +105,17 @@ class ProductList extends StatelessWidget {
                         value: 'Category',
                         isDense: true,
                         isExpanded: true,
-                        onChanged: (String? newValue) {
+                        onChanged: (String newValue) {
                           // setState(() {
                           //   dropdownValue = newValue;
                           // });
                         },
-                        items: viewModel.allCategories!
+                        items: viewModel.allCategories
                             .map<DropdownMenuItem<String>>(
                                 (PayloadFromCategories value) {
                           return DropdownMenuItem<String>(
                             value: value.name,
-                            child: Text(value.name!),
+                            child: Text(value.name),
                           );
                         }).toList(),
                       ),
@@ -127,7 +127,7 @@ class ProductList extends StatelessWidget {
             SizedBox(height: 10.h),
             Expanded(
               child: ListView.separated(
-                itemCount: viewModel.allProducts!.length,
+                itemCount: viewModel.allProducts.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return InkWell(
@@ -143,7 +143,7 @@ class ProductList extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => CheckProductScreen(
-                                productID: viewModel.allProducts![index].id!)),
+                                productID: viewModel.allProducts[index].id)),
                       );
                     },
                     child: Row(
@@ -154,7 +154,7 @@ class ProductList extends StatelessWidget {
                           height: 150.h,
                           width: 170.w,
                           child: Image.network(
-                            viewModel.allProducts![index].image!,
+                            viewModel.allProducts[index].image,
                             fit: BoxFit.cover,
                             // fit: BoxFit.contain,
                           ),
@@ -177,20 +177,20 @@ class ProductList extends StatelessWidget {
                             // ),
                             // SizedBox(height: 5.h),
                             Styles.semiBold(
-                              "${viewModel.allProducts![index].vendor!.firstName!} ${viewModel.allProducts![index].vendor!.lastName!}",
+                              "${viewModel.allProducts[index].vendor.firstName} ${viewModel.allProducts[index].vendor.lastName}",
                               fontSize: 15.sp,
                               color: black,
                               height: 2,
                             ),
                             Styles.regular(
-                              viewModel.allProducts![index].description!,
+                              viewModel.allProducts[index].description,
                               fontSize: 10.5.sp,
                               color: black,
                               height: 2,
                             ),
                             SizedBox(height: 20.h),
                             Styles.semiBold(
-                              '\$${viewModel.allProducts![index].price!}',
+                              '\$${viewModel.allProducts[index].price}',
                               fontSize: 14.sp,
                               color: black,
                               // height: 2,

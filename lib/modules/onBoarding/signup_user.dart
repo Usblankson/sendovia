@@ -16,7 +16,7 @@ import 'package:planetx/shared/widgets/loading_overlay.dart';
 import 'package:planetx/shared/widgets/space.dart';
 
 class SignUpUser extends StatelessWidget with InputValidationMixin {
-  SignUpUser({Key? key}) : super(key: key);
+  SignUpUser({Key key}) : super(key: key);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // final TextEditingController _firstNameControl = TextEditingController();
@@ -170,7 +170,7 @@ class SignUpUser extends StatelessWidget with InputValidationMixin {
                               onPress: () async {
                                 print("sign up");
                                 bool isValid =
-                                    _formKey.currentState!.validate();
+                                    _formKey.currentState.validate();
                                 if (isValid) {
                                   context.loaderOverlay.show();
 

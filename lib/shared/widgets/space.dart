@@ -7,7 +7,7 @@ class VSpace extends StatelessWidget {
   });
 
   final double length;
-  final Widget? child;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class HSpace extends StatelessWidget {
   });
 
   final double length;
-  final Widget? child;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

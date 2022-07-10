@@ -17,7 +17,7 @@ import '../../shared/widgets/base_view.dart';
 
 class CheckProductScreen extends StatelessWidget {
   String productID;
-  CheckProductScreen({Key? key, required this.productID}) : super(key: key);
+  CheckProductScreen({Key key, this.productID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class CheckProductScreen extends StatelessWidget {
                         //borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
                             image: NetworkImage(
-                              viewModel.productInfo!.image!,
+                              viewModel.productInfo.image,
                             ),
                             fit: BoxFit.cover),
                       ),
@@ -60,7 +60,7 @@ class CheckProductScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Styles.semiBold(
-                                viewModel.productInfo?.category?.name ??
+                                viewModel.productInfo.category.name ??
                                     "Airpods",
                                 fontSize: 16.sp,
                                 height: 3,
@@ -68,7 +68,7 @@ class CheckProductScreen extends StatelessWidget {
                               ),
                               SizedBox(height: 9),
                               Styles.bold(
-                                viewModel.productInfo?.name ??
+                                viewModel.productInfo.name ??
                                     "Airpods Pro Max",
                                 fontSize: 17.sp,
                                 height: 2.h,
@@ -80,13 +80,13 @@ class CheckProductScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Styles.regular(
-                                    viewModel.productInfo?.description ??
+                                    viewModel.productInfo.description ??
                                         "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
                                     fontSize: 13.sp,
                                     color: black,
                                   ),
                                   Styles.regular(
-                                    "\$ ${viewModel.productInfo?.price.toString() ?? "00"}",
+                                    "\$ ${viewModel.productInfo.price.toString() ?? "00"}",
                                     fontSize: 20.sp,
                                     color: Color(0xff4F4F4F),
                                   ),
@@ -168,12 +168,12 @@ class CheckProductScreen extends StatelessWidget {
                                             icon: Icon(Icons.add),
                                             onPressed: () {
                                               if (viewModel
-                                                      .quantityToPurchase! <
+                                                      .quantityToPurchase <
                                                   viewModel
-                                                      .productInfo!.stock!) {
+                                                      .productInfo.stock) {
                                                 viewModel.quantityToPurchase =
                                                     viewModel
-                                                            .quantityToPurchase! +
+                                                            .quantityToPurchase +
                                                         1;
                                                 viewModel.notify();
                                               }
@@ -197,11 +197,11 @@ class CheckProductScreen extends StatelessWidget {
                                             icon: Icon(Icons.remove),
                                             onPressed: () {
                                               if (viewModel
-                                                      .quantityToPurchase! >
+                                                      .quantityToPurchase >
                                                   1) {
                                                 viewModel.quantityToPurchase =
                                                     viewModel
-                                                            .quantityToPurchase! -
+                                                            .quantityToPurchase -
                                                         1;
                                                 viewModel.notify();
                                               }

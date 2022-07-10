@@ -17,7 +17,7 @@ import '../../shared/widgets/loading_overlay.dart';
 import 'widgets/textform_field_with_icon.dart';
 
 class ValidateAuth extends StatefulWidget {
-  const ValidateAuth({Key? key}) : super(key: key);
+  const ValidateAuth({Key key}) : super(key: key);
 
   @override
   State<ValidateAuth> createState() => _ValidateAuthState();
@@ -125,7 +125,7 @@ class _ValidateAuthState extends State<ValidateAuth> with InputValidationMixin {
                                 isActive: true,
                                 onPress: () async {
                                   bool isValid =
-                                      _formKey.currentState!.validate();
+                                      _formKey.currentState.validate();
                                   print("get token valid $isValid");
 
                                   if (isValid) {

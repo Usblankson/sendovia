@@ -7,8 +7,8 @@ class UserType {
     this.type,
   });
 
-  int? id;
-  String? type;
+  int id;
+  String type;
 }
 
 class User {
@@ -44,7 +44,7 @@ class User {
 
   factory User.fromJson(dynamic json) {
     if (json == null) {
-      return null!;
+      return null;
     }
 
     try {
@@ -89,7 +89,7 @@ class User {
     } catch (e) {
       // print(e);
 
-      return null!;
+      return null;
     }
   }
 
@@ -98,36 +98,36 @@ class User {
 
     picture = picture == null
         ? ''
-        : picture! + '?time=${AppConfig.profilePictureTimestamp}';
+        : picture + '?time=${AppConfig.profilePictureTimestamp}';
   }
 
-  int? id;
-  String? title;
-  String? username;
-  String? firstName;
-  String? lastName;
-  String? middleName;
-  String? email;
-  String? personalEmail;
-  String? staffNo;
-  String? phoneNo;
-  String? phoneNo2;
-  String? picture;
-  String? gender;
-  DateTime? dob;
-  String? nin;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  int? status;
+  int id;
+  String title;
+  String username;
+  String firstName;
+  String lastName;
+  String middleName;
+  String email;
+  String personalEmail;
+  String staffNo;
+  String phoneNo;
+  String phoneNo2;
+  String picture;
+  String gender;
+  DateTime dob;
+  String nin;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int status;
   bool isLoggedIn;
-  String? authToken;
-  String? confirmationToken;
-  String? fingerprint;
-  UserUserTypeModel? userType;
-  UserCadreModel? cadre;
-  UserDepartmentModel? department;
-  UserUnitModel? unit;
-  UserServiceCenterModel? serviceCenter;
+  String authToken;
+  String confirmationToken;
+  String fingerprint;
+  UserUserTypeModel userType;
+  UserCadreModel cadre;
+  UserDepartmentModel department;
+  UserUnitModel unit;
+  UserServiceCenterModel serviceCenter;
 }
 
 class UserCadreModel {
@@ -139,7 +139,7 @@ class UserCadreModel {
 
   factory UserCadreModel.fromJson(dynamic json) {
     if (json == null) {
-      return null!;
+      return null;
     }
 
     try {
@@ -151,13 +151,13 @@ class UserCadreModel {
     } catch (e) {
       // print(e);
       // print('Unable to parse User Cadre obj');
-      return null!;
+      return null;
     }
   }
 
-  int? id;
-  String? name;
-  int? userTypeId;
+  int id;
+  String name;
+  int userTypeId;
 }
 
 class UserUserTypeModel {
@@ -173,8 +173,8 @@ class UserUserTypeModel {
     );
   }
 
-  final int? id;
-  final String? type;
+  final int id;
+  final String type;
 }
 
 class UserDepartmentModel {
@@ -194,10 +194,10 @@ class UserDepartmentModel {
     );
   }
 
-  int? id;
-  String? name;
-  int? hospitalId;
-  String? hod;
+  int id;
+  String name;
+  int hospitalId;
+  String hod;
 }
 
 class UserUnitModel {
@@ -215,9 +215,9 @@ class UserUnitModel {
     );
   }
 
-  int? id;
-  String? name;
-  int? departmentId;
+  int id;
+  String name;
+  int departmentId;
 }
 
 class UserServiceCenterModel {
@@ -233,6 +233,6 @@ class UserServiceCenterModel {
     );
   }
 
-  final int? id;
-  final String? name;
+  final int id;
+  final String name;
 }

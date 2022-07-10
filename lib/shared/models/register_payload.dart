@@ -17,9 +17,9 @@ String registerPayloadToJson(RegisterPayload data) =>
 @freezed
 class RegisterPayload with _$RegisterPayload {
   const factory RegisterPayload({
-    required bool success,
-    required String message,
-    required Data data,
+    @required bool success,
+    @required String message,
+    @required Data data,
   }) = _RegisterPayload;
 
   factory RegisterPayload.fromJson(Map<String, dynamic> json) =>
@@ -29,17 +29,17 @@ class RegisterPayload with _$RegisterPayload {
 @freezed
 class Data with _$Data {
   const factory Data({
-    required String firstName,
-    required String lastName,
-    required dynamic profilePhoto,
-    required String email,
-    required String password,
-    required bool isActive,
-    required bool isVerified,
-    required String id,
-    required DateTime createdAt,
-    required DateTime updatedAt,
-    required int v,
+    @required String firstName,
+    @required String lastName,
+    @required dynamic profilePhoto,
+    @required String email,
+    @required String password,
+    @required bool isActive,
+    @required bool isVerified,
+    @required String id,
+    @required DateTime createdAt,
+    @required DateTime updatedAt,
+    @required int v,
   }) = _Data;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);

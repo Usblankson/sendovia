@@ -48,9 +48,9 @@ class _$AuthPayloadCopyWithImpl<$Res> implements $AuthPayloadCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? success = freezed,
-    Object? message = freezed,
-    Object? data = freezed,
+    Object success = freezed,
+    Object message = freezed,
+    Object data = freezed,
   }) {
     return _then(_value.copyWith(
       success: success == freezed
@@ -91,9 +91,9 @@ class __$$_AuthPayloadCopyWithImpl<$Res> extends _$AuthPayloadCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? success = freezed,
-    Object? message = freezed,
-    Object? data = freezed,
+    Object success = freezed,
+    Object message = freezed,
+    Object data = freezed,
   }) {
     return _then(_$_AuthPayload(
       success: success == freezed
@@ -116,7 +116,7 @@ class __$$_AuthPayloadCopyWithImpl<$Res> extends _$AuthPayloadCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AuthPayload implements _AuthPayload {
   const _$_AuthPayload(
-      {required this.success, required this.message, required this.data});
+      {@required this.success, @required this.message, @required this.data});
 
   factory _$_AuthPayload.fromJson(Map<String, dynamic> json) =>
       _$$_AuthPayloadFromJson(json);
@@ -164,9 +164,9 @@ class _$_AuthPayload implements _AuthPayload {
 
 abstract class _AuthPayload implements AuthPayload {
   const factory _AuthPayload(
-      {required final bool success,
-      required final dynamic message,
-      required final String data}) = _$_AuthPayload;
+      {@required final bool success,
+      @required final dynamic message,
+      @required final String data}) = _$_AuthPayload;
 
   factory _AuthPayload.fromJson(Map<String, dynamic> json) =
       _$_AuthPayload.fromJson;

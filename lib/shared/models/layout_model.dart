@@ -13,10 +13,10 @@ class NoteItem {
     this.btnWidth,
   });
 
-  NoteItemNoteContent? noteContent;
-  String? actionBtnText;
-  bool? btnDisabled;
-  double? btnWidth;
+  NoteItemNoteContent noteContent;
+  String actionBtnText;
+  bool btnDisabled;
+  double btnWidth;
 }
 
 class NoteItemNoteContent {
@@ -40,12 +40,12 @@ class NoteItemNoteContent {
     };
   }
 
-  final String? notes;
-  final String? description;
-  final DateTime? createdAt;
-  final int? status;
-  final int? sctid;
-  final int? visitId;
+  final String notes;
+  final String description;
+  final DateTime createdAt;
+  final int status;
+  final int sctid;
+  final int visitId;
 }
 
 class DropdownOpt {
@@ -54,8 +54,8 @@ class DropdownOpt {
     this.id,
   });
 
-  String? title;
-  String? id;
+  String title;
+  String id;
 }
 
 class DashboardStickerItem {
@@ -66,10 +66,10 @@ class DashboardStickerItem {
     this.width,
   });
 
-  String? id;
-  Widget? handle; // the handle that's clicked to show the main content
-  Widget? content; // the main child widget to be displayed
-  double? width;
+  String id;
+  Widget handle; // the handle that's clicked to show the main content
+  Widget content; // the main child widget to be displayed
+  double width;
 }
 
 class ProfileLayoutConfig {
@@ -81,11 +81,11 @@ class ProfileLayoutConfig {
     this.activeMenu,
   });
 
-  final List<PatientProfileMenuItem>? menuItems;
-  final PatientProfileMenuItem? activeMenu;
-  final String? patientId;
-  final String? basePath;
-  final List<DashboardStickerItem>? stickers;
+  final List<PatientProfileMenuItem> menuItems;
+  final PatientProfileMenuItem activeMenu;
+  final String patientId;
+  final String basePath;
+  final List<DashboardStickerItem> stickers;
 }
 
 class LayoutConfig {
@@ -98,8 +98,8 @@ class LayoutConfig {
 
 class DashboardOverlayConfig {
   DashboardOverlayConfig({
-    required this.child,
-    required this.id,
+    @required this.child,
+    @required this.id,
     this.duration,
     this.finalBottom,
     this.finalLeft,
@@ -112,18 +112,18 @@ class DashboardOverlayConfig {
     this.active = false
   });
 
-  Widget? Function() child;
-  String? id;
-  Duration? duration;
+  Widget Function() child;
+  String id;
+  Duration duration;
   bool active;
-  double? initialTop;
-  double? initialLeft;
-  double? initialRight;
-  double? initialBottom;
-  double? finalTop;
-  double? finalLeft;
-  double? finalRight;
-  double? finalBottom;
+  double initialTop;
+  double initialLeft;
+  double initialRight;
+  double initialBottom;
+  double finalTop;
+  double finalLeft;
+  double finalRight;
+  double finalBottom;
 }
 
 class PatientProfileMenuItem {
@@ -134,9 +134,9 @@ class PatientProfileMenuItem {
 
   });
 
-  String? id;
-  String? title;
-  String? path;
+  String id;
+  String title;
+  String path;
 
 }
 

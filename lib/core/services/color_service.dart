@@ -9,7 +9,7 @@ import 'package:rxdart/rxdart.dart';
 class ColorService {
   ColorService(this.storageService);
 
-  StorageService? storageService;
+  StorageService storageService;
 
   PublishSubject<ThemeModel> color$ = PublishSubject<ThemeModel>();
 
@@ -25,8 +25,8 @@ class ColorService {
     ];
   }
 
-  ThemeModel? getThemeById(String id) {
-    return themes.firstWhere((ThemeModel t) => t.id == id, orElse: () => null!);
+  ThemeModel getThemeById(String id) {
+    return themes.firstWhere((ThemeModel t) => t.id == id, orElse: () => null);
   }
 
   Color fromHex(String hexString) {
@@ -41,15 +41,15 @@ class ColorService {
 
   String toHex({
     bool leadingHashSign = true,
-    int? alpha,
-    int? red,
-    int? green,
-    int? blue,
+    int alpha,
+    int red,
+    int green,
+    int blue,
   }) {
     return '${leadingHashSign ? '#' : ''}'
-        '${alpha!.toRadixString(16).padLeft(2, '0')}'
-        '${red!.toRadixString(16).padLeft(2, '0')}'
-        '${green!.toRadixString(16).padLeft(2, '0')}'
-        '${blue!.toRadixString(16).padLeft(2, '0')}';
+        '${alpha.toRadixString(16).padLeft(2, '0')}'
+        '${red.toRadixString(16).padLeft(2, '0')}'
+        '${green.toRadixString(16).padLeft(2, '0')}'
+        '${blue.toRadixString(16).padLeft(2, '0')}';
   }
 }

@@ -10,13 +10,13 @@ import '../service_injector/service_injector.dart';
 class CartService {
   CartService({this.storageService, this.storeService});
 
-  StorageService? storageService;
+  StorageService storageService;
 
-  StoreService? storeService;
+  StoreService storeService;
 
   Future<ApiResponse<CartPayload>> getCart() async {
     // print("tttttt");
-    return si.apiService!.getApi<CartPayload>(
+    return si.apiService.getApi<CartPayload>(
       'cart',
       transform: (dynamic res) {
         return CartPayload.fromJson(res);
@@ -27,7 +27,7 @@ class CartService {
   Future<ApiResponse<ProductItemPayload>> getProductItem(productID) async {
     // print("tttttt");
 
-    return si.apiService!.getApi<ProductItemPayload>(
+    return si.apiService.getApi<ProductItemPayload>(
       'products/$productID',
       transform: (dynamic res) {
         return ProductItemPayload.fromJson(res);
@@ -40,7 +40,7 @@ class CartService {
       "quantity": quantity,
     };
 
-    return si.apiService!.putApi<UpdateCartPayload>(
+    return si.apiService.putApi<UpdateCartPayload>(
       'cart/$cartId/quantity',
       body,
       transform: (dynamic res) {
@@ -50,7 +50,7 @@ class CartService {
   }
 
   Future<ApiResponse<UpdateCartPayload>> removeFromCart(cartId) async {
-    return si.apiService!.deleteApi<UpdateCartPayload>(
+    return si.apiService.deleteApi<UpdateCartPayload>(
       'cart/$cartId/remove-product',
       transform: (dynamic res) {
         return UpdateCartPayload.fromJson(res);
@@ -64,7 +64,7 @@ class CartService {
       "quantity": quantity.toString(),
     };
 
-    return si.apiService!.postApiAdd<UpdateCartPayload>(
+    return si.apiService.postApiAdd<UpdateCartPayload>(
       'cart',
       body,
       transform: (dynamic res) {

@@ -7,15 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
 class TextFormFieldWithIcon extends StatefulWidget {
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
-  final String? labelText;
-  final String? Function(String?)? validator;
+  final Widget prefixIcon;
+  final Widget suffixIcon;
+  final String labelText;
+  final String Function(String) validator;
   final bool obscureText;
-  final TextEditingController? controller;
+  final TextEditingController controller;
 
   const TextFormFieldWithIcon(
-      {Key? key,
+      {Key key,
       this.prefixIcon,
       this.suffixIcon,
       this.labelText,

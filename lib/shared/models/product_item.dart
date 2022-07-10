@@ -17,9 +17,9 @@ class ProductItemPayload {
     this.data,
   });
 
-  bool? success;
+  bool success;
   dynamic message;
-  PayloadFromPI? data;
+  PayloadFromPI data;
 
   factory ProductItemPayload.fromJson(Map<String, dynamic> json) =>
       ProductItemPayload(
@@ -32,7 +32,7 @@ class ProductItemPayload {
   Map<String, dynamic> toJson() => {
         "success": success == null ? null : success,
         "message": message,
-        "data": data == null ? null : data!.toJson(),
+        "data": data == null ? null : data.toJson(),
       };
 }
 
@@ -52,18 +52,18 @@ class PayloadFromPI {
     this.v,
   });
 
-  String? id;
-  Category? category;
-  Vendor? vendor;
-  String? name;
-  int? price;
-  String? description;
-  String? image;
-  int? stock;
-  List<dynamic>? spec;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  int? v;
+  String id;
+  Category category;
+  Vendor vendor;
+  String name;
+  int price;
+  String description;
+  String image;
+  int stock;
+  List<dynamic> spec;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
 
   factory PayloadFromPI.fromJson(Map<String, dynamic> json) => PayloadFromPI(
         id: json["_id"] == null ? null : json["_id"],
@@ -90,16 +90,16 @@ class PayloadFromPI {
 
   Map<String, dynamic> toJson() => {
         "_id": id == null ? null : id,
-        "category": category == null ? null : category!.toJson(),
-        "vendor": vendor == null ? null : vendor!.toJson(),
+        "category": category == null ? null : category.toJson(),
+        "vendor": vendor == null ? null : vendor.toJson(),
         "name": name == null ? null : name,
         "price": price == null ? null : price,
         "description": description == null ? null : description,
         "image": image == null ? null : image,
         "stock": stock == null ? null : stock,
-        "spec": spec == null ? null : List<dynamic>.from(spec!.map((x) => x)),
-        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+        "spec": spec == null ? null : List<dynamic>.from(spec.map((x) => x)),
+        "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
         "__v": v == null ? null : v,
       };
 }
@@ -114,12 +114,12 @@ class Category {
     this.v,
   });
 
-  String? id;
-  String? name;
-  String? image;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  int? v;
+  String id;
+  String name;
+  String image;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         id: json["_id"] == null ? null : json["_id"],
@@ -138,8 +138,8 @@ class Category {
         "_id": id == null ? null : id,
         "name": name == null ? null : name,
         "image": image == null ? null : image,
-        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+        "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
         "__v": v == null ? null : v,
       };
 }
@@ -161,19 +161,19 @@ class Vendor {
     this.v,
   });
 
-  String? id;
-  String? firstName;
-  String? lastName;
+  String id;
+  String firstName;
+  String lastName;
   dynamic profilePhoto;
   dynamic address;
   dynamic city;
   dynamic state;
-  String? email;
-  bool? isActive;
-  bool? isVerified;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  int? v;
+  String email;
+  bool isActive;
+  bool isVerified;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
 
   factory Vendor.fromJson(Map<String, dynamic> json) => Vendor(
         id: json["_id"] == null ? null : json["_id"],
@@ -206,8 +206,8 @@ class Vendor {
         "email": email == null ? null : email,
         "isActive": isActive == null ? null : isActive,
         "isVerified": isVerified == null ? null : isVerified,
-        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+        "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
         "__v": v == null ? null : v,
       };
 }

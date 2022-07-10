@@ -12,9 +12,9 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class RegisterViewModel extends BaseViewModel {
-  final AuthService? authService;
+  final AuthService authService;
   RegisterViewModel({this.authService});
-  String? message;
+  String message;
   bool error = false;
   bool isValidEmail = false;
   bool isVisiblePassword = true;
@@ -42,13 +42,13 @@ class RegisterViewModel extends BaseViewModel {
 
   Future<bool> register(
       BuildContext context,
-      {String? firstName,
-        String? lastName,
-        String? email,
-        String? password,
+      {String firstName,
+        String lastName,
+        String email,
+        String password,
         }) async {
     // changeStatus();
-    final ApiResponse<RegisterPayload> res = await si.authService!
+    final ApiResponse<RegisterPayload> res = await si.authService
         .signUp(firstName: firstName, lastName: lastName, email: email, password: password);
     debugPrint("res ${res.message}");
 
@@ -58,23 +58,23 @@ class RegisterViewModel extends BaseViewModel {
 
     if (res.success == false) {
       isLoading = res.success;
-      message = res.message!;
+      message = res.message;
       // debugPrint("res err mess ${res.message}");
       showTopSnackBar(
           context,
           CustomSnackBar.error(
-            message: res.message!,
+            message: res.message,
           ));
       return res.success;
     } else {
-      message = res.message!;
+      message = res.message;
       /// if needed cache user data locally here
       // si.storageService.setItem('register_data', json.encode(res.data));
       // debugPrint("res mess ${res.message}");
       showTopSnackBar(
           context,
           CustomSnackBar.success(
-            message: res.message!,
+            message: res.message,
           ));
       isLoading = false;
       Navigator.push(

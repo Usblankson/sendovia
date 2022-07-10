@@ -23,8 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dims.deviceSize!.width,
-      height: Dims.deviceSize!.height,
+      width: Dims.deviceSize.width,
+      height: Dims.deviceSize.height,
       color: pmTheme.page,
       alignment: Alignment.center,
       child: SingleChildScrollView(
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isValid() {
 //return true;
-    return _inputs.email!.isNotEmpty && _inputs.token!.isNotEmpty;
+    return _inputs.email.isNotEmpty && _inputs.token.isNotEmpty;
   }
 
   Future<void> _doLogin() async {
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 // login here
     final ApiResponse<AuthPayload> res =
-        await si.authService!.login(_inputs.email!, _inputs.token!);
+        await si.authService.login(_inputs.email, _inputs.token);
 
     if (!res.success) {
       // si.dialogService.toast(
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _loading = false;
       });
     } else {
-      si.storageService.setItem('auth_data', json.encode(res.data?.toJson()));
+      si.storageService.setItem('auth_data', json.encode(res.data.toJson()));
       si.routerService.pushReplacementNamed(AppGuard.route);
     }
   }
@@ -160,6 +160,6 @@ class _Inputs {
     token = '';
   }
 
-  String? email;
-  String? token;
+  String email;
+  String token;
 }

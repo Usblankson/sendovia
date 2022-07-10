@@ -16,14 +16,14 @@ class ApiService {
   final StoreService storeService;
 
   Future<Map<String, String>> httpHeaders(
-      [Map<String, String>? customHeaders]) async {
+      [Map<String, String> customHeaders]) async {
     final Map<String, String> h = customHeaders ?? <String, String>{};
 
     if (h[HttpHeaders.contentTypeHeader] == null) {
       h[HttpHeaders.contentTypeHeader] = 'application/json; charset=UTF-8';
     }
 
-    final AuthPayload auth = await si.authService!.getAuthData();
+    final AuthPayload auth = await si.authService.getAuthData();
 
     if (auth.data.isNotEmpty) {
       print("xxxx" + auth.data);
@@ -53,10 +53,10 @@ class ApiService {
   Future<ApiResponse<T>> postApiNoHeader<T>(
     String url,
     dynamic body, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? customHeaders,
-    Map<String, String>? params,
+    Map<String, String> customHeaders,
+    Map<String, String> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
 
@@ -200,10 +200,10 @@ class ApiService {
   Future<ApiResponse<T>> postApiAdd<T>(
     String url,
     dynamic body, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? customHeaders,
-    Map<String, String>? params,
+    Map<String, String> customHeaders,
+    Map<String, String> params,
   }) async {
     transform ??= (dynamic r) => r.body["data"] as T;
 
@@ -289,10 +289,10 @@ class ApiService {
   Future<ApiResponse<T>> postApi<T>(
     String url,
     dynamic body, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? customHeaders,
-    Map<String, String>? params,
+    Map<String, String> customHeaders,
+    Map<String, String> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
 
@@ -339,9 +339,9 @@ class ApiService {
 
   Stream<ApiResponse<T>> getApiStoreData<T>(
     String url, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? params,
+    Map<String, String> params,
   }) {
     transform ??= (dynamic r) => r.body as T;
     params ??= <String, String>{};
@@ -355,7 +355,7 @@ class ApiService {
           id: _toId(uri.toString()),
           uri: uri,
           headers: httpHeaders(),
-          transform: (dynamic data, [String? errMsg]) {
+          transform: (dynamic data, [String errMsg]) {
             final ApiResponse<T> res = ApiResponse<T>();
             // print('URL___$uri');
             // print('res---$res');
@@ -363,7 +363,7 @@ class ApiService {
               res.success = false;
               res.message = errMsg;
             } else {
-              res.data = transform!(data);
+              res.data = transform(data);
             }
 
             return res;
@@ -374,9 +374,9 @@ class ApiService {
 
   Future<ApiResponse<T>> getApi<T>(
     String url, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? params,
+    Map<String, String> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
     params ??= <String, String>{};
@@ -401,7 +401,7 @@ class ApiService {
 
       print("RES ${res.statusCode}");
       print('get body' + res.body);
-      final dynamic data = json.decode(res.body ?? '');
+      final dynamic data = json.decode(res.body);
       print("data $data");
 
       /// This is applicable when server sends unique error codes.
@@ -434,8 +434,7 @@ class ApiService {
     } catch (e) {
       apiResponse.success = false;
       apiResponse.message =
-          ('Network Error. The operation couldnt be completed.' ??
-                  'Error encountered')
+          ('Network Error. The operation couldnt be completed.')
               .toString();
       debugPrint(e.toString());
     }
@@ -446,9 +445,9 @@ class ApiService {
   Future<ApiResponse<T>> putApiDynamic<T>(
     String url,
     dynamic body, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, dynamic>? params,
+    Map<String, dynamic> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
 
@@ -483,7 +482,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -492,9 +491,9 @@ class ApiService {
   Future<ApiResponse<T>> putApi<T>(
     String url,
     dynamic body, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? params,
+    Map<String, String> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
 
@@ -531,7 +530,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -586,9 +585,9 @@ class ApiService {
   Future<ApiResponse<T>> putApiError<T>(
     String url,
     dynamic body, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? params,
+    Map<String, String> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
     final ApiResponse<T> apiResponse = ApiResponse<T>();
@@ -617,7 +616,7 @@ class ApiService {
       debugPrint(e.toString());
       // print('expction -- ${e.toString()}');
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -625,9 +624,9 @@ class ApiService {
 
   Future<ApiResponse<T>> deleteApi<T>(
     String url, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, String>? params,
+    Map<String, String> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
     params ??= <String, String>{};
@@ -645,7 +644,7 @@ class ApiService {
         headers: headers,
       );
 
-      final dynamic data = json.decode(res.body ?? '');
+      final dynamic data = json.decode(res.body);
 
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
@@ -664,7 +663,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;
@@ -672,9 +671,9 @@ class ApiService {
 
   Future<ApiResponse<T>> getApiDynamic<T>(
     String url, {
-    T Function(dynamic)? transform,
+    T Function(dynamic) transform,
     bool skipStatusCheck = false,
-    Map<String, dynamic>? params,
+    Map<String, dynamic> params,
   }) async {
     transform ??= (dynamic r) => r.body as T;
     params ??= <String, dynamic>{};
@@ -693,7 +692,7 @@ class ApiService {
       );
       // print('URLsss____$uri');
       // print('Token____${headers.values}');
-      final dynamic data = json.decode(res.body ?? '');
+      final dynamic data = json.decode(res.body);
 
       if (skipStatusCheck || res.statusCode == 200 || res.statusCode == 201) {
         apiResponse.data = transform(data);
@@ -708,7 +707,7 @@ class ApiService {
       debugPrint(e.toString());
 
       apiResponse.success = false;
-      apiResponse.message = (e ?? 'Error encountered').toString();
+      apiResponse.message = (e).toString();
     }
 
     return apiResponse;

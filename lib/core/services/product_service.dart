@@ -12,13 +12,13 @@ import '../service_injector/service_injector.dart';
 class ProductService {
   ProductService({this.storageService, this.storeService});
 
-  StorageService? storageService;
+  StorageService storageService;
 
-  StoreService? storeService;
+  StoreService storeService;
 
   Future<ApiResponse<AllProductsPayload>> getAllProducts() async {
     print("tttttt products");
-    return si.apiService!.getApi<AllProductsPayload>(
+    return si.apiService.getApi<AllProductsPayload>(
       'products',
       transform: (dynamic res) {
         return AllProductsPayload.fromJson(res);
@@ -28,7 +28,7 @@ class ProductService {
 
   Future<ApiResponse<CategoriesPayload>> getAllCategories() async {
     print("tttttt category");
-    return si.apiService!.getApi<CategoriesPayload>(
+    return si.apiService.getApi<CategoriesPayload>(
       'categories',
       transform: (dynamic res) {
         return CategoriesPayload.fromJson(res);

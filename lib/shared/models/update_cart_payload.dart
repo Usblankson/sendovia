@@ -17,8 +17,8 @@ class UpdateCartPayload {
     this.data,
   });
 
-  bool? success;
-  String? message;
+  bool success;
+  String message;
   dynamic data;
 
   factory UpdateCartPayload.fromJson(Map<String, dynamic> json) =>

@@ -19,7 +19,7 @@ import '../send_gift/add_message_screen.dart';
 import '../send_gift/select_gift.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  const CartScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class CartScreen extends StatelessWidget {
                               activeColor: secondaryBlue,
                               onChanged: (value) {
                                 viewModel.checkCart(
-                                    viewModel.userCartInfo[index]!,
+                                    viewModel.userCartInfo[index],
                                     viewModel.userCartInfo[index].price);
                               },
                               value: viewModel.selectedCartInfo
@@ -131,7 +131,7 @@ class CartScreen extends StatelessWidget {
                                     ),
                                     SizedBox(width: 10.w),
                                     Styles.regular(
-                                      viewModel.userCartInfo[index].product!
+                                      viewModel.userCartInfo[index].product
                                               .name ??
                                           "Toptek Stores",
                                       fontSize: 16.sp,
@@ -153,11 +153,11 @@ class CartScreen extends StatelessWidget {
                                             BorderRadius.circular(10.r),
                                       ),
                                       child: viewModel.userCartInfo[index]
-                                                  .product!.image !=
+                                                  .product.image !=
                                               null
                                           ? Image.network(
                                               viewModel.userCartInfo[index]
-                                                  .product!.image!,
+                                                  .product.image,
                                               fit: BoxFit.fill,
                                             )
                                           : Image.asset(
@@ -171,7 +171,7 @@ class CartScreen extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Styles.regular(
-                                          viewModel.userCartInfo[index].product!
+                                          viewModel.userCartInfo[index].product
                                                   .description ??
                                               "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
                                           fontSize: 10.5.sp,
@@ -187,14 +187,14 @@ class CartScreen extends StatelessWidget {
                                                   builder: (context) =>
                                                       CheckProductScreen(
                                                           productID: viewModel
-                                                              .userCartInfo![
+                                                              .userCartInfo[
                                                                   index]
-                                                              .id!)),
+                                                              .id)),
                                             );
                                           },
                                           child: Styles.regular(
                                             viewModel.userCartInfo[index]
-                                                    .product!.name ??
+                                                    .product.name ??
                                                 "Toptek Stores",
                                             fontSize: 8.sp,
                                             height: 2,
@@ -240,23 +240,23 @@ class CartScreen extends StatelessWidget {
                                                         if (viewModel
                                                                 .userCartInfo[
                                                                     index]
-                                                                .quantity! <
+                                                                .quantity <
                                                             viewModel
                                                                 .userCartInfo[
                                                                     index]
-                                                                .product!
-                                                                .stock!) {
+                                                                .product
+                                                                .stock) {
                                                           viewModel.updateCart(
                                                               context: context,
                                                               productId: viewModel
                                                                   .userCartInfo[
                                                                       index]
-                                                                  .product!
-                                                                  .id!,
+                                                                  .product
+                                                                  .id,
                                                               quantity: viewModel
                                                                       .userCartInfo[
                                                                           index]
-                                                                      .quantity! +
+                                                                      .quantity +
                                                                   1);
                                                         }
                                                       }),
@@ -289,19 +289,19 @@ class CartScreen extends StatelessWidget {
                                                         if (viewModel
                                                                 .userCartInfo[
                                                                     index]
-                                                                .quantity! >
+                                                                .quantity >
                                                             1) {
                                                           viewModel.updateCart(
                                                               context: context,
                                                               productId: viewModel
                                                                   .userCartInfo[
                                                                       index]
-                                                                  .product!
-                                                                  .id!,
+                                                                  .product
+                                                                  .id,
                                                               quantity: viewModel
                                                                       .userCartInfo[
                                                                           index]
-                                                                      .quantity! -
+                                                                      .quantity -
                                                                   1);
                                                         }
                                                       }),

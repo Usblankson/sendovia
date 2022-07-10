@@ -13,11 +13,11 @@ import '../../../shared/models/api_model.dart';
 import '../../../shared/models/register_payload.dart';
 
 class ValidateAuthViewModel extends BaseViewModel {
-  final AuthService? authService;
+  final AuthService authService;
 
   ValidateAuthViewModel({this.authService});
   bool isValidEmail = false;
-  String? message;
+  String message;
 
   @override
   FutureOr<void> init() {
@@ -29,10 +29,10 @@ class ValidateAuthViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future<bool> getToken(BuildContext context, {String? email}) async {
+  Future<bool> getToken(BuildContext context, {String email}) async {
     // changeStatus();
     final ApiResponse<RegisterPayload> res =
-        await si.authService!.getToken(email: email);
+        await si.authService.getToken(email: email);
     debugPrint("res first ${res.message}");
 
     // print("yess----: " + res.data.toString());
@@ -41,12 +41,12 @@ class ValidateAuthViewModel extends BaseViewModel {
 
     if (res.success == false) {
       isLoading = res.success;
-      message = res.message!;
+      message = res.message;
       // debugPrint("res err mess ${res.message}");
       showTopSnackBar(
           context,
           CustomSnackBar.error(
-            message: res.message!,
+            message: res.message,
           ));
       return res.success;
     } else {
@@ -56,7 +56,7 @@ class ValidateAuthViewModel extends BaseViewModel {
       showTopSnackBar(
           context,
           CustomSnackBar.success(
-            message: message!,
+            message: message,
           ));
       isLoading = false;
       Navigator.push(

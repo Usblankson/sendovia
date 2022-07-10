@@ -36,8 +36,8 @@ class _AppGuardState extends State<AppGuard> {
     Future<int>.delayed(
       const Duration(seconds: 8),
     ).then((int value) async {
-      if (!_authCheck) {
-        await si.authService!.signOut();
+      if (_authCheck) {
+        await si.authService.signOut();
 
         si.layoutService.updateLayout(LayoutConfig());
         si.routerService.pushNamed('/auth/login');
@@ -48,15 +48,15 @@ class _AppGuardState extends State<AppGuard> {
   List<String> _getRoleRoute(User user) {
     final List<String> roles = <String>[];
 
-    if (user.userType!.id == 4) {
+    if (user.userType.id == 4) {
       var roleRoutes3 = RoleRoutes;
       var roleRoutes2 = roleRoutes3;
       var roleRoutes = roleRoutes2;
       //roles.add(roleRoutes.records);
-    } else if (user.userType!.id == 2) {
-      if (user.serviceCenter!.id == 1) {
+    } else if (user.userType.id == 2) {
+      if (user.serviceCenter.id == 1) {
         roles.add(RoleRoutes.inPatientDoctor);
-      } else if (user.serviceCenter!.id == 2) {
+      } else if (user.serviceCenter.id == 2) {
         roles.add(RoleRoutes.outPatientDoctor);
       }
       // switch (user.department.id) {
@@ -68,11 +68,11 @@ class _AppGuardState extends State<AppGuard> {
       //       roles.add(RoleRoutes.outPatientDoctor);
       //     }
       // }
-    } else if (user.userType!.id == 3) {
+    } else if (user.userType.id == 3) {
       // nurse
-      if (user.serviceCenter!.id == 1) {
+      if (user.serviceCenter.id == 1) {
         roles.add(RoleRoutes.inPatientNurse);
-      } else if (user.serviceCenter!.id == 2) {
+      } else if (user.serviceCenter.id == 2) {
         roles.add(RoleRoutes.outPatientNurse);
       }
     }
@@ -89,7 +89,7 @@ class _AppGuardState extends State<AppGuard> {
     _authCheck = false;
     _checkStockedStatus();
 
-    // final bool isLoggedIn = await si.authService!.isLoggedIn();
+    // final bool isLoggedIn = await si.authService.isLoggedIn();
     _authCheck = true;
     return '/home/';
     // if (isLoggedIn) {

@@ -51,9 +51,9 @@ class _$RegisterPayloadCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? success = freezed,
-    Object? message = freezed,
-    Object? data = freezed,
+    Object success = freezed,
+    Object message = freezed,
+    Object data = freezed,
   }) {
     return _then(_value.copyWith(
       success: success == freezed
@@ -105,9 +105,9 @@ class __$RegisterPayloadCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? success = freezed,
-    Object? message = freezed,
-    Object? data = freezed,
+    Object success = freezed,
+    Object message = freezed,
+    Object data = freezed,
   }) {
     return _then(_RegisterPayload(
       success: success == freezed
@@ -130,7 +130,7 @@ class __$RegisterPayloadCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_RegisterPayload implements _RegisterPayload {
   const _$_RegisterPayload(
-      {required this.success, required this.message, required this.data});
+      {@required this.success, @required this.message, @required this.data});
 
   factory _$_RegisterPayload.fromJson(Map<String, dynamic> json) =>
       _$$_RegisterPayloadFromJson(json);
@@ -178,9 +178,9 @@ class _$_RegisterPayload implements _RegisterPayload {
 
 abstract class _RegisterPayload implements RegisterPayload {
   const factory _RegisterPayload(
-      {required final bool success,
-      required final String message,
-      required final Data data}) = _$_RegisterPayload;
+      {@required final bool success,
+      @required final String message,
+      @required final Data data}) = _$_RegisterPayload;
 
   factory _RegisterPayload.fromJson(Map<String, dynamic> json) =
       _$_RegisterPayload.fromJson;
@@ -248,17 +248,17 @@ class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? profilePhoto = freezed,
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? isActive = freezed,
-    Object? isVerified = freezed,
-    Object? id = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? v = freezed,
+    Object firstName = freezed,
+    Object lastName = freezed,
+    Object profilePhoto = freezed,
+    Object email = freezed,
+    Object password = freezed,
+    Object isActive = freezed,
+    Object isVerified = freezed,
+    Object id = freezed,
+    Object createdAt = freezed,
+    Object updatedAt = freezed,
+    Object v = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: firstName == freezed
@@ -339,17 +339,17 @@ class __$DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? profilePhoto = freezed,
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? isActive = freezed,
-    Object? isVerified = freezed,
-    Object? id = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? v = freezed,
+    Object firstName = freezed,
+    Object lastName = freezed,
+    Object profilePhoto = freezed,
+    Object email = freezed,
+    Object password = freezed,
+    Object isActive = freezed,
+    Object isVerified = freezed,
+    Object id = freezed,
+    Object createdAt = freezed,
+    Object updatedAt = freezed,
+    Object v = freezed,
   }) {
     return _then(_Data(
       firstName: firstName == freezed
@@ -404,17 +404,17 @@ class __$DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Data implements _Data {
   const _$_Data(
-      {required this.firstName,
-      required this.lastName,
-      required this.profilePhoto,
-      required this.email,
-      required this.password,
-      required this.isActive,
-      required this.isVerified,
-      required this.id,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.v});
+      {@required this.firstName,
+      @required this.lastName,
+      @required this.profilePhoto,
+      @required this.email,
+      @required this.password,
+      @required this.isActive,
+      @required this.isVerified,
+      @required this.id,
+      @required this.createdAt,
+      @required this.updatedAt,
+      @required this.v});
 
   factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
 
@@ -495,17 +495,17 @@ class _$_Data implements _Data {
 
 abstract class _Data implements Data {
   const factory _Data(
-      {required final String firstName,
-      required final String lastName,
-      required final dynamic profilePhoto,
-      required final String email,
-      required final String password,
-      required final bool isActive,
-      required final bool isVerified,
-      required final String id,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
-      required final int v}) = _$_Data;
+      {@required final String firstName,
+      @required final String lastName,
+      @required final dynamic profilePhoto,
+      @required final String email,
+      @required final String password,
+      @required final bool isActive,
+      @required final bool isVerified,
+      @required final String id,
+      @required final DateTime createdAt,
+      @required final DateTime updatedAt,
+      @required final int v}) = _$_Data;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
 

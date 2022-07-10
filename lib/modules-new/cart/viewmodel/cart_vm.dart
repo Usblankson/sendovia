@@ -11,8 +11,8 @@ import '../../../shared/models/api_model.dart';
 import '../../../shared/models/update_cart_payload.dart';
 
 class CartViewModel extends BaseViewModel {
-  final CartService? cartService;
-  final BuildContext? context;
+  final CartService cartService;
+  final BuildContext context;
   CartViewModel({this.cartService, this.context});
 
   notify() {
@@ -31,13 +31,13 @@ class CartViewModel extends BaseViewModel {
     // ignore: todo
     // TODO: implement init
     getCart(
-      context: context!,
+      context: context,
     );
   }
 
   Future<void> refreshContent() async {
     getCart(
-      context: context!,
+      context: context,
     );
     changeStatus();
   }
@@ -46,10 +46,10 @@ class CartViewModel extends BaseViewModel {
     // cartSelected = value;
     if (!selectedCartInfo.contains(id)) {
       selectedCartInfo.add(id);
-      total += price!;
+      total += price;
     } else {
       selectedCartInfo.remove(id);
-      total -= price!;
+      total -= price;
     }
     notify();
   }
@@ -58,12 +58,12 @@ class CartViewModel extends BaseViewModel {
     if (switchAll == true) {
       if (!selectedCartInfo.contains(id)) {
         selectedCartInfo.add(id);
-        total += price!;
+        total += price;
       }
     } else {
       if (selectedCartInfo.contains(id)) {
         selectedCartInfo.remove(id);
-        total -= price!;
+        total -= price;
       }
     }
     notify();
@@ -87,7 +87,7 @@ class CartViewModel extends BaseViewModel {
 
   removeFromCartID() {
     selectedCartInfo.forEach((element) {
-      removeFromCart(context: context, cartId: element.product!.id!);
+      removeFromCart(context: context, cartId: element.product.id);
       // total = 0.0;
     });
     notify();
@@ -107,31 +107,31 @@ class CartViewModel extends BaseViewModel {
   //   });
   // }
 
-  Future<void> getCart({BuildContext? context}) async {
+  Future<void> getCart({BuildContext context}) async {
     changeStatus();
 
     final ApiResponse<CartPayload> res = await si.cartService.getCart();
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message!;
+      message = res.message;
       // print("job range success" + jobRange);
       // print("payload content" + res.payload.payload.toString());
 
-      userCartInfo = res.data!.data!;
+      userCartInfo = res.data.data;
       // getTotal();
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.success(
           message: message,
         ),
@@ -142,9 +142,9 @@ class CartViewModel extends BaseViewModel {
   }
 
   Future<void> updateCart(
-      {BuildContext? context,
-      required int quantity,
-      required String productId}) async {
+      {BuildContext context,
+       int quantity,
+       String productId}) async {
     changeStatus();
 
     final ApiResponse<UpdateCartPayload> res =
@@ -152,20 +152,20 @@ class CartViewModel extends BaseViewModel {
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.success(
           message: message,
         ),
@@ -177,7 +177,7 @@ class CartViewModel extends BaseViewModel {
   }
 
   Future<void> removeFromCart(
-      {BuildContext? context, required String cartId}) async {
+      {BuildContext context,  String cartId}) async {
     changeStatus();
 
     final ApiResponse<UpdateCartPayload> res =
@@ -185,20 +185,20 @@ class CartViewModel extends BaseViewModel {
 
     if (!res.success) {
       isLoading = !res.success;
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.error(
           message: message,
         ),
       );
       changeStatus();
     } else {
-      message = res.message!;
+      message = res.message;
 
       showTopSnackBar(
-        context!,
+        context,
         CustomSnackBar.success(
           message: message,
         ),
@@ -209,7 +209,7 @@ class CartViewModel extends BaseViewModel {
   }
 
   // Future<void> addToCart(
-  //     {BuildContext? context, required String cartId}) async {
+  //     {BuildContext context,  String cartId}) async {
   //   changeStatus();
   //
   //   final ApiResponse<UpdateCartPayload> res =

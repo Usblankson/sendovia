@@ -3,9 +3,9 @@ class PopularImages {
     this.title,
     this.image,
   });
-  final String? title;
+  final String title;
 
-  final String? image;
+  final String image;
 }
 
 // ignore: unnecessary_const
@@ -34,9 +34,9 @@ const List<PopularImages> popularImages = const <PopularImages>[
 
 class PopularCategories {
   const PopularCategories({this.title, this.image});
-  final String? title;
+  final String title;
 
-  final String? image;
+  final String image;
 }
 
 // ignore: unnecessary_const
@@ -71,13 +71,13 @@ class StoresLists {
       this.price,
       this.storeName,
       this.image});
-  final String? title;
-  final String? price;
-  final String? storeName;
+  final String title;
+  final String price;
+  final String storeName;
 
-  final String? description;
-  final String? rating;
-  final String? image;
+  final String description;
+  final String rating;
+  final String image;
 }
 
 // ignore: unnecessary_const
@@ -142,12 +142,12 @@ class StoresProductLists {
   const StoresProductLists(
       {this.description, this.rating, this.price, this.storeName, this.image});
 
-  final String? price;
-  final String? storeName;
+  final String price;
+  final String storeName;
 
-  final String? description;
-  final String? rating;
-  final String? image;
+  final String description;
+  final String rating;
+  final String image;
 }
 
 // ignore: unnecessary_const

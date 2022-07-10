@@ -18,15 +18,15 @@ class FWt {
 class Styles {
   static Text regular(
     String text, {
-    double? fontSize,
-    Color? color,
-    TextAlign? align,
-    double? height,
-    FontStyle? fontStyle,
-    FontWeight? fontWeight,
+    double fontSize,
+    Color color,
+    TextAlign align,
+    double height,
+    FontStyle fontStyle,
+    FontWeight fontWeight,
     bool strike = false,
-    int? lines,
-    TextOverflow? overflow,
+    int lines,
+    TextOverflow overflow,
     bool underline = false,
   }) {
     return Text(
@@ -52,15 +52,15 @@ class Styles {
 
   static TextSpan spanRegular(
     String text, {
-    double? fontSize,
-    Color? color,
-    TextAlign? align,
-    double? height,
-    FontStyle? fontStyle,
-    FontWeight? fontWeight,
+    double fontSize,
+    Color color,
+    TextAlign align,
+    double height,
+    FontStyle fontStyle,
+    FontWeight fontWeight,
     bool strike = false,
-    int? lines,
-    TextOverflow? overflow,
+    int lines,
+    TextOverflow overflow,
     bool underline = false,
   }) {
     return TextSpan(
@@ -83,14 +83,14 @@ class Styles {
 
   static Text medium(
     String text, {
-    double? fontSize,
-    FontWeight? fontWeight,
-    Color? color,
-    TextAlign? align,
-    double? height,
+    double fontSize,
+    FontWeight fontWeight,
+    Color color,
+    TextAlign align,
+    double height,
     bool strike = false,
-    int? lines,
-    TextOverflow? overflow,
+    int lines,
+    TextOverflow overflow,
     bool underline = false,
   }) {
     return Text(
@@ -115,14 +115,14 @@ class Styles {
 
   static Text semiBold(
     String text, {
-    double? fontSize,
-    Color? color,
-    TextOverflow? overflow,
-    TextAlign? align,
-    double? height,
+    double fontSize,
+    Color color,
+    TextOverflow overflow,
+    TextAlign align,
+    double height,
     bool strike = false,
     bool underline = false,
-    int? lines,
+    int lines,
   }) {
     return Text(
       text,
@@ -146,13 +146,13 @@ class Styles {
 
   static TextSpan spanBold(
     String text, {
-    double? fontSize,
-    Color? color,
-    TextAlign? align,
+    double fontSize,
+    Color color,
+    TextAlign align,
     bool strike = false,
-    int? lines,
-    TextOverflow? overflow,
-    double? height,
+    int lines,
+    TextOverflow overflow,
+    double height,
   }) {
     return TextSpan(
       text: text,
@@ -169,13 +169,13 @@ class Styles {
 
   static Text bold(
     String text, {
-    double? fontSize,
-    Color? color,
-    TextAlign? align,
+    double fontSize,
+    Color color,
+    TextAlign align,
     bool strike = false,
-    int? lines,
-    TextOverflow? overflow,
-    double? height,
+    int lines,
+    TextOverflow overflow,
+    double height,
   }) {
     return Text(
       text,
@@ -195,12 +195,12 @@ class Styles {
 
   static Text extraBold(
     String text, {
-    double? fontSize,
-    Color? color,
-    TextAlign? align,
-    int? lines,
+    double fontSize,
+    Color color,
+    TextAlign align,
+    int lines,
     bool strike = false,
-    TextOverflow? overflow,
+    TextOverflow overflow,
   }) {
     return Text(
       text,

@@ -14,7 +14,7 @@ class RouterOutlet extends StatefulWidget {
     @required this.child,
   });
 
-  final Widget? child;
+  final Widget child;
 
   @override
   _RouterOutletState createState() {
@@ -23,11 +23,11 @@ class RouterOutlet extends StatefulWidget {
 }
 
 class _RouterOutletState extends State<RouterOutlet> {
-  late StreamSubscription<ThemeModel> _color$;
-  late StreamSubscription<LayoutConfig> _layout$;
+   StreamSubscription<ThemeModel> _color$;
+   StreamSubscription<LayoutConfig> _layout$;
   bool _restarting = false;
   LayoutConfig _layout = LayoutConfig();
-  late StreamSubscription<bool> _bottomInset$;
+   StreamSubscription<bool> _bottomInset$;
   bool _bottomInset = true;
 
   @override
@@ -46,7 +46,7 @@ class _RouterOutletState extends State<RouterOutlet> {
       });
     });
 
-    _color$ = si.colorService!.color$.listen((ThemeModel value) {
+    _color$ = si.colorService.color$.listen((ThemeModel value) {
       setState(() {
         _restarting = true;
       });
@@ -62,7 +62,7 @@ class _RouterOutletState extends State<RouterOutlet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Dims.deviceSize!.height,
+      height: Dims.deviceSize.height,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         color: white,

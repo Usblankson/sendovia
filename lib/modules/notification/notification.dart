@@ -6,7 +6,7 @@ import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/styles.dart';
 
 class NotificationScreen extends StatefulWidget {
-  NotificationScreen({Key? key}) : super(key: key);
+  NotificationScreen({Key key}) : super(key: key);
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();

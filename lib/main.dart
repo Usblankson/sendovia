@@ -8,7 +8,7 @@ import 'package:route_observer_mixin/route_observer_mixin.dart';
 
 import 'core/locator/locator.dart';
 import 'core/service_injector/service_injector.dart';
-import 'modules/splash.dart';
+import 'modules-new/authentication/splash.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({this.appKey}) : super(key: appKey);
-  final ValueKey<String>? appKey;
+  final ValueKey<String> appKey;
 
   @override
   _MyAppState createState() {
@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                   button: TextStyle(fontSize: 45.sp)),
             ),
             onGenerateRoute: MainRouter.generateRoute,
-            home: Splash()),
+            home: SplashScreen()),
       ),
     );
   }

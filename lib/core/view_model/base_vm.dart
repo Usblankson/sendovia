@@ -40,7 +40,7 @@ abstract class BaseViewModel extends ChangeNotifier {
   }
 
   //Getters
-  FutureOr<void>? get initState => _initState;
+  FutureOr<void> get initState => _initState;
 
   bool get isLoading => _isLoading;
   bool get isDisposed => _isDisposed;

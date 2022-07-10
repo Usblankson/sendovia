@@ -4,7 +4,7 @@ import 'package:planetx/shared/models/data.dart';
 import '../../shared/utils/color.dart';
 
 class StoresLists extends StatelessWidget {
-  const StoresLists({Key? key}) : super(key: key);
+  const StoresLists({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +105,9 @@ class StoresLists extends StatelessWidget {
                           }).toList(),
                           // After selecting the desired option,it will
                           // change button value to selected value
-                          onChanged: (String? newValue) {
+                          onChanged: (String newValue) {
                             setState(() {
-                              dropdownvalue = newValue!;
+                              dropdownvalue = newValue;
                             });
                           },
                         ),
@@ -150,9 +150,9 @@ class StoresLists extends StatelessWidget {
                           }).toList(),
                           // After selecting the desired option,it will
                           // change button value to selected value
-                          onChanged: (String? newValue) {
+                          onChanged: (String newValue) {
                             setState(() {
-                              dropdownvalue = newValue!;
+                              dropdownvalue = newValue;
                             });
                           },
                         ),
@@ -181,7 +181,7 @@ class StoresLists extends StatelessWidget {
                                 height: 150,
                                 width: 170,
                                 child: Image.asset(
-                                  storesLists[index].image!,
+                                  storesLists[index].image,
                                   fit: BoxFit.cover,
                                 )),
                             Column(
@@ -195,7 +195,7 @@ class StoresLists extends StatelessWidget {
                                           Icons.star,
                                           color: Color(0xffEAE419),
                                         ),
-                                        Text(storesLists[index].rating!,
+                                        Text(storesLists[index].rating,
                                             style: const TextStyle(
                                                 color: Color(0xffEAE419),
                                                 fontFamily: "PT Sans",
@@ -206,14 +206,14 @@ class StoresLists extends StatelessWidget {
                                   ],
                                 ),
                                 SizedBox(height: 10),
-                                Text(storesLists[index].storeName!,
+                                Text(storesLists[index].storeName,
                                     style: TextStyle(
                                         color: black,
                                         fontFamily: "PT Sans",
                                         fontSize: 14,
                                         height: 2,
                                         fontWeight: FontWeight.w500)),
-                                Text(storesLists[index].description!,
+                                Text(storesLists[index].description,
                                     style: TextStyle(
                                         color: black,
                                         fontFamily: "PT Sans",
@@ -221,7 +221,7 @@ class StoresLists extends StatelessWidget {
                                         height: 2,
                                         fontWeight: FontWeight.w400)),
                                 SizedBox(height: 20),
-                                Text(storesLists[index].price!,
+                                Text(storesLists[index].price,
                                     style: TextStyle(
                                         color: black,
                                         fontFamily: "PT Sans",

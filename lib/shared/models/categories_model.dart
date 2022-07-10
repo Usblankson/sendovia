@@ -17,9 +17,9 @@ class CategoriesPayload {
     this.data,
   });
 
-  bool? success;
+  bool success;
   dynamic message;
-  List<PayloadFromCategories>? data;
+  List<PayloadFromCategories> data;
 
   factory CategoriesPayload.fromJson(Map<String, dynamic> json) =>
       CategoriesPayload(
@@ -36,7 +36,7 @@ class CategoriesPayload {
         "message": message,
         "data": data == null
             ? null
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
@@ -50,12 +50,12 @@ class PayloadFromCategories {
     this.v,
   });
 
-  String? id;
-  String? name;
-  String? image;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  int? v;
+  String id;
+  String name;
+  String image;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
 
   factory PayloadFromCategories.fromJson(Map<String, dynamic> json) =>
       PayloadFromCategories(
@@ -75,8 +75,8 @@ class PayloadFromCategories {
         "_id": id == null ? null : id,
         "name": name == null ? null : name,
         "image": image == null ? null : image,
-        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+        "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
         "__v": v == null ? null : v,
       };
 }
