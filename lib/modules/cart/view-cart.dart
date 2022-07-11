@@ -456,13 +456,13 @@ class CartScreen extends StatelessWidget {
                       width: 150.w,
                     ),
                     InkWell(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SelectGift(
-                                  cartPayload: viewModel.selectedCartInfo,
-                                )),
-                      ),
+                      // onTap: () => Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => SelectGift(
+                      //             cartPayload: viewModel.selectedCartInfo,
+                      //           )),
+                      // ),
                       splashColor: white,
                       child: Container(
                         child: Padding(

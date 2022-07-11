@@ -33,8 +33,8 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => CheckOutScreen());
       case RoutePaths.checkoutPaymentScreen:
         return MaterialPageRoute(builder: (_) => CheckOutPaymentScreen());
-      case RoutePaths.summaryScreen:
-        return MaterialPageRoute(builder: (_) => SummaryScreen());
+      // case RoutePaths.summaryScreen:
+      //   return MaterialPageRoute(builder: (_) => SummaryScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
