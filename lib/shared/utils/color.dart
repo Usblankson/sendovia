@@ -8,6 +8,9 @@ const Color flutterwaveGreen = Color(0xffF2F8F1);
 const Color inActiveGrey = Color(0xffE3E4E8);
 const Color white = Color(0xffffffff);
 const Color secondaryBlue = Color(0xff0C80E4);
+const Color textColorDark = Color(0xff0B2253);
+const Color inputFieldColor = Color(0xffF1F4F5);
+const Color supportTexColor = Color(0xffF1F4F5);
 
 const Color primaryGrey = Color(0xff4F4F4F);
 const Color secondaryGrey = Color(0xff767676);
