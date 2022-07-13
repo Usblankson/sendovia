@@ -15,11 +15,10 @@ import '../../shared/widgets/custom_button.dart';
 import '../../shared/widgets/space.dart';
 
 class SummaryScreen extends StatelessWidget {
-  SummaryScreen({Key? key, required this.contacts, this.cartPayload})
-      : super(key: key);
+  SummaryScreen({Key key, this.contacts, this.cartPayload}) : super(key: key);
 
   BeneficiaryModel contacts;
-  List<PayloadFromCart>? cartPayload;
+  List<PayloadFromCart> cartPayload;
 
   @override
   Widget build(BuildContext context) {
@@ -128,11 +127,11 @@ class SummaryScreen extends StatelessWidget {
                                               fit: BoxFit.fill,
                                             )
                                           : viewModel.userCartInfo[index]
-                                                      .product!.image !=
+                                                      .product.image !=
                                                   null
                                               ? Image.network(
                                                   viewModel.userCartInfo[index]
-                                                      .product!.image!,
+                                                      .product.image,
                                                   fit: BoxFit.fill,
                                                 )
                                               : Image.asset(
@@ -149,7 +148,7 @@ class SummaryScreen extends StatelessWidget {
                                           viewModel.userCartInfo.isEmpty
                                               ? "New AirPods 2019"
                                               : viewModel.userCartInfo[index]
-                                                      .product!.name ??
+                                                      .product.name ??
                                                   "New AirPods 2019",
                                           fontSize: 12.sp,
                                           color: textColorDark,
@@ -159,7 +158,7 @@ class SummaryScreen extends StatelessWidget {
                                           viewModel.userCartInfo.isEmpty
                                               ? "New AirPods 2019...."
                                               : viewModel.userCartInfo[index]
-                                                      .product!.description ??
+                                                      .product.description ??
                                                   "New AirPods 2019.....",
                                           fontSize: 12.sp,
                                           color: grey,

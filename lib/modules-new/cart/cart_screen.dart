@@ -113,7 +113,7 @@ class CartScreen extends StatelessWidget {
                                   Styles.semiBold(
                                     viewModel.userCartInfo.isEmpty
                                         ? "Toptek Stores"
-                                        : viewModel.userCartInfo[index].product!
+                                        : viewModel.userCartInfo[index].product
                                                 .name ??
                                             "Toptek Stores",
                                     fontSize: 14.sp,
@@ -139,13 +139,13 @@ class CartScreen extends StatelessWidget {
                                                 fit: BoxFit.fill,
                                               )
                                             : viewModel.userCartInfo[index]
-                                                        .product!.image !=
+                                                        .product.image !=
                                                     null
                                                 ? Image.network(
                                                     viewModel
                                                         .userCartInfo[index]
-                                                        .product!
-                                                        .image!,
+                                                        .product
+                                                        .image,
                                                     fit: BoxFit.fill,
                                                   )
                                                 : Image.asset(
@@ -162,7 +162,7 @@ class CartScreen extends StatelessWidget {
                                             viewModel.userCartInfo.isEmpty
                                                 ? "New AirPods 2019"
                                                 : viewModel.userCartInfo[index]
-                                                        .product!.name ??
+                                                        .product.name ??
                                                     "New AirPods 2019",
                                             fontSize: 12.sp,
                                             color: textColorDark,
@@ -198,19 +198,19 @@ class CartScreen extends StatelessWidget {
                                                       if (viewModel
                                                               .userCartInfo[
                                                                   index]
-                                                              .quantity! >
+                                                              .quantity >
                                                           1) {
                                                         viewModel.updateCart(
                                                             context: context,
                                                             productId: viewModel
                                                                 .userCartInfo[
                                                                     index]
-                                                                .product!
-                                                                .id!,
+                                                                .product
+                                                                .id,
                                                             quantity: viewModel
                                                                     .userCartInfo[
                                                                         index]
-                                                                    .quantity! -
+                                                                    .quantity -
                                                                 1);
                                                       }
                                                     }),
@@ -241,23 +241,23 @@ class CartScreen extends StatelessWidget {
                                                       if (viewModel
                                                               .userCartInfo[
                                                                   index]
-                                                              .quantity! <
+                                                              .quantity <
                                                           viewModel
                                                               .userCartInfo[
                                                                   index]
-                                                              .product!
-                                                              .stock!) {
+                                                              .product
+                                                              .stock) {
                                                         viewModel.updateCart(
                                                             context: context,
                                                             productId: viewModel
                                                                 .userCartInfo[
                                                                     index]
-                                                                .product!
-                                                                .id!,
+                                                                .product
+                                                                .id,
                                                             quantity: viewModel
                                                                     .userCartInfo[
                                                                         index]
-                                                                    .quantity! +
+                                                                    .quantity +
                                                                 1);
                                                       }
                                                     }),

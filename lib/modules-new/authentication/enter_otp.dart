@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:planetx/modules-new/authentication/reset_password.dart';
-import 'package:planetx/modules-new/widgets/custom_button.dart';
+import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';
 
 import '../../shared/widgets/space.dart';
-import '../utils/app_text.dart';
-import '../utils/colors.dart';
-import '../utils/images.dart';
-import '../utils/navigation.dart';
-import '../widgets/countdown.dart';
-import '../widgets/custom_text_form_field.dart';
-
+import '../../shared/utils/app_text.dart';
+import 'package:planetx/shared/utils/color.dart';
+import '../../shared/utils/images.dart';
+import '../../shared/utils/navigation.dart';
+import '../../shared/widgets/countdown.dart';
+import '../../shared/widgets/custom_text_form_field.dart';
 
 class EnterCode extends StatefulWidget {
   const EnterCode({Key key}) : super(key: key);

@@ -12,7 +12,7 @@ import '../../shared/widgets/custom_button.dart';
 import '../cart/viewmodel/cart_vm.dart';
 
 class ReceivingScreen extends StatelessWidget {
-  const ReceivingScreen({Key? key}) : super(key: key);
+  const ReceivingScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -116,11 +116,11 @@ class ReceivingScreen extends StatelessWidget {
                                               fit: BoxFit.fill,
                                             )
                                           : viewModel.userCartInfo[index]
-                                                      .product!.image !=
+                                                      .product.image !=
                                                   null
                                               ? Image.network(
                                                   viewModel.userCartInfo[index]
-                                                      .product!.image!,
+                                                      .product.image,
                                                   fit: BoxFit.fill,
                                                 )
                                               : Image.asset(
@@ -137,7 +137,7 @@ class ReceivingScreen extends StatelessWidget {
                                           viewModel.userCartInfo.isEmpty
                                               ? "New AirPods 2019"
                                               : viewModel.userCartInfo[index]
-                                                      .product!.name ??
+                                                      .product.name ??
                                                   "New AirPods 2019",
                                           fontSize: 12.sp,
                                           color: textColorDark,
@@ -147,7 +147,7 @@ class ReceivingScreen extends StatelessWidget {
                                           viewModel.userCartInfo.isEmpty
                                               ? "New AirPods 2019...."
                                               : viewModel.userCartInfo[index]
-                                                      .product!.description ??
+                                                      .product.description ??
                                                   "New AirPods 2019.....",
                                           fontSize: 12.sp,
                                           color: grey,
@@ -199,13 +199,13 @@ class ReceivingScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Styles.semiBold("${contacts.fullName}",
+                        Styles.semiBold("{contacts.fullName}",
                             color: textColorDark, fontSize: 14.sp),
                         VSpace(8.h),
-                        Styles.regular("${contacts.email}",
+                        Styles.regular("{contacts.email}",
                             color: grey, fontSize: 14.sp),
                         VSpace(8.h),
-                        Styles.regular("${contacts.phoneNo}",
+                        Styles.regular("{contacts.phoneNo}",
                             color: grey, fontSize: 14.sp),
                         VSpace(8.h),
                       ],
@@ -228,7 +228,7 @@ class ReceivingScreen extends StatelessWidget {
                       Styles.semiBold("Message",
                           color: textColorDark, fontSize: 14.sp),
                       VSpace(12.h),
-                      Styles.regular("${contacts.message}",
+                      Styles.regular("{contacts.message}",
                           color: grey, fontSize: 14.sp),
                     ],
                   ),

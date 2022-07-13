@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
-import 'package:planetx/modules-new/tabs/home.dart';
-import 'package:planetx/modules-new/utils/app_text.dart';
-import 'package:planetx/modules-new/utils/colors.dart';
-import 'package:planetx/modules-new/utils/images.dart';
-import 'tabs/account.dart';
-import 'tabs/history.dart';
+import 'package:planetx/modules-new/account_module/account.dart';
+import 'package:planetx/modules-new/history_module/history.dart';
+import 'package:planetx/shared/utils/app_text.dart';
+import 'package:planetx/shared/utils/color.dart';
+import 'package:planetx/shared/utils/images.dart';
+import 'home_module/home.dart';
 
 class TabLayout extends StatefulWidget {
   @override
@@ -95,7 +95,7 @@ class _TabLayoutState extends State<TabLayout> with TickerProviderStateMixin {
             indicatorWeight: 1,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorPadding:
-            EdgeInsets.symmetric(horizontal: 38.w, vertical: 6.h),
+                EdgeInsets.symmetric(horizontal: 38.w, vertical: 6.h),
             tabs: tab(),
             labelColor: primaryColor,
             unselectedLabelColor: supportTextColor,
@@ -103,7 +103,7 @@ class _TabLayoutState extends State<TabLayout> with TickerProviderStateMixin {
             unselectedLabelStyle:
                 TextStyle(fontStyle: FontStyle.normal, color: supportTextColor),
 
-            physics: const  BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             onTap: (int index) {
               currentIndex = index;
               setState(() {

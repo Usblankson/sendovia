@@ -188,6 +188,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_contacts",
+      "rootUri": "file:///C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_contacts-1.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
       "packageUri": "lib/",
@@ -644,7 +650,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2022-07-11T19:37:49.886099Z",
+  "generated": "2022-07-13T01:27:31.677264Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

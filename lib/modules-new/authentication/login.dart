@@ -4,14 +4,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:planetx/modules-new/bottom_tabbar.dart';
-import 'package:planetx/modules-new/utils/colors.dart';
-import 'package:planetx/modules-new/widgets/custom_button.dart';
-import 'package:planetx/modules-new/widgets/custom_text_form_field.dart';
+import 'package:planetx/shared/utils/color.dart';
+import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';
+import 'package:planetx/shared/widgets/custom_text_form_field.dart';
 
 import '../../shared/widgets/space.dart';
-import '../utils/app_text.dart';
-import '../utils/images.dart';
-import '../utils/navigation.dart';
+import '../../shared/utils/app_text.dart';
+import '../../shared/utils/images.dart';
+import '../../shared/utils/navigation.dart';
 import 'forgot_password.dart';
 import 'sign_up.dart';
 

@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 
-const Color primaryColor = Color(0xff7B61FF);
 const Color loaderBlue = Color(0xff0C80E4);
 const Color activeGreen = Color(0xff27A770);
 const Color herbGreen = Color(0xff106066);
 const Color flutterwaveGreen = Color(0xffF2F8F1);
 const Color inActiveGrey = Color(0xffE3E4E8);
-const Color white = Color(0xffffffff);
 const Color secondaryBlue = Color(0xff0C80E4);
-const Color textColorDark = Color(0xff0B2253);
-const Color inputFieldColor = Color(0xffF1F4F5);
-const Color supportTexColor = Color(0xffF1F4F5);
 
 const Color primaryGrey = Color(0xff4F4F4F);
 const Color secondaryGrey = Color(0xff767676);
-const Color black = Color(0xff000000);
 const Color orange = Color(0xffFDB557);
 const Color mecuryGrey = Color(0xff8692A6);
 const Color bunkerDark = Color(0xff1D2B4F);
@@ -46,7 +40,6 @@ const Color skyWhite = Color(0xffF2F4F5);
 const Color lightGreyy = Color(0xffEDF2F3);
 const Color purpleGrey = Color(0xff9393AA);
 const Color greyishwhite = Color(0xffD8D8D8);
-const Color grey = Color(0xffB9B9B9);
 const Color blackish = Color(0xff010F0B);
 const Color accentGreen = Color(0xffE9F5F3);
 const Color greyworm = Color(0xffAFAEAE);
@@ -65,3 +58,16 @@ const Color regentGrey = Color(0xff8692A6);
 const Color mercuryGrey = Color(0xffE5E5E5);
 const Color jungleGreen = Color(0xff27A770);
 const Color texasOrange = Color(0xffFDB557);
+
+const Color primaryColor = const Color(0xff7B61FF);
+const Color green = const Color(0xff27BE63);
+const Color white = const Color(0xffFFFFFF);
+const Color black = const Color(0xff0B2253);
+const Color supportTextColor = const Color(0xff6D7A98);
+const Color textColorDark = const Color(0xff0B2253);
+const Color darkBlueColor = const Color(0xff1C1348);
+const Color gray = const Color(0xffF7F9FB);
+const Color inputFieldColor = const Color(0xffF1F4F5);
+const Color appbarShadowColor = const Color(0xff4f4f4f);
+
+const Color grey = Color(0xffB9B9B9);

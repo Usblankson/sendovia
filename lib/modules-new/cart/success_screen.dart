@@ -7,7 +7,7 @@ import '../../shared/widgets/custom_button.dart';
 import '../../shared/widgets/space.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

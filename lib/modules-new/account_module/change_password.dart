@@ -8,17 +8,19 @@ import 'package:planetx/shared/utils/images.dart';
 import 'package:planetx/shared/utils/navigation.dart';
 import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';
 import 'package:planetx/shared/widgets/custom_text_form_field.dart';
-import 'package:planetx/shared/widgets/space.dart';
 
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key key}) : super(key: key);
+import '../../../shared/widgets/space.dart';
+
+class ChangePassword extends StatefulWidget {
+  const ChangePassword({Key key}) : super(key: key);
 
   @override
-  State<ResetPassword> createState() => _ResetPasswordState();
+  State<ChangePassword> createState() => _ChangePasswordState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
-  bool isPasswordVisible = true;
+class _ChangePasswordState extends State<ChangePassword> {
+  bool isCurrentPasswordVisible = true;
+  bool isNewPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
   @override
   Widget build(BuildContext context) {
@@ -34,12 +36,21 @@ class _ResetPasswordState extends State<ResetPassword> {
         leading: IconButton(
             icon: Image.asset(
               backBtn,
-              width: 24.h,
+              width: 24.w,
               height: 24.h,
             ),
             onPressed: () {
               Nav.back(context);
             }),
+        title: AppText(
+          'Change Password',
+          18.sp,
+          FontWeight.w600,
+          black,
+          0,
+          0,
+          null,
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -48,26 +59,41 @@ class _ResetPasswordState extends State<ResetPassword> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              VSpace(24.h),
-              AppText('Reset Password', 18.sp, FontWeight.w600, black, 0, 3.2,
-                  null),
-              VSpace(12.h),
-              AppText('Please enter your new password', 16.sp, FontWeight.w400,
-                  supportTextColor, 0, 2.4, null),
               VSpace(32.h),
               CustomTextFormField(
-                label: 'Password',
+                label: 'Current Password',
                 keyboardType: TextInputType.emailAddress,
                 maxLines: 1,
-                obscureText: isPasswordVisible,
+                obscureText: isCurrentPasswordVisible,
                 suffixIcon: InkWell(
                   onTap: () {
                     setState(() {
-                      isPasswordVisible = !isPasswordVisible;
+                      isCurrentPasswordVisible = !isCurrentPasswordVisible;
                     });
                   },
                   child: Icon(
-                    isPasswordVisible
+                    isCurrentPasswordVisible
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                    color: supportTextColor,
+                    size: 22.sp,
+                  ),
+                ),
+              ),
+              VSpace(24.h),
+              CustomTextFormField(
+                label: 'New Password',
+                keyboardType: TextInputType.emailAddress,
+                maxLines: 1,
+                obscureText: isCurrentPasswordVisible,
+                suffixIcon: InkWell(
+                  onTap: () {
+                    setState(() {
+                      isNewPasswordVisible = !isNewPasswordVisible;
+                    });
+                  },
+                  child: Icon(
+                    isNewPasswordVisible
                         ? Icons.visibility_off_outlined
                         : Icons.visibility_outlined,
                     color: supportTextColor,
@@ -98,7 +124,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               VSpace(24.h),
               CustomButton(
-                title: 'Reset password',
+                title: 'Current Password',
                 onPress: () {},
                 isActive: true,
                 color: primaryColor,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:planetx/modules-new/authentication/sign_up.dart';
-import 'package:planetx/modules-new/utils/app_text.dart';
-import 'package:planetx/modules-new/utils/navigation.dart';
-import 'package:planetx/modules-new/utils/space.dart';
-import 'package:planetx/modules-new/widgets/custom_button.dart';
-import '../utils/colors.dart';
+import 'package:planetx/shared/utils/app_text.dart';
+import 'package:planetx/shared/utils/navigation.dart';
+import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';
+import 'package:planetx/shared/utils/color.dart';
+import 'package:planetx/shared/widgets/space.dart';
 import 'login.dart';
 
 class SplashScreenTwo extends StatefulWidget {

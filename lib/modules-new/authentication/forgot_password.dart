@@ -2,16 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
-import 'package:planetx/modules-new/widgets/custom_button.dart';
-import 'package:planetx/modules-new/widgets/custom_text_form_field.dart';
+import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';
+import 'package:planetx/shared/widgets/custom_text_form_field.dart';
 
 import '../../shared/widgets/space.dart';
-import '../utils/app_text.dart';
-import '../utils/colors.dart';
-import '../utils/images.dart';
-import '../utils/navigation.dart';
+import '../../shared/utils/app_text.dart';
+import 'package:planetx/shared/utils/color.dart';
+import '../../shared/utils/images.dart';
+import '../../shared/utils/navigation.dart';
 import 'enter_otp.dart';
-
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key key}) : super(key: key);
@@ -51,8 +50,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               VSpace(24.h),
-              AppText(
-                  'Forgot Password', 18.sp, FontWeight.w600, black, 0, 0.h, null),
+              AppText('Forgot Password', 18.sp, FontWeight.w600, black, 0, 0.h,
+                  null),
               VSpace(12.h),
               AppText(
                   'Please enter your registered email address to reset your password',
@@ -71,7 +70,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               VSpace(24.h),
               CustomButton(
                 title: 'Recover password',
-                onPress: () => Nav.forward(context,const EnterCode()),
+                onPress: () => Nav.forward(context, const EnterCode()),
                 isActive: true,
                 color: primaryColor,
                 txtColor: white,

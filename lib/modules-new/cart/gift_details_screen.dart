@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/modules-new/cart/summary_screen.dart';
 import 'package:planetx/modules-new/cart/viewmodel/cart_vm.dart';
@@ -18,7 +17,7 @@ import '../../core/service_injector/service_injector.dart';
 import '../../shared/utils/color.dart';
 
 class GiftDetailScreen extends StatelessWidget {
-  GiftDetailScreen({Key? key}) : super(key: key);
+  GiftDetailScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +120,12 @@ class GiftDetailScreen extends StatelessWidget {
                                         "assets/images/store-product.png",
                                         fit: BoxFit.fill,
                                       )
-                                    : viewModel.userCartInfo[index].product!
+                                    : viewModel.userCartInfo[index].product
                                                 .image !=
                                             null
                                         ? Image.network(
                                             viewModel.userCartInfo[index]
-                                                .product!.image!,
+                                                .product.image,
                                             fit: BoxFit.fill,
                                           )
                                         : Image.asset(
@@ -141,7 +140,7 @@ class GiftDetailScreen extends StatelessWidget {
                                   Styles.semiBold(
                                     viewModel.userCartInfo.isEmpty
                                         ? "New AirPods 2019"
-                                        : viewModel.userCartInfo[index].product!
+                                        : viewModel.userCartInfo[index].product
                                                 .name ??
                                             "New AirPods 2019",
                                     fontSize: 12.sp,
@@ -151,7 +150,7 @@ class GiftDetailScreen extends StatelessWidget {
                                   Styles.semiBold(
                                     viewModel.userCartInfo.isEmpty
                                         ? "New AirPods 2019...."
-                                        : viewModel.userCartInfo[index].product!
+                                        : viewModel.userCartInfo[index].product
                                                 .description ??
                                             "New AirPods 2019.....",
                                     fontSize: 12.sp,

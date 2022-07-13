@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/widgets/space.dart';
 
 import '../utils/color.dart';
-import '../utils/styles.dart';
+
 class CustomAppBar extends StatelessWidget {
   final String title;
   final String subTitle;
@@ -28,7 +29,6 @@ class CustomAppBar extends StatelessWidget {
   });
 
   // Size get preferredSize => Size.fromHeight(height);
-
 
   @override
   Widget build(BuildContext context) {

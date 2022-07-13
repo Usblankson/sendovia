@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:planetx/modules-new/send_gift_module/shop_details.dart';
 import 'package:planetx/modules/auth/login_first_user.dart';
 import 'package:planetx/modules/checkout/checkout-payment.dart';
 import 'package:planetx/modules/checkout/checkout.dart';
@@ -33,8 +34,8 @@ class MainRouter {
         return MaterialPageRoute(builder: (_) => CheckOutScreen());
       case RoutePaths.checkoutPaymentScreen:
         return MaterialPageRoute(builder: (_) => CheckOutPaymentScreen());
-      // case RoutePaths.summaryScreen:
-      //   return MaterialPageRoute(builder: (_) => SummaryScreen());
+      case RoutePaths.shopDetailsScreen:
+        return MaterialPageRoute(builder: (_) => ShopDetailsScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

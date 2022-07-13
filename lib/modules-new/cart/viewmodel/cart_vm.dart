@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+// import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/shared/models/cart_model.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -35,10 +35,10 @@ class CartViewModel extends BaseViewModel {
   List<PayloadFromCart> userCartInfo = [];
   List<PayloadFromCart> selectedCartInfo = [];
 
-  List<Contact>? _contacts;
-  List<Contact>? _contactsFiltered = [];
-  List<Contact>? get contacts => _contacts;
-  List<Contact>? get contactsFiltered => _contactsFiltered;
+  List<Contact> _contacts;
+  List<Contact> _contactsFiltered = [];
+  List<Contact> get contacts => _contacts;
+  List<Contact> get contactsFiltered => _contactsFiltered;
   TextEditingController searchController = new TextEditingController();
   bool isSearching = false;
   bool _permissionDenied = false;
@@ -160,9 +160,7 @@ class CartViewModel extends BaseViewModel {
   }
 
   Future<void> updateCart(
-      {BuildContext context,
-       int quantity,
-       String productId}) async {
+      {BuildContext context, int quantity, String productId}) async {
     changeStatus();
 
     final ApiResponse<UpdateCartPayload> res =
@@ -194,8 +192,7 @@ class CartViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> removeFromCart(
-      {BuildContext context,  String cartId}) async {
+  Future<void> removeFromCart({BuildContext context, String cartId}) async {
     changeStatus();
 
     final ApiResponse<UpdateCartPayload> res =
@@ -264,6 +261,7 @@ class CartViewModel extends BaseViewModel {
       searchController.addListener(() {
         filterContacts();
       });
+
       final contacts = await FlutterContacts.getContacts(
           withProperties: true, withPhoto: true);
       _contacts = contacts;
@@ -283,15 +281,15 @@ class CartViewModel extends BaseViewModel {
                   shrinkWrap: true,
                   itemCount: 6,
                   itemBuilder: (context, i) {
-                    Uint8List? image = contacts.isEmpty
+                    Uint8List image = contacts.isEmpty
                         ? null
-                        : (contacts![i].photo == null)
+                        : (contacts[i].photo == null)
                             ? null
-                            : contacts![i].photo!;
+                            : contacts[i].photo;
                     String num = contacts.isEmpty
                         ? "--"
-                        : (contacts![i].phones.isNotEmpty)
-                            ? (contacts![i].phones.first.number)
+                        : (contacts[i].phones.isNotEmpty)
+                            ? (contacts[i].phones.first.number)
                             : "--";
                     return ListTile(
                         leading: contacts.isEmpty
@@ -302,7 +300,7 @@ class CartViewModel extends BaseViewModel {
                                 ),
                                 backgroundColor: purpleGrey,
                               )
-                            : (contacts![i].photo == null)
+                            : (contacts[i].photo == null)
                                 ? const CircleAvatar(
                                     child: Icon(
                                       Icons.person,
@@ -311,22 +309,21 @@ class CartViewModel extends BaseViewModel {
                                     backgroundColor: purpleGrey,
                                   )
                                 : CircleAvatar(
-                                    backgroundImage: MemoryImage(image!)),
-                        title: Text(contacts.isEmpty
-                            ? "xyz"
-                            : contacts![i].displayName),
+                                    backgroundImage: MemoryImage(image)),
+                        title: Text(
+                            contacts.isEmpty ? "xyz" : contacts[i].displayName),
                         subtitle: Text(num),
                         onTap: () async {
                           if (contacts.isNotEmpty) {
                             final contact = await FlutterContacts.getContact(
-                                contacts![i].id);
+                                contacts[i].id);
 
                             nameCtrl.text =
-                                "xxx ${contact?.name.first} ${contact?.name.last}";
+                                "xxx ${contact.name.first} ${contact.name.last}";
                             phoneNoCtrl.text =
-                                "${contact!.phones.isNotEmpty ? contact.phones.first.number : '(none)'}";
+                                "${contact.phones.isNotEmpty ? contact.phones.first.number : '(none)'}";
                             emailCtrl.text =
-                                "${contact!.emails.isNotEmpty ? contact.emails.first.address : '(none)'}";
+                                "${contact.emails.isNotEmpty ? contact.emails.first.address : '(none)'}";
 
                             notify();
                           }
@@ -353,7 +350,7 @@ class CartViewModel extends BaseViewModel {
 
   filterContacts() {
     List<Contact> _searchcontacts = [];
-    _searchcontacts.addAll(contacts!);
+    _searchcontacts.addAll(contacts);
     if (searchController.text.isNotEmpty) {
       _searchcontacts.retainWhere((contact) {
         String searchTerm = searchController.text.toLowerCase();
@@ -371,7 +368,7 @@ class CartViewModel extends BaseViewModel {
         var phone = contact.phones.firstWhere((phn) {
           String phnFlattened = flattenPhoneNumber(phn.number);
           return phnFlattened.contains(searchTermFlatten);
-        }, orElse: () => null!);
+        }, orElse: () => null);
 
         return phone != null;
       });

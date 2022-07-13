@@ -11,7 +11,7 @@ import 'package:planetx/shared/widgets/space.dart';
 import '../../shared/utils/color.dart';
 
 class FeedbackScreen extends StatelessWidget {
-  const FeedbackScreen({Key? key}) : super(key: key);
+  const FeedbackScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

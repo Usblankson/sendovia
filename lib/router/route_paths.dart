@@ -10,5 +10,6 @@ class RoutePaths {
   static const String checkoutScreen = '/CheckOutScreen';
   static const String checkoutPaymentScreen = '/CheckOutPaymentScreen';
   static const String summaryScreen = '/SummaryScreen';
+  static const String shopDetailsScreen = '/ShopDetailsScreen';
   static const String storesLists = '/StoresLists';
 }

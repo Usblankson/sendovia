@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
-import 'package:planetx/modules-new/utils/app_text.dart';
-import 'package:planetx/modules-new/utils/colors.dart';
-import 'package:planetx/modules-new/utils/images.dart';
-import 'package:planetx/modules-new/utils/navigation.dart';
-import 'package:planetx/modules-new/widgets/custom_button.dart';
-import 'package:planetx/modules-new/widgets/custom_text_form_field.dart';
+import 'package:planetx/shared/utils/app_text.dart';
+import 'package:planetx/shared/utils/color.dart';
+import 'package:planetx/shared/utils/images.dart';
+import 'package:planetx/shared/utils/navigation.dart';
+import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';
+import 'package:planetx/shared/widgets/custom_text_form_field.dart';
 
 import '../../shared/widgets/space.dart';
 import 'login.dart';
-
 
 class SignUp extends StatefulWidget {
   const SignUp({Key key}) : super(key: key);
@@ -120,21 +119,23 @@ class _SignUpState extends State<SignUp> {
                     text: TextSpan(
                         text: 'Already have an account? ',
                         style: TextStyle(
-                          color: supportTextColor,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.sp
-                        ),
-                        children: [TextSpan(text: 'Login',
+                            color: supportTextColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.sp),
+                        children: [
+                      TextSpan(
+                          text: 'Login',
                           style: TextStyle(
                               color: primaryColor,
                               fontWeight: FontWeight.w600,
-                              fontSize: 14.sp
-                          ), recognizer: TapGestureRecognizer()..onTap = (){
+                              fontSize: 14.sp),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
                               Nav.forward(context, const LogIn());
-
-                            })])),
+                            })
+                    ])),
               ),
-               VSpace(32.h),
+              VSpace(32.h),
               Center(
                 child: AppText('By creating an account, you accept our', 14.sp,
                     FontWeight.w400, supportTextColor, 0, 2, null),
@@ -147,17 +148,16 @@ class _SignUpState extends State<SignUp> {
                         style: TextStyle(
                             color: primaryColor,
                             fontWeight: FontWeight.w600,
-                            fontSize: 14.sp
-                        ),
+                            fontSize: 14.sp),
                         children: [
-                          TextSpan(text: 'and ',
-                            style: TextStyle(
-                                color: supportTextColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14.sp
-                            )),
-                        const TextSpan(text: 'Privacy Policy'),
-                        ])),
+                      TextSpan(
+                          text: 'and ',
+                          style: TextStyle(
+                              color: supportTextColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14.sp)),
+                      const TextSpan(text: 'Privacy Policy'),
+                    ])),
               ),
             ],
           ),

@@ -13,7 +13,7 @@ import '../../shared/widgets/space.dart';
 import '../cart/viewmodel/cart_vm.dart';
 
 class DeliveryDetailsScreen extends StatelessWidget {
-  const DeliveryDetailsScreen({Key? key}) : super(key: key);
+  const DeliveryDetailsScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
