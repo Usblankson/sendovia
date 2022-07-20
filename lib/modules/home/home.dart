@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
-import 'package:planetx/modules/home/viewmodel/product_vm.dart';
+import 'package:planetx/modules-new/home_module/viewmodel/product_vm.dart';
 import 'package:planetx/shared/models/data.dart';
 import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/widgets/floating_button.dart';

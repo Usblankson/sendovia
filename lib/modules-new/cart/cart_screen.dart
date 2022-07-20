@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/modules-new/cart/gift_details_screen.dart';
 import 'package:planetx/modules-new/cart/viewmodel/cart_vm.dart';
 import 'package:planetx/shared/utils/color.dart';
+import 'package:planetx/shared/utils/navigation.dart';
 import 'package:planetx/shared/widgets/space.dart';
 
 import '../../core/service_injector/service_injector.dart';
@@ -385,7 +387,9 @@ class CartScreen extends StatelessWidget {
                     isActive: viewModel.userCartInfo.isNotEmpty,
                     color: blue,
                     title: "Send gift (₦ ${viewModel.total})",
-                    onPress: () {}),
+                    onPress: () {
+                      Nav.forward(context, GiftDetailScreen());
+                    }),
               )
             ],
           ),

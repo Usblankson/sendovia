@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:planetx/modules-new/home_module/viewmodel/product_vm.dart';
 import 'package:planetx/router/main_router.dart';
 import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/models/categories_model.dart';
@@ -14,7 +15,6 @@ import '../../core/service_injector/service_injector.dart';
 import '../../shared/utils/color.dart';
 import '../../shared/widgets/base_view.dart';
 import '../../modules/check-product/check_product.dart';
-import '../home/viewmodel/product_vm.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({Key key}) : super(key: key);

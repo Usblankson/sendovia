@@ -37,6 +37,9 @@ class ProductViewModel extends BaseViewModel {
     getProducts(
       context: context,
     );
+    getCategories(
+      context: context,
+    );
   }
 
   checkCart(bool value) {
