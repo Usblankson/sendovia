@@ -42,8 +42,8 @@ class _LoginFirstUserState extends State<LoginFirstUser> {
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayWidget: const LoadingOverlay(
-        image: "sendovia_logo",
-        text: "Authenticating ...",
+        // image: "sendovia_logo",
+        // text: "Authenticating ...",
       ),
       overlayOpacity: 0.8,
       child: Scaffold(

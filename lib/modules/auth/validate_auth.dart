@@ -40,8 +40,8 @@ class _ValidateAuthState extends State<ValidateAuth> with InputValidationMixin {
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayWidget: const LoadingOverlay(
-        image: "sendovia_logo",
-        text: "Validating ...",
+        // image: "sendovia_logo",
+        // text: "Validating ...",
       ),
       overlayOpacity: 0.8,
       child: Scaffold(

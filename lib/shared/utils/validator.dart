@@ -1,6 +1,5 @@
 import 'constants.dart';
 
-
 mixin InputValidationMixin {
   String _value;
 
@@ -12,11 +11,11 @@ mixin InputValidationMixin {
       // Regex for email validation
       RegExp regExp = RegExp(emailRegex);
       if (regExp.hasMatch(value)) {
-        return null;
+        return "";
       }
       return invalidEmailField;
     } else {
-      return null;
+      return "";
     }
   }
 
@@ -32,12 +31,12 @@ mixin InputValidationMixin {
         return passwordLengthError;
       }
       if (regExp.hasMatch(value)) {
-        return null;
+        return "";
       } else {
         return passwordStrengthError;
       }
     } else {
-      return null;
+      return "";
     }
   }
 
@@ -51,9 +50,9 @@ mixin InputValidationMixin {
         return passwordMatchError;
       }
     } else {
-      return null;
+      return "";
     }
-    return null;
+    return "";
   }
 
   String commonPassword(String value) {
@@ -67,9 +66,9 @@ mixin InputValidationMixin {
         return passwordLengthError;
       }
     } else {
-      return null;
+      return "";
     }
-    return null;
+    return "";
   }
 
   String resetPin(String value) {
@@ -83,9 +82,9 @@ mixin InputValidationMixin {
         return "Pin length must be 4";
       }
     } else {
-      return null;
+      return "";
     }
-    return null;
+    return "";
   }
 
   String validateUsername(String value) {
@@ -98,10 +97,10 @@ mixin InputValidationMixin {
         return usernameLengthError;
       }
     } else {
-      return null;
+      return "";
     }
 
-    return null;
+    return "";
   }
 
   String fieldValidate(String value) {
@@ -110,13 +109,9 @@ mixin InputValidationMixin {
         return emptyTextField;
       }
     } else {
-      return null;
+      return "";
     }
 
-    return null;
+    return "";
   }
 }
-
-
-
-

@@ -18,4 +18,4 @@ const String invalidEmailField =
 const String passwordMatchError = 'Password does not match';
 const String passwordLengthError = "Password length must be greater than 8";
 const String passwordStrengthError =
-    "It must have at least one uppercase, lowercase, \nnumber, and symbol ";
+    "Password must have at least one uppercase, lowercase, number, and symbol ";

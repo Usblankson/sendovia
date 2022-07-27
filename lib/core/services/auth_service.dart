@@ -156,12 +156,14 @@ class AuthService {
     String firstName,
     String lastName,
     String email,
+    String phoneNumber,
     String password,
   }) {
     final Map<String, String> body = <String, String>{
       "firstName": firstName,
       "lastName": lastName,
       "email": email,
+      // "phoneNumber": phoneNumber,
       "password": password
     };
 

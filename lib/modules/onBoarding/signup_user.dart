@@ -49,8 +49,8 @@ class SignUpUser extends StatelessWidget with InputValidationMixin {
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayWidget: const LoadingOverlay(
-        image: "shopping-bag",
-        text: "You’re all set, start sending gifts",
+        // image: "shopping-bag",
+        // text: "You’re all set, start sending gifts",
       ),
       overlayOpacity: 0.8,
       child: Scaffold(

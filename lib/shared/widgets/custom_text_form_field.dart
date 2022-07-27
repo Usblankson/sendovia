@@ -14,7 +14,8 @@ class CustomTextFormField extends StatefulWidget {
   String label;
   Color labelColor;
   FormFieldValidator validator;
-  Function(String) onSaved;
+  // Function(String) onSaved;
+  Function() onSaved;
   Color fillingColor;
   bool autofocus;
   bool isEnabled;
@@ -76,6 +77,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           obscuringCharacter: '*',
           keyboardType: widget.textInputType,
           validator: widget.validator,
+          onChanged: (String value) {
+            widget.onSaved != null ? widget.onSaved() : null;
+          },
           decoration: InputDecoration(
             errorStyle: TextStyle(height: 0.h, color: Colors.red),
             contentPadding:
