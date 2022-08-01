@@ -79,7 +79,7 @@ class _CustomButtonState extends State<CustomButton> {
             widget.isLoading
                 ? Container(
                 margin: const EdgeInsets.symmetric(horizontal: 6),
-                child: const Loader(radius: 15))
+                child: Loader(radius: 15, color: widget.txtColor,))
                 : const SizedBox(),
             widget.isLoading ? HSpace(10.w) : const SizedBox(),
             widget.prefixIcon != null

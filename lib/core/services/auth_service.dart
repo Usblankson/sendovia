@@ -136,10 +136,10 @@ class AuthService {
     storeService.reset();
   }
 
-  Future<ApiResponse<AuthPayload>> login(String email, String token) {
+  Future<ApiResponse<AuthPayload>> login(String email, String password) {
     final Map<String, String> body = <String, String>{
       'email': email,
-      'token': token,
+      'password': password,
     };
 
     AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
@@ -147,6 +147,22 @@ class AuthService {
       'auth/login',
       body,
       transform: (dynamic res) {
+        return AuthPayload.fromJson(res);
+      },
+    );
+  }
+
+  Future<ApiResponse<AuthPayload>> forgot(String email) {
+    final Map<String, String> body = <String, String>{
+      'email': email,
+    };
+
+    AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
+    return si.apiService.postApiNoHeader<AuthPayload>(
+      'auth/forgetpassword',
+      body,
+      transform: (dynamic res) {
+        debugPrint("forguuu $res");
         return AuthPayload.fromJson(res);
       },
     );

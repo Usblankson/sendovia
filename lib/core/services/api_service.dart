@@ -25,10 +25,10 @@ class ApiService {
 
     final AuthPayload auth = await si.authService.getAuthData();
 
-    if (auth.data.isNotEmpty) {
-      print("xxxx" + auth.data);
+    if (auth.data != null) {
+      print("xxxx" + auth.data.user.toString());
 
-      h[HttpHeaders.authorizationHeader] = 'Bearer ${auth.data}';
+      h[HttpHeaders.authorizationHeader] = 'Bearer ${auth.data.token}';
     }
 
     return h;
@@ -189,7 +189,7 @@ class ApiService {
               .toString();
     } catch (e) {
       apiResponse.success = false;
-      print('fortune --' + e.toString());
+      print('fortune see --' + e.toString());
       // debugPrint(e.toString());
       apiResponse.message = ('Error encountered').toString();
     }

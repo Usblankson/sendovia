@@ -1,81 +1,105 @@
-// class AuthPayload {
-//   AuthPayload({
-//     this.id,
-//     this.token,
-//     this.updatedAt,
-//     this.refreshToken,
-//     this.refreshedAt,
-//   });
-//
-//   factory AuthPayload.fromJson(dynamic json,
-//       [DateTime updated, DateTime? refreshed]) {
-//     if (json == null) {
-//       return null!;
-//     }
-//
-//     int updateTime = DateTime.now().millisecondsSinceEpoch;
-//     if (updated != null) {
-//       updateTime = updated.millisecondsSinceEpoch;
-//     } else if (json['updatedAt'] != null) {
-//       updateTime = json['updatedAt'] as int;
-//     }
-//
-//     int refreshTime = DateTime.now().millisecondsSinceEpoch;
-//     if (refreshed != null) {
-//       refreshTime = refreshed.millisecondsSinceEpoch;
-//     } else if (json['refreshedAt'] != null) {
-//       refreshTime = json['refreshedAt'] as int;
-//     }
-//
-//     return AuthPayload(
-//       id: json['id'] as String,
-//       token: json['token'] as String,
-//       refreshToken: json['refresh_token'] as String,
-//       updatedAt: updateTime,
-//       refreshedAt: refreshTime,
-//     );
-//   }
-//
-//   String? id;
-//   String? token;
-//   String? refreshToken;
-//   int? updatedAt; // milliseconds since epoch
-//   int? refreshedAt;
-//
-//   Map<String, dynamic> toJson() {
-//     return <String, dynamic>{
-//       'id': id,
-//       'token': token,
-//       'updatedAt': updatedAt,
-//       'refresh_token': refreshToken,
-//       'refreshedAt': refreshedAt,
-//     };
-//   }
-// }
-
 // To parse this JSON data, do
 //
 //     final authPayload = authPayloadFromJson(jsonString);
 
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-part 'auth_payload.freezed.dart';
-part 'auth_payload.g.dart';
-
-AuthPayload authPayloadFromJson(String str) =>
-    AuthPayload.fromJson(json.decode(str));
+AuthPayload authPayloadFromJson(String str) => AuthPayload.fromJson(json.decode(str));
 
 String authPayloadToJson(AuthPayload data) => json.encode(data.toJson());
 
-@freezed
-class AuthPayload with _$AuthPayload {
-  const factory AuthPayload({
-    @required bool success,
-    @required dynamic message,
-    @required String data,
-  }) = _AuthPayload;
+class AuthPayload {
+  AuthPayload({
+    this.success,
+    this.message,
+    this.data,
+  });
 
-  factory AuthPayload.fromJson(Map<String, dynamic> json) =>
-      _$AuthPayloadFromJson(json);
+  bool success;
+  String message;
+  Data data;
+
+  factory AuthPayload.fromJson(Map<String, dynamic> json) => AuthPayload(
+    success: json["success"] == null ? null : json["success"],
+    message: json["message"] == null ? null : json["message"],
+    data: json["data"] == null ? null : Data.fromJson(json["data"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "success": success == null ? null : success,
+    "message": message == null ? null : message,
+    "data": data == null ? null : data.toJson(),
+  };
+}
+
+class Data {
+  Data({
+    this.user,
+    this.token,
+  });
+
+  User user;
+  String token;
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    user: json["user"] == null ? null : User.fromJson(json["user"]),
+    token: json["token"] == null ? null : json["token"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "user": user == null ? null : user.toJson(),
+    "token": token == null ? null : token,
+  };
+}
+
+class User {
+  User({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.profilePhoto,
+    this.email,
+    this.isActive,
+    this.isVerified,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
+
+  String id;
+  String firstName;
+  String lastName;
+  dynamic profilePhoto;
+  String email;
+  bool isActive;
+  bool isVerified;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+    id: json["_id"] == null ? null : json["_id"],
+    firstName: json["firstName"] == null ? null : json["firstName"],
+    lastName: json["lastName"] == null ? null : json["lastName"],
+    profilePhoto: json["profilePhoto"],
+    email: json["email"] == null ? null : json["email"],
+    isActive: json["isActive"] == null ? null : json["isActive"],
+    isVerified: json["isVerified"] == null ? null : json["isVerified"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    v: json["__v"] == null ? null : json["__v"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "_id": id == null ? null : id,
+    "firstName": firstName == null ? null : firstName,
+    "lastName": lastName == null ? null : lastName,
+    "profilePhoto": profilePhoto,
+    "email": email == null ? null : email,
+    "isActive": isActive == null ? null : isActive,
+    "isVerified": isVerified == null ? null : isVerified,
+    "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
+    "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
+    "__v": v == null ? null : v,
+  };
 }

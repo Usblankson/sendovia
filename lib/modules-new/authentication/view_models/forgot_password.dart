@@ -1,63 +1,43 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:planetx/core/services/auth_service.dart';
+import 'package:planetx/core/view_model/base_vm.dart';
 import 'package:planetx/modules-new/authentication/view_models/register_view_model.dart';
-import 'package:planetx/shared/models/auth_payload.dart';
-import 'package:planetx/shared/utils/navigation.dart';
 import 'package:planetx/shared/utils/validator.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../core/service_injector/service_injector.dart';
-import '../../../core/services/auth_service.dart';
-import '../../../core/view_model/base_vm.dart';
-import '../../../router/main_router.dart';
-import '../../../router/route_paths.dart';
 import '../../../shared/models/api_model.dart';
-import '../../bottom_tabbar.dart';
+import '../../../shared/models/auth_payload.dart';
+import '../../../shared/utils/navigation.dart';
+import '../enter_otp.dart';
 
-class AuthViewModel extends BaseViewModel with InputValidationMixin {
+class ForgotPasswordViewModel extends BaseViewModel with InputValidationMixin {
   final AuthService authService;
 
-  AuthViewModel({this.authService});
+  ForgotPasswordViewModel({this.authService});
+  ViewState viewState = ViewState.idle;
   bool isValidEmail = false;
   String message;
-  bool isVisiblePassword = true;
-  ViewState viewState = ViewState.idle;
-
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
 
-  @override
   FutureOr<void> init() {
-    // isLoading = false;
+    // TODO: implement init
+    throw UnimplementedError();
   }
-
-  // validateEmail(value) {
-  //   isValidEmail = value;
-  //   notifyListeners();
-  // }
-
-  visiblePassword() {
-    isVisiblePassword = !isVisiblePassword;
-    notifyListeners();
-  }
-
-
   void setViewState(ViewState value) {
     viewState = value;
     notifyListeners();
   }
 
-  bool loginButtonIsEnabled() {
+  bool forgotPasswordButtonIsEnabled() {
     return  emailController.text.isNotEmpty &&
-        passwordController.text.isNotEmpty &&
         viewState != ViewState.busy;
   }
 
-  String validateLogin() {
+  String validateForgot() {
     String error = "";
     error = validateEmail(emailController.text.trim());
     // error += "\n" +
@@ -66,10 +46,10 @@ class AuthViewModel extends BaseViewModel with InputValidationMixin {
     return error.trim();
   }
 
-  Future<bool> login(BuildContext context) async {
+  Future<bool> forgot(BuildContext context) async {
     // changeStatus();
 
-    String error = validateLogin();
+    String error = validateForgot();
     if (error.isNotEmpty) {
       message = error;
       showTopSnackBar(
@@ -82,7 +62,7 @@ class AuthViewModel extends BaseViewModel with InputValidationMixin {
 
     setViewState(ViewState.busy);
     final ApiResponse<AuthPayload> res =
-        await si.authService.login(emailController.text, passwordController.text);
+    await si.authService.forgot(emailController.text);
     // debugPrint("res first ${res.message}");
 
     print("yess----: " + res.data.toString());
@@ -104,11 +84,6 @@ class AuthViewModel extends BaseViewModel with InputValidationMixin {
       message = "Success!";
       debugPrint("res mess1 ${res.token.toString()}");
       debugPrint("res mess11 ${res.data.toString()}");
-
-      si.storageService.setItem('auth_data', json.encode(res.data.toJson()));
-      si.storageService.setItem('token', json.encode(res.token));
-      DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
-      si.storageService.setItem('loginTime', dateFormat.format(DateTime.now()));
 
       // Map<String, dynamic> decodedToken = JwtDecoder.decode(res.data!.data);
       // bool tokenTime = JwtDecoder.isExpired(res.payload.accessToken);
@@ -132,14 +107,14 @@ class AuthViewModel extends BaseViewModel with InputValidationMixin {
       //     const RouteSettings(name: RoutePaths.bottomNav),
       //   ),
       // );
-      Nav.forwardNoReturn(context, TabLayout());
+      Nav.forward(context, const EnterCode());
       return res.success;
     }
   }
 
+
   resetControllers() {
     emailController.text = "";
-    passwordController.text = "";
   }
 
 }
