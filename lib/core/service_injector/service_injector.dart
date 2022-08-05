@@ -22,6 +22,7 @@ class Injector {
   AuthService authService;
   ColorService colorService;
   UserService userService;
+
   Future<bool> init() async {
     // init storage service
     await storageService.initStorage();
