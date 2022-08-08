@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/core/services/auth_service.dart';
 import 'package:planetx/core/view_model/base_vm.dart';
+import 'package:planetx/modules-new/authentication/verify_email.dart';
 import 'package:planetx/router/main_router.dart';
 import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/models/api_model.dart';
@@ -150,7 +151,7 @@ class RegisterViewModel extends BaseViewModel with InputValidationMixin {
           //   ),
           // );
 
-          Nav.forward(context, EnterCode());
+          Nav.forward(context, VerifyEmail());
           return res.success;
         }
     } catch (e) {

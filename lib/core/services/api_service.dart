@@ -27,6 +27,7 @@ class ApiService {
 
     if (auth.data != null) {
       print("xxxx" + auth.data.user.toString());
+      print("xxxx 2" + auth.data.token.toString());
 
       h[HttpHeaders.authorizationHeader] = 'Bearer ${auth.data.token}';
     }
@@ -85,7 +86,7 @@ class ApiService {
       print('body___ ${httpBody(body)}');
 
       final dynamic data = json.decode(res.body);
-      print('data___ $data');
+      print('data___ ${jsonEncode(data)}');
       print('status: ' + res.statusCode.toString());
 
       /// Check if call is successful
@@ -104,7 +105,10 @@ class ApiService {
             data["message"] != null &&
             data["message"].length > 0) {
           apiResponse.success = true;
-          // print('LOGIN CHECK 0');
+          print('LOGIN CHECK 0');
+          if(data["data"] != null) {
+            apiResponse.data = transform(data);
+          }
 
           String msg = "";
           if (data["message"] is List) {
@@ -132,9 +136,10 @@ class ApiService {
 
           return apiResponse;
         } else {
-          apiResponse.success = false;
+          apiResponse.success =  false;
           apiResponse.message =
               (data['message'] ?? 'Error encountered').toString();
+          return apiResponse;
         }
         // print('LOGIN CHECK 1');
 
@@ -167,7 +172,7 @@ class ApiService {
         //     (data['userRole'] ?? 'Error encountered').toString();
         // }
       } else {
-        // print('LOGIN CHECK 4');
+        print('LOGIN CHECK 4');
 
         apiResponse.success = false;
         if (data['data'] != null) {

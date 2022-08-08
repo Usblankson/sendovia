@@ -57,8 +57,10 @@ class User {
     this.id,
     this.firstName,
     this.lastName,
+    this.phoneNumber,
     this.profilePhoto,
     this.email,
+    this.password,
     this.isActive,
     this.isVerified,
     this.createdAt,
@@ -69,8 +71,10 @@ class User {
   String id;
   String firstName;
   String lastName;
+  String phoneNumber;
   dynamic profilePhoto;
   String email;
+  String password;
   bool isActive;
   bool isVerified;
   DateTime createdAt;
@@ -81,8 +85,10 @@ class User {
     id: json["_id"] == null ? null : json["_id"],
     firstName: json["firstName"] == null ? null : json["firstName"],
     lastName: json["lastName"] == null ? null : json["lastName"],
+    phoneNumber: json["phoneNumber"] == null ? null : json["phoneNumber"],
     profilePhoto: json["profilePhoto"],
     email: json["email"] == null ? null : json["email"],
+    // password: json["password"] == null ? null : json["password"],
     isActive: json["isActive"] == null ? null : json["isActive"],
     isVerified: json["isVerified"] == null ? null : json["isVerified"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
@@ -94,8 +100,10 @@ class User {
     "_id": id == null ? null : id,
     "firstName": firstName == null ? null : firstName,
     "lastName": lastName == null ? null : lastName,
+    "phoneNumber": phoneNumber == null ? null : phoneNumber,
     "profilePhoto": profilePhoto,
     "email": email == null ? null : email,
+    "password": password == null ? null : password,
     "isActive": isActive == null ? null : isActive,
     "isVerified": isVerified == null ? null : isVerified,
     "createdAt": createdAt == null ? null : createdAt.toIso8601String(),

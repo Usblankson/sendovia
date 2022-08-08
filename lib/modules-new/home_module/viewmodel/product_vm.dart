@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:planetx/core/services/product_service.dart';
 import 'package:planetx/shared/models/allProducts_payload.dart';
+import 'package:planetx/shared/models/auth_payload.dart';
 import 'package:planetx/shared/models/cart_model.dart';
 import 'package:planetx/shared/models/categories_model.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -29,6 +30,7 @@ class ProductViewModel extends BaseViewModel {
   List<PayloadFromCategories> allCategories = [];
   String dropdownValue = 'Budget';
   String categories = 'Category';
+  AuthPayload authPayload;
 
   @override
   FutureOr<void> init() async {
@@ -40,6 +42,7 @@ class ProductViewModel extends BaseViewModel {
     getCategories(
       context: context,
     );
+    authPayload = await si.authService.getAuthData();
   }
 
   checkCart(bool value) {
@@ -70,12 +73,12 @@ class ProductViewModel extends BaseViewModel {
 
       allProducts = res.data.data;
       print("payload from products" + allProducts.toString());
-      showTopSnackBar(
-        context,
-        CustomSnackBar.success(
-          message: message,
-        ),
-      );
+      // showTopSnackBar(
+      //   context,
+      //   CustomSnackBar.success(
+      //     message: message,
+      //   ),
+      // );
       changeStatus();
     }
     changeStatus();
@@ -103,13 +106,13 @@ class ProductViewModel extends BaseViewModel {
       // print("job range success" + jobRange);
 
       allCategories = res.data.data;
-      print("payload from categories" + allProducts.toString());
-      showTopSnackBar(
-        context,
-        CustomSnackBar.success(
-          message: message,
-        ),
-      );
+      print("payload from categories" + allCategories.toString());
+      // showTopSnackBar(
+      //   context,
+      //   CustomSnackBar.success(
+      //     message: message,
+      //   ),
+      // );
       changeStatus();
     }
     changeStatus();

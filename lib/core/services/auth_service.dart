@@ -38,10 +38,14 @@ class AuthService {
     final Completer<AuthPayload> completer = Completer<AuthPayload>();
 
     final String data = si.storageService.getItemSync('auth_data');
+    debugPrint("get auth from sharedPee 11 ${data}");
+
     if (data.isEmpty) {
       completer.complete(null);
     } else {
       final AuthPayload auth = AuthPayload.fromJson(json.decode(data));
+
+      debugPrint("get auth from sharedPee ${auth}");
       completer.complete(auth);
     }
 
@@ -147,6 +151,23 @@ class AuthService {
       'auth/login',
       body,
       transform: (dynamic res) {
+        print("checking login res data $res");
+        return AuthPayload.fromJson(res);
+      },
+    );
+  }
+
+  Future<ApiResponse<AuthPayload>> verifyEmail(String email, String token) {
+    final Map<String, String> body = <String, String>{
+      'email': email,
+      'token': token,
+    };
+
+    AppConfig.profilePictureTimestamp = DateTime.now().millisecondsSinceEpoch;
+    return si.apiService.postApiNoHeader<AuthPayload>(
+      'auth/verify-mail',
+      body,
+      transform: (dynamic res) {
         return AuthPayload.fromJson(res);
       },
     );
@@ -179,7 +200,7 @@ class AuthService {
       "firstName": firstName,
       "lastName": lastName,
       "email": email,
-      // "phoneNumber": phoneNumber,
+      "phoneNumber": phoneNumber,
       "password": password
     };
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:planetx/modules-new/authentication/sign_up.dart';
+import 'package:planetx/modules-new/authentication/verify_email.dart';
 import 'package:planetx/shared/utils/app_text.dart';
 import 'package:planetx/shared/utils/navigation.dart';
 import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';

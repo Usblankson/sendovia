@@ -12,6 +12,7 @@ import 'package:planetx/shared/widgets/base_view.dart';
 import 'package:planetx/shared/widgets/custom_text_form_field.dart';
 import 'package:planetx/shared/widgets/gift_notifiication_card.dart';
 import 'package:planetx/shared/widgets/home_screen_top.dart';
+import 'package:planetx/shared/widgets/loader.dart';
 import 'package:planetx/shared/widgets/popular_item.dart';
 import 'package:planetx/shared/widgets/scroll_cta_tag_widget.dart';
 import 'package:planetx/shared/data/home_screen_lists.dart';
@@ -44,7 +45,7 @@ class Home extends StatelessWidget {
             child: Column(
               children: [
                 VSpace(4.h),
-                homeScreenHeader(context, 'Kingsley'),
+                homeScreenHeader(context, '${viewModel.authPayload.data.user.firstName ?? ""}',viewModel.authPayload.data.user.profilePhoto ),
                 VSpace(24.h),
                 Stack(
                   clipBehavior: Clip.none,
@@ -122,7 +123,7 @@ class Home extends StatelessWidget {
                     context, 'Popular Items', 'See all', const LogIn()),
                 SizedBox(
                   height: 160.h,
-                  child: ListView.builder(
+                  child: viewModel.allProducts == null ? Loader(color: primaryColor, radius: 15.r,) : ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: viewModel.allProducts.length,
                     shrinkWrap: true,

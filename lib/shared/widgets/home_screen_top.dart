@@ -12,7 +12,8 @@ import 'package:planetx/shared/widgets/space.dart';
 Widget homeScreenHeader(
   BuildContext context,
   String userName,
-) {
+    String dp
+    ) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -20,8 +21,13 @@ Widget homeScreenHeader(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(14),
-            child: Image.asset(
+            child: dp == null ? Image.asset(
               dp1,
+              fit: BoxFit.cover,
+              width: 40,
+              height: 40,
+            ) : Image.network(
+              dp,
               fit: BoxFit.cover,
               width: 40,
               height: 40,
@@ -33,7 +39,7 @@ Widget homeScreenHeader(
             children: [
               AppText(
                   'Hello', 14, FontWeight.w300, supportTextColor, 0, 1.8, null),
-              AppText('$userName, 👋🏼', 14, FontWeight.w400, textColorDark, 0,
+              AppText('${userName}, 👋🏼', 14, FontWeight.w400, textColorDark, 0,
                   1.8, null)
             ],
           )

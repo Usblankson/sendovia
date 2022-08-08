@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
+import 'package:planetx/modules-new/authentication/verify_email.dart';
 import 'package:planetx/modules-new/authentication/view_models/register_view_model.dart';
 import 'package:planetx/shared/utils/app_text.dart';
 import 'package:planetx/shared/utils/color.dart';
@@ -153,7 +154,7 @@ class _SignUpState extends State<SignUp> {
                                   fontSize: 14.sp),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Nav.forward(context, const LogIn());
+                                  Nav.forward(context, const VerifyEmail());
                                 })
                         ])),
                   ),

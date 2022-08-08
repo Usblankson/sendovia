@@ -15,7 +15,7 @@ Widget popularItem(
       children: <Widget>[
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
+          child: Image.network(
             image,
             fit: BoxFit.cover,
             width: 120,
