@@ -17,7 +17,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Nav.forward(context, page),
+      onTap: () => Nav.forwardNoReturn(context, page),
       child: Container(
         height: 80,
         decoration: BoxDecoration(

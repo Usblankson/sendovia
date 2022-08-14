@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:planetx/modules-new/authentication/login.dart';
+import 'package:planetx/modules-new/authentication/verify_email.dart';
 import 'package:planetx/shared/utils/app_text.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/images.dart';

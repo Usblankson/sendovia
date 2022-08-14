@@ -17,7 +17,8 @@ import 'package:planetx/shared/widgets/gift_item_widget.dart';
 import 'package:planetx/shared/data/home_screen_lists.dart';
 
 class SendGift extends StatefulWidget {
-  const SendGift({Key key}) : super(key: key);
+  const SendGift({Key key, this.tabControllerLength}) : super(key: key);
+  final int tabControllerLength;
 
   @override
   State<SendGift> createState() => _SendGiftState();
@@ -30,7 +31,7 @@ class _SendGiftState extends State<SendGift>
 
   @override
   void initState() {
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(length: widget.tabControllerLength, vsync: this);
     super.initState();
   }
 
@@ -258,6 +259,7 @@ class _SendGiftState extends State<SendGift>
                   controller: _tabController,
                   children:
                       List.generate(viewModel.allCategories.length, (index) {
+                        // debugPrint("see all list length ${list.allGifts.length}");
                     return GridView.builder(
                       physics: const BouncingScrollPhysics(),
                       itemCount: list.allGifts.length,

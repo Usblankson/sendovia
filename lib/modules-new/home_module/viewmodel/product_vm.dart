@@ -17,6 +17,7 @@ import '../../../shared/models/api_model.dart';
 
 class ProductViewModel extends BaseViewModel {
   final ProductService productService;
+  // final CartService
   final BuildContext context;
   ProductViewModel({this.productService, this.context});
 
@@ -31,6 +32,22 @@ class ProductViewModel extends BaseViewModel {
   String dropdownValue = 'Budget';
   String categories = 'Category';
   AuthPayload authPayload;
+  List<int> quantityToPurchase = [];
+
+
+  void setAddQuantityToPurchase(int index, int value) {
+      quantityToPurchase[index] = value;
+      debugPrint("add qunt $quantityToPurchase");
+      notifyListeners();
+  }
+
+  void setSubtractQuantityToPurchase(int index, int value) {
+    if(quantityToPurchase[index] > 1) {
+      quantityToPurchase[index] = value;
+      debugPrint("subtract qunt $quantityToPurchase");
+      notifyListeners();
+    }
+  }
 
   @override
   FutureOr<void> init() async {

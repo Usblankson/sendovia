@@ -8,6 +8,7 @@ import 'package:planetx/shared/widgets/space.dart';
 Widget giftNotificationCard(
   String userName,
   String senderName,
+    Function() action
 ) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 16),
@@ -28,7 +29,7 @@ Widget giftNotificationCard(
               AppText('you’ve got a gift from $senderName', 16, FontWeight.w500,
                   white, 0, 2, null),
               AppText('Click to view gift details', 14, FontWeight.w400, gray,
-                  0, 2, () {})
+                  0, 2, action)
             ],
           ),
         ),

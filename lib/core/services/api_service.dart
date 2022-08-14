@@ -262,8 +262,10 @@ class ApiService {
 
         apiResponse.data = transform(data);
       } else {
-        apiResponse.success = false;
-        apiResponse.data = null;
+        // apiResponse.success = false;
+        apiResponse.success = data['success'];
+        // apiResponse.data = null;
+        apiResponse.data = data['data'];
         if (apiResponse.data != null) {
           String errorMsg = "";
           for (int i = 0; i < data.length; i++) {

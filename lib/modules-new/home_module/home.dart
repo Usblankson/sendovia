@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/modules-new/authentication/login.dart';
 import 'package:planetx/modules-new/home_module/constants.dart';
+import 'package:planetx/modules-new/home_module/item_bottom_sheet.dart';
 import 'package:planetx/modules-new/home_module/viewmodel/product_vm.dart';
+import 'package:planetx/modules-new/receiving_module/receiving_screen.dart';
 import 'package:planetx/shared/utils/app_text.dart';
 import 'package:planetx/shared/utils/images.dart';
 import 'package:planetx/shared/utils/navigation.dart';
@@ -23,8 +25,23 @@ import 'package:planetx/shared/widgets/space.dart';
 import '../../shared/utils/color.dart';
 import '../send_gift_module/send_gift.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  PersistentBottomSheetController _controller;
+
+  void _createBottomSheet() async{
+    _controller = await _scaffoldKey.currentState.showBottomSheet(
+        (context) {
+          return HomeProductDetailsBottomSheet();
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +53,7 @@ class Home extends StatelessWidget {
   }
 
   Widget _buildScreen(BuildContext context, ProductViewModel viewModel) {
+
     HomeList data = HomeList();
     return Scaffold(
       body: SafeArea(
@@ -45,7 +63,10 @@ class Home extends StatelessWidget {
             child: Column(
               children: [
                 VSpace(4.h),
-                homeScreenHeader(context, '${viewModel.authPayload.data.user.firstName ?? ""}',viewModel.authPayload.data.user.profilePhoto ),
+                homeScreenHeader(
+                    context,
+                    '${viewModel.authPayload.data.user.firstName ?? ""}',
+                    viewModel.authPayload.data.user.profilePhoto),
                 VSpace(24.h),
                 Stack(
                   clipBehavior: Clip.none,
@@ -85,7 +106,7 @@ class Home extends StatelessWidget {
                             ),
                             child: AppText('Send a gift', 14.sp,
                                 FontWeight.w600, primaryColor, 0, 0.h, () {
-                              sendGiftBottomModel(context);
+                              sendGiftBottomModel(context, viewModel);
                             }),
                           )
                         ],
@@ -120,22 +141,66 @@ class Home extends StatelessWidget {
                 ),
                 VSpace(24.h),
                 scrollActionTag(
-                    context, 'Popular Items', 'See all', const LogIn()),
+                    context,
+                    'Popular Items',
+                    'See all',
+                    SendGift(
+                        tabControllerLength: viewModel.allCategories.length)),
                 SizedBox(
                   height: 160.h,
-                  child: viewModel.allProducts == null ? Loader(color: primaryColor, radius: 15.r,) : ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: viewModel.allProducts.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return popularItem(viewModel.allProducts[index].image,
-                          viewModel.allProducts[index].name);
-                    },
-                  ),
+                  child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: viewModel.allProducts.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            viewModel.quantityToPurchase = List.filled(index, 1);
+                            return GestureDetector(
+                              onTap: () async {
+                                // return showModalBottomSheet(
+                                // return showModalBottomSheet(
+                                //     constraints: BoxConstraints.expand(
+                                //         height:
+                                //             (deviceHeight(context) * 0.73).sp),
+                                //     isDismissible: true,
+                                //     enableDrag: true,
+                                //     isScrollControlled: true,
+                                //     elevation: 5,
+                                //     barrierColor: Colors.grey.withOpacity(0.5),
+                                //     context: context,
+                                //     backgroundColor:
+                                //         Colors.grey.withOpacity(0.5),
+                                //     builder: (BuildContext context) {
+                                //       return HomeProductDetailsBottomSheet(
+                                //           // viewModel: viewModel,
+                                //           product:
+                                //               viewModel.allProducts[index],
+                                //       quantity: viewModel.quantityToPurchase[index],
+                                //       onAdd: () {
+                                //             viewModel.setAddQuantityToPurchase(index,viewModel.quantityToPurchase[index] + 1);
+                                //       },
+                                //       onRemove: () {
+                                //             viewModel.setSubtractQuantityToPurchase(index, viewModel.quantityToPurchase[index] - 1);
+                                //       },);
+                                //     });
+                              },
+                              child: popularItem(
+                                  viewModel.allProducts[index].image,
+                                  viewModel.allProducts[index].name),
+                            );
+                          },
+                        ),
                 ),
-                giftNotificationCard('Kingsley', 'Deji'),
+                giftNotificationCard(
+                    '${viewModel.authPayload.data.user.firstName ?? ""}',
+                    'Deji', () {
+                  Nav.forward(context, ReceivingScreen());
+                }),
                 scrollActionTag(
-                    context, 'Categories', 'See all', const LogIn()),
+                    context,
+                    'Categories',
+                    'See all',
+                    SendGift(
+                        tabControllerLength: viewModel.allCategories.length)),
                 SizedBox(
                   height: 160.h,
                   child: ListView.builder(
@@ -143,8 +208,15 @@ class Home extends StatelessWidget {
                     itemCount: viewModel.allCategories.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return popularItem(viewModel.allCategories[index].image,
-                          viewModel.allCategories[index].name);
+                      return GestureDetector(
+                        onTap: () {
+                          SendGift(
+                              tabControllerLength:
+                                  viewModel.allCategories.length);
+                        },
+                        child: popularItem(viewModel.allCategories[index].image,
+                            viewModel.allCategories[index].name),
+                      );
                     },
                   ),
                 ),
@@ -156,7 +228,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  sendGiftBottomModel(BuildContext context) {
+  sendGiftBottomModel(BuildContext context, viewModel) {
     return showModalBottomSheet(
       constraints: BoxConstraints.expand(height: deviceHeight(context) / 2),
       isDismissible: true,
@@ -199,7 +271,11 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   InkWell(
-                    onTap: () => Nav.forward(context, const SendGift()),
+                    onTap: () => Nav.forward(
+                        context,
+                        SendGift(
+                          tabControllerLength: viewModel.allCategories.length,
+                        )),
                     child: Container(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 35),
