@@ -28,26 +28,45 @@ class ProductViewModel extends BaseViewModel {
   String message = "";
   bool cartSelected = false;
   List<PayloadFromProducts> allProducts = [];
+  List<PayloadFromProducts> sortProducts = [];
   List<PayloadFromCategories> allCategories = [];
   String dropdownValue = 'Budget';
   String categories = 'Category';
   AuthPayload authPayload;
   List<int> quantityToPurchase = [];
+  TextEditingController searchController = TextEditingController();
 
 
-  void setAddQuantityToPurchase(int index, int value) {
-      quantityToPurchase[index] = value;
-      debugPrint("add qunt $quantityToPurchase");
-      notifyListeners();
+  List<PayloadFromProducts> get sortAllProducts {
+    sortProducts = allProducts;
+    List<PayloadFromProducts> newList = [];
+    List<PayloadFromProducts> returnList = [];
+      sortProducts.sort(
+      (a,b) {
+        // debugPrint("see sort ${a.name.compareTo(b.name)}");
+        if(a.name.toLowerCase().compareTo(b.name.toLowerCase()) < 0) {
+          newList.add(a);
+        } else if(a.name.toLowerCase().compareTo(b.name.toLowerCase()) == 0) {
+          newList.add(a);
+        }
+        else {
+          newList.add(a);
+        }
+        return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+      }
+      );
+
+      newList.forEach((element) {
+        if(element.name.toLowerCase().contains(searchController.text) || element.description.toLowerCase().contains(searchController.text.toLowerCase()))
+          {
+            returnList.add(element);
+            // debugPrint("see sort ${element.name}");
+          }
+      });
+        debugPrint("prince print");
+    return returnList;
   }
 
-  void setSubtractQuantityToPurchase(int index, int value) {
-    if(quantityToPurchase[index] > 1) {
-      quantityToPurchase[index] = value;
-      debugPrint("subtract qunt $quantityToPurchase");
-      notifyListeners();
-    }
-  }
 
   @override
   FutureOr<void> init() async {
@@ -89,7 +108,9 @@ class ProductViewModel extends BaseViewModel {
       // print("job range success" + jobRange);
 
       allProducts = res.data.data;
+      // sortAllProducts = allProducts;
       print("payload from products" + allProducts.toString());
+      quantityToPurchase = List.filled(allProducts.length, 1);
       // showTopSnackBar(
       //   context,
       //   CustomSnackBar.success(

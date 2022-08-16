@@ -23,6 +23,11 @@ class ForgotPasswordViewModel extends BaseViewModel with InputValidationMixin {
   String message;
   final TextEditingController emailController = TextEditingController();
 
+
+  notify(){
+    notifyListeners();
+  }
+
   FutureOr<void> init() {
     // TODO: implement init
     throw UnimplementedError();

@@ -33,6 +33,10 @@ class RegisterViewModel extends BaseViewModel with InputValidationMixin {
   final TextEditingController passwordController = TextEditingController();
 
 
+  notify(){
+    notifyListeners();
+  }
+
   @override
   FutureOr<void> init() {
     // TODO: implement init

@@ -33,6 +33,10 @@ class AuthViewModel extends BaseViewModel with InputValidationMixin {
 
   final TextEditingController tokenController = TextEditingController();
 
+  notify(){
+    notifyListeners();
+  }
+
   @override
   FutureOr<void> init() {
     // isLoading = false;

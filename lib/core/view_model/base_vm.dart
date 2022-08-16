@@ -8,9 +8,9 @@ abstract class BaseViewModel extends ChangeNotifier {
 
   FutureOr<void> _initState;
 
-  notify(){
-    notifyListeners();
-  }
+  // notify(){
+  //   notifyListeners();
+  // }
 
   BaseViewModel() {
     _init();

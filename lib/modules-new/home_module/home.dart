@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
 import 'package:planetx/modules-new/authentication/login.dart';
 import 'package:planetx/modules-new/home_module/constants.dart';
-import 'package:planetx/modules-new/home_module/item_bottom_sheet.dart';
 import 'package:planetx/modules-new/home_module/viewmodel/product_vm.dart';
 import 'package:planetx/modules-new/receiving_module/receiving_screen.dart';
+import 'package:planetx/shared/models/allProducts_payload.dart';
 import 'package:planetx/shared/utils/app_text.dart';
 import 'package:planetx/shared/utils/images.dart';
 import 'package:planetx/shared/utils/navigation.dart';
@@ -21,8 +21,11 @@ import 'package:planetx/shared/data/home_screen_lists.dart';
 import 'package:planetx/shared/utils/styles.dart';
 import 'package:planetx/shared/utils/utils.dart';
 import 'package:planetx/shared/widgets/space.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../shared/utils/color.dart';
+import '../cart/gift_details_screen.dart';
 import '../send_gift_module/send_gift.dart';
 
 class Home extends StatefulWidget {
@@ -33,15 +36,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  PersistentBottomSheetController _controller;
-
-  void _createBottomSheet() async{
-    _controller = await _scaffoldKey.currentState.showBottomSheet(
-        (context) {
-          return HomeProductDetailsBottomSheet();
-        });
-  }
+  int quantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +48,6 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildScreen(BuildContext context, ProductViewModel viewModel) {
-
     HomeList data = HomeList();
     return Scaffold(
       body: SafeArea(
@@ -134,91 +128,167 @@ class _HomeState extends State<Home> {
                   keyboardType: TextInputType.text,
                   maxLines: 1,
                   hintText: 'Search items',
+                  controller: viewModel.searchController,
+                  onSaved: () => viewModel.notify(),
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Image.asset(search, width: 16.w, height: 16.h),
                   ),
                 ),
                 VSpace(24.h),
-                scrollActionTag(
-                    context,
-                    'Popular Items',
-                    'See all',
-                    SendGift(
-                        tabControllerLength: viewModel.allCategories.length)),
-                SizedBox(
-                  height: 160.h,
-                  child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: viewModel.allProducts.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            viewModel.quantityToPurchase = List.filled(index, 1);
-                            return GestureDetector(
-                              onTap: () async {
-                                // return showModalBottomSheet(
-                                // return showModalBottomSheet(
-                                //     constraints: BoxConstraints.expand(
-                                //         height:
-                                //             (deviceHeight(context) * 0.73).sp),
-                                //     isDismissible: true,
-                                //     enableDrag: true,
-                                //     isScrollControlled: true,
-                                //     elevation: 5,
-                                //     barrierColor: Colors.grey.withOpacity(0.5),
-                                //     context: context,
-                                //     backgroundColor:
-                                //         Colors.grey.withOpacity(0.5),
-                                //     builder: (BuildContext context) {
-                                //       return HomeProductDetailsBottomSheet(
-                                //           // viewModel: viewModel,
-                                //           product:
-                                //               viewModel.allProducts[index],
-                                //       quantity: viewModel.quantityToPurchase[index],
-                                //       onAdd: () {
-                                //             viewModel.setAddQuantityToPurchase(index,viewModel.quantityToPurchase[index] + 1);
-                                //       },
-                                //       onRemove: () {
-                                //             viewModel.setSubtractQuantityToPurchase(index, viewModel.quantityToPurchase[index] - 1);
-                                //       },);
-                                //     });
-                              },
-                              child: popularItem(
-                                  viewModel.allProducts[index].image,
-                                  viewModel.allProducts[index].name),
-                            );
-                          },
-                        ),
-                ),
-                giftNotificationCard(
-                    '${viewModel.authPayload.data.user.firstName ?? ""}',
-                    'Deji', () {
-                  Nav.forward(context, ReceivingScreen());
-                }),
-                scrollActionTag(
-                    context,
-                    'Categories',
-                    'See all',
-                    SendGift(
-                        tabControllerLength: viewModel.allCategories.length)),
-                SizedBox(
-                  height: 160.h,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: viewModel.allCategories.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          SendGift(
-                              tabControllerLength:
-                                  viewModel.allCategories.length);
+                viewModel.searchController.text.isEmpty 
+                ? Column(
+                  children: [
+                    scrollActionTag(
+                        context,
+                        'Popular Items',
+                        'See all',
+                        SendGift(
+                            tabControllerLength: viewModel.allCategories.length)),
+                    SizedBox(
+                      height: 160.h,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: viewModel.allProducts.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          debugPrint(
+                              "length of product ${viewModel.allProducts.length}");
+                          // viewModel.quantityToPurchase = List.filled(index, 1);
+                          return GestureDetector(
+                            onTap: () async {
+                              // return showModalBottomSheet(
+                              return showModalBottomSheet(
+                                  constraints: BoxConstraints.expand(
+                                      height: (deviceHeight(context) * 0.73).sp),
+                                  isDismissible: true,
+                                  enableDrag: true,
+                                  isScrollControlled: true,
+                                  elevation: 5,
+                                  barrierColor: Colors.grey.withOpacity(0.5),
+                                  context: context,
+                                  backgroundColor: Colors.grey.withOpacity(0.5),
+                                  builder: (BuildContext context) {
+                                    Widget content = SizedBox();
+                                    content = homeProductDetailsBottomSheet(
+                                      // viewModel: viewModel,
+                                      product: viewModel.allProducts[index],
+                                      quantity: viewModel.quantityToPurchase[index],
+                                    );
+                                    viewModel.quantityToPurchase[index] = quantity;
+                                    debugPrint(
+                                        "lister ${viewModel.quantityToPurchase}");
+                                    return content;
+                                  });
+                            },
+                            child: popularItem(viewModel.allProducts[index].image,
+                                viewModel.allProducts[index].name),
+                          );
                         },
-                        child: popularItem(viewModel.allCategories[index].image,
-                            viewModel.allCategories[index].name),
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                    giftNotificationCard(
+                        '${viewModel.authPayload.data.user.firstName ?? ""}',
+                        'Deji', () {
+                      Nav.forward(context, ReceivingScreen());
+                    }),
+                    scrollActionTag(
+                        context,
+                        'Categories',
+                        'See all',
+                        SendGift(
+                            tabControllerLength: viewModel.allCategories.length)),
+                    SizedBox(
+                      height: 160.h,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: viewModel.allCategories.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              SendGift(
+                                  tabControllerLength:
+                                      viewModel.allCategories.length);
+                            },
+                            child: popularItem(viewModel.allCategories[index].image,
+                                viewModel.allCategories[index].name),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                )
+                : Column(
+                  children: [
+                    VSpace(15.h),
+                    viewModel.sortAllProducts.isEmpty
+                    ? Center(child: Styles.regular("Search not found!"),)
+                    : Column(
+                      children: List.generate(viewModel.sortAllProducts.length, (index) => InkWell(
+                        onTap: () {
+                          return showModalBottomSheet(
+                              constraints: BoxConstraints.expand(
+                                  height: (deviceHeight(context) * 0.73).sp),
+                              isDismissible: true,
+                              enableDrag: true,
+                              isScrollControlled: true,
+                              elevation: 5,
+                              barrierColor: Colors.grey.withOpacity(0.5),
+                              context: context,
+                              backgroundColor: Colors.grey.withOpacity(0.5),
+                              builder: (BuildContext context) {
+
+                                Widget content = SizedBox();
+                                content = homeProductDetailsBottomSheet(
+                                  // viewModel: viewModel,
+                                  product: viewModel.sortAllProducts[index],
+                                  quantity: viewModel.quantityToPurchase[index],
+                                );
+                                viewModel.quantityToPurchase[index] = quantity;
+                                debugPrint(
+                                    "lister ${viewModel.quantityToPurchase}");
+                                return content;
+                              });
+                        },
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.network(
+                                      viewModel.sortAllProducts[index].image,
+                                      fit: BoxFit.cover,
+                                      width: 120,
+                                      height: 100,
+                                    ),
+                                  ),
+                                   HSpace(14.w),
+                                  SizedBox(
+                                    width: deviceWidth(context)/2,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        AppText(viewModel.sortAllProducts[index].name,
+                                            16.sp, FontWeight.w600, textColorDark, 0, 1.6, null),
+                                        VSpace(8.w),
+                                        AppText(viewModel.sortAllProducts[index].description,
+                                            12.sp, FontWeight.w400, textColorDark, 0, 1.6, null),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              VSpace(15.h),
+                            ],
+                          ),
+                        ),
+                      )),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -354,5 +424,231 @@ class _HomeState extends State<Home> {
         );
       },
     );
+  }
+
+  Widget homeProductDetailsBottomSheet(
+      {PayloadFromProducts product, int quantity}) {
+    this.quantity = 1;
+    bool isCartLoading = false;
+    return StatefulBuilder(
+        builder: (context, setState) => Container(
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              child: ListView(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 202.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(10.r),
+                      image: DecorationImage(
+                          image: product.image == null
+                              ? AssetImage(bonton)
+                              : NetworkImage(product.image),
+                          fit: BoxFit.cover),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 9),
+                            Styles.semiBold(
+                              // viewModel.productInfo.name ?? "Airpods Pro Max",
+                              product.name ?? "",
+                              fontSize: 14.sp,
+                              color: textColorDark,
+                            ),
+                            SizedBox(height: 9.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Styles.regular(
+                                  product.description ?? "",
+                                  //     "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
+                                  // "New AirPods Expected Later This \nYear as Suppliers Begin \nComponent ..",
+                                  fontSize: 14.sp,
+                                  color: grey,
+                                ),
+                                Styles.semiBold(
+                                  // "\$ ${viewModel.productInfo.price.toString() ?? "00"}",
+                                  "₦${product.price ?? "0"}",
+                                  fontSize: 18.sp,
+                                  color: textColorDark,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 20.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Styles.regular(
+                                      "Colors",
+                                      fontSize: 14.sp,
+                                      color: grey,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 30.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Styles.regular(
+                                  "Quantity",
+                                  fontSize: 14.sp,
+                                  color: grey,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      height: 32.h,
+                                      width: 32.w,
+                                      decoration: BoxDecoration(
+                                          color: grey.withOpacity(0.2),
+                                          borderRadius:
+                                              BorderRadius.circular(8.r)),
+                                      child: IconButton(
+                                          icon: Icon(Icons.remove),
+                                          iconSize: 16.sp,
+                                          onPressed: () {
+                                            setState(() {
+                                              if (quantity > 1) {
+                                                quantity--;
+                                              }
+                                            });
+                                            this.quantity = quantity;
+                                            debugPrint("minuser $quantity");
+                                          }),
+                                    ),
+                                    HSpace(30.w),
+                                    Styles.regular(
+                                      // "${viewModel.quantityToPurchase}",
+                                      "${quantity}",
+                                      fontSize: 16.sp,
+                                      color: quantity > 1 ? black : grey,
+                                    ),
+                                    HSpace(30.w),
+                                    Container(
+                                      height: 32.h,
+                                      width: 32.w,
+                                      decoration: BoxDecoration(
+                                          color: grey.withOpacity(0.2),
+                                          borderRadius:
+                                              BorderRadius.circular(8.r)),
+                                      child: IconButton(
+                                          icon: Icon(Icons.add),
+                                          iconSize: 16.sp,
+                                          onPressed: () {
+                                            setState(() {
+                                              quantity++;
+                                            });
+                                            this.quantity = quantity;
+                                            debugPrint("adder $quantity");
+                                          }),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            VSpace(16.h),
+                            Divider(),
+                            VSpace(16.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () async {
+                                    setState(() {
+                                      isCartLoading = true;
+                                    });
+                                    var cart = await si.cartService
+                                        .addToCart(product.id, quantity);
+                                    debugPrint(
+                                        "see add to cart report ${cart.success} + quantity $quantity");
+                                    if (cart.success) {
+                                      setState(() {
+                                        isCartLoading = false;
+                                      });
+                                      showTopSnackBar(
+                                          context,
+                                          CustomSnackBar.success(
+                                            message: cart.message,
+                                          ));
+                                      // Navigator.pop(context);
+                                    } else {
+                                      setState(() {
+                                        isCartLoading = false;
+                                      });
+                                      showTopSnackBar(
+                                          context,
+                                          CustomSnackBar.error(
+                                            message: cart.message,
+                                          ));
+                                    }
+                                  },
+                                  child: Container(
+                                    child: Center(
+                                      child: isCartLoading
+                                          ? Loader(
+                                              radius: 20.r,
+                                            )
+                                          : Styles.semiBold(
+                                              "Add to Cart",
+                                              fontSize: 16.sp,
+                                              color: primaryColor,
+                                            ),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(24.r),
+                                        border:
+                                            Border.all(color: grey, width: 1)),
+                                    height: 55.h,
+                                    width: 180.w,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () =>
+                                      Nav.forward(context, GiftDetailScreen()),
+                                  child: Container(
+                                    height: 55.h,
+                                    width: 180.w,
+                                    child: Center(
+                                      child: Styles.semiBold(
+                                        "Send gift",
+                                        fontSize: 16.sp,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(24.r),
+                                      color: primaryColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            VSpace(20.h),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ));
   }
 }

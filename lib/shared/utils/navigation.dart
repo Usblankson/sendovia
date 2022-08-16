@@ -7,8 +7,8 @@ class Nav {
   }
 
   static forwardNoReturn(BuildContext context, Widget page) {
-    Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (context) => page), (route) => false);
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => page));
   }
 
   static back(BuildContext context) {

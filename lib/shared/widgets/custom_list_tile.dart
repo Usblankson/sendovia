@@ -10,14 +10,14 @@ class CustomListTile extends StatelessWidget {
       this.title,
       this.subtitle,
       this.trailing,
-      this.page})
+      this.onTap})
       : super(key: key);
   String title, subtitle, leading, trailing;
-  Widget page;
+  Function onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Nav.forwardNoReturn(context, page),
+      onTap: onTap,
       child: Container(
         height: 80,
         decoration: BoxDecoration(

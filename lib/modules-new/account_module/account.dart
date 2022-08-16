@@ -7,6 +7,7 @@ import 'package:planetx/modules-new/authentication/verify_email.dart';
 import 'package:planetx/shared/utils/app_text.dart';
 import 'package:planetx/shared/utils/color.dart';
 import 'package:planetx/shared/utils/images.dart';
+import 'package:planetx/shared/utils/navigation.dart';
 import 'package:planetx/shared/widgets/custom_list_tile.dart';
 
 import '../../../shared/widgets/space.dart';
@@ -56,7 +57,7 @@ class _AccountState extends State<Account> {
                 subtitle: 'View & update profile',
                 leading: profileSetting,
                 trailing: forwardBtn,
-                page: const EditProfile(),
+                onTap: () => Nav.forward(context, const EditProfile()),
               ),
               VSpace(16.h),
               CustomListTile(
@@ -64,7 +65,7 @@ class _AccountState extends State<Account> {
                 subtitle: 'Change your password',
                 leading: password,
                 trailing: forwardBtn,
-                page: const ChangePassword(),
+                onTap: () => Nav.forward(context, const ChangePassword()),
               ),
               VSpace(16.h),
               CustomListTile(
@@ -72,7 +73,7 @@ class _AccountState extends State<Account> {
                 subtitle: 'Logout of your account',
                 leading: logout,
                 trailing: forwardBtn,
-                page: const LogIn(),
+                onTap: () => Nav.forwardNoReturn(context, const LogIn()),
               ),
             ],
           ),
