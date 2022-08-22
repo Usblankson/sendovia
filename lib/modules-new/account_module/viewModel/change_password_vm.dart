@@ -1,29 +1,31 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:planetx/core/service_injector/service_injector.dart';
-import 'package:planetx/core/services/product_service.dart';
-import 'package:planetx/core/services/profile_services.dart';
 import 'package:planetx/core/view_model/base_vm.dart';
 import 'package:planetx/modules-new/authentication/view_models/register_view_model.dart';
+import 'package:planetx/router/main_router.dart';
+import 'package:planetx/router/route_paths.dart';
 import 'package:planetx/shared/models/api_model.dart';
-import 'package:planetx/shared/models/auth_payload.dart';
-import 'package:planetx/shared/models/edit_profile_model.dart';
+import 'package:planetx/shared/models/change_password_model.dart';
+import 'package:planetx/shared/utils/navigation.dart';
 import 'package:planetx/shared/utils/validator.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class ProfileViewModel extends BaseViewModel with InputValidationMixin{
+import '../../../core/services/auth_service.dart';
 
-  final ProfileServices profileServices;
+class ChangePasswordViewModel extends BaseViewModel with InputValidationMixin {
 
-  ProfileViewModel({this.profileServices});
+  final AuthService authService;
+
+  ChangePasswordViewModel({this.authService});
   ViewState viewState = ViewState.idle;
-  // bool isValidPassword = false;
+  bool isValidPassword = false;
   String message;
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController oldPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
 
   notify(){
@@ -38,28 +40,28 @@ class ProfileViewModel extends BaseViewModel with InputValidationMixin{
     notifyListeners();
   }
 
-  bool editProfileButtonIsEnabled() {
-    return  firstNameController.text.isNotEmpty &&
-        lastNameController.text.isNotEmpty &&
-        phoneNumberController.text.isNotEmpty &&
+  bool changePasswordButtonIsEnabled() {
+    return  oldPasswordController.text.isNotEmpty &&
+         newPasswordController.text.isNotEmpty &&
+        confirmPasswordController.text.isNotEmpty &&
         viewState != ViewState.busy;
   }
 
-  String validateProfile() {
+  String validateChange() {
     String error = "";
-    error = fieldValidate(firstNameController.text.trim());
+    error = commonPassword(oldPasswordController.text.trim());
     error += "\n" +
-        fieldValidate(lastNameController.text.trim());
-    error += "\n" +
-        fieldValidate(phoneNumberController.text.trim());
+        validatePassword(newPasswordController.text.trim());
+ error += "\n" +
+     confirmPassword(confirmPasswordController.text.trim());
 
     return error.trim();
   }
 
-  Future<bool> editProfile(BuildContext context) async {
+  Future<bool> changePassword(BuildContext context) async {
     // changeStatus();
 
-    String error = validateProfile();
+    String error = validateChange();
     if (error.isNotEmpty) {
       message = error;
       showTopSnackBar(
@@ -71,10 +73,10 @@ class ProfileViewModel extends BaseViewModel with InputValidationMixin{
     }
 
     setViewState(ViewState.busy);
-    final ApiResponse<EditProfileModel> res =
-    await si.profileServices.editProfile(firstName: firstNameController.text, lastName: lastNameController.text, phoneNumber: phoneNumberController.text);
-    debugPrint("edit prof ${res.message}");
-    debugPrint("edit prof ${res.data}");
+    final ApiResponse<ChangePasswordModel> res =
+    await si.profileServices.changePassword(newPassword: newPasswordController.text, oldPassword: oldPasswordController.text);
+    debugPrint("change password ${res.message}");
+    debugPrint("change password ${res.data}");
 
     if (res.success == false) {
       isLoading = res.success;
@@ -98,7 +100,6 @@ class ProfileViewModel extends BaseViewModel with InputValidationMixin{
             message: message,
           ));
       // isLoading = false;
-      await si.authService.getAuthData();
       Navigator.pop(context);
 
       return res.success;
@@ -107,9 +108,10 @@ class ProfileViewModel extends BaseViewModel with InputValidationMixin{
 
 
   resetControllers() {
-    firstNameController.text = "";
-    lastNameController.text = "";
-    phoneNumberController.text = "";
+    oldPasswordController.text = "";
+    newPasswordController.text = "";
+    confirmPasswordController.text = "";
   }
+
 
 }

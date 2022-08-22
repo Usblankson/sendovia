@@ -29,9 +29,8 @@ class ForgotPasswordViewModel extends BaseViewModel with InputValidationMixin {
   }
 
   FutureOr<void> init() {
-    // TODO: implement init
-    throw UnimplementedError();
   }
+
   void setViewState(ViewState value) {
     viewState = value;
     notifyListeners();

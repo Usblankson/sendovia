@@ -4,6 +4,7 @@ import 'package:planetx/core/services/cart_service.dart';
 import 'package:planetx/core/services/color_service.dart';
 import 'package:planetx/core/services/layout_service.dart';
 import 'package:planetx/core/services/product_service.dart';
+import 'package:planetx/core/services/profile_services.dart';
 import 'package:planetx/core/services/router_service.dart';
 import 'package:planetx/core/services/sendgift_service.dart';
 import 'package:planetx/core/services/storage_service.dart';
@@ -22,6 +23,7 @@ class Injector {
   AuthService authService;
   ColorService colorService;
   UserService userService;
+  ProfileServices profileServices;
 
   Future<bool> init() async {
     // init storage service
@@ -47,6 +49,10 @@ class Injector {
       storeService: storeService,
     );
     productService = ProductService(
+      storageService: storageService,
+      storeService: storeService,
+    );
+    profileServices = ProfileServices(
       storageService: storageService,
       storeService: storeService,
     );

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
-import 'package:planetx/modules-new/authentication/view_models/forgot_password.dart';
+import 'package:planetx/modules-new/authentication/view_models/forgot_password_vm.dart';
 import 'package:planetx/modules-new/authentication/view_models/register_view_model.dart';
 import 'package:planetx/modules-new/authentication/widgets/custom_button.dart';
 import 'package:planetx/shared/widgets/custom_text_form_field.dart';

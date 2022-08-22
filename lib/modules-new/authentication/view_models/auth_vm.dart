@@ -29,7 +29,7 @@ class AuthViewModel extends BaseViewModel with InputValidationMixin {
   ViewState viewState = ViewState.idle;
 
   final TextEditingController emailController = TextEditingController(text: "david@yopmail.com");
-  final TextEditingController passwordController = TextEditingController(text: "secret12");
+  final TextEditingController passwordController = TextEditingController(text: "Password12!");
 
   final TextEditingController tokenController = TextEditingController();
 
