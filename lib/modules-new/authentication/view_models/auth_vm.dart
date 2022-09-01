@@ -28,8 +28,10 @@ class AuthViewModel extends BaseViewModel with InputValidationMixin {
   bool isVisiblePassword = true;
   ViewState viewState = ViewState.idle;
 
-  final TextEditingController emailController = TextEditingController(text: "david@yopmail.com");
-  final TextEditingController passwordController = TextEditingController(text: "Password12!");
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+// final TextEditingController emailController = TextEditingController(text: "david@yopmail.com");
+//   final TextEditingController passwordController = TextEditingController(text: "Password12!");
 
   final TextEditingController tokenController = TextEditingController();
 

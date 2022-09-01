@@ -77,6 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 splashBg1,
                 width: MediaQuery.of(context).size.width.w,
                 height: 550.h,
+                fit: BoxFit.fitWidth,
               ),
             ),
             Positioned(
@@ -85,6 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 splashBg2,
                 width: MediaQuery.of(context).size.width.w,
                 height: 280.h,
+                fit: BoxFit.fitWidth,
               ),
             ),
           ],
